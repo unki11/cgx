@@ -35,9 +35,16 @@ public class MovieController {
 		return "movie/pre_movie";
 	}
 	
-	@GetMapping("/finder")
-	public String finder() {
+	@GetMapping("/trailer")
+	public String trailer() {
 		
+		return"movie/trailer";
+	}
+	
+	@GetMapping("/finder")
+	public String finder(Model model) {
+		List<MovieDto> list = movieDao.getList();
+		model.addAttribute("list", list);
 		return "movie/finder";
 	}
 }
