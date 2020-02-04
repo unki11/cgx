@@ -7,8 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="movies">
 
-	<select id="get" parameterType="movies" resultType="movies">
-		select movie_no from movie;
+	<select id="list"  resultType="movies">
+		select * from movie
 	</select>
 
 </mapper>

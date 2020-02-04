@@ -6,9 +6,9 @@
 
 
 
-<c:forEach var="get" items="${get }">
+<c:forEach var="list" items="${list }">
 
-<h5>${get }</h5>
+<h5>${list }</h5>
 
 </c:forEach>
 

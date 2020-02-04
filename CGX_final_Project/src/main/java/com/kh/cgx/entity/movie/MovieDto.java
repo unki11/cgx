@@ -1,4 +1,4 @@
-package entity.movie;
+package com.kh.cgx.entity.movie;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 public class MovieDto {
 
 	private int movie_no;
-	private int files_no;
+	private int file_no;
 	private String movie_title;
 	private String movie_director;
 	private int movie_ticket_rate;
