@@ -1,6 +1,7 @@
 package com.kh.cgx.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -9,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MovieController {
 
 	@GetMapping("/")
-	public String movie() {
+	public String movie(Model model) {
 		
+		model.addAttribute("list", list);
 		return "movie/movie";
 	}
 	
