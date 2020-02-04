@@ -26,9 +26,31 @@ public class UserController {
 		return "user/search";
 	}
 	
-	@GetMapping("/logout")
-	public String logout() {
+	@GetMapping("/find_pw")
+	public String find_pw() {
 		
-		return "user/logout";
+		return "user/find_pw";
 	}
+	
+	
+	@GetMapping("/find_id")
+	public String find_id() {
+		
+		return "user/find_id";
+	}
+	
+	
+	@GetMapping("/pw")
+	public String pw() {
+		
+		return "user/pw_reconfirm";
+	}
+	
+	
+	@GetMapping("/three_month_pw")
+	public String three_month_pw() {
+		
+		return "user/three_month_pw";
+	}
+
 }
