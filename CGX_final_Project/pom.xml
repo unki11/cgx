@@ -12,7 +12,7 @@
 	<packaging>war</packaging>
 	
 	<!-- 버전 정보 -->
-	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<version>1.0.0-BUILD-SNAPSHOT</version> 
 	
 	<!-- 이 문서에서 사용할 변수 -->
 	<properties>
