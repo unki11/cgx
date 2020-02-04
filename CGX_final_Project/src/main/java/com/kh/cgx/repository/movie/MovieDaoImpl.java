@@ -20,6 +20,12 @@ public class MovieDaoImpl implements MovieDao{
 		return sqlSession.selectList("movies.list");
 	}
 
+	@Override
+	public List<MovieDto> getList2() {
+		
+		return sqlSession.selectList("movies.pre_list");
+	}
+
 	
 	}
 

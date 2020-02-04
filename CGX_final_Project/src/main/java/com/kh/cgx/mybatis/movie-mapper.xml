@@ -11,6 +11,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from movie
 	</select>
 
+	<select id="pre_list" resultType="movies">
+		select * from movie where movie_startdate >= sysdate
+	</select>
+
+
 </mapper>
 
 
