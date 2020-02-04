@@ -29,8 +29,9 @@ public class MovieController {
 	}
 	
 	@GetMapping("/pre-movie")
-	public String pre_movie(){
-		
+	public String pre_movie(Model model){
+		List<MovieDto> pre_list = movieDao.getList2();
+		model.addAttribute("pre_list", pre_list);
 		return "movie/pre_movie";
 	}
 	
