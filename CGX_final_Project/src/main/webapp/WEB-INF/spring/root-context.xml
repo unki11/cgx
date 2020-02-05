@@ -75,6 +75,10 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
+
+	<!-- bcrypt password encoder 등록 -->
+	<bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
+	
 </beans>
 
 
