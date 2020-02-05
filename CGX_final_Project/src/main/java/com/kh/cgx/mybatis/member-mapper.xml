@@ -21,9 +21,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		- $ 는 SQL Injection 이라는 해킹공격에 매우 취약하므로 사용에 주의 
  -->
 
-<mapper namespace="memo">
+<mapper namespace="member">
 	
-	
+	<insert id="join" parameterType="member">
+		insert into member values(
+		#{member_no},
+		#{member_id},
+		#{member_pw},
+		#{member_name},
+		sysdate,
+		sysdate,
+		#{member_phone},
+		#{member_birth},
+		#{member_sex}
+		)
+	</insert>
+		
+	<select id="login" parameterType="member" resultType="member">
+		select *from member where id=#{member_id} and pw=#{member_pw}	
+	</select>
 	
 </mapper>
 
