@@ -23,8 +23,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="cinema">
 	
-	<select id="list" resultType="com.kh.cgx.entity.cinema.CinemaDto" parameterType="map">
-		select * from cinema
+	<select id="list" resultType="map" >
+		select * from cinema where cinema_no
+	</select>
+	
+	<select id="search" resultType="map" parameterType="string">
+		select * from cinema where cinema_addr like #{area}
 	</select>
 </mapper>
 
