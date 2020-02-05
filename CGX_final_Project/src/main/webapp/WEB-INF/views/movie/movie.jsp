@@ -6,9 +6,11 @@
 
 
 
+
 <c:forEach var="list" items="${list }">
 
 <h5>${list }</h5>
+<img src="upload?files_no=${list.files_no }">
 
 </c:forEach>
 
