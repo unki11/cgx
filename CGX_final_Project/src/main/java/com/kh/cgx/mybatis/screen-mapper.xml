@@ -23,9 +23,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="screen">
 	
-	<select id="list" resultType="com.kh.cgx.entity.cinema.ScreenDto" parameterType="map">
+	<select id="list" resultType="map">
 		select * from screen
 	</select>
+	
+	<select id="search" parameterType="int" resultType="map" >
+		select * from screen where cinema_no = #{cinema_no}
+	</select>
+	
 </mapper>
 
 
