@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!-- 별칭 -->
 	<typeAliases>
 
-		<typeAlias type="com.kh.cgx.entity.MemberDto" alias="member"/>
+		<typeAlias type="com.kh.cgx.entity.user.MemberDto" alias="member"/>
 		<typeAlias type="com.kh.cgx.entity.movie.MovieDto" alias="movies"/>
 
 	</typeAliases>

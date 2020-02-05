@@ -5,7 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data @AllArgsConstructor @NoArgsConstructor @Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class MemberDto {
 	private int member_no;
 	private String member_id;
@@ -17,9 +20,4 @@ public class MemberDto {
 	private String member_birth;
 	private String member_sex;
 	private String member_point;
-	public void join(MemberDto memberDto) {
-	
-		
-	}
-	
 }

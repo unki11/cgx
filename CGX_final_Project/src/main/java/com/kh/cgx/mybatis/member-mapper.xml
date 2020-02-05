@@ -24,21 +24,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="member">
 	
 	<insert id="join" parameterType="member">
-		insert into member values(
-		#{member_no},
+		insert into member (member_no,
+		member_id,
+		member_pw,
+	    member_name,
+		member_phone,
+		member_lastlogin,
+		member_joindate,
+		member_birth,
+		member_sex) values (
+		(SELECT MAX (MEMBER_NO) + 1 FROM MEMBER),
 		#{member_id},
 		#{member_pw},
 		#{member_name},
-		sysdate,
-		sysdate,
 		#{member_phone},
+		sysdate,
+		sysdate,
 		#{member_birth},
 		#{member_sex}
 		)
 	</insert>
 		
 	<select id="login" parameterType="member" resultType="member">
-		select *from member where id=#{member_id} and pw=#{member_pw}	
+		select * from member where id=#{member_id} and pw=#{member_pw}	
 	</select>
 	
 </mapper>

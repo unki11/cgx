@@ -20,42 +20,37 @@ import com.kh.cgx.service.user.MemberServiceImpl;
 @Controller
 @RequestMapping("/user")
 public class UsersController {
-
-
-// 가입 	
-	@GetMapping("/join")
-	public String join() {
-		return "user/join";
-	}
-	
 	@Autowired
 	private PasswordEncoder encoder;
 	
 	@Autowired
 	private SqlSession sqlSession;
 	
+	// 가입 	
+	@GetMapping("/join")
+	public String join() {
+		return "user/join";
+	}
+	
 	@PostMapping("/join")
 	// pw 암호화
 	public String join(@ModelAttribute MemberDto member) {
-// member에 있는 pw를 암호화 한다
-//		String origin = member.getMember_pw();
-//		String result = encoder.encode(origin);
-//		member.setMember_pw(result);
+		// member에 있는 pw를 암호화 한다
+		//		String origin = member.getMember_pw();
+		//		String result = encoder.encode(origin);
+		//		member.setMember_pw(result);
 		member.setMember_pw(encoder.encode(member.getMember_pw()));
 	
-// DB 저장
+		// DB 저장
 		sqlSession.insert("member.join", member);
 		return "redirect:/user/login";
-		
-		
 	}
 
 	
-// 로그인
-	
+	// 로그인
 	@GetMapping("/login")
-	public String login(@RequestParam String id, HttpSession session) {
-				session.setAttribute("id", id);
+	public String login(@RequestParam(required = false) String id, HttpSession session) {
+		session.setAttribute("id", id);
 		return "user/login";
 	}
 	
