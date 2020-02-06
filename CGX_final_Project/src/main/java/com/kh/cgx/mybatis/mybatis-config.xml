@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.kh.cgx.entity.cinema.CinemaDto" alias="CinemaDto"/>
 		<typeAlias type="com.kh.cgx.entity.cinema.MovieTimeDto" alias="MovieTimeDto"/>
 		<typeAlias type="com.kh.cgx.entity.cinema.ScreenDto" alias="ScreenDto"/>
-
+		<typeAlias type="com.kh.cgx.entity.movie.VideoDto" alias="videos"/>
 	</typeAliases>
 	
 </configuration>

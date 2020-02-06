@@ -15,8 +15,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from movie where movie_startdate >= sysdate
 	</select>
 	
+<!-- 	<select id="video_list" resultType="videos"> -->
+<!-- 		select * from video  v  -->
+<!-- 		INNER join  -->
+<!-- 		movie m on v.movie_no = m.movie_no -->
+<!-- 	</select> -->
+	
+	<select id="video_list" resultType="videos">
+		select * from video 
+		
+	</select>
+	
 
 </mapper>
+
+
+
 
 
 
