@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.cgx.entity.user.MemberDto;
+import com.kh.cgx.repository.user.MemberDao;
 import com.kh.cgx.service.user.MemberServiceImpl;
 
 
@@ -22,9 +23,10 @@ import com.kh.cgx.service.user.MemberServiceImpl;
 public class UsersController {
 	@Autowired
 	private PasswordEncoder encoder;
-	
 	@Autowired
 	private SqlSession sqlSession;
+	@Autowired
+	private MemberDao memberDao;
 	
 	// 가입 	
 	@GetMapping("/join")
@@ -45,13 +47,41 @@ public class UsersController {
 		sqlSession.insert("member.join", member);
 		return "redirect:/user/login";
 	}
+	
+	@GetMapping("/join_success")
+	public String join_success() {
+		return "member/join_success";
+	
+	}
 
 	
-	// 로그인
+	// 로그인 처리 
+//	@GetMapping("/login")
+//	public String login(@RequestParam(required = false) String id, HttpSession session) {
+//		session.setAttribute("id", id);
+//		return "user/login";
+//	}
 	@GetMapping("/login")
-	public String login(@RequestParam(required = false) String id, HttpSession session) {
-		session.setAttribute("id", id);
+	public String login() {
 		return "user/login";
+	}
+	
+	@PostMapping("/login")
+	public String login(HttpSession session, @ModelAttribute MemberDto memberDto) {
+		System.out.println("안녕");
+		MemberDto find = memberDao.login(memberDto);
+		System.out.println(find);
+		if(find==null) {//로그인 실패
+			return "redirect:login?error";
+		}
+		else {//로그인 성공
+			session.setAttribute("id", find.getMember_id());
+			session.setAttribute("pw", find.getMember_pw());
+//			memberDao.updateLastLogin(find);
+			return "redirect:/";
+			
+		}
+		
 	}
 	
 	@GetMapping("/logout")
