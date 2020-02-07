@@ -22,6 +22,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public MemberDto login(MemberDto memberDto) {
 		System.out.println("멤버 로그인중");
+		System.out.println();
 		return sqlSession.selectOne("member.login", memberDto);
 
 	}
