@@ -7,11 +7,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +26,7 @@ import com.kh.cgx.repository.movie.MovieDao;
 import com.kh.cgx.repository.movie.MovieProfileDao;
 import com.kh.cgx.repository.movie.PhysicalFileDao;
 import com.kh.cgx.repository.movie.VideoDao;
+
 import com.kh.cgx.vo.movie.VideoVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +36,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MovieController {
 
-	
+
 	
 	@Autowired
 	private VideoDao videoDao;
@@ -64,19 +67,21 @@ public class MovieController {
 		return "movie/pre_movie";
 	}
 	
-//	@GetMapping("/trailer")
-//	public String trailer(@ModelAttribute VideoVO vo ) {
-//		log.info("vo값 확인 = "+vo);
-//		
-//		return"movie/trailer";
-//	}
 	@GetMapping("/trailer")
-	public String trailer(Model model ) {
-		List<VideoDto> video_list = videoDao.getList();
-		model.addAttribute("video_list", video_list);
+	public String trailer(@ModelAttribute VideoVO videoVO ,ModelMap model) {
+//		System.out.println("vo값  = "+vo.getMovie_title() + vo.getVideo_link());
+	List<VideoVO> video_list  = videoDao.getList(videoVO);
+	model.addAttribute("video_list", video_list);
 		
 	return"movie/trailer";
-}
+	}
+//	@GetMapping("/trailer")
+//	public String trailer(Model model ) {
+//		List<VideoDto> video_list = videoDao.getList();
+//		model.addAttribute("video_list", video_list);
+//		
+//	return"movie/trailer";
+//}
 	
 	@GetMapping("/finder")
 	public String finder(Model model) {
