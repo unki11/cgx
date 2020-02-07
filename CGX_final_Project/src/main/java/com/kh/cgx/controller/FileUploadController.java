@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.cgx.entity.movie.FilesDto;
+import com.kh.cgx.entity.movie.MovieDto;
 import com.kh.cgx.repository.movie.FilesDao;
 import com.kh.cgx.vo.movie.FileVO;
 
@@ -54,7 +55,7 @@ public class FileUploadController {
 		//파일저장 : 저장을 할 가상의 파일 객체가 필요
 		//저장경로 : C:/upload
 		File dir = new File("C:\\upload");
-		File target = new File(dir , UUID.randomUUID().toString());
+		File target = new File(dir , String.valueOf(filesDto.getFiles_no()));
 		
 		dir.mkdirs();//디렉터리 생성
 		file.transferTo(target);//파일저장
@@ -76,7 +77,7 @@ public class FileUploadController {
 		dir.mkdirs();
 		
 		for(MultipartFile mf : file) {
-			File target = new File(UUID.randomUUID().toString());
+			File target = new File(String.valueOf(filesDto.getFiles_no()));
 			mf.transferTo(target);
 		}
 		
@@ -87,9 +88,27 @@ public class FileUploadController {
 	//위의 경우는 일반 데이터와 파일을 개별적으로 수신
 	//-개수가 많아 지면 번거롭다
 	@PostMapping("/upload3")
-	public String upload3(@ModelAttribute FileVO vo) {
-
+	public String upload3(@ModelAttribute FileVO vo) throws IllegalStateException, IOException {
+//		System.out.println(vo);
 		
+		List<FilesDto> list = new ArrayList<>();
+		for(MultipartFile mf : vo.getFile()) {
+			list.add(filesDto.builder()
+										.files_no(vo.getFiles_no())
+										.build());
+		}
+		
+		File dir = new File("C:\\upload");
+		for(int i = 0 ; i < list.size();i++) {
+			MultipartFile mf = vo.getFile().get(i);
+			FilesDto dto = list.get(i);
+			
+			File target = new File(dir , String.valueOf(dto.getFiles_no()));
+			mf.transferTo(target);
+			filesDao.regist(dto);
+			
+			
+		}
 		return"redirect:./";
 	}
 	

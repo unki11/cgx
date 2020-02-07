@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.cgx.entity.movie.VideoDto;
+import com.kh.cgx.vo.movie.VideoVO;
 @Repository
 public class VideoDaoImpl implements VideoDao{
 
@@ -14,7 +15,7 @@ public class VideoDaoImpl implements VideoDao{
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<VideoDto> getList() {
+	public List<VideoVO> getList(VideoVO videoVO) {
 		
 		return sqlSession.selectList("movies.video_list");
 	}

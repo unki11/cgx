@@ -5,11 +5,12 @@
 
     <h1>trailer 페이지 입니다</h1>
     
-    <c:forEach var="video_list" items="${video_list }">
+    <c:forEach var="videoVO" items="${video_list }">
   
-  <h1>${video_list.video_no}</h1>
+  <h1>${videoVO.movie_title}</h1>
+  
    <div>
-	<iframe height="200" width="200" src="${video_list.video_link}" frameborder="0"></iframe>
+	<iframe height="200" width="200" src="${videoVO.video_link}" frameborder="0"></iframe>
 </div>
 
     </c:forEach>
