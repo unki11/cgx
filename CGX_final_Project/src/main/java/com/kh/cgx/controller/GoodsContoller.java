@@ -29,7 +29,7 @@ public class GoodsContoller {
 	public String goods(Model model){
 //		List<GoodsDto> list=goodsDao.getList();
 		List<GoodsDto> list = sqlSession.selectList("goods.list");
-		System.out.println(list);
+		//System.out.println(list);
 		model.addAttribute("list",list);
 		return "goods/goods";
 	}

@@ -21,10 +21,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		- $ 는 SQL Injection 이라는 해킹공격에 매우 취약하므로 사용에 주의 
  -->
 
-<mapper namespace="goods">
+<mapper namespace="mypage">
 	
 	<select id="list" resultType="map" >
-		select * from goods 
+		select * from member
+	</select>
+	
+	<select id="search" resultType="member" parameterType="int">
+	select * from member where member_no = #{member_no}	
+	</select>
+	
+	<select id="ticketlist" resultType="ticket" parameterType="int">
+		select*from ticket where member_no = #{member_no}
 	</select>
 	
 
