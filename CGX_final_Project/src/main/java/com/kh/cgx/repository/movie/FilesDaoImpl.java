@@ -13,11 +13,11 @@ public class FilesDaoImpl implements FilesDao{
 	
 	@Override
 	public void regist(FilesDto filesDto) {
-		String sql = "insert into files values("
-				+ "files_seq.nextval)";
-Object[] param = {
+		String sql = "insert into files values(12)";
+		
+		Object[] param = {
 		filesDto.getFiles_no()
-};
+	};
 		jdbcTemplate.update(sql, param);
 		
 

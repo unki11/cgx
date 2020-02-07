@@ -21,3 +21,4 @@ public class MemberDto {
 	private String member_sex;
 	private String member_point;
 }
+ 
