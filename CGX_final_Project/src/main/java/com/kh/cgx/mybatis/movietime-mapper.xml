@@ -28,7 +28,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="search" resultType="map">
-		select movietime.* from movietime INNER join (select screen.screen_no from screen INNER join cinema on screen.cinema_no = cinema.cinema_no where cinema.cinema_no = 1)A on movietime.screen_no = A.screen_no
+		select movietime.* from movietime 
+		INNER join 
+		(select screen.screen_no from screen 
+		INNER join 
+		cinema on screen.cinema_no = cinema.cinema_no where cinema.cinema_no = 1)
+		A on movietime.screen_no = A.screen_no
 	</select>
 	
 	<select id="movie" resultType="int">
