@@ -2,12 +2,9 @@
     pageEncoding="UTF-8"%>
 
 
-<!-- <form action="/home/member/login.do" method="post"> -->
-<form action="login" method="post">
 
-<!-- 새로운 형태로 디자인 -->
+<form action="mycgv" method="post">
 
-	
 	<div class="row-right">
 	</div> 
 	
