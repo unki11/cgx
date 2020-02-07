@@ -21,19 +21,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		- $ 는 SQL Injection 이라는 해킹공격에 매우 취약하므로 사용에 주의 
  -->
 
-<mapper namespace="movietime">
+<mapper namespace="goods">
 	
-	<select id="list" resultType="map">
-		select * from movietime
+	<select id="list" resultType="map" >
+		select * from goods 
 	</select>
-
-	<select id="search" resultType="map">
-		select movietime.* from movietime 
-		INNER join 
-		(select screen.screen_no from screen 
-		INNER join 
-		cinema on screen.cinema_no = cinema.cinema_no where cinema.cinema_no = 1)
-		A on movietime.screen_no = A.screen_no
+	
+	<select id="search" resultType="Goods" parameterType="string">
+		select * from goods where goods_category like #{area}
 	</select>
 </mapper>
 
