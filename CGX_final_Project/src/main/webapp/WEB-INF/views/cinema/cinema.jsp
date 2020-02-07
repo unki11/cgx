@@ -11,7 +11,7 @@
       p { margin:20px 0px; }
     </style>
   <body>
-  <h1>cinema페이지입니다</h1>
+  <h1>cinema페이지입니다</h1>	
     <div class="container">
       <div class="row">
         <div class="col">
@@ -28,6 +28,9 @@
               <div class="tab-pane fade show active" id="qwe">
                <c:forEach var="cinema1" items="${cinema_list1}">
 				<h1>${cinema1}</h1>
+				<h1>${cinema1.FILE_NO}</h1>
+				<h1><img src="download?file_no=${cinema1.FILE_NO}"></h1>
+				
 			</c:forEach>
               </div>
               <div class="tab-pane fade" id="asd">
