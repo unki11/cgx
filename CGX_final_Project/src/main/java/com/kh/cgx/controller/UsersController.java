@@ -1,6 +1,8 @@
 package com.kh.cgx.controller;
 
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;	
 
 import org.apache.ibatis.session.SqlSession;
@@ -83,12 +85,19 @@ public class UsersController {
 		}
 		
 	}
-	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
-				session.removeAttribute("id");
+		session.removeAttribute("id");
+		session.removeAttribute("grade");
 				return "redirect:/";
 	}
+	
+	@PostMapping("/logout")
+	public String doPost(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	
+		return "/user";
+	}
+	
 	
 	@GetMapping("/search")
 	public String search() {
