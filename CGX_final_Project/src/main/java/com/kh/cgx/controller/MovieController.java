@@ -83,11 +83,11 @@ public class MovieController {
 //	return"movie/trailer";
 //}
 	
-	@GetMapping("/finder")
+	@GetMapping("/finder_test")
 	public String finder(Model model) {
 		List<MovieDto> list = movieDao.getList();
 		model.addAttribute("list", list);
-		return "movie/finder";
+		return "movie/finder_test";
 	}
 	
 //	@GetMapping("/")
