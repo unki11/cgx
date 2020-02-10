@@ -27,17 +27,21 @@
             <div class="tab-content">
               <div class="tab-pane fade show active" id="qwe">
                <c:forEach var="cinema1" items="${cinema_list1}">
-				<h1>${cinema1}</h1>
-				<h1>${cinema1.FILE_NO}</h1>
-				<h1><img src="download?file_no=${cinema1.FILE_NO}"></h1>
-				
+               <a href="?cinema_no=${cinema1.CINEMA_NO}">
+				<h3>${cinema1}</h3>
+				<h3>시네마 ${cinema1.CINEMA_NO}</h3>
+				<h3><img src="download?file_no=${cinema1.FILES_NO}" width="200" height="150"></h3>
+				</a>
 			</c:forEach>
               </div>
               <div class="tab-pane fade" id="asd">
                 <c:forEach var="cinema2" items="${cinema_list2}">
-					<h1>${cinema2}</h1>
+                <a href="?cinema_no=${cinema2.CINEMA_NO}">
+					<h3>${cinema2}</h3>
+					<h3>${cinema2.FILES_NO}</h3>
+				<h3><img src="download?file_no=${cinema2.FILES_NO}" width="200" height="150"></h3>
+				</a>
 				</c:forEach>
-                
               </div>
             </div>
         </div>
@@ -45,10 +49,6 @@
     </div>
     <c:forEach var="screen" items="${screen_list}">
 		<h1>${screen}</h1>
-	</c:forEach>
-
-	<c:forEach var="movietime" items="${movietime_list}">
-		<h1>${movietime}</h1>
 	</c:forEach>
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
