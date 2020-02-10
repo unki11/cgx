@@ -35,6 +35,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		cinema on screen.cinema_no = cinema.cinema_no where cinema.cinema_no = 1)
 		A on movietime.screen_no = A.screen_no
 	</select>
+	
+	<select id="movie" resultType="int">
+	select DISTINCT movie_no from 
+(select movietime.* from movietime INNER join (select screen.screen_no from screen INNER join cinema on screen.cinema_no = cinema.cinema_no where cinema.cinema_no = 2)A on movietime.screen_no = A.screen_no)
+order by movie_no asc
+	</select>
+	
+	<select id="screen" resultType="int" >
+	select DISTINCT screen_no from 
+(select movietime.* from movietime INNER join (select screen.screen_no from screen INNER join cinema on screen.cinema_no = cinema.cinema_no where cinema.cinema_no = 1)A on movietime.screen_no = A.screen_no)
+order by screen_no asc
+	</select>
+	
+	<select id="screenlist" resultType="MovieTimeDto" parameterType="map">
+		select movietime.* from movietime INNER join 
+(select screen.screen_no from screen INNER join cinema on screen.cinema_no = cinema.cinema_no where cinema.cinema_no = 1)A 
+on movietime.screen_no = A.screen_no where movietime.screen_no = #{screen_no} and movie_no=#{movie_no} order by movietime.movietime_time asc
+	</select>
 </mapper>
 
 
