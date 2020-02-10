@@ -30,6 +30,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="search" resultType="map" parameterType="string">
 		select * from cinema where cinema_addr like #{area}
 	</select>
+	
+	<select id="files" resultType="int">
+		select files_no_seq.nextval from dual
+	</select>
+	
+	<insert id="filesinsert" parameterType="int">
+		insert into files values(
+			#{files_no}
+		)
+	</insert>
 </mapper>
 
 

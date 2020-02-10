@@ -50,6 +50,15 @@
     <c:forEach var="screen" items="${screen_list}">
 		<h1>${screen}</h1>
 	</c:forEach>
+		<h1>상영시간표 자르기</h1>
+	<c:forEach items="${list}" var="mlist" >
+		<c:forEach items="${mlist.list}" var="slist">
+			<c:forEach items="${slist.list}" var="list">
+				<h5>${list}</h5>
+			</c:forEach>
+			<h5>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</h5>
+		</c:forEach>
+	</c:forEach>
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
