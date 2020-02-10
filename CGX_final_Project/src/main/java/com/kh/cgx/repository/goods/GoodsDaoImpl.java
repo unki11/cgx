@@ -18,7 +18,14 @@ public class GoodsDaoImpl implements GoodsDao{
 	public List<GoodsDto> getList() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("goods.list");
+	}
+
+	@Override
+	public List<GoodsDto> getList2() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("goods.list2");
 	}	
 
+	
 	}
 

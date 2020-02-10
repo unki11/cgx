@@ -41,7 +41,7 @@ public class MypageController {
 	public String reserve(Model model) {
 		int member_no=1;
 		TicketDto ticketlist = sqlSession.selectOne("mypage.ticketlist",member_no);
-		System.out.println(ticketlist);
+	//	System.out.println(ticketlist);
 		model.addAttribute("ticketlist",ticketlist);
 		return "mypage/reserve";
 	}

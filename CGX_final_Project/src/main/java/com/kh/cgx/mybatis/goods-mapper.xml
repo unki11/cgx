@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
 
 <!-- 
 	namespace : 영역을 부르는 별칭
@@ -20,15 +22,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	- $ 는 값을 있는 그대로 출력하는 명령이므로 주로 "항목"에 사용
 		- $ 는 SQL Injection 이라는 해킹공격에 매우 취약하므로 사용에 주의 
  -->
-
 <mapper namespace="goods">
-	
+
 	<select id="list" resultType="map" >
 		select * from goods 
 	</select>
 	
+	<select id="list2" resultType="Goods" parameterType="string">
+		select * from goods 
+		<if test="goods_category != null">
+		where goods_category= #{goods_category}
+		</if>
+	</select>
+	
+	</mapper>
 
-</mapper>
 
 
 
