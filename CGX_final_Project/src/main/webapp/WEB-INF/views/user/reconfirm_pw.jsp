@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호 변경 권유 페이지 p</title>
+<title>13. 내 정보 p -> 변경 click-> 재 로그인 p</title>
 </head>
 <body>
 

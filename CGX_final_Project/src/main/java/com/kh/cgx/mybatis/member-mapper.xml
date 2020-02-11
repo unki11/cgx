@@ -12,8 +12,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="member">
 
-	<insert id="join" parameterType="member">
-		insert into member (member_no,
+<!--  회원가입 -->
+	<insert id="join" parameterType="Member">
+		insert into member (
+		member_no,
 		member_id,
 		member_pw,
 		member_name,
@@ -36,18 +38,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 	<!-- 로그인 기능 -->
-	<select id="login" parameterType="member" resultType="member">
+	<select id="login" parameterType="Member" resultType="Member">
 		select *
 		from member where member_id=#{member_id}
 	</select>
 
-	<update id="updateLastLogin" parameterType="member">
+	<update id="updateLastLogin" parameterType="Member">
 		update member set
 		member_lastlogin = sysdate where member_id=#{member_id}
 	</update>
 
 	<!-- 아이디 중복체크 -->
-	<select id="checkId" parameterType="string" resultType="member">
+	<select id="checkId" parameterType="string" resultType="Member">
 		select * from member where member_id = #{member_id}
 	</select>
 

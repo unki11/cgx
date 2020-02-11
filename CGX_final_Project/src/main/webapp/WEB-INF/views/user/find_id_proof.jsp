@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호 변경 권유 페이지 p</title>
+<title>7. 아이디 찾기 p ->이메일 본인인증 p</title>
 </head>
 <body>
-
+<h1> 아이디 </h1>
 </body>
 </html>

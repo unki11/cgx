@@ -28,7 +28,6 @@ public class UsersController {
 	private SqlSession sqlSession;
 	@Autowired
 	private MemberDao memberDao;
-	@ResponseBody
 	
 	// 가입 	
 	@GetMapping("/join")
@@ -43,85 +42,23 @@ public class UsersController {
 		//		String origin = member.getMember_pw();
 		//		String result = encoder.encode(origin);
 		//		member.setMember_pw(result);
+		System.out.println(member);
 		member.setMember_pw(encoder.encode(member.getMember_pw()));
-	
+	System.out.println(member);
 		// DB 저장
 		sqlSession.insert("member.join", member);
-		return "redirect:/user/login";
+		return "user/login";
 	}
 	
 	@GetMapping("/join_success")
 	public String join_success() {
-		return "member/join_success";
+		return "/user/login";
 	
 	}
 
-	
-	// 로그인 처리 
-//import javax.servlet.http.HttpSession;	
-//
-//import org.apache.ibatis.session.SqlSession;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.crypto.password.PasswordEncoder;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.ModelAttribute;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
-//
-//import com.kh.cgx.entity.user.MemberDto;
-//import com.kh.cgx.repository.user.MemberDao;
-//import com.kh.cgx.service.user.MemberServiceImpl;
-//
-//
-//@Controller
-//@RequestMapping("/user")
-//public class UsersController {
-//	@Autowired
-//	private PasswordEncoder encoder;
-//	@Autowired
-//	private SqlSession sqlSession;
-//	@Autowired
-//	private MemberDao memberDao;
-//	
-//	// 가입 	
-//	@GetMapping("/join")
-//	public String join() {
-//		return "user/join";
-//	}
-//	
-//	@PostMapping("/join")
-//	// pw 암호화
-//	public String join(@ModelAttribute MemberDto member) {
-//		// member에 있는 pw를 암호화 한다
-//		//		String origin = member.getMember_pw();
-//		//		String result = encoder.encode(origin);
-//		//		member.setMember_pw(result);
-//		member.setMember_pw(encoder.encode(member.getMember_pw()));
-//	
-//		// DB 저장
-//		sqlSession.insert("member.join", member);
-//		return "redirect:/user/login";
-//	}
-//	
-//	@GetMapping("/join_success")
-//	public String join_success() {
-//		return "member/join_success";
-//	
-//	}
-//
-//	
-//	// 로그인 처리 
-////	@GetMapping("/login")
-////	public String login(@RequestParam(required = false) String id, HttpSession session) {
-////		session.setAttribute("id", id);
-////		return "user/login";
-////	}
-
 	@GetMapping("/login")
 	public String login() {
-		return "user/login";
+		return "/user/login";
 	}
 	
 	@PostMapping("/login")
@@ -156,24 +93,21 @@ public class UsersController {
 	}
 	
 	    @ResponseBody //ajax로 보낼때 사용하는 어노테이션
-	    @PostMapping("/checkId")
-	    public boolean checkId(String member_id,Model  model) {
+	    @GetMapping("/checkId")
+	    public String checkId(String member_id,Model  model) {
 	        System.out.println("Controller.idCheck() 호출");
-	        boolean result=false;
 	        MemberDto memberDto=sqlSession.selectOne("member.checkId",member_id);
-	        if(memberDto.getMember_id()!=null) {
-	        	result= true;
+	        if(memberDto != null) {
+	        	return "중복된 아이디가 있습니다.";
 	        }else {
-	        	System.out.println("아이디사용가능");
+	        	return "사용가능한 아이디 입니다.";
 	        }
-	        return result;
-		
 	}
 	
 	@PostMapping("/logout")
 	public String doPost(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 	
-		return "/user";
+		return "/user/join";
 	
 	}
 	
