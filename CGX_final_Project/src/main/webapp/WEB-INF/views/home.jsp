@@ -14,15 +14,22 @@
         .bg-1light{
             background-color: #efe4b0;
         }
+        
+        .navbar a > img{
+         	width:160px;
+        }
+        
     </style>
 </head>
 <body>
    <nav class="navbar navbar-expand-lg navbar-light bg-1light">
-        <a class="navbar-brand" href="http://www.cgv.co.kr/"><img src="/image/cgv2.png"></a>
+        <a class="navbar-brand" href="http://localhost:8080/com.kh.cgx/"><img src="${pageContext.request.contextPath}/resources/img/latte2.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
     
+    	
+    		
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown" style="padding: 3rem;">
@@ -63,7 +70,15 @@
                 <a class="dropdown-item" href="#">기프트샵</a>
               </div>
             </li>
+            
+              <div>
+            <a class="click" href="http://localhost:8080/com.kh.cgx/user/login" style="padding: 1rem;"> 로그인</a>
+            <a class="click" href="http://localhost:8080/com.kh.cgx/user/join" style="padding: 1rem;"> 회원가입</a>
+            <a class="click" href="http://localhost:8080/com.kh.cgx/mypage/mycgv" style="padding: 1rem;"> my cgv</a>
+            </div>
           </ul>
+          
+          
           <form class="form-inline my-2 my-lg-3">
             <input class="form-control mr-lg-4" type="search" placeholder="영화검색" aria-label="Search">
             <button class="btn btn-outline-success my-3 my-lg-3" type="submit">검색하기</button>
@@ -71,6 +86,12 @@
         </div>
       </nav>
       <!-- 헤더 끝 -->
+      
+      
+      
+      
+      
+      
       
       
       <!-- 푸터시작 -->
