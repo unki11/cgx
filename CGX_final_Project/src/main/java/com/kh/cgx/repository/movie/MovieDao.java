@@ -11,6 +11,8 @@ public interface MovieDao {
 
 	List<MovieDto> getList2();
 	
+
+	
 	
 	
 }
