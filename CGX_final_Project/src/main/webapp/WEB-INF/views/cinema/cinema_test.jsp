@@ -11,7 +11,7 @@
 	$(function(){
 		$("form").submit(function(e){
 			 e.preventDefault();
-            
+ 
             $.ajax({
                 url:"test",
                 type:"post",
@@ -26,7 +26,7 @@
 </head>
 <body>
 <!-- 	<form action="test" method="get">
-		<input type="text" name="cinema_no">
+		<input type="text" name="cinema_no">rladnsrl
 		<input type="submit">
 	</form> -->
 	<h1>상영시간표 자르기</h1>

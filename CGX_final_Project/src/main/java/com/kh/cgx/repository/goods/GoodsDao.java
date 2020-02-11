@@ -8,4 +8,5 @@ public interface GoodsDao {
 
 	List<GoodsDto> getList();
 
+	List<GoodsDto> getList2();
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <form action="mycgv" method="post">
@@ -29,9 +29,11 @@
 		<a href="">my정보관리</a>
 	</div>
 	
-	
-	
-	
+<%-- 	<c:forEach var="ist" items="${list}">
+<h5>${ist}</h5>
+</c:forEach> --%>
+
+	<h5>${search}</h5>
 
 </article>
 
