@@ -13,7 +13,7 @@ public class FilesDaoImpl implements FilesDao{
 	
 	@Override
 	public void regist(FilesDto filesDto) {
-		String sql = "insert into files values(12)";
+		String sql = "insert into files values(?)";
 		
 		Object[] param = {
 		filesDto.getFiles_no()

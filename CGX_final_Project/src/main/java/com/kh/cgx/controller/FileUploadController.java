@@ -90,19 +90,19 @@ public class FileUploadController {
 	@PostMapping("/upload3")
 	public String upload3(@ModelAttribute FileVO vo) throws IllegalStateException, IOException {
 //		System.out.println(vo);
-		
+		System.out.println(vo);
 		List<FilesDto> list = new ArrayList<>();
 		for(MultipartFile mf : vo.getFile()) {
 			list.add(filesDto.builder()
 										.files_no(vo.getFiles_no())
 										.build());
 		}
-		
+		System.out.println(list);
 		File dir = new File("C:\\upload");
 		for(int i = 0 ; i < list.size();i++) {
 			MultipartFile mf = vo.getFile().get(i);
 			FilesDto dto = list.get(i);
-			
+			System.out.println(dto);
 			File target = new File(dir , String.valueOf(dto.getFiles_no()));
 			mf.transferTo(target);
 			filesDao.regist(dto);

@@ -1,11 +1,13 @@
 package com.kh.cgx.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.cgx.entity.cinema.CinemaDto;
 import com.kh.cgx.entity.cinema.MovieTimeDto;
@@ -70,6 +73,56 @@ public class CinemaController {
 		model.addAttribute("movietime_list", movieTime_list);
 		
 		
+//		ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+//		아래는 상영시간표 출력입니다/
+//		ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+		List<Integer> movie = sqlSession.selectList("movietime.movie",cinema_no);
+		log.info("무비={}",movie);
+		List<Integer> screen = sqlSession.selectList("movietime.screen",cinema_no);
+		log.info("스크린={}",screen);
+		List<MovieTimeScreenVO> MTSlist = new ArrayList<>();
+		List<MovieTimeMovieVO> MTMlist = new ArrayList<MovieTimeMovieVO>();
+		for(int M : movie) {
+			MovieTimeMovieVO movieTimeMovieVO = new MovieTimeMovieVO();
+
+			MTSlist = new ArrayList<>();
+			for(int S : screen) {
+				HashMap<String, Integer> map = new HashMap<String, Integer>();
+				map.put("movie_no",M); 
+				
+				map.put("screen_no",S);
+				map.put("cinema_no",cinema_no);
+				System.out.println("M"+M);
+				System.out.println("S"+S);
+
+				System.out.println("map"+map);
+				List<MovieTimeDto> mtlist = sqlSession.selectList("movietime.screenlist",map);
+				if(mtlist.isEmpty()) {
+					continue;
+				}
+				MovieTimeScreenVO movieTimeScreenVO = new MovieTimeScreenVO();
+				System.out.println("mtlist : "+mtlist);
+				movieTimeScreenVO.setMovie_no(M);
+				movieTimeScreenVO.setScreen_no(S);
+				movieTimeScreenVO.setList(mtlist);
+				System.out.println("movieTimeScreenVo"+movieTimeScreenVO.getList());
+				MTSlist.add(movieTimeScreenVO);
+				System.out.println("MTSlist체크 : "+MTSlist);
+			}
+			movieTimeMovieVO.setMovie_no(M);
+			movieTimeMovieVO.setList(MTSlist);
+			MTMlist.add(movieTimeMovieVO);
+		}
+		for(MovieTimeScreenVO list : MTSlist) {
+			System.out.println(list);
+		}
+		System.out.println(MTSlist);
+		
+		for(MovieTimeMovieVO list : MTMlist) {
+			System.err.println(list);
+		}
+		System.out.println(MTMlist);
+		model.addAttribute("list",MTMlist);
 		/*
 		 * List<MovieTimeDto> movieTime_list =
 		 * sqlSession.selectList("movietime.search");
@@ -139,6 +192,26 @@ public class CinemaController {
 		
 		return id;
 	}
+	@GetMapping("/upload")
+	public String test3_1() {
+		return "cinema/upload";
+	}
+	@PostMapping("/upload")
+	public String test3(@RequestParam List<MultipartFile> files,Model model) throws IllegalStateException, IOException {
+		
+		log.info("리스트={}",files);
+		File dir = new File("D:/upload/cinema");
+		dir.mkdirs();//디렉터리 생성
+		
+		for(MultipartFile mf : files) {
+			int no = sqlSession.selectOne("cinema.files");
+			File target = new File(dir, String.valueOf(no));
+			mf.transferTo(target);//파일 저장
+			log.info("target={}",target);
+			sqlSession.insert("cinema.filesinsert",no);
+		}
+		return "cinema/upload1";
+	}
 	
 	@GetMapping("/download")
 	public ResponseEntity<ByteArrayResource> download(@RequestParam int file_no) throws IOException{
@@ -148,7 +221,6 @@ public class CinemaController {
 		
 //		실제파일을 불러온다 : physicalFileDao
 		byte[] data = cinemaFileDao.get(file_no);
-		log.info("data={}",data);
 //		헤더설정 및 전송은 스프링의 방식으로 진행
 		ByteArrayResource resource = new ByteArrayResource(data);
 		
