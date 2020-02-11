@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내 정보 p -> 변경 click-> 재 로그인 p</title>
 </head>
 <body>
 

@@ -1,15 +1,83 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>   
     
 <h1>finder페이지입니다</h1>
 <br><br>
 
+<script>
+$(function(){
+	//장르 체크 
+//체크박스 전체 선택 및 해제
+$("#all_genre").click(function(){
+     if($("#all_genre").is(":checked")){
+         $(".check").prop("checked",true);     
+     }
+     else{
+         $(".check").prop("checked",false);
+     }
+});
+
+//한개의 체크박스 선택 해제시 전체 선택 체크박스도 해제
+$(".check").click(function(){
+ if($("input[name='genre']:checked").length == 9){
+     $("#all_genre").prop("checked",true);
+ }else{
+     $("#all_genre").prop("checked",false);
+ }
+});
+
+//체크박스 전체 선택 및 해제
+$("#all_national").click(function(){
+     if($("#all_national").is(":checked")){
+         $(".na_check").prop("checked",true);     
+     }
+     else{
+         $(".na_check").prop("checked",false);
+     }
+});
+
+//국가 체크
+//한개의 체크박스 선택 해제시 전체 선택 체크박스도 해제
+$(".na_check").click(function(){
+ if($("input[name='genre']:checked").length == 5){
+     $("#all_national").prop("checked",true);
+ }else{
+     $("#all_national").prop("checked",false);
+ }
+});
+
+//관람등급 체크
+//체크박스 전체 선택 및 해제
+$("#all_grade").click(function(){
+     if($("#all_grade").is(":checked")){
+         $(".grade_check").prop("checked",true);     
+     }
+     else{
+         $(".grade_check").prop("checked",false);
+     }
+});
+
+//한개의 체크박스 선택 해제시 전체 선택 체크박스도 해제
+$(".grade_check").click(function(){
+ if($("input[name='genre']:checked").length == 4){
+     $("#all_grade").prop("checked",true);
+ }else{
+     $("#all_grade").prop("checked",false);
+ }
+});
+
+
+});
+</script>
+
+
+
 
 <div class="sect-finder" align="center">
 	<h3>영화 찾아준다!!!!<h3>
-	<form id="movie-search" novalidate="novalidate">
+	<form id="movie-search" action="${pageContext.request.contextPath }/movie/finder-test" novalidate="novalidate">
 		<!-- checkbox ID 값과 label for값을 똑같이 한다 -->
 		<table>
 		 <tbody>
@@ -17,13 +85,13 @@
 		 		<th class="searchtype" scope="row">영화검색</th>
 		 			<td>
 		 				<label class="hidden" for="keyword_type">영화검색 목록</label>
-		 				<select title="영화검색 목록" id="keyword_type">
-                                <option value="0" selected="">전체</option>
-                                <option value="1">영화제목</option>
-                                <option value="2">주연배우</option>
-                                <option value="3">감독</option>
+		 				<select title="영화검색 목록" id="keyword_type" name="type">
+                                <option value="all" <c:out value="${param.type == 'all'?'selected':'' }" />>전체</option>
+                                <option value="movie_title" <c:out value="${param.type == 'movie_title'?'selected':'' }"/>>영화제목</option>
+                                <option value="actor_name" <c:out value="${param.type == 'actor_name'?'selected':'' }"/>>주연배우</option>
+                                <option value="movie_director" <c:out value="${param.type == 'movie_director'?'selected':'' }"/>>감독</option>
                             </select>
-                            <input type="text" title="영화검색 키워드입력" id="keyword" minlength="2" maxlength="20" style="width:410px;" placeholder="키워드를 입력해 주세요" value="">
+                            <input type="text" title="영화검색 키워드입력" id="keyword_type" minlength="2" maxlength="20" style="width:410px;" placeholder="키워드를 입력해 주세요" name="keyword" value="${param.keyword }">
 		 			</td>
 		 	</tr>
 		 	
@@ -32,88 +100,55 @@
 		 		<td>
 		 			<ul>
 		 				<li>
-		 					<input type="checkbox" id="all_genre" name="all-genre" value="all">
+		 					<input type="checkbox" id="all_genre" name="all-genre" value="all" class="check">
 		 					<label for="all_genre">전체</label>
 		 				</li>
 		 				
 		 				<li>
-		 					<input type="checkbox" id="genre217" name="genre" value="217">
-		 					<label for="genre217">공포/호러</label>
+		 					<input type="checkbox" id="genre-horror" name="genre" value="호러" class="check">
+		 					<label for="genre-horror">공포/호러</label>
 		 				</li>
 		 				
 		 				<li>
-		 					<input type="checkbox" id="genre721" name="genre" value="721">
-		 					<label for="genre721">SF</label>
+		 					<input type="checkbox" id="genre-fantasy" name="movie_genre" value="판타지" class="check">
+		 					<label for="genre-fantasy">판타지</label>
 		 				</li>
 		 				
 		 				<li>
-		 					<input type="checkbox" id="genre1228" name="genre" value="1228">
-		 					<label for="genre1228">멜로/로맨스</label>
+		 					<input type="checkbox" id="genre-romance" name="genre" value="로맨스" class="check">
+		 					<label for="genre-romance">멜로/로맨스</label>
 		 				</li>
 		 				
 		 				<li>
-		 					<input type="checkbox" id="genre732" name="genre" value="732">
-		 					<label for="genre732">코미디</label>
+		 					<input type="checkbox" id="genre-comedy" name="genre" value="코미디" class="check">
+		 					<label for="genre-comedy">코미디</label>
 		 				</li>
 		 				
 		 				<li>
-		 					<input type="checkbox" id="genre727" name="genre" value="727">
-		 					<label for="genre727">애니메이션</label>
+		 					<input type="checkbox" id="genre-ani" name="genre" value=애니 class="check">
+		 					<label for="genre-ani">애니메이션</label>
+		 				</li>
+	
+		 				
+		 				<li>
+		 					<input type="checkbox" id="genre-thriller" name="genre" value="스릴러" class="check">
+		 					<label for="genre-thriller">스릴러</label>
+		 				</li>
+		 				
+
+		 				<li>
+		 					<input type="checkbox" id="genre-action" name="genre" value="액션" class="check">
+		 					<label for="genre-action">액션</label>
 		 				</li>
 		 				
 		 				<li>
-		 					<input type="checkbox" id="genre218" name="genre" value="218">
-		 					<label for="genre218">뮤지컬</label>
+		 					<input type="checkbox" id="genre-erotic" name="genre" value="에로" class="check">
+		 					<label for="genre-erotic">에로</label>
 		 				</li>
 		 				
 		 				<li>
-		 					<input type="checkbox" id="genre219" name="genre" value="219">
-		 					<label for="genre219">미스터리</label>
-		 				</li>
-		 				
-		 				<li>
-		 					<input type="checkbox" id="genre222" name="genre" value="222">
-		 					<label for="genre222">범죄</label>
-		 				</li>
-		 				
-		 				<li>
-		 					<input type="checkbox" id="genre725" name="genre" value="725">
-		 					<label for="genre725">스릴러</label>
-		 				</li>
-		 				
-		 				<li>
-		 					<input type="checkbox" id="genre225" name="genre" value="225">
-		 					<label for="genre225">아동</label>
-		 				</li>
-		 				
-		 				<li>
-		 					<input type="checkbox" id="genre224" name="genre" value="224">
-		 					<label for="genre224">액션</label>
-		 				</li>
-		 				
-		 				<li>
-		 					<input type="checkbox" id="genre728" name="genre" value="728">
-		 					<label for="genre728">어드벤처</label>
-		 				</li>
-		 				
-		 				<li>	
-		 					<input type="checkbox" id="genre731" name="genre" value="731">
-		 					<label for="genre731">전쟁</label>
-		 				</li>
-		 				
-		 				<li>
-		 					<input type="checkbox" id="genre227" name="genre" value="227">
-		 					<label for="genre227">환타지</label>
-		 				</li>
-		 				
-		 				<li>
-		 					<input type="checkbox" id="genre729" name="genre" value="729">
-		 					<label for="genre729">에로</label>
-		 				</li>
-		 				
-		 				<li>
-		 					<input type="checkbox" id="genre1895" name="genre" value="1895">
-		 					<label for="genre1895">없음</label>
+		 					<input type="checkbox" id="genre-none" name="genre" value="none" class="check">
+		 					<label for="genre-none">없음</label>
 		 				</li>
 		 			</ul>
 		 		</td>
@@ -126,38 +161,33 @@
 		 		<td>
 		 			<ul>
 		 				<li>
-		 					<input type="checkbox" name="all-national-code" id="all_national_code">
-		 					<label for="all_national_code">전체</label>
+		 					<input type="checkbox" name="all-national" id="all_national">
+		 					<label for="all_national">전체</label>
 		 				</li>
 		 				
 		 				<li>
-		 					<input type="checkbox" id="national_code_164" name="national-code" value="164">
-		 					<label for="national_code_164">한국</label>
+		 					<input type="checkbox" id="national_korea" name="national" value="korea" class="na_check">
+		 					<label for="national_korea">한국</label>
 		 				</li>
 		 				
 		 				<li>
-		 					<input type="checkbox" id="national_code_102" name="national-code" value="102">
-		 					<label for="national_code_102">미국</label>
+		 					<input type="checkbox" id="national_usa" name="national" value="usa" class="na_check">
+		 					<label for="national_usa">미국</label>
 		 				</li>
 		 				
 		 				<li>
-		 					<input type="checkbox" id="national_code_141" name="national-code" value="141">
-		 					<label for="national_code_141">일본</label>
+		 					<input type="checkbox" id="national_japan" name="national" value="japan" class="na_check">
+		 					<label for="national_japan">일본</label>
 		 				</li>
 		 				
 		 				<li>
-		 					<input type="checkbox" id="national_code_143" name="national-code" value="143">
-		 					<label for="national_code_143">중국</label>
+		 					<input type="checkbox" id="national_china" name="national" value="china" class="na_check">
+		 					<label for="national_china">중국</label>
 		 				</li>
 		 				
 		 				<li>
-		 					<input type="checkbox" id="national_code_167" name="national-code" value="167">
-		 					<label for="national_code_167">홍콩</label>
-		 				</li>
-		 				
-		 				<li>
-		 					<input type="checkbox" id="national_code_1000" name="national-code" value="1000">
-		 					<label for="national_code_1000">기타</label>
+		 					<input type="checkbox" id="national_other" name="national" value="other" class="na_check">
+		 					<label for="national_other">기타</label>
 		 				</li>
 		 			</ul>
 		 		</td>
@@ -170,28 +200,28 @@
 		 		<td>
 		 			<ul>
 		 				<li>
-		 					<input type="checkbox" id="all_grade" name="all-grade" value="233">
+		 					<input type="checkbox" id="all_grade" name="all-grade" value="all_grade">
 		 					<label for="all_grade">전체</label>
 		 				</li>
 		 				
 		 				<li>
-		 					<input type="checkbox" id="grade233" name="grade" value="233">
-		 					<label for="grade233">전체관람가</label>
+		 					<input type="checkbox" id="grade_allview" name="grade" value="allview" class="grade_check">
+		 					<label for="grade_allview">전체관람가</label>
 		 				</li>
 		 				
 		 				<li>
-		 					<input type="checkbox" id="grade230" name="grade" value="230">
-		 					<label for="grade230">12세 관람가</label>
+		 					<input type="checkbox" id="grade_twelve" name="grade" value="twelve" class="grade_check">
+		 					<label for="grade_twelve">12세 관람가</label>
 		 				</li>
 		 				
 		 				<li>
-		 					<input type="checkbox" id="grade231" name="grade" value="231">
-		 					<label for="grade231">15세 관람가</label>
+		 					<input type="checkbox" id="grade_fifteen" name="grade" value="fifteen" class="grade_check">
+		 					<label for="grade_fifteen">15세 관람가</label>
 		 				</li>
 		 				
 		 				<li>
-		 					<input type="checkbox" id="grade232" name="grade" value="232">
-		 					<label for="grade232">청소년 관람불가</label>
+		 					<input type="checkbox" id="grade_adult" name="grade" value="adult" class="grade_check">
+		 					<label for="grade_adult">청소년 관람불가</label>
 		 				</li>
 		 			</ul>
 		 		</td>
@@ -209,13 +239,14 @@
 </div>
 
 <br><br>
+	<!-- 검색 결과 갯수 출력 -->
+	${count} 개의 게시물이 있습니다.
 
 
 
+<c:forEach var="movies" items="${finder_list}">
 
-<c:forEach var="list" items="${list }">
-
-<h5>${list }</h5>
+<h5>${finder_list}</h5>
 
 </c:forEach>
 

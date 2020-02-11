@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h1>아이디 찾기 p</h1>
 </body>
 </html>

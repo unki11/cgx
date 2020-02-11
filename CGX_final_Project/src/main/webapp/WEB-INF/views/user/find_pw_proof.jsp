@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호 변경 권유 페이지 p</title>
+<title>비밀번호 찾기 p -> 
+ 아이디 입력 후 이메일 인증하는 p  </title>
 </head>
 <body>
 

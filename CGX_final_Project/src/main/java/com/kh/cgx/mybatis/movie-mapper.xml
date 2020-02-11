@@ -21,16 +21,53 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		movie m on v.movie_no = m.movie_no
 	</select>
 	
-<!-- 	<select id="video_list" resultType="videos"> -->
-<!-- 		select * from video  -->
-		
-<!-- 	</select> -->
+	<select id="finder_list" resultType="movies" parameterType="map">
+		select*from movie
+	<if test="type != '' and keyword != ''">
+		<choose>
+			<!-- 전체 검색 일경우 -->
+			<when test="type == 'all'">
+				where movie_title like '%'||#{keyword}||'%'
+<!-- 				or actor_name like '%'||#{keyword}||'%' -->
+				or movie_director like '%'||#{keyword}||'%'
+			</when>
+			
+			<!-- 전체 검색 이 아닐경우 -->
+			<otherwise>
+				where ${type} like '%'||#{keyword}||'%'
+			</otherwise>
+		</choose>
+	</if>
+		order by movie_no asc
+	</select>
 	
+	<!-- 검색 결과 수 -->
+	<select id="count" resultType="int">
+		select count(*) from movie
+		
+		<if test="type != '' and keyword != ''">
+		<choose>
+<!-- 		전체 검색 일경우  -->
+			<when test="type == 'all'">
+				where movie_title like '%'||#{keyword}||'%'
+<!-- 				or actor_name like '%'||#{keyword}||'%' -->
+				or movie_director like '%'||#{keyword}||'%'
+			</when>
+			
+<!-- 		전체 검색 이 아닐경우 -->
+			<otherwise>
+				where ${type} like '%'||#{keyword}||'%'
+			</otherwise>
+		</choose>
+	</if>
+	</select>
 
 </mapper>
 
 
 
+		
+		
 
 
 
