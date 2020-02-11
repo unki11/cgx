@@ -23,6 +23,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.kh.cgx.entity.movie.VideoDto" alias="videos"/>
 		<typeAlias type="com.kh.cgx.vo.movie.VideoVO" alias="videoVO"/>
 		<typeAlias type="com.kh.cgx.entity.goods.GoodsDto" alias="Goods"/>
+		<typeAlias type="com.kh.cgx.entity.cinema.SeatDto" alias="Seat"/>
 
 	</typeAliases>
 	
