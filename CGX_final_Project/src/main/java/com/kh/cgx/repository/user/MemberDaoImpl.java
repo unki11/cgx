@@ -33,4 +33,9 @@ public class MemberDaoImpl implements MemberDao {
 
 	}
 
+	@Override
+	public int checkId(String member_id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

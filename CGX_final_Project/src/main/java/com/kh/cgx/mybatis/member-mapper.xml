@@ -22,7 +22,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		member_joindate,
 		member_birth,
 		member_sex) values (
-		(SELECT MAX (MEMBER_NO) + 1 FROM MEMBER),
+		(SELECT MAX
+		(MEMBER_NO) + 1 FROM MEMBER),
 		#{member_id},
 		#{member_pw},
 		#{member_name},
@@ -34,15 +35,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 
+	<!-- 로그인 기능 -->
 	<select id="login" parameterType="member" resultType="member">
 		select *
-		from member where member_id=#{member_id} and member_pw=#{member_pw}
+		from member where member_id=#{member_id}
 	</select>
 
 	<update id="updateLastLogin" parameterType="member">
 		update member set
 		member_lastlogin = sysdate where member_id=#{member_id}
 	</update>
+
+	<!-- 아이디 중복체크 -->
+	<select id="checkId" parameterType="string" resultType="member">
+		select * from member where member_id = #{member_id}
+	</select>
 
 </mapper>
 
