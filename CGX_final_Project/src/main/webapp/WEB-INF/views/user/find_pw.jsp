@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h1> 비번찾기 페이지 입니다</h1>
 </body>
 </html>
