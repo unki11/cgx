@@ -52,7 +52,7 @@ public class UsersController {
 	
 	@GetMapping("/join_success")
 	public String join_success() {
-		return "/user/login";
+		return "/";
 	
 	}
 
@@ -95,6 +95,7 @@ public class UsersController {
 	    @ResponseBody //ajax로 보낼때 사용하는 어노테이션
 	    @GetMapping("/checkId")
 	    public String checkId(String member_id,Model  model) {
+	    	//멤머에 아이디를 쏴줌. checkId로
 	        System.out.println("Controller.idCheck() 호출");
 	        MemberDto memberDto=sqlSession.selectOne("member.checkId",member_id);
 	        if(memberDto != null) {
