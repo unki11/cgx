@@ -86,7 +86,81 @@
         </div>
       </nav>
       <!-- 헤더 끝 -->
-      
+     <body>
+    <div class="jumbotron">
+        <h1>LATTE CINEMA 영화 트레일러</h1>
+        <h3>영화관보고싶지?</h3>
+    </div>   
+    
+    <div class="container-fluid">
+    <div class="row">
+            <div class="col-md-4">
+              <div class="thumbnail">
+                <img src="/image/기생충.jpg" alt="...">
+                <div class="caption">
+                  <h3>1번 영화</h3>
+                  <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="thumbnail">
+                  <img src="/image/남산의부장들.jpg" alt="...">
+                  <div class="caption">
+                    <h3>2번 영화</h3>
+                    <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="thumbnail">
+                  <img src="/image/조조래빗.jpg" alt="...">
+                  <div class="caption">
+                    <h3>3번 영화</h3>
+                    <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="thumbnail">
+                  <img src="/image/클로젯.jpg" alt="...">
+                  <div class="caption">
+                    <h3>4번 영화</h3>
+                    <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="thumbnail">
+                  <img src="/image/할리퀸.jpg" alt="...">
+                  <div class="caption">
+                    <h3>5번 영화</h3>
+                    <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="thumbnail">
+                  <img src="/image/여인의초상.jpg" alt="...">
+                  <div class="caption">
+                    <h3>6번 영화</h3>
+                    <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                  </div>
+                </div>
+              </div>
+    </div>
+    </div>
+
+    <div class="jumbotron">
+        <h1>LATTE CINEMA 푸터자리</h1>
+        <h3>영화관보고싶지?</h3>
+    </div>   
+</body> 
       
       
       

@@ -35,6 +35,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select*from ticket where member_no = #{member_no}
 	</select>
 	
+	<select id="watched" resultType="WatchedVO" parameterType="int">
+	select 
+    movie.*,
+    movietime.movietime_time
+	from 
+    movie 
+        inner join movietime on movie.movie_no = movietime.movie_no
+        inner join ticket on ticket.movietime_no = movietime.movietime_no
+        inner join member on member.member_no = ticket.member_no
+	where
+    movietime.movietime_time < sysdate
+    and
+    member.member_no = #{member_no}
+	</select>
 
 </mapper>
 
