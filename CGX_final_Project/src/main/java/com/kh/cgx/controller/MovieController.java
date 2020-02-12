@@ -8,12 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -27,12 +24,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.cgx.entity.movie.ActorDto;
 import com.kh.cgx.entity.movie.MovieDto;
-import com.kh.cgx.entity.movie.MovieProfileDto;
 import com.kh.cgx.repository.movie.MovieDao;
 import com.kh.cgx.repository.movie.MovieProfileDao;
 import com.kh.cgx.repository.movie.PhysicalFileDao;
 import com.kh.cgx.repository.movie.VideoDao;
+import com.kh.cgx.vo.movie.MovieActorVO;
 import com.kh.cgx.vo.movie.VideoVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -153,12 +151,19 @@ public class MovieController {
 	}
 
 	//영화 상세 정보
-	@GetMapping("/detail")
-	private String movieDetail() {
-		
-		
-		return"movie/detail";
-	}
+//	@GetMapping("/detail")
+//	private String getList4(Model model) {
+//		List<String> actorList = movieDao.getList4();
+//		MovieActorVO movieActorVO = MovieActorVO.builder()
+//																.actorList(actorList)
+//																.movie_no(movieActorVO.getMovie_no())
+//																
+//					
+//																.build();
+//		model.addAttribute("movieActorVO", movieActorVO);
+//		
+//		return"movie/detail";
+//	}
 	
 	
 	

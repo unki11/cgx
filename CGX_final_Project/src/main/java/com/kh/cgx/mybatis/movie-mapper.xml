@@ -7,20 +7,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="movies">
 
+<!-- 무비차트 리스트 -->
 	<select id="list"  resultType="movies">
 		select * from movie
 	</select>
 
+<!-- 상영 예정작 리스트 -->
 	<select id="pre_list" resultType="movies">
 		select * from movie where movie_startdate >= sysdate
 	</select>
 	
+	<!-- 트레일러 리스트 -->
 	<select id="video_list" resultType="videoVO">
 		select * from video  v 
 		INNER join 
 		movie m on v.movie_no = m.movie_no
 	</select>
 	
+	<!-- 파인더 리스트 -->
 	<select id="finder_list" resultType="movies" parameterType="map">
 		select*from movie
 	<if test="type != '' and keyword != ''">
@@ -86,6 +90,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				movie_genre = #{movie_genre}
 		where movie_no = #{movie_no}
 	</update>
+
+<!-- 배우 이름 출력 리스트 -->
+	<select id="actorList" resultType="String">
+		select actor_name from actor where movie_no= 1
+	
+	</select>
+
+
+
+
 
 </mapper>
 

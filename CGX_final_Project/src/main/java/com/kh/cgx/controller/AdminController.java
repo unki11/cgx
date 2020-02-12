@@ -1,8 +1,17 @@
 package com.kh.cgx.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -184,5 +193,40 @@ public class AdminController {
 		managerDao.insert(managerDto);
 		return null;
 	}
+	
+	
+	@GetMapping("/download")
+	public ResponseEntity<ByteArrayResource> download(@RequestParam int files_no) throws IOException{
+//		ResponseEntity : 스프링에서 응답해줄 데이터가 담긴 상자
+//		ByteArrayResource : 스프링에서 관리할 수 있는 Byte 형식의 데이터셋
+		File directory = new File("C:\\upload");
+		File file = new File(directory, String.valueOf(files_no));
+		byte[] data = FileUtils.readFileToByteArray(file);
+//		실제파일을 불러온다 : physicalFileDao
+
+//		헤더설정 및 전송은 스프링의 방식으로 진행
+		ByteArrayResource resource = new ByteArrayResource(data);
+		
+		return ResponseEntity.ok()
+					//.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_OCTET_STREAM_VALUE)
+					.contentType(MediaType.APPLICATION_OCTET_STREAM)
+					.contentLength(data.length)
+					.header(HttpHeaders.CONTENT_ENCODING, "UTF-8")
+					.header(HttpHeaders.CONTENT_DISPOSITION, 
+								makeDispositionString(String.valueOf(files_no)))
+					.body(resource);
+	}
+	
+	private String makeDispositionString(String filename) throws UnsupportedEncodingException {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("attachment;");
+		buffer.append("filename=");
+		buffer.append("\"");
+		buffer.append(URLEncoder.encode(filename, "UTF-8"));
+		buffer.append("\"");
+		return buffer.toString();
+	}
+	
+	
 	
 }
