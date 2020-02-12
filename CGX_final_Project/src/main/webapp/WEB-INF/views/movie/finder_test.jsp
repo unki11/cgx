@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>   
     
 <h1>finder페이지입니다</h1>
@@ -244,9 +246,10 @@ $(".grade_check").click(function(){
 
 
 
-<c:forEach var="movies" items="${finder_list}">
+<c:forEach var="finder_list" items="${finder_list}">
 
 <h5>${finder_list}</h5>
+<img src="download?files_no=${finder_list.files_no }">
 
 </c:forEach>
 
