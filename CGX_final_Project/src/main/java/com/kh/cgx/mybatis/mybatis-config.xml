@@ -23,10 +23,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.kh.cgx.entity.goods.GoodsDto" alias="Goods"/>
 		<typeAlias type="com.kh.cgx.entity.movie.VideoDto" alias="videos"/>
 		<typeAlias type="com.kh.cgx.entity.mypage.TicketDto" alias="ticket"/>
-		<typeAlias type="com.kh.cgx.vo.movie.VideoVO" alias="videoVO"/>
 		<typeAlias type="com.kh.cgx.entity.cinema.SeatDto" alias="Seat"/>
+		<typeAlias type="com.kh.cgx.vo.movie.VideoVO" alias="videoVO"/>
 		<typeAlias type="com.kh.cgx.entity.admin.AdminDto" alias="adminDto"/>
 		<typeAlias type="com.kh.cgx.entity.admin.ManagerDto" alias="managerDto"/>
+
 	</typeAliases>
 	
 </configuration>
