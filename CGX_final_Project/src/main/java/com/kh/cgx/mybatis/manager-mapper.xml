@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--  namespace : 영역을 부르는 별칭
+		paprameterType : 이 명령을 실행하기 위해 필요한 데이터의 형태
+ -->
+<mapper  namespace="manager">
+	<insert id="insert" parameterType="managerDto">
+		insert into movietime values(#{movietime_time},#{movietime_price})
+	</insert>
+	
+<!-- 	<select id="getList" resultType="managerDto">
+		select * from admin order by admin_no desc
+	</select>
+	
+	<update id="update" parameterType="managerDto">
+		update admin set admin_grade = #{admin_grade} where admin_no = #{admin_no}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete admin where admin_no = #{no}
+	</delete> -->
+</mapper>

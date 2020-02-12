@@ -61,6 +61,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</choose>
 	</if>
 	</select>
+	
+	<insert id="insert" parameterType="movies">
+		insert into movie values(#{movie_no},#{files_no},#{movie_title},#{movie_director},#{movie_ticket_rate},sysdate,#{movie_runtime},#{movie_country},#{movie_grade},#{movie_status},#{movie_genre},#{movie_publisher})
+	</insert>
+	
+	<select id="getList" resultType="movies">
+		select * from movie order by movie_no desc
+	</select>
+	
+	<delete id="delete">
+		delete movie where movie_no = #{no}
+	</delete>
+	
+	<update id="update" parameterType="movies">
+		update movie set movie_title = #{movie_title},
+	            movie_director =#{movie_director},
+	            movie_startdate = sysdate,
+				movie_runtime = #{movie_runtime},
+				movie_country = #{movie_country},
+				movie_grade = #{movie_grade},
+				movie_status = #{movie_status},
+				movie_publisher = #{movie_publisher},
+				movie_genre = #{movie_genre}
+		where movie_no = #{movie_no}
+	</update>
 
 </mapper>
 
