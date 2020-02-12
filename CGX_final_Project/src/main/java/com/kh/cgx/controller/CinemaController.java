@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kh.cgx.entity.cinema.CinemaDto;
 import com.kh.cgx.entity.cinema.MovieTimeDto;
 import com.kh.cgx.entity.cinema.ScreenDto;
+import com.kh.cgx.entity.cinema.SeatDto;
 import com.kh.cgx.repository.cinema.CinemaFileDao;
 import com.kh.cgx.vo.cinema.MovieTimeMovieVO;
 import com.kh.cgx.vo.cinema.MovieTimeScreenVO;
@@ -49,6 +50,47 @@ public class CinemaController {
 	
 	@Autowired
 	private CinemaFileDao cinemaFileDao;
+	
+	@GetMapping("seat")
+	public String seat(Model model) {
+		
+		List<List<Integer>> seatreserved = new ArrayList<>();	
+		List<Integer> a = new ArrayList<Integer>();
+		List<Integer> b = new ArrayList<Integer>();
+		a.add(1);
+		a.add(2);
+		b.add(2);
+		b.add(2);
+		seatreserved.add(a);
+		seatreserved.add(b);
+		System.out.println("seatset"+seatreserved);
+		List<SeatDto> List = sqlSession.selectList("seat.search");
+		log.info("list={}",List);
+		List<List<Integer>> seatall = new ArrayList<>();
+		ScreenDto screenDto = sqlSession.selectOne("seat.size");
+		for(SeatDto list : List) {
+			List<Integer> seat = new ArrayList<Integer>();
+			seat.add(list.getSeat_row());
+			seat.add(list.getSeat_col());
+			for(List<Integer> lis : seatreserved) {
+				if(list.getSeat_row()==lis.get(0)&&list.getSeat_col()==lis.get(1)) {
+					seat.add(0);
+					break;
+				}
+			}
+			seat.add(1);
+			seatall.add(seat);
+			log.info("seat={}",seat);
+		}
+
+		
+		model.addAttribute("seatset", seatreserved);
+		model.addAttribute("seatall", seatall);	
+		model.addAttribute("rowsize", screenDto.getScreen_rowsize());
+		model.addAttribute("colsize", screenDto.getScreen_colsize());
+		log.info("seatall={}",seatall);
+		return "cinema/seat";
+	}
 	
 	@GetMapping("/")
 	public String cinema2(@RequestParam(required = false, defaultValue ="1") int cinema_no,Model model) {

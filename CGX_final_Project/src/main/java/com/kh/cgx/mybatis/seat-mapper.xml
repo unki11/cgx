@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="seat">
+	
+	<select id="search" resultType="Seat">
+		select * from seat where screen_no = 1 and <![CDATA[seat_col<=10 and seat_row<=10]]>
+	</select>
+	
+	<select id="size" resultType="Seat">
+		select * from screen where screen_no=1
+	</select>
+	
+<!-- 	<select id="getList" resultType="Seat">
+		select a.*,
+		(select count(1) from ticket_seat b where b.seat_no = a.seat_no) as reservationYn
+        from seat a
+		where a.screen_no = 1 order by a.SEAT_ROW, a.SEAT_COL
+	</select> -->
+	
+	
+</mapper>
+
+
+
+
+

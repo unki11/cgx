@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h1> 가입 여부 확인 p</h1>
 </body>
 </html>
