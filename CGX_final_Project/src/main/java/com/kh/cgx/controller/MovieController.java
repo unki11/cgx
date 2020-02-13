@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -150,20 +151,41 @@ public class MovieController {
 		return buffer.toString();
 	}
 
-	//영화 상세 정보
-//	@GetMapping("/detail")
-//	private String getList4(Model model) {
-//		List<String> actorList = movieDao.getList4();
-//		MovieActorVO movieActorVO = MovieActorVO.builder()
-//																.actorList(actorList)
-//																.movie_no(movieActorVO.getMovie_no())
-//																
-//					
-//																.build();
-//		model.addAttribute("movieActorVO", movieActorVO);
-//		
-//		return"movie/detail";
-//	}
+//	영화 상세 정보
+	@GetMapping("/detail")
+	private String getList4(Model model, @RequestParam int movie_no
+			) {
+		
+		List<String> actorList = movieDao.getList4();
+		MovieDto movieDto = sqlSession.selectOne("movies.movieDetail");
+		
+		MovieActorVO movieActorVO = MovieActorVO.builder()
+																.actorList(actorList)
+																.movie_no(movieDto.getMovie_no())
+																.files_no(movieDto.getFiles_no())
+																.movie_title(movieDto.getMovie_title())
+																.movie_director(movieDto.getMovie_director())
+																.movie_ticket_rate(movieDto.getMovie_ticket_rate())
+																.movie_startdate(movieDto.getMovie_startdate())
+																.movie_runtime(movieDto.getMovie_runtime())
+																.movie_country(movieDto.getMovie_country())
+																.movie_grade(movieDto.getMovie_grade())
+																.movie_status(movieDto.getMovie_status())
+																.movie_publisher(movieDto.getMovie_publisher())
+																.movie_genre(movieDto.getMovie_genre())
+																.movie_content(movieDto.getMovie_content())
+																
+																.build();
+		
+		model.addAttribute("movieActorVO", movieActorVO);
+		
+		
+		
+//		System.out.println( "model : "+movieActorVO);
+//		System.out.println(movieActorVO);
+		
+		return "movie/detail";
+	}
 	
 	
 	

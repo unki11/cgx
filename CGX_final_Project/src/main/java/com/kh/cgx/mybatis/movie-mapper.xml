@@ -97,7 +97,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</select>
 
-
+<select id="movieDetail" resultType="movies">
+	select*from movie where movie_no = 1
+</select>
 
 
 
