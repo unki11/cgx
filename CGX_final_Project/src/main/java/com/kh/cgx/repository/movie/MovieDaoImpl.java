@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.cgx.entity.movie.ActorDto;
 import com.kh.cgx.entity.movie.MovieDto;
+import com.kh.cgx.vo.movie.MovieActorVO;
 
 @Repository
 public class MovieDaoImpl implements MovieDao{
@@ -55,7 +57,12 @@ public class MovieDaoImpl implements MovieDao{
 		return sqlSession.selectOne("movies.count", param);
 	}
 
-	
+	@Override
+	public List<String> getList4() {
+		
+		return sqlSession.selectList("movies.actorList");
+	}
+
 	
 	}
 
