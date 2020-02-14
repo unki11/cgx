@@ -21,12 +21,15 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.cgx.entity.movie.ActorDto;
 import com.kh.cgx.entity.movie.MovieDto;
+import com.kh.cgx.entity.movie.MovieProfileDto;
+import com.kh.cgx.entity.movie.ReviewDto;
 import com.kh.cgx.repository.movie.MovieDao;
 import com.kh.cgx.repository.movie.MovieProfileDao;
 import com.kh.cgx.repository.movie.PhysicalFileDao;
@@ -35,6 +38,7 @@ import com.kh.cgx.vo.movie.MovieActorVO;
 import com.kh.cgx.vo.movie.VideoVO;
 
 import lombok.extern.slf4j.Slf4j;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("/movie")
@@ -151,6 +155,7 @@ public class MovieController {
 		return buffer.toString();
 	}
 
+
 //	영화 상세 정보
 	@GetMapping("/detail")
 	private String getList4(Model model, @RequestParam int movie_no
@@ -186,7 +191,20 @@ public class MovieController {
 		
 		return "movie/detail";
 	}
+
 	
+	@GetMapping("/review")
+	private String reivewinsert() {
+		
+		return "movie/review";
+	}
 	
+	@PostMapping("/review")
+	private String reviewinsert2(@ModelAttribute ReviewDto reviewDto) {
+		log.info("reviewDto={}",reviewDto);
+		sqlSession.insert("review.insert", reviewDto);
+		
+		return "movie/review";
+	}
 	
 }
