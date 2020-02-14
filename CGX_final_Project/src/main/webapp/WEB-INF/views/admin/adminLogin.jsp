@@ -1,17 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- <h1>관리자 페이지</h1>
-<h3>매니저 등록</h3>
+<!-- <h1>매니저 로그인 페이지</h1>
 
-<form action="adminInsert" method="post">
-	<input type="text" name="admin_no" placeholder="관리자번호"><br><br>
-	<input type="text" name="admin_id" placeholder="관리자아이디"><br><br>
-	<input type="password" name="admin_pw" placeholder="관리자비밀번호"><br><br>
-	<input type="text" name="admin_grade" placeholder="관리자직급"><br><br>
-	<input type="submit" value="등록하기">
+<form action="adminLogin" method="post">
+	<input type="text" name="admin_id" placeholder="ID" required><br><br>
+	<input type="password" name="admin_pw" placeholder="Password" required><br><br>
+	<input type="submit" value="로그인">
 </form> -->
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -34,34 +30,23 @@
 <div class="container">
 <table class="table table-bordered">
     <thead>
-        <caption> 매니저 등록  </caption>
+        <caption> 매니저 로그인  </caption>
     </thead>
     
     <tbody>
-        <form action="adminInsert" method="post">
+        <form action="adminLogin" method="post">
             <tr>
-                <th>매니저번호 입력창</th>
-                <td><input type="text" name="admin_no" placeholder="매니저번호" required></td>
+                <th>아이디입력창</th>
+                <td><input type="text" name="admin_id" placeholder="ID" required></td>
             </tr>
 			
 			<tr>
-                <th>매니저 아이디 등록창</th>
-                <td><input type="text" name="admin_id" placeholder="매니저아이디" required></td>
+                <th>비밀번호입력창</th>
+                <td><input type="password" name="admin_pw" placeholder="Password" required></td>
             </tr>
-            
-            <tr>
-                <th>매니저 비밀번호 등록창</th>
-                <td><input type="password" name="admin_pw" placeholder="매니저비밀번호" required></td>
-            </tr>
-            
-            <tr>
-                <th>매니저 등급 등록창</th>
-                <td><input type="text" name="admin_grade" placeholder="매니저등급" required></td>
-            </tr>
-            
             <tr>
                 <td colspan="2" >
-                    <input type="submit" value="매니저등록하기">
+                    <input type="submit" value="로그인">
                     <!-- <a class="btn btn-default" onclick="sendData()"> 등록 </a>
                     <a class="btn btn-default" type="reset"> reset </a>
                     <a class="btn btn-default" onclick="javascript:location.href='list.jsp'">글 목록으로...</a> -->

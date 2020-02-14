@@ -55,7 +55,13 @@
 			})
 			}
 		})
+				$("#timedate").click(function(){
+						var date = $(this).val();
+						console.log(date);
+					})
 	})
+ 				
+	
 </script>
 <h1>매니저 페이지</h1>
 <h2>상영 시간표 입력</h2>
@@ -77,8 +83,23 @@
 			<option>${screenDto.screen_no}</option>
 	</select>
 	<br><br><br>
-
-	<input type="text" name="movietime_tiem" placeholder="시작시간"><br><br><br>
+	
+	<h3>상영시간입력</h3>
+	<input id="date" type="date" name="movietime_time" placeholder="상영날짜입력"><br><br><br>
+	<select name="movietime_hour" required>
+		<c:forEach var="hour" begin="00" end="23">
+			<option>${hour}</option>
+		</c:forEach>
+	</select>
+	시
+	<select name="movietime_min" required>
+		<c:forEach var="min" begin="00" end="55" step="5">
+			<option>${min}</option>
+		</c:forEach>
+	</select>
+	분
+	<br><br><br>
+	<h3>영화가격입력</h3>
 	<input type="text" name="movietime_price" placeholder="가격"><br><br><br>
 	<input type="submit" value="상영시간 등록">
 </form>

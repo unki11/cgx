@@ -8,7 +8,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  -->
 <mapper  namespace="manager">
 	<insert id="insert" parameterType="managerDto">
-		insert into movietime values(MOVIETIME_NO_SEQ.nextval,#{screen_no},#{movie_no},sysdate,#{movietime_price})
+		insert into movietime values(MOVIETIME_NO_SEQ.nextval,#{screen_no},#{movie_no},
+		to_date(#{movietime_time}, 'YYYY-MM-DD HH24:MI'),
+		#{movietime_price})
 	</insert>
 	
 	<select id="getMovieList" resultType="movies">
