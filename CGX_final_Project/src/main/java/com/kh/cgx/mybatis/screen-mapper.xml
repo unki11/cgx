@@ -36,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="getList" resultType="ScreenDto">
-		select * from screen order by screen_no desc
+		select * from screen order by screen_no asc
 	</select>
 	
 	<delete id="delete" parameterType="int">

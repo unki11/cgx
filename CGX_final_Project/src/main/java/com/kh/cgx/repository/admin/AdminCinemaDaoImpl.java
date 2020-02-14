@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.cgx.entity.admin.AdminCinemaDto;
+import com.kh.cgx.entity.cinema.CinemaDto;
 
 
 @Repository
@@ -31,6 +32,12 @@ public class AdminCinemaDaoImpl implements AdminCinemaDao{
 		sqlSession.delete("cinema.delete",no);
 		
 	}
+
+
+	 @Override public List<CinemaDto> getCinemaList() { 
+		  return sqlSession.selectList("cinema.getCinemaList"); 
+	}
+
 
 	/*
 	 * @Override public void update(AdminCinemaDto cinemaDto) {
