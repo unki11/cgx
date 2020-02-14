@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 
 public class ReserveVO {
 	
-	private int ticket_no,files_no,seat_row,seat_col;
+	private int ticket_no,files_no,seat_row,seat_col,ticket_total_person;
 	private String movie_title,screen_name,movietime_time,seat_grade;
 }
