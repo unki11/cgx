@@ -6,20 +6,20 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kh.cgx.vo.mypage.ReserveVO;
+import com.kh.cgx.vo.mypage.WatchedVO;
 
 @Repository
-public class TicketDaoImpl implements TicketDao {
+public class WatchedDaoImpl implements WatchedDao{
 
 	@Autowired
 	private SqlSession sqlSession;
 
 	@Override
-	public List<ReserveVO> getList() {
-		return sqlSession.selectList("mypage.list") ;
-		
+	public List<WatchedVO> getList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mypage.watched");
 	}
 
 	
-
+	
 }

@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="member">
 
 <!--  회원가입 -->
-	<insert id="join" parameterType="Member">
+	<insert id="join" parameterType="member">
 		insert into member (
 		member_no,
 		member_id,
@@ -23,7 +23,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		member_lastlogin,
 		member_joindate,
 		member_birth,
-		member_sex) values (
+		member_sex,
+		member_email) values (
 		(SELECT MAX
 		(MEMBER_NO) + 1 FROM MEMBER),
 		#{member_id},
@@ -33,26 +34,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		sysdate,
 		sysdate,
 		#{member_birth},
-		#{member_sex}
+		#{member_sex},
+		#{member_email}
 		)
 	</insert>
 
 	<!-- 로그인 기능 -->
-	<select id="login" parameterType="Member" resultType="Member">
+	<select id="login" parameterType="member" resultType="member">
 		select *
 		from member where member_id=#{member_id}
 	</select>
 
-	<update id="updateLastLogin" parameterType="Member">
+	<update id="updateLastLogin" parameterType="member">
 		update member set
 		member_lastlogin = sysdate where member_id=#{member_id}
 	</update>
 
 	<!-- 아이디 중복체크 -->
-	<select id="checkId" parameterType="string" resultType="Member">
+	<select id="checkId" parameterType="string" resultType="member">
 		select * from member where member_id = #{member_id}
 	</select>
-
+	
+	<!-- 비밀번호 재확인 -->
+	<select id="reconfirm_pw" parameterType="string" resultType="member">
+		select * from member where member_pw = #{member_pw} 
+	</select>
+	
+	
 </mapper>
 
 
