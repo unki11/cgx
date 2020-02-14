@@ -53,6 +53,10 @@ order by screen_no asc
 (select screen.screen_no from screen INNER join cinema on screen.cinema_no = cinema.cinema_no where cinema.cinema_no = #{cinema_no})A 
 on movietime.screen_no = A.screen_no where movietime.screen_no = #{screen_no} and movie_no=#{movie_no} order by movietime.movietime_time asc
 	</select>
+	
+	<select id="date" resultType="string" parameterType="int">
+		select to_char(movietime_time,'YY/MM/DD') from movietime inner join screen on movietime.screen_no = screen.screen_no inner join cinema on cinema.cinema_no = screen.cinema_no where cinema.cinema_no = #{cinema_no} and movietime_time >= sysdate GROUP by to_char(movietime_time,'YY/MM/DD') order by to_char(movietime_time,'YY/MM/DD') asc
+	</select>
 </mapper>
 
 

@@ -27,6 +27,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.kh.cgx.entity.cinema.SeatDto" alias="Seat"/>
 		<typeAlias type="com.kh.cgx.entity.admin.AdminDto" alias="adminDto"/>
 		<typeAlias type="com.kh.cgx.entity.admin.ManagerDto" alias="managerDto"/>
+		<typeAlias type="com.kh.cgx.entity.movie.ReviewDto" alias="reviewDto"/>
 	</typeAliases>
 	
 </configuration>
