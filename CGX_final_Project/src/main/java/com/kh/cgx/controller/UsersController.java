@@ -45,7 +45,7 @@ public class UsersController {
 		member.setMember_pw(encoder.encode(member.getMember_pw()));
 	
 		//DB 즈어장
-		sqlSession.insert("member.join", member);
+		sqlSession.insert("Member.join", member);
 		return "redirect:/user/login";
 	}
 
@@ -81,30 +81,7 @@ public class UsersController {
 		}
 	}
 	
-	
-//	@PostMapping("/login")
-	public String login(HttpSession session, @ModelAttribute MemberDto memberDto) {
-		System.out.println("안녕");
-		MemberDto find = memberDao.login(memberDto);
-		System.out.println(find);
-		if (find != null) {// 아이디가 있음
-			String pw1 = memberDto.getMember_pw();// 회원이 가져온 비밀번호
-			String pw2 = find.getMember_pw();// 아이디로 검색한 비밀번호
-			boolean result = pw1.equals(pw2);
-			if (result) {// 아이디로 검색한 비밀번호하고 회원이 입력한 비밀번호가 같다
-				session.setAttribute("id", memberDto.getMember_id());
-				return "redirect:/";
-			} else {// 다르다
-				return "redirect:login?error";
-			}
 
-		} else {// 아이디가 없음(로그인 실패)
-//			memberDao.updateLastLogin(find);
-			return "redirect:login?error";
-
-		}
-
-	}
 
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {

@@ -180,7 +180,7 @@
     </script>
 </head>
 <body>
-    <form action="cinema-seat.html" method="get">
+    <form action="seatInsert" method="post">
         <div class="cinema-wrap" data-name="seat" data-rowsize="${rowsize}" data-colsize="${colsize }">
             <div class="cinema-screen">스크린</div>
                 

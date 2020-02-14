@@ -31,6 +31,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from screen where cinema_no = #{cinema_no}
 	</select>
 	
+	<insert id="insert" parameterType="ScreenDto">
+		insert into screen values(#{screen_no},#{cinema_no},#{screen_all_seat},#{screen_type},#{screen_name},#{screen_rowsize},#{screen_colsize})
+	</insert>
+	
+	<select id="getList" resultType="ScreenDto">
+		select * from screen order by screen_no asc
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		delete screen where screen_no = #{screen_no}
+	</delete>
 </mapper>
 
 

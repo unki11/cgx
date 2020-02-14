@@ -226,6 +226,7 @@
 			<version>5.2.1.RELEASE</version>
 		</dependency>
 
+
 		<!-- 메일 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -240,6 +241,16 @@
 		</dependency>
 
 
+		 
+		 
+		 <!-- json  -->
+		 <!-- https://mvnrepository.com/artifact/org.json/json -->
+<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20190722</version>
+</dependency>
+		 
 	</dependencies>
 
 	<!-- 빌드 : 설정과 코드를 합쳐 실행이 가능한 상태로 만드는 과정 -->

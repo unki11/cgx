@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class CinemaDto {
 
-	private int cinema_no, file_no;
+	private int cinema_no, files_no;
 	private String cinema_area, cinema_phone , cinema_addr;
 }

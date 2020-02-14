@@ -1,13 +1,17 @@
 package com.kh.cgx.controller;
 
-import java.io.File;
+import java.io.File;	
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +22,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,7 +37,6 @@ import com.kh.cgx.vo.cinema.MovieTimeMovieVO;
 import com.kh.cgx.vo.cinema.MovieTimeScreenVO;
 
 import lombok.extern.slf4j.Slf4j;
-import oracle.net.aso.s;
 
 @Slf4j
 @Controller
@@ -51,7 +53,7 @@ public class CinemaController {
 	@Autowired
 	private CinemaFileDao cinemaFileDao;
 	
-	@GetMapping("seat")
+	@GetMapping("/seat")
 	public String seat(Model model) {
 		
 		List<List<Integer>> seatreserved = new ArrayList<>();	
@@ -68,6 +70,7 @@ public class CinemaController {
 		log.info("list={}",List);
 		List<List<Integer>> seatall = new ArrayList<>();
 		ScreenDto screenDto = sqlSession.selectOne("seat.size");
+		System.out.println("screenDto"+screenDto);
 		for(SeatDto list : List) {
 			List<Integer> seat = new ArrayList<Integer>();
 			seat.add(list.getSeat_row());
@@ -92,8 +95,26 @@ public class CinemaController {
 		return "cinema/seat";
 	}
 	
+	@PostMapping("/seatInsert")
+	@ResponseBody
+	public List<List<String>> seatInsert(@RequestParam List<String> seat) {	
+		List<List<String>> List = new ArrayList<List<String>>();
+		
+		for(int i = 0; i<seat.size(); i++) {
+			List<String> list = new ArrayList<>();
+			String a = seat.get(i);
+			String [] b = a.split("-");
+			list.add(b[0]);
+			list.add(b[1]);
+			
+			List.add(list);
+		}
+		System.out.println(List);
+		return List;
+	}
+	
 	@GetMapping("/")
-	public String cinema2(@RequestParam(required = false, defaultValue ="1") int cinema_no,Model model) {
+	public String cinema2(@RequestParam(required = false, defaultValue ="1") int cinema_no,Model model) throws ParseException {
 			
 		cinemaDto.builder().cinema_no(cinema_no).build();
 		
@@ -113,8 +134,50 @@ public class CinemaController {
 		
 		List<MovieTimeDto> movieTime_list = sqlSession.selectList("movietime.search",cinema_no);
 		model.addAttribute("movietime_list", movieTime_list);
+//		ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+//		아래는 상영날짜 출력입니다
+//		ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+		String [] calender = {"일","월","화","수","목","금","토"};
 		
+		List<String> datelist = sqlSession.selectList("movietime.date",cinema_no);
+		List<List<String>> timelist = new ArrayList<>();
 		
+		String inputDate = "20"+"20/02/17";
+
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+
+		Date data = dateFormat.parse(inputDate);
+
+		Calendar calendar = Calendar.getInstance();
+
+		calendar.setTime(data);
+		log.info("calendar={}",calendar.get(Calendar.DAY_OF_WEEK));
+
+		for(String time : datelist) {
+			inputDate = "20"+time;
+			
+			data = dateFormat.parse(inputDate);
+			
+			calendar = Calendar.getInstance();
+			
+			calendar.setTime(data);
+			
+			List<String> data1 = new ArrayList<String>();
+			String[] date = time.split("/");
+			data1.add(date[0]);
+			data1.add(date[1]);
+			data1.add(date[2]);
+			log.info("주말={}",calendar.get(Calendar.DAY_OF_WEEK));
+			data1.add(calender[calendar.get(Calendar.DAY_OF_WEEK)-1]);
+			timelist.add(data1);
+			
+		}
+		log.info("datelist={}",datelist);
+		log.info("timeList={}",timelist);
+		for(List<String> tim : timelist) {
+			log.info("time={}",tim);
+		}
+		model.addAttribute("timelist", timelist);
 //		ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //		아래는 상영시간표 출력입니다/
 //		ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
@@ -223,6 +286,53 @@ public class CinemaController {
 		model.addAttribute("list",MTMlist);
 		
 		return "cinema/cinema_test";
+	}
+	
+	@GetMapping("/time")
+	public String test4(Model model) throws ParseException {
+		
+		String [] calender = {"일","월","화","수","목","금","토"};
+		
+		List<String> datelist = sqlSession.selectList("movietime.date");
+		List<List<String>> timelist = new ArrayList<>();
+		
+		String inputDate = "20"+"20/02/17";
+
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+
+		Date data = dateFormat.parse(inputDate);
+
+		Calendar calendar = Calendar.getInstance();
+
+		calendar.setTime(data);
+		log.info("calendar={}",calendar.get(Calendar.DAY_OF_WEEK));
+
+		for(String time : datelist) {
+			inputDate = "20"+time;
+			
+			data = dateFormat.parse(inputDate);
+			
+			calendar = Calendar.getInstance();
+			
+			calendar.setTime(data);
+			
+			List<String> data1 = new ArrayList<String>();
+			String[] date = time.split("/");
+			data1.add(date[0]);
+			data1.add(date[1]);
+			data1.add(date[2]);
+			log.info("주말={}",calendar.get(Calendar.DAY_OF_WEEK));
+			data1.add(calender[calendar.get(Calendar.DAY_OF_WEEK)-1]);
+			timelist.add(data1);
+			
+		}
+		log.info("datelist={}",datelist);
+		log.info("timeList={}",timelist);
+		for(List<String> tim : timelist) {
+			log.info("time={}",tim);
+		}
+		model.addAttribute("timelist", timelist);
+		return "cinema/time";
 	}
 	
 	@PostMapping("/test")

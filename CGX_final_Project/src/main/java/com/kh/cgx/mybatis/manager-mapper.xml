@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--  namespace : 영역을 부르는 별칭
+		paprameterType : 이 명령을 실행하기 위해 필요한 데이터의 형태
+ -->
+<mapper  namespace="manager">
+	<insert id="insert" parameterType="managerDto">
+		insert into movietime values(MOVIETIME_NO_SEQ.nextval,#{screen_no},#{movie_no},sysdate,#{movietime_price})
+	</insert>
+	
+	<select id="getMovieList" resultType="movies">
+		select * from movie order by movie_no asc
+	</select>
+	
+	<select id="getCinemaList" resultType="CinemaDto" parameterType="int">
+		select c.* from manager m inner join cinema c on m.cinema_no = c.cinema_no where manager_no = #{no}
+	</select>
+	
+	<select id="getScreenList" resultType="ScreenDto" parameterType="int">
+		select * from screen where cinema_no=#{cinema_no} order by screen_no asc 
+	</select>
+	
+<!-- <update id="update" parameterType="managerDto">
+		update admin set admin_grade = #{admin_grade} where admin_no = #{admin_no}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete admin where admin_no = #{no}
+	</delete> -->
+</mapper>
