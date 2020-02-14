@@ -7,7 +7,7 @@
 <c:forEach var="list" items="${list }">
 
 <h5>${list }</h5>
-<img src="download?files_no=${list.files_no }">
+<a href="detail?movie_no=${list.movie_no}"><img src="download?files_no=${list.files_no }"></a>
 
 </c:forEach>
 
