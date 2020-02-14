@@ -11,9 +11,10 @@
 <main>
 	<div class="sect-finder" align="center">
 		<label class="hidden">이름</label>
+		<h3>${search.member_name}</h3>
 		<a href="">포인트</a>
 		<br>
-		<label class="hidden">등급</label>
+		
 		
 		<a href="">쿠폰</a>
 		<br><br><br><br>
@@ -34,6 +35,7 @@
 </c:forEach> --%>
 
 	<h5>${search}</h5>
+	
 
 </article>
 

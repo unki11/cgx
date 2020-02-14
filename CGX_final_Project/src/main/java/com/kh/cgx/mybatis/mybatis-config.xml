@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!-- 별칭 -->
 	<typeAliases>
 
-		<typeAlias type="com.kh.cgx.entity.user.MemberDto" alias="Member"/>
+		<typeAlias type="com.kh.cgx.entity.user.MemberDto" alias="member"/>
 		<typeAlias type="com.kh.cgx.entity.movie.MovieDto" alias="movies"/>
 		<typeAlias type="com.kh.cgx.entity.cinema.CinemaDto" alias="CinemaDto"/>
 		<typeAlias type="com.kh.cgx.entity.cinema.MovieTimeDto" alias="MovieTimeDto"/>
@@ -27,11 +27,17 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.kh.cgx.vo.movie.VideoVO" alias="videoVO"/>
 		<typeAlias type="com.kh.cgx.entity.admin.AdminDto" alias="adminDto"/>
 		<typeAlias type="com.kh.cgx.entity.admin.ManagerDto" alias="managerDto"/>
+		<typeAlias type="com.kh.cgx.vo.mypage.WatchedVO" alias="watchedVO"/>
+		<typeAlias type="com.kh.cgx.entity.admin.ManagerDto" alias="managerDto"/>
+		<typeAlias type="com.kh.cgx.entity.cinema.SeatDto" alias="Seat"/>
+		<typeAlias type="com.kh.cgx.entity.admin.AdminDto" alias="adminDto"/>
+		<typeAlias type="com.kh.cgx.entity.admin.ManagerDto" alias="managerDto"/>
+		<typeAlias type="com.kh.cgx.entity.movie.ReviewDto" alias="reviewDto"/>
 		<typeAlias type="com.kh.cgx.entity.movie.ActorDto" alias="actorDto"/>
 		<typeAlias type="com.kh.cgx.vo.movie.MovieActorVO" alias="movieActorVO"/>
+		<typeAlias type="com.kh.cgx.vo.mypage.ReserveVO" alias="ReserveVO"/>
 
-		
-
+	
 	</typeAliases>
 	
 </configuration>

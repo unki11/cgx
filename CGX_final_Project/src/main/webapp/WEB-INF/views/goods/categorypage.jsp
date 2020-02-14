@@ -6,8 +6,7 @@
 <h1>category페이지입니다</h1>
 
 <div class="sect-finder" align="center">
-		<a href="http://localhost:8080/com.kh.cgx/goods/
-				categorypage?goods_category=패키지">패키지</a>
+		<a href="categorypage?goods_category=패키지">패키지</a>
 		<a href="http://localhost:8080/com.kh.cgx/goods/
 				categorypage?goods_category=콤보">콤보</a>
 		<a href="http://localhost:8080/com.kh.cgx/goods/

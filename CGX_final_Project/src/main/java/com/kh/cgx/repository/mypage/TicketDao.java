@@ -2,10 +2,11 @@ package com.kh.cgx.repository.mypage;
 
 import java.util.List;
 
-import com.kh.cgx.entity.mypage.TicketDto;
+import com.kh.cgx.vo.mypage.ReserveVO;
+
 
 public interface TicketDao {
 
-		List<TicketDto> getList();
+		List<ReserveVO> getList();
 		
 }

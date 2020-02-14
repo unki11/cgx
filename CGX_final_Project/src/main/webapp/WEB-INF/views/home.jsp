@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
 	<title>Home</title>
@@ -14,15 +13,22 @@
         .bg-1light{
             background-color: #efe4b0;
         }
+        
+        .navbar a > img{
+         	width:160px;
+        }
+        
     </style>
 </head>
 <body>
    <nav class="navbar navbar-expand-lg navbar-light bg-1light">
-        <a class="navbar-brand" href="http://www.cgv.co.kr/"><img src="/image/cgv2.png"></a>
+        <a class="navbar-brand" href="http://localhost:8080/com.kh.cgx/"><img src="${pageContext.request.contextPath}/resources/img/latte2.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
     
+    	
+    		
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown" style="padding: 3rem;">
@@ -31,6 +37,12 @@
             </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">무비차트</a>
+                <a class="dropdown-item" href="/com.kh.cgx/user/mypage">내정보</a>
+                <a class="dropdown-item" href="/com.kh.cgx/user/login">login</a>
+                <a class="dropdown-item" href="/com.kh.cgx/user/join">join</a>
+                <a class="dropdown-item" href="/com.kh.cgx/user/find_id">find_id</a>
+                <a class="dropdown-item" href="/com.kh.cgx/user/find_pw">find_pw</a>
+                <a class="dropdown-item" href="/com.kh.cgx/user/logout">LogOut</a>
                 <a class="dropdown-item" href="#">HD 트레일러</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">무비파인더</a>
@@ -63,7 +75,15 @@
                 <a class="dropdown-item" href="#">기프트샵</a>
               </div>
             </li>
+            
+              <div>
+            <a class="click" href="http://localhost:8080/com.kh.cgx/user/login" style="padding: 1rem;"> 로그인</a>
+            <a class="click" href="http://localhost:8080/com.kh.cgx/user/join" style="padding: 1rem;"> 회원가입</a>
+            <a class="click" href="http://localhost:8080/com.kh.cgx/mypage/mycgv" style="padding: 1rem;"> my cgv</a>
+            </div>
           </ul>
+          
+          
           <form class="form-inline my-2 my-lg-3">
             <input class="form-control mr-lg-4" type="search" placeholder="영화검색" aria-label="Search">
             <button class="btn btn-outline-success my-3 my-lg-3" type="submit">검색하기</button>
@@ -72,10 +92,97 @@
       </nav>
       <!-- 헤더 끝 -->
       
+      <h1>${sessionScope.id }</h1>
+      <h1>${id }</h1>
+      
+      
+      
+      
+      
+     <body>
+    <div class="jumbotron">
+        <h1>LATTE CINEMA 영화 트레일러</h1>
+        <h3>영화관보고싶지?</h3>
+    </div>   
+    
+    <div class="container-fluid">
+    <div class="row">
+            <div class="col-md-4">
+              <div class="thumbnail">
+                <img src="/image/기생충.jpg" alt="...">
+                <div class="caption">
+                  <h3>1번 영화</h3>
+                  <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="thumbnail">
+                  <img src="/image/남산의부장들.jpg" alt="...">
+                  <div class="caption">
+                    <h3>2번 영화</h3>
+                    <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="thumbnail">
+                  <img src="/image/조조래빗.jpg" alt="...">
+                  <div class="caption">
+                    <h3>3번 영화</h3>
+                    <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="thumbnail">
+                  <img src="/image/클로젯.jpg" alt="...">
+                  <div class="caption">
+                    <h3>4번 영화</h3>
+                    <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="thumbnail">
+                  <img src="/image/할리퀸.jpg" alt="...">
+                  <div class="caption">
+                    <h3>5번 영화</h3>
+                    <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="thumbnail">
+                  <img src="${pageContext.request.contextPath}/resources/img/girl.jpg" alt="..">
+                  <div class="caption">
+                    <h3>6번 영화</h3>
+                    <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                  </div>
+                </div>
+              </div>
+    </div>
+    </div>
+
+    <div class="jumbotron">
+        <h1>LATTE CINEMA 푸터자리</h1>
+        <h3>영화관보고싶지?</h3>
+    </div>   
+</body> 
+      
+      
+      
+      
+      
+      
       
       <!-- 푸터시작 -->
           <footer class=" bg-1light">
-        <title>메인</title>
 
         <h2>로고</h2>
  <a href="#"><strong>회원약관</strong></a>|

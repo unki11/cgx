@@ -67,15 +67,7 @@
 </head>
 <body>
 	<h1>회원가입</h1>
-	<div class="container">
-		<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-			<div class="panel panel-success">
-				<div class="panel-heading">
-					<div class="panel-title">환영합니다!</div>
-				</div>
-				<div class="from-group">
 					<form action="join" method="post">
-						<div>
 							<input type="text" name="member_id" placeholder="id">
 							<!--  name = 값 controller에있는파라미터값변수명하고 일치해야함 -->
 							<input type="button" id="checkId" value="중복확인">
@@ -96,13 +88,13 @@
 							<input type="text" name="member_sex" placeholder="sex">
 						</div>
 						<div>
+							<input type="email" name="member_email" placeholder="email">
+						</div>
+						<div>
 							<button type="submit">회원가입</button>
 						</div>
 					</form>
-				</div>
-			</div>
-		</div>
+
 		<div></div>
-	</div>
 </head>
 </html>
