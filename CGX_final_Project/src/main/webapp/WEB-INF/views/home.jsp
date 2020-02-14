@@ -86,6 +86,12 @@
         </div>
       </nav>
       <!-- 헤더 끝 -->
+      
+      
+      
+      
+      
+      
      <body>
     <div class="jumbotron">
         <h1>LATTE CINEMA 영화 트레일러</h1>
@@ -146,7 +152,7 @@
 
               <div class="col-md-4">
                 <div class="thumbnail">
-                  <img src="/image/여인의초상.jpg" alt="...">
+                  <img src="${pageContext.request.contextPath}/resources/img/girl.jpg" alt="..">
                   <div class="caption">
                     <h3>6번 영화</h3>
                     <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>

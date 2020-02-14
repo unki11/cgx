@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kh.cgx.entity.mypage.WatchedVO;
+import com.kh.cgx.vo.mypage.WatchedVO;
 
 @Repository
 public class WatchedDaoImpl implements WatchedDao{

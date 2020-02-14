@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kh.cgx.entity.mypage.TicketDto;
+import com.kh.cgx.vo.mypage.ReserveVO;
 
 @Repository
 public class TicketDaoImpl implements TicketDao {
@@ -15,8 +15,11 @@ public class TicketDaoImpl implements TicketDao {
 	private SqlSession sqlSession;
 
 	@Override
-	public List<TicketDto> getList() {
+	public List<ReserveVO> getList() {
 		return sqlSession.selectList("mypage.list") ;
+		
 	}
+
+	
 
 }

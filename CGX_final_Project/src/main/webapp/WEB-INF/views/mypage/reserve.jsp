@@ -7,5 +7,14 @@
 <h1>reserve페이지입니다</h1>
 
 	
-	<h5>${ticketlist}<h5>
+	<h5>${ticketlist}<h5>  
 	
+	
+	 <span>예매번호</span><br>
+     <span>예매날짜</span><br> 
+     <span>사진</span><br>
+     <span>제목</span><br>
+     <span>극장</span><br>
+     <span>영화의 시작시간</span><br>
+     <span>관람좌석</span><br>
+     
