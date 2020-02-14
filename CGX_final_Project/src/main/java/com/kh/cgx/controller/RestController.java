@@ -10,20 +10,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.kh.cgx.service.movie.ChartService;
+import com.kh.cgx.service.movie.CanvasjsChartService;
+ 
 
+ 
+ 
 @Controller
 @RequestMapping(value = "/restfull-service")
-public class ChartRestController extends HttpServlet{
-
-	private static final long serialVersionID = 1L;
+public class RestController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	private ChartService ChartService;
+	private CanvasjsChartService canvasjsChartService;
 	
 	@RequestMapping(value = "/letter-frequency-of-vowels-in-english.json", method = RequestMethod.GET)
 	public @ResponseBody String getDataPoints(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		return ChartService.getChartData();
+		return canvasjsChartService.getCanvasjsChartData();
 	}
 }

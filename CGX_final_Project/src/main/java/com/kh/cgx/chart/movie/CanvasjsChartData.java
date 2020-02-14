@@ -7,13 +7,14 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
-
-import org.json.JSONArray;
+ 
 import org.json.JSONException;
-public class ChartData {
-
+import org.json.JSONArray;
+ 
+public class CanvasjsChartData {
+ 
 	static JSONArray json = null;
-	 
+ 
 	static {
  
 		try {
@@ -45,7 +46,7 @@ public class ChartData {
 		}
 	}
  
-	public static String getDataList() {
+	public static String getCanvasjsDataList() {
 		return json.toString();
 	}
 }
