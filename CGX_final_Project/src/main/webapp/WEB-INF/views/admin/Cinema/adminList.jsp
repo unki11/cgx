@@ -28,6 +28,7 @@
 	<div>
 		<p class="no">${cinemaDto.cinema_no}</p>
 		<p>${cinemaDto.files_no}</p>
+		<img src="${pageContext.request.contextPath}/admin/download?files_no=${cinemaDto.files_no}">
 		<p>${cinemaDto.cinema_area}</p>
 		<p>${cinemaDto.cinema_phone}</p>
 		<p>${cinemaDto.cinema_addr}</p>

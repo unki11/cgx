@@ -30,4 +30,10 @@ public class AdminScreenDaoImpl implements AdminScreenDao {
 		
 	}
 
+	@Override
+	public List<AdminScreenDto> search(int no) {
+		return sqlSession.selectList("screen.search",no);
+		
+	}
+
 }

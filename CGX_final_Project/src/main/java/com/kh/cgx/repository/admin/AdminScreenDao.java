@@ -9,4 +9,6 @@ public interface AdminScreenDao {
 	void insert(AdminScreenDto screenDto);
 	List<AdminScreenDto> getList();
 	void delete(int no);
+	List<AdminScreenDto> search(int no);
+
 }

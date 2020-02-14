@@ -1,14 +1,13 @@
 package com.kh.cgx.repository.admin;
 
-import java.util.List;	
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.kh.cgx.entity.admin.AdminMovieDto;
-
+import com.kh.cgx.entity.movie.MovieDto;
 
 
 @Repository
@@ -20,13 +19,13 @@ public class AdminMovieDaoImpl implements AdminMovieDao{
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<AdminMovieDto> getList() {
+	public List<MovieDto> getList() {
 		return sqlSession.selectList("movies.getList");
 	
 	}
 
 	@Override
-	public void insert(AdminMovieDto movieDto) {
+	public void insert(MovieDto movieDto) {
 		
 		sqlSession.insert("movies.insert",movieDto);
 	}
@@ -38,7 +37,7 @@ public class AdminMovieDaoImpl implements AdminMovieDao{
 	}
 
 	@Override
-	public void update(AdminMovieDto movieDto) {
+	public void update(MovieDto movieDto) {
 		sqlSession.update("movies.update", movieDto);
 		
 	};
