@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
 	<title>Home</title>
@@ -31,6 +30,12 @@
             </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">무비차트</a>
+                <a class="dropdown-item" href="/com.kh.cgx/user/mypage">내정보</a>
+                <a class="dropdown-item" href="/com.kh.cgx/user/login">login</a>
+                <a class="dropdown-item" href="/com.kh.cgx/user/join">join</a>
+                <a class="dropdown-item" href="/com.kh.cgx/user/find_id">find_id</a>
+                <a class="dropdown-item" href="/com.kh.cgx/user/find_pw">find_pw</a>
+                <a class="dropdown-item" href="/com.kh.cgx/user/logout">LogOut</a>
                 <a class="dropdown-item" href="#">HD 트레일러</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">무비파인더</a>
@@ -72,10 +77,11 @@
       </nav>
       <!-- 헤더 끝 -->
       
+      <h1>${sessionScope.id }</h1>
+      <h1>${id }</h1>
       
       <!-- 푸터시작 -->
           <footer class=" bg-1light">
-        <title>메인</title>
 
         <h2>로고</h2>
  <a href="#"><strong>회원약관</strong></a>|
