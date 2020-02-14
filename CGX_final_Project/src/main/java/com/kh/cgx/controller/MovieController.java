@@ -28,11 +28,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.cgx.entity.movie.ActorDto;
 import com.kh.cgx.entity.movie.MovieDto;
-<<<<<<< HEAD
 import com.kh.cgx.entity.movie.MovieProfileDto;
 import com.kh.cgx.entity.movie.ReviewDto;
-=======
->>>>>>> refs/remotes/origin/master
 import com.kh.cgx.repository.movie.MovieDao;
 import com.kh.cgx.repository.movie.MovieProfileDao;
 import com.kh.cgx.repository.movie.PhysicalFileDao;
