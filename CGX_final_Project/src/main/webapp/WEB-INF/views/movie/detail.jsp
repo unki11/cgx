@@ -3,41 +3,47 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  
-	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 <script>
-window.onload = function() {
- 
-var chart = new CanvasJS.Chart("chartContainer", {
-	theme: "light2", // "light1", "dark1", "dark2"
+window.onload = function () {
+
+var options = {
 	animationEnabled: true,
 	title: {
-		text: "Letter Frequency of Vowels in English"
-	},
-	axisX: {
-		labelFontSize: 18
+		text: "GDP Growth Rate - 2016"
 	},
 	axisY: {
-		title: "Frequency",
-		suffix: "%"
+		title: "Growth Rate (in %)",
+		suffix: "%",
+		includeZero: false
+	},
+	axisX: {
+		title: "Countries"
 	},
 	data: [{
 		type: "column",
-		indexLabel: "{y}",
-		indexLabelFontSize: 18,
-		yValueFormatString: "#,##0.0#\"%\""
+		yValueFormatString: "#,##0.0#"%"",
+		dataPoints: [
+			{ label: "Iraq", y: 10.09 },	
+			{ label: "Turks & Caicos Islands", y: 9.40 },	
+			{ label: "Nauru", y: 8.50 },
+			{ label: "Ethiopia", y: 7.96 },	
+			{ label: "Uzbekistan", y: 7.80 },
+			{ label: "Nepal", y: 7.56 },
+			{ label: "Iceland", y: 7.20 },
+			{ label: "India", y: 7.1 }
+			
+		]
 	}]
-});
- 
-function addData(data) {
-	chart.options.data[0].dataPoints = data;
-	chart.render();
-}
- 
-$.getJSON("/CanvasJS_Spring_MVC_Charts/restfull-service/letter-frequency-of-vowels-in-english.json", addData);
- 
+};
+$("#chartContainer").CanvasJSChart(options);
+
 }
 </script>
+
+
     <h1>상세정보</h1>
     <br><br>
     	<a href="detail?movie_no=${movieActorVO.movie_no}"><img src="download?files_no=${movieActorVO.files_no }"></a>
@@ -49,8 +55,8 @@ $.getJSON("/CanvasJS_Spring_MVC_Charts/restfull-service/letter-frequency-of-vowe
         <h5>개봉 :  ${movieActorVO.movie_startdate}</h5>
         
         <h2>${movieActorVO.movie_content}</h2>
-        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-
+     
+		<div id="chartContainer" style="height: 370px; width: 100%;"></div>
        
    
     

@@ -57,16 +57,21 @@ public class SeatController {
 	//예매시 탈 로직 
 	@PostMapping("/seatInsert")
 	@ResponseBody
-	public List<String> seatInsert(@RequestParam List<String> seat) {	
-		List<String> list = new ArrayList<>();
+	public List<List<String>> seatInsert(@RequestParam List<String> seat) {	
+
+		List<List<String>> List = new ArrayList<List<String>>();
+		
 		for(int i = 0; i<seat.size(); i++) {
+			List<String> list = new ArrayList<>();
 			String a = seat.get(i);
 			String [] b = a.split("-");
-			String str = String.join("",b);
+			list.add(b[0]);
+			list.add(b[1]);
 			
-			list.add(str); System.out.println(list.get(i));
+			List.add(list);
 		}
-		return list;
+		System.out.println(List);
+		return List;
 	}
 	
 	@GetMapping("/seat/seatInfo2")
