@@ -8,14 +8,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  -->
 <mapper  namespace="manager">
 	<insert id="insert" parameterType="managerDto">
-		insert into movietime values(#{movietime_time},#{movietime_price})
+		insert into movietime values(MOVIETIME_NO_SEQ.nextval,#{screen_no},#{movie_no},sysdate,#{movietime_price})
 	</insert>
 	
-<!-- 	<select id="getList" resultType="managerDto">
-		select * from admin order by admin_no desc
+	<select id="getMovieList" resultType="movies">
+		select * from movie order by movie_no asc
 	</select>
 	
-	<update id="update" parameterType="managerDto">
+	<select id="getCinemaList" resultType="CinemaDto" parameterType="int">
+		select c.* from manager m inner join cinema c on m.cinema_no = c.cinema_no where manager_no = #{no}
+	</select>
+	
+	<select id="getScreenList" resultType="ScreenDto" parameterType="int">
+		select * from screen where cinema_no=#{cinema_no} order by screen_no asc 
+	</select>
+	
+<!-- <update id="update" parameterType="managerDto">
 		update admin set admin_grade = #{admin_grade} where admin_no = #{admin_no}
 	</update>
 	
