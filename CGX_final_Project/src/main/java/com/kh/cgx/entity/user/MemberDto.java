@@ -20,5 +20,6 @@ public class MemberDto {
 	private String member_birth;
 	private String member_sex;
 	private String member_point;
+	private String member_email;
 }
  

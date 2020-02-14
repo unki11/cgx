@@ -35,7 +35,13 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int checkId(String member_id) {
-		// TODO Auto-generated method stub
+
 		return 0;
+	}
+
+	@Override
+	public MemberDto reconfirm_pw(MemberDto memberDto) {
+		sqlSession.selectOne("member.reconfirm_pw", memberDto.getMember_pw());
+		return null;
 	}
 }
