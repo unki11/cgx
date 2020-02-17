@@ -62,7 +62,7 @@
                 극장
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">CGV극장</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/cinema/">CGV극장</a>
                 <a class="dropdown-item" href="#">특별관</a>
               </div>  
             </li>
@@ -72,14 +72,14 @@
                 </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">이벤트</a>
-                <a class="dropdown-item" href="#">기프트샵</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/goods/">기프트샵</a>
               </div>
             </li>
             
               <div>
-            <a class="click" href="http://localhost:8080/com.kh.cgx/user/login" style="padding: 1rem;"> 로그인</a>
-            <a class="click" href="http://localhost:8080/com.kh.cgx/user/join" style="padding: 1rem;"> 회원가입</a>
-            <a class="click" href="http://localhost:8080/com.kh.cgx/mypage/mycgv" style="padding: 1rem;"> my cgv</a>
+            <a class="click" href="${pageContext.request.contextPath}/user/login" style="padding: 1rem;"> 로그인</a>
+            <a class="click" href="${pageContext.request.contextPath}/user/join" style="padding: 1rem;"> 회원가입</a>
+            <a class="click" href="${pageContext.request.contextPath}/mypage/mycgv" style="padding: 1rem;"> my cgv</a>
             </div>
           </ul>
           
