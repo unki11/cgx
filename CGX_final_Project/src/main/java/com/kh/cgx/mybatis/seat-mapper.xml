@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="seat">
 	
 	<select id="search" resultType="Seat">
-		select * from seat where screen_no = 1 and <![CDATA[seat_col<=10 and seat_row<=10]]>
+		select * from seat where screen_no = 1 and seat_col <![CDATA[<=]]> 10 and seat_row  <![CDATA[<=]]> 10
 	</select>
 	
 	<select id="size" resultType="ScreenDto">

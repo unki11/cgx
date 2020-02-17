@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.cgx.entity.movie.ActorDto;
 import com.kh.cgx.entity.movie.MovieDto;
 import com.kh.cgx.vo.movie.MovieActorVO;
+import com.kh.cgx.vo.movie.MovieVO;
 
 @Repository
 public class MovieDaoImpl implements MovieDao{
@@ -30,7 +31,6 @@ public class MovieDaoImpl implements MovieDao{
 
 	@Override
 	public List<MovieDto> getList2() {
-		
 		return sqlSession.selectList("movies.pre_list");
 	}
 
@@ -59,11 +59,27 @@ public class MovieDaoImpl implements MovieDao{
 
 	@Override
 	public List<String> getList4() {
-		
 		return sqlSession.selectList("movies.actorList");
 	}
+	
+	@Override
+	public List<MovieVO> getList5() {
+		return sqlSession.selectList("movies.movieSearch");
+	}
+
+	@Override
+	public void insert(int member_no, int movie_no) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("member_no", member_no);
+		param.put("movie_no", movie_no);
+		sqlSession.insert("movies.wishinsert", param);
+		
+	}
+
 
 	
-	}
+
+	
+}
 
 
