@@ -8,8 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.ibatis.session.SqlSession;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
@@ -23,7 +27,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+
+import com.kh.cgx.entity.admin.AdminDto;
+import com.kh.cgx.entity.movie.ActorDto;
 
 import com.kh.cgx.entity.movie.MovieDto;
 import com.kh.cgx.entity.movie.ReviewDto;
@@ -70,13 +79,38 @@ public class MovieController {
 		model.addAttribute("list", list);
 		return "movie/movie";
 	}
+	
+	// 위시리스트 (지현이 추가)
+	@ResponseBody
+	@GetMapping("/movieWish")
+	public JSONObject movieWish (HttpSession session, @RequestParam int movieno) {
+		
+		 JSONObject json = new JSONObject();
+		 int member_no = 1;
+		 String code = "false";
+		 //로그인 다되면 session으로 처리
+		/*
+		 * MemberDto memberdto = (MemberDto)session.getAttribute("MemberDto");
+		 *  int member_no = memberdto.getMember_no();
+		 */
+		 try {
+			   movieDao.insert(member_no,movieno);
+			   code = "true";
+		 }catch(Exception e){
+			 e.printStackTrace();
+			 
+		 }
+		
+		 json.put("code",code);
+		 return json;
+	}
 
 	// 상영 예정작
 	@GetMapping("/pre-movie")
 	public String pre_movie(Model model) {
 		List<MovieDto> pre_list = movieDao.getList2();
 		model.addAttribute("pre_list", pre_list);
-		return "movie/pre_movie";
+		return "movie/pre_movie";	
 	}
 
 	// 무비 트레일러
@@ -207,5 +241,22 @@ public class MovieController {
 		
 		return "movie/review";
 	}
+	
+	
+	//지현이가 추가한 페이지 
+	@GetMapping("/searchview")
+	public String searchView(Model model,@RequestParam() String keyword) {
+		
+		//String keyword = request.getParameter("keyword");
+		keyword = 	keyword.replace(" ","");
+	 	
+		List<String> searchList = sqlSession.selectList("movies.movieSearch",keyword);
+	 		
+	 	model.addAttribute("searchList", searchList);
+        	
+
+	     return "movie/searchView";
+	}
+	
 	
 }
