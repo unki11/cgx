@@ -83,7 +83,7 @@
                 <a href="?cinema_no=${cinema2.CINEMA_NO}">
 					<h3>${cinema2}</h3>
 					<h3>${cinema2.FILES_NO}</h3>
-					<h3><img src="download?file_no=${cinema2.FILES_NO}" width="200" height="150"></h3>
+					<h3><img src="${pageContext.request.contextPath}/download/img?file_no=${cinema2.FILES_NO}" width="200" height="150"></h3>
 				</a>
 				</c:forEach>
               </div>
