@@ -4,7 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,6 +93,24 @@ public class AdminController {
 	public void admindelete(@RequestParam int no) {
 		log.info("no = {}" , no);
 		adminDao.delete(no);
+	}
+	
+	@GetMapping("/adminLogin")
+	public String adminLogin() {
+		return "admin/adminLogin";
+	}
+	
+	@PostMapping("/adminLogin")
+	public String adminLogin2(HttpSession session, @ModelAttribute AdminDto adminDto) {
+		AdminDto result = adminDao.login(adminDto);
+		if(result == null) {
+			return "/admin/adminLogin";
+		}
+		
+		else {
+			session.setAttribute("id", result.getAdmin_id());
+			return "redirect:/admin/Manager/managerInsert";
+		}
 	}
 	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //		시네마
@@ -216,10 +239,21 @@ public class AdminController {
 	}
 	
 	@PostMapping("/Manager/managerInsert")
-	public String managerInsert(@ModelAttribute ManagerDto managerDto) {
+	public String managerInsert(@ModelAttribute ManagerDto managerDto, @RequestParam String movietime_hour, @RequestParam String movietime_min) {
+		String date = managerDto.getMovietime_time();
+		System.out.println(managerDto);
+		System.out.println(movietime_hour);
+		System.out.println(movietime_min);
+		date += " ";
+		date += movietime_hour;
+		date += ":";
+		date += movietime_min;
+		managerDto.setMovietime_time(date);
 		log.info("managerDto={}",managerDto);
 		managerDao.insert(managerDto);
-		return "/Manager/managerInsert";
+		
+
+		return "redirect:/admin/Manager/managerInsert";
 	}
 	
 //	@GetMapping("/Manager/managerList")

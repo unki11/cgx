@@ -10,7 +10,9 @@ import com.kh.cgx.entity.cinema.CinemaDto;
 import com.kh.cgx.entity.cinema.ScreenDto;
 import com.kh.cgx.entity.movie.MovieDto;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class ManagerDaoImpl implements ManagerDao{
 	
 	@Autowired
@@ -19,7 +21,7 @@ public class ManagerDaoImpl implements ManagerDao{
 	@Override
 	public void insert(ManagerDto managerDto) {
 		sqlSession.insert("manager.insert", managerDto);
-		
+		log.info("hhhh={}",managerDto);
 	}
 
 	@Override
