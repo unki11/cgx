@@ -11,6 +11,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into admin values(#{admin_no},#{admin_id},#{admin_pw},#{admin_grade})
 	</insert>
 	
+	<select id="login" parameterType="adminDto" resultType="adminDto">
+		select * from admin where admin_id=#{admin_id} and admin_pw=#{admin_pw}
+	</select>
+	
 	<select id="getList" resultType="adminDto">
 		select * from admin order by admin_no desc
 	</select>

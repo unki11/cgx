@@ -36,6 +36,12 @@ public class AdminDaoImpl implements AdminDao{
 		sqlSession.delete("admin.delete",no);
 		
 	}
+
+	@Override
+	public AdminDto login(AdminDto adminDto) {
+		return sqlSession.selectOne("admin.login",adminDto);
+		
+	}
 		
 	
 }
