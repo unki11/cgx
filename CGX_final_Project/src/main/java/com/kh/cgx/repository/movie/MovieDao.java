@@ -21,7 +21,10 @@ public interface MovieDao {
 	
 	List<MovieDto> getList3();
 
-	List<String> getList4();
+
+	List<String> getList4(int movie_no);
+
+
 	
 	List<MovieVO> getList5();
 
