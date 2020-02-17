@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  select * from member where member_no = #{member_no} 
  </select>
  
-  <select id="ticketlist" resultType="ReserveVO" parameterType="int">
+<!--   <select id="ticketlist" resultType="ReserveVO" parameterType="int">
          
          select 
  			 *
@@ -44,7 +44,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         inner join ticket on ticket.movietime_no = movietime.movietime_no
         inner join member on member.member_no = ticket.member_no
          where member.member_no = #{member_no}
+ </select>  -->
+   <select id="ticketlist" resultType="ReserveVO" parameterType="int">
+ 		SELECT  TK.TICKET_NO, TK.TICKET_TOTAL_PERSON, MV.MOVIE_TITLE, MV.FILES_NO, SC.SCREEN_NAME
+        FROM
+         (SELECT * FROM TICKET WHERE MEMBER_NO = #{member_no})TK INNER JOIN  MOVIETIME MT
+        ON TK.MOVIETIME_NO = MT.MOVIETIME_NO
+        INNER JOIN MOVIE MV
+        ON MV.MOVIE_NO = MT.MOVIE_NO 
+        INNER JOIN SCREEN SC
+        ON MT.SCREEN_NO = SC.SCREEN_NO
  </select> 
+ 
  
  <select id="watched" resultType="watchedVO" parameterType="int">
    select 

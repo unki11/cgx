@@ -1,12 +1,12 @@
-package com.kh.cgx.entity.movie;
+package com.kh.cgx.vo.movie;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data @AllArgsConstructor @NoArgsConstructor @Builder
-public class MovieDto {
+@Data @NoArgsConstructor @AllArgsConstructor @Builder
+public class MovieVO { //송지현 영화검색 VO추가
 
 	private int movie_no;
 	private int files_no;
@@ -21,8 +21,6 @@ public class MovieDto {
 	private String movie_publisher;
 	private String movie_genre;
 	private String movie_content;
+	private String review_content;
 
-	
-	
-	
 }
