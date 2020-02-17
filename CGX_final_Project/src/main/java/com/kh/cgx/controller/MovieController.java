@@ -107,7 +107,7 @@ public class MovieController {
 	public String pre_movie(Model model) {
 		List<MovieDto> pre_list = movieDao.getList2();
 		model.addAttribute("pre_list", pre_list);
-		return "movie/pre_movie";
+		return "movie/pre_movie";	
 	}
 
 	// 무비 트레일러
