@@ -73,26 +73,6 @@ public class UsersController {
 		return "/user/login";
 	}
 
-	@PostMapping("/login")
-	public String login2(@ModelAttribute MemberDto member) {
-//		[1] 검색을 해서 결과 유무를 확인한다(id만 이용해서)
-		MemberDto find = sqlSession.selectOne("member.login",member);
-		log.info("find = {}", find);
-//		[2] 필요한 처리를 한다
-		if(find == null) { //id가 없으면
-			return "redirect:/login?error";
-		}
-		else {//id가 있으면 ---> 비밀번호 매칭 검사 : encoder.matches()
-			boolean correct = encoder.matches(member.getMember_pw(), find.getMember_pw());
-			log.info("correct = {}", correct);
-			if(correct == true) {//비밀번호 일치
-				return "redirect:/";
-			}
-			else {//비밀번호 불일치
-				return "redirect:/login?error";
-			}
-		}
-	}
 	
 
 
