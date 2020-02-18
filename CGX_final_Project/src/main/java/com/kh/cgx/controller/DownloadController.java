@@ -22,7 +22,7 @@ public class DownloadController {
 	public ResponseEntity<ByteArrayResource> download(@RequestParam int file_no) throws IOException{
 //		ResponseEntity : 스프링에서 응답해줄 데이터가 담긴 상자
 //		ByteArrayResource : 스프링에서 관리할 수 있는 Byte 형식의 데이터셋
-		File directory = new File("D:/upload/cinema");
+		File directory = new File("C:/upload/cinema");
 		
 		directory.mkdirs();
 		File file = new File(directory, String.valueOf(file_no));

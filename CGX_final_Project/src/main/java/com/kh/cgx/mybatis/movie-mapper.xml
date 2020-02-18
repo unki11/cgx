@@ -25,23 +25,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 파인더 리스트 -->
-	<select id="finder_list" resultType="movies" parameterType="map">
+	<select id="finder_list" resultType="movies" parameterType="movieVO2">
 		select*from movie
+	<where>
 	<if test="type != '' and keyword != ''">
 		<choose>
 			<!-- 전체 검색 일경우 -->
 			<when test="type == 'all'">
-				where movie_title like '%'||#{keyword}||'%'
+				 movie_title like '%'||#{keyword}||'%'
 <!-- 				or actor_name like '%'||#{keyword}||'%' -->
 				or movie_director like '%'||#{keyword}||'%'
 			</when>
 			
 			<!-- 전체 검색 이 아닐경우 -->
 			<otherwise>
-				where ${type} like '%'||#{keyword}||'%'
+				 ${type} like '%'||#{keyword}||'%'
 			</otherwise>
 		</choose>
+		
 	</if>
+	<if test="genre != null">
+	 and movie_genre in
+	<foreach collection="genre" item="type" index="index" open="(" close=")" separator=",">
+		#{type}
+	</foreach>
+	</if>
+	
+	<if test="country != null">
+	 and movie_country in
+	<foreach collection="country" item="type" index="index" open="(" close=")" separator=",">
+		#{type}
+	</foreach>
+	</if>
+	
+	<if test="grade != null">
+	 and movie_grade in
+	<foreach collection="grade" item="type" index="index" open="(" close=")" separator=",">
+		#{type}
+	</foreach>
+	</if>
+	</where>
 		order by movie_no asc
 	</select>
 	
@@ -67,15 +90,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insert" parameterType="movies">
-		insert into movie values(#{movie_no},#{files_no},#{movie_title},#{movie_director},#{movie_ticket_rate},sysdate,#{movie_runtime},#{movie_country},#{movie_grade},#{movie_status},#{movie_genre},#{movie_publisher})
+		insert into movie values(movie_no_seq.nextval,#{files_no},#{movie_title},#{movie_director},#{movie_ticket_rate},sysdate,#{movie_runtime},#{movie_country},#{movie_grade},#{movie_status},#{movie_genre},#{movie_publisher},#{movie_content})
 	</insert>
 	
 	<select id="getList" resultType="movies">
 		select * from movie order by movie_no desc
 	</select>
 	
-	<delete id="delete">
-		delete movie where movie_no = #{no}
+	<delete id="delete" parameterType="int">
+		delete movie where movie_no = #{movie_no}
 	</delete>
 	
 	<update id="update" parameterType="movies">

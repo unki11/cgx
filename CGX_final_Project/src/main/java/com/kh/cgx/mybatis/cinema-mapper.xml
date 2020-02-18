@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<insert id="insert" parameterType="CinemaDto">
-		insert into cinema values(#{cinema_no},#{files_no},#{cinema_area},#{cinema_phone},#{cinema_addr})
+		insert into cinema values(cinema_no_seq.nextval,#{files_no},#{cinema_area},#{cinema_phone},#{cinema_addr})
 	</insert>
 	
 	<select id="getList" resultType="CinemaDto">
