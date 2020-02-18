@@ -92,13 +92,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 <!-- 배우 이름 출력 리스트 -->
-	<select id="actorList" resultType="String">
-		select actor_name from actor where movie_no= 1
+	<select id="actorList" resultType="String" parameterType="int">
+		select actor_name from actor where movie_no= #{movie_no}
 	
 	</select>
 
-<select id="movieDetail" resultType="movies">
-	select*from movie where movie_no = 1
+<select id="movieDetail" resultType="movies" parameterType="int">
+	select*from movie where movie_no = #{movie_no}
 </select>
 
 
@@ -122,6 +122,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <insert id="wishinsert"> <!-- 지현이 추가 미완성 -->
      INSERT INTO WISH(WISH_NO,MEMBER_NO,MOVIE_NO) values ('3',#{member_no},#{movie_no})
 </insert>
+
+
+
+
+
 
 </mapper>
 

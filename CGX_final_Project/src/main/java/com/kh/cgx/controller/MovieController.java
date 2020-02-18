@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,26 +30,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.kh.cgx.entity.admin.AdminDto;
 import com.kh.cgx.entity.movie.ActorDto;
+
 import com.kh.cgx.entity.movie.MovieDto;
-import com.kh.cgx.entity.movie.MovieProfileDto;
 import com.kh.cgx.entity.movie.ReviewDto;
+import com.kh.cgx.repository.movie.DistDao;
 import com.kh.cgx.repository.movie.MovieDao;
 import com.kh.cgx.repository.movie.MovieProfileDao;
 import com.kh.cgx.repository.movie.PhysicalFileDao;
 import com.kh.cgx.repository.movie.VideoDao;
+import com.kh.cgx.vo.movie.DistVO;
 import com.kh.cgx.vo.movie.MovieActorVO;
 import com.kh.cgx.vo.movie.VideoVO;
 
 import lombok.extern.slf4j.Slf4j;
-import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("/movie")
 @Slf4j
 public class MovieController {
-
+	@Autowired
+	private DistDao distDao;
+	
 	@Autowired
 	private SqlSession sqlSession;
 
@@ -119,13 +122,14 @@ public class MovieController {
 
 		return "movie/trailer";
 	}
-//	@GetMapping("/trailer")
-//	public String trailer(Model model ) {
-//		List<VideoDto> video_list = videoDao.getList();
-//		model.addAttribute("video_list", video_list);
-//		
-//	return"movie/trailer";
-//}
+
+	//영화 상세 정보의 예매 분포도 구하는 부분
+//	@GetMapping("/detail1")
+//	public String distribution(@ModelAttribute DistVO distVO, ModelMap modelMap) {
+//		List<DistVO> dist_list = distDao.getList(distVO);
+//		modelMap.addAttribute("dist_list" , dist_list);
+//		return"movie/detail1";
+//	}
 
 	// 기본 리스트와 검색 기능을 합친 메소드
 	@GetMapping("/finder-test")
@@ -192,8 +196,8 @@ public class MovieController {
 	private String getList4(Model model, @RequestParam int movie_no
 			) {
 		
-		List<String> actorList = movieDao.getList4();
-		MovieDto movieDto = sqlSession.selectOne("movies.movieDetail");
+		List<String> actorList = movieDao.getList4(movie_no);
+		MovieDto movieDto = sqlSession.selectOne("movies.movieDetail",movie_no);
 		
 		MovieActorVO movieActorVO = MovieActorVO.builder()
 																.actorList(actorList)

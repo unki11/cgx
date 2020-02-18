@@ -58,8 +58,11 @@ public class MovieDaoImpl implements MovieDao{
 	}
 
 	@Override
-	public List<String> getList4() {
-		return sqlSession.selectList("movies.actorList");
+
+	public List<String> getList4(int movie_no) {
+		
+		return sqlSession.selectList("movies.actorList",movie_no);
+
 	}
 	
 	@Override
