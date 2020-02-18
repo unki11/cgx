@@ -187,26 +187,30 @@ public class CinemaController {
 		List<MovieTimeMovieVO> MTMlist = new ArrayList<MovieTimeMovieVO>();
 		for(MovieDto M : movie) {
 			MovieTimeMovieVO movieTimeMovieVO = new MovieTimeMovieVO();
-
 			MTSlist = new ArrayList<>();
 			for(ScreenDto S : screen) {
 				HashMap<String, Object> map = new HashMap<>();
 				map.put("movie_no",M.getMovie_no()); 
+				
 				map.put("screen_no",S.getScreen_no());
 				map.put("cinema_no",cinema_no);
 				map.put("movietime_time_start", inputDate2+"0000");
-				map.put("movietime_time_end", inputDate2+"2359");
+				map.put("movietime_time_end",inputDate2+"2359");
 				List<MovieTimeSeatVO> mtlist = sqlSession.selectList("movietime.screenlist",map);
 				if(mtlist.isEmpty()) {
+					System.out.println("없어요"+mtlist);
 					continue;
 				}
 				MovieTimeScreenVO movieTimeScreenVO = new MovieTimeScreenVO();
-				movieTimeScreenVO.setScreen_no(S.getScreen_no());
+				movieTimeScreenVO.setScreen_no(S.getScreen_no());	
 				movieTimeScreenVO.setScreen_all_seat(S.getScreen_all_seat());;
 				movieTimeScreenVO.setScreen_type(S.getScreen_type());;
 				movieTimeScreenVO.setScreen_name(S.getScreen_name());
 				movieTimeScreenVO.setList(mtlist);
-				MTSlist.add(movieTimeScreenVO);
+				MTSlist.add(movieTimeScreenVO);	
+			}
+			if(MTSlist.isEmpty()) {
+				continue;
 			}
 			movieTimeMovieVO.setMovie_no(M.getMovie_no());
 			movieTimeMovieVO.setMovie_title(M.getMovie_title());

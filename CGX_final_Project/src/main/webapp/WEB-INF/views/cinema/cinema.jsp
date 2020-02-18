@@ -31,11 +31,10 @@
 	    				$.each(data, function(index){
 	    					var movie_no = data[index].movie_no;
 	    					var list = data[index].list;
-	    					$("<h3>").text("ㅡㅡㅡㅡ"+data[index].movie_title+"ㅡㅡㅡㅡ").appendTo("#movietime");
+	    					$("<h3>").text(data[index].movie_title).appendTo("#movietime");
 	    					$.each(list, function(index){
 	    						var rlist = list[index].list;
-	    						$("<span>").text("ㅡㅡㅡㅡ"+list[index].screen_name+"ㅡㅡㅡㅡ").appendTo("#movietime");
-	    						$("<span>").html("<br>").appendTo("#movietime");
+	    						$("<h5>").text(list[index].screen_name).appendTo("#movietime");
 	    						$.each(rlist,function(index){
 	    							var rtlist = rlist[index];
 	    							console.log("rtlist",rtlist);
@@ -45,6 +44,7 @@
 	    							$("<span>").html("<br>").appendTo("#movietime");
 	    							})
 	    						})
+	    						$("<h5>").text("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ").appendTo("#movietime");
 	    					})
 	    			}
 	    			
@@ -98,9 +98,11 @@
     <h1>상영시간표 자르기</h1>
     <div id="movietime">
     	<c:forEach items="${list}" var="mlist" >
+    		<h3>${mlist.movie_title}</h3>
 		<c:forEach items="${mlist.list}" var="slist">
+			<h5>${slist.screen_name}</h5>
 			<c:forEach items="${slist.list}" var="list">
-				<h5>${list}</h5>
+				<span>${list}</span>
 			</c:forEach>
 			<h5>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</h5>
 	</c:forEach>
