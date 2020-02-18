@@ -123,7 +123,6 @@ public class CinemaController {
 //		log.info("cinema_list={}",cinema_list2);
 		model.addAttribute("cinema_list1", cinema_list1);
 		
-		log.info("cinema_file={}",cinema_list1);
 		List<CinemaDto> cinema_list2 = sqlSession.selectList("cinema.search","경기%");
 //		log.info("cinema_list={}",cinema_list2);
 		model.addAttribute("cinema_list2", cinema_list2);
@@ -134,6 +133,7 @@ public class CinemaController {
 		
 		List<MovieTimeDto> movieTime_list = sqlSession.selectList("movietime.search",cinema_no);
 		model.addAttribute("movietime_list", movieTime_list);
+		model.addAttribute("cinema_no",cinema_no);
 //		ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //		아래는 상영날짜 출력입니다
 //		ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
@@ -151,7 +151,6 @@ public class CinemaController {
 		Calendar calendar = Calendar.getInstance();
 
 		calendar.setTime(data);
-		log.info("calendar={}",calendar.get(Calendar.DAY_OF_WEEK));
 
 		for(String time : datelist) {
 			inputDate = "20"+time;
@@ -167,24 +166,16 @@ public class CinemaController {
 			data1.add(date[0]);
 			data1.add(date[1]);
 			data1.add(date[2]);
-			log.info("주말={}",calendar.get(Calendar.DAY_OF_WEEK));
 			data1.add(calender[calendar.get(Calendar.DAY_OF_WEEK)-1]);
 			timelist.add(data1);
 			
-		}
-		log.info("datelist={}",datelist);
-		log.info("timeList={}",timelist);
-		for(List<String> tim : timelist) {
-			log.info("time={}",tim);
 		}
 		model.addAttribute("timelist", timelist);
 //		ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //		아래는 상영시간표 출력입니다/
 //		ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 		List<Integer> movie = sqlSession.selectList("movietime.movie",cinema_no);
-		log.info("무비={}",movie);
 		List<Integer> screen = sqlSession.selectList("movietime.screen",cinema_no);
-		log.info("스크린={}",screen);
 		List<MovieTimeScreenVO> MTSlist = new ArrayList<>();
 		List<MovieTimeMovieVO> MTMlist = new ArrayList<MovieTimeMovieVO>();
 		for(int M : movie) {
@@ -197,36 +188,20 @@ public class CinemaController {
 				
 				map.put("screen_no",S);
 				map.put("cinema_no",cinema_no);
-				System.out.println("M"+M);
-				System.out.println("S"+S);
-
-				System.out.println("map"+map);
 				List<MovieTimeDto> mtlist = sqlSession.selectList("movietime.screenlist",map);
 				if(mtlist.isEmpty()) {
 					continue;
 				}
 				MovieTimeScreenVO movieTimeScreenVO = new MovieTimeScreenVO();
-				System.out.println("mtlist : "+mtlist);
 				movieTimeScreenVO.setMovie_no(M);
 				movieTimeScreenVO.setScreen_no(S);
 				movieTimeScreenVO.setList(mtlist);
-				System.out.println("movieTimeScreenVo"+movieTimeScreenVO.getList());
 				MTSlist.add(movieTimeScreenVO);
-				System.out.println("MTSlist체크 : "+MTSlist);
 			}
 			movieTimeMovieVO.setMovie_no(M);
 			movieTimeMovieVO.setList(MTSlist);
 			MTMlist.add(movieTimeMovieVO);
 		}
-		for(MovieTimeScreenVO list : MTSlist) {
-			System.out.println(list);
-		}
-		System.out.println(MTSlist);
-		
-		for(MovieTimeMovieVO list : MTMlist) {
-			System.err.println(list);
-		}
-		System.out.println(MTMlist);
 		model.addAttribute("list",MTMlist);
 		/*
 		 * List<MovieTimeDto> movieTime_list =
@@ -235,6 +210,7 @@ public class CinemaController {
 		 */
 		return "cinema/cinema";
 	}
+	
 	@GetMapping("/test")
 	public String test(Model model) {
 		 
@@ -286,6 +262,41 @@ public class CinemaController {
 		model.addAttribute("list",MTMlist);
 		
 		return "cinema/cinema_test";
+	}
+	
+	@PostMapping("/movietimelist")
+	@ResponseBody
+	public List<MovieTimeMovieVO> ajax(int cinema_no,String movietime){
+		List<Integer> movie = sqlSession.selectList("movietime.movie",cinema_no);
+		List<Integer> screen = sqlSession.selectList("movietime.screen",cinema_no);
+		List<MovieTimeScreenVO> MTSlist = new ArrayList<>();
+		List<MovieTimeMovieVO> MTMlist = new ArrayList<MovieTimeMovieVO>();
+		for(int M : movie) {
+			MovieTimeMovieVO movieTimeMovieVO = new MovieTimeMovieVO();
+
+			MTSlist = new ArrayList<>();
+			for(int S : screen) {
+				HashMap<String, Integer> map = new HashMap<String, Integer>();
+				map.put("movie_no",M); 
+				
+				map.put("screen_no",S);
+				map.put("cinema_no",cinema_no);
+				List<MovieTimeDto> mtlist = sqlSession.selectList("movietime.screenlist",map);
+				if(mtlist.isEmpty()) {
+					continue;
+				}
+				MovieTimeScreenVO movieTimeScreenVO = new MovieTimeScreenVO();
+				movieTimeScreenVO.setMovie_no(M);
+				movieTimeScreenVO.setScreen_no(S);	
+				movieTimeScreenVO.setList(mtlist);
+				MTSlist.add(movieTimeScreenVO);
+			}
+			movieTimeMovieVO.setMovie_no(M);
+			movieTimeMovieVO.setList(MTSlist);
+			MTMlist.add(movieTimeMovieVO);
+		}
+		
+		return MTMlist;		
 	}
 	
 	@GetMapping("/time")

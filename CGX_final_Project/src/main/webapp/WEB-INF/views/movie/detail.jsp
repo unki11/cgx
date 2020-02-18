@@ -6,46 +6,112 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-<script>
-window.onload = function () {
+ <script src="path/to/chartjs/dist/Chart.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+ 
+ <head>
+ <style>
+ 	#allchart{
+ 	display: inline-flex;
+ 	height:200px;
+ 	width: 600px;
+ 	}
+ 
+ </style>
 
-var options = {
-	animationEnabled: true,
-	title: {
-		text: "GDP Growth Rate - 2016"
-	},
-	axisY: {
-		title: "Growth Rate (in %)",
-		suffix: "%",
-		includeZero: false
-	},
-	axisX: {
-		title: "Countries"
-	},
-	data: [{
-		type: "column",
-		yValueFormatString: "#,##0.0#"%"",
-		dataPoints: [
-			{ label: "Iraq", y: 10.09 },	
-			{ label: "Turks & Caicos Islands", y: 9.40 },	
-			{ label: "Nauru", y: 8.50 },
-			{ label: "Ethiopia", y: 7.96 },	
-			{ label: "Uzbekistan", y: 7.80 },
-			{ label: "Nepal", y: 7.56 },
-			{ label: "Iceland", y: 7.20 },
-			{ label: "India", y: 7.1 }
-			
-		]
-	}]
-};
-$("#chartContainer").CanvasJSChart(options);
+ 
+ <script>
+ window.onload = function () {
+ 
+     var chart = new CanvasJS.Chart("charm-point",
+{
+title:{
+text: "Adding dataPoints"  
+},
+data: [
+{        
+ type: "column",
+ dataPoints: [
+     { label: "감독연출", y: 89 },	
+     { label: "스토리", y: 91 },	
+     { label: "영상미", y: 77 },
+     { label: "배우연기", y: 85 },	
+     { label: "ost", y: 90 }
 
+ ]
 }
-</script>
+]
+});
+
+chart.render();
 
 
+
+
+
+
+
+ var options = {
+ animationEnabled: true,
+ title: {
+	text: "성별 예매 분포도"
+ },
+ data: [{
+	    type: "doughnut",
+	    innerRadius: "40%",
+	    showInLegend: true,
+	    legendText: "{label}",
+	    indexLabel: "{label}: #percent%",
+	    dataPoints: [
+		    { label: "남자", y: 649291 },
+		    { label: "여자", y: 900000 }
+	    ]
+}]
+};
+ $("#sex-reserv").CanvasJSChart(options);
+
+ var options = {
+     animationEnabled: true,
+     title: {
+         text: "연령별 예매 분포"
+     },
+     axisY: {
+         
+         suffix: "%",
+         includeZero: false
+     },
+     axisX: {
+         title: "연령"
+     },
+     data: [{
+         type: "column",
+         indexLabel: "{y}%",
+         indexLabelPlacement: "outside",
+         indexLabelOrientation: "horizontal",
+         yValueFormatString: "###"%"",
+        
+         dataPoints: [
+             { label: "10대", y: 21 },	
+             { label: "20대", y: 34 },	
+             { label: "30대", y: 32.7 },
+             { label: "40대", y: 6.1 },	
+             { label: "50대", y: 6.2 }
+             
+         ]
+     }]
+ };
+ $("#age-reserv").CanvasJSChart(options);
+ 
+
+ }
+ </script>
+
+
+ </head>
+ <div id="info-all" align="center">
     <h1>상세정보</h1>
     <br><br>
+    <div class="movie-info">
     	<a href="detail?movie_no=${movieActorVO.movie_no}"><img src="download?files_no=${movieActorVO.files_no }"></a>
         <h3>영화 제목 : ${movieActorVO.movie_title}</h3>
         <h5>${movieActorVO.movie_status}</h5>
@@ -55,13 +121,12 @@ $("#chartContainer").CanvasJSChart(options);
         <h5>개봉 :  ${movieActorVO.movie_startdate}</h5>
         
         <h2>${movieActorVO.movie_content}</h2>
+     </div>
      
-		<div id="chartContainer" style="height: 370px; width: 100%;"></div>
-       
-   
-    
-        
-        
-
-
+  
+     <div id="allchart">
+		<div id="charm-point" style="height: 200px; width: 100%;"></div>
+    	<div id="sex-reserv" style="height: 200px; width: 100%;"></div>
+    	<div id="age-reserv" style="height: 200px; width: 100%;"></div></div>
+	</div>
   

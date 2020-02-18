@@ -4,24 +4,31 @@
 <html>
 <head>
 	<title>Home</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <style>
         
-        .bg-1light{
+        /* .bg-1light{
             background-color: #efe4b0;
+        } */
+        
+        .navbar a > img{
+         	width:160px;
         }
+        
     </style>
 </head>
 <body>
+
+<jsp:include page="header.jsp"></jsp:include> 
+ 
+
    <nav class="navbar navbar-expand-lg navbar-light bg-1light">
-        <a class="navbar-brand" href="http://www.cgv.co.kr/"><img src="/image/cgv2.png"></a>
+        <a class="navbar-brand" href="http://localhost:8080/com.kh.cgx/"><img src="${pageContext.request.contextPath}/resources/img/latte2.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
     
+    	
+    		
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown" style="padding: 3rem;">
@@ -55,7 +62,7 @@
                 극장
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">CGV극장</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/cinema/">CGV극장</a>
                 <a class="dropdown-item" href="#">특별관</a>
               </div>  
             </li>
@@ -65,10 +72,18 @@
                 </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">이벤트</a>
-                <a class="dropdown-item" href="#">기프트샵</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/goods/">기프트샵</a>
               </div>
             </li>
+            
+              <div>
+            <a class="click" href="${pageContext.request.contextPath}/user/login" style="padding: 1rem;"> 로그인</a>
+            <a class="click" href="${pageContext.request.contextPath}/user/join" style="padding: 1rem;"> 회원가입</a>
+            <a class="click" href="${pageContext.request.contextPath}/mypage/mycgv" style="padding: 1rem;"> my cgv</a>
+            </div>
           </ul>
+          
+          
           <form class="form-inline my-2 my-lg-3">
             <input class="form-control mr-lg-4" type="search" placeholder="영화검색" aria-label="Search">
             <button class="btn btn-outline-success my-3 my-lg-3" type="submit">검색하기</button>
@@ -77,8 +92,95 @@
       </nav>
       <!-- 헤더 끝 -->
       
+
       <h1>${sessionScope.id }</h1>
       <h1>${id }</h1>
+      
+      
+      
+      
+      
+     <body>
+    <div class="jumbotron">
+        <h1>LATTE CINEMA 영화 트레일러</h1>
+        <h3>영화관보고싶지?</h3>
+    </div>   
+    
+    <div class="container-fluid">
+    <div class="row">
+            <div class="col-md-4">
+              <div class="thumbnail">
+                <img src="${pageContext.request.contextPath}/resources/img/3.jpg" alt="...">
+                <div class="caption">
+                  <h3>1번 영화</h3>
+                  <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="thumbnail">
+                  <a href="/com.kh.cgx/movie/review"><img src="${pageContext.request.contextPath}/resources/img/4.jpg" alt="..."></a>
+                  <div class="caption">
+                    <h3>2번 영화</h3>
+                    <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="thumbnail">
+                  <img src="${pageContext.request.contextPath}/resources/img/5.jpg" alt="...">
+                  <div class="caption">
+                    <h3>3번 영화</h3>
+                    <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="thumbnail">
+                  <img src="${pageContext.request.contextPath}/resources/img/2.jpg" alt="...">
+                  <div class="caption">
+                    <h3>4번 영화</h3>
+                    <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="thumbnail">
+                  <img src="${pageContext.request.contextPath}/resources/img/1.jpg" alt="...">
+                  <div class="caption">
+                    <h3>5번 영화</h3>
+                    <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="thumbnail">
+                  <img src="${pageContext.request.contextPath}/resources/img/girl.jpg" alt="..">
+                  <div class="caption">
+                    <h3>6번 영화</h3>
+                    <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                  </div>
+                </div>
+              </div>
+    </div>
+    </div>
+
+    <div class="jumbotron">
+        <h1>LATTE CINEMA 푸터자리</h1>
+        <h3>영화관보고싶지?</h3>
+    </div>   
+</body> 
+      
+      
+      
+      
+      
+      
       
       <!-- 푸터시작 -->
           <footer class=" bg-1light">

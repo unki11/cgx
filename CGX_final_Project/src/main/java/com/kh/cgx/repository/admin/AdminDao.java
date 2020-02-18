@@ -10,4 +10,5 @@ public interface AdminDao {
 	void insert(AdminDto adminDto);
 	void delete(int no);
 	void update(AdminDto adminDto);
+	AdminDto login(AdminDto adminDto);
 }

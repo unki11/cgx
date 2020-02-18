@@ -42,21 +42,23 @@ public class UsersController {
 
 	// 가입
 	@GetMapping("/join")
-	public String join() {
+	public String join1() {
 		return "user/join";
 	}
 
 	@PostMapping("/join")
 	// pw 암호화
-	public String join(@ModelAttribute MemberDto member) {
+	public String join2(@ModelAttribute MemberDto member) {
 		// member에 있는 pw를 암호화 한다
-		// String origin = member.getMember_pw();
-		// String result = encoder.encode(origin);
-		// member.setMember_pw(result);
+		 String origin = member.getMember_pw();
+		 String result = encoder.encode(origin);
+		 member.setMember_pw(result);
 		member.setMember_pw(encoder.encode(member.getMember_pw()));
 
-		// DB 즈어장
-		sqlSession.insert("Member.join", member);
+	
+		//DB 즈어장
+		sqlSession.insert("member.join", member);
+
 		return "redirect:/user/login";
 	}
 
@@ -70,6 +72,30 @@ public class UsersController {
 	public String login() {
 		return "/user/login";
 	}
+
+	@PostMapping("/login")
+	public String login2(@ModelAttribute MemberDto member) {
+//		[1] 검색을 해서 결과 유무를 확인한다(id만 이용해서)
+		MemberDto find = sqlSession.selectOne("member.login",member);
+		log.info("find = {}", find);
+//		[2] 필요한 처리를 한다
+		if(find == null) { //id가 없으면
+			return "redirect:/login?error";
+		}
+		else {//id가 있으면 ---> 비밀번호 매칭 검사 : encoder.matches()
+			boolean correct = encoder.matches(member.getMember_pw(), find.getMember_pw());
+			log.info("correct = {}", correct);
+			if(correct == true) {//비밀번호 일치
+				return "redirect:/";
+			}
+			else {//비밀번호 불일치
+				return "redirect:/login?error";
+			}
+		}
+	}
+	
+
+
 
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
@@ -92,7 +118,7 @@ public class UsersController {
 	}
 
 	@GetMapping("/search")
-	public String search() {
+	public String search1() {
 
 		return "user/search";
 	}
@@ -261,7 +287,7 @@ public class UsersController {
 			}
 
 		} else {// 비밀번호가 다름
-//			memberDao.updateLastLogin(find);
+//		memberDao.updateLastLogin(find);
 			return "redirect:reconfirm_pw?error";
 		}
 	}
