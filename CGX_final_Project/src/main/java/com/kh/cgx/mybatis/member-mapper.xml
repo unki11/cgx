@@ -44,6 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select *
 		from member where member_id=#{member_id}
 	</select>
+	
 
 	<update id="updateLastLogin" parameterType="member">
 		update member set

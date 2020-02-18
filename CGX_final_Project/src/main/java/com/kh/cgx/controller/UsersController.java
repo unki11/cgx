@@ -51,8 +51,6 @@ public class UsersController {
 	public String join2(@ModelAttribute MemberDto member) {
 		// member에 있는 pw를 암호화 한다
 		 String origin = member.getMember_pw();
-		 String result = encoder.encode(origin);
-		 member.setMember_pw(result);
 		member.setMember_pw(encoder.encode(member.getMember_pw()));
 
 	
@@ -109,6 +107,7 @@ public class UsersController {
 //		[1] 검색을 해서 결과 유무를 확인한다(id만 이용해서)
 		MemberDto find = sqlSession.selectOne("member.login", member);
 		log.info("find = {}", find);
+		log.info("member={}",member);
 //		[2] 필요한 처리를 한다
 		if (find == null) { // id가 없으면
 			return "redirect:/login?error";
