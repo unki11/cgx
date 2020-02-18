@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
-public class MovieVO {
+public class MovieVO2 {
 	private String type = "movie_title";
 	private String keyword = "";
 	private List<String> genre, country, grade;

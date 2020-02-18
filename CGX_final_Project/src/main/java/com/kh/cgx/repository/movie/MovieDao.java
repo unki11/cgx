@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.kh.cgx.entity.movie.MovieDto;
 
-import com.kh.cgx.entity.movie.MovieVO;
+import com.kh.cgx.entity.movie.MovieVO2;
 
 
 
@@ -14,7 +14,7 @@ import com.kh.cgx.entity.movie.MovieVO;
 
 public interface MovieDao {
 
-	List<MovieDto> finder(MovieVO movieVO);
+	List<MovieDto> finder(MovieVO2 movieVO);
 
 	int count(String type , Object keyword) ;
 	
@@ -27,7 +27,7 @@ public interface MovieDao {
 
 
 	
-	List<MovieVO> getList5();
+	List<MovieVO2> getList5();
 
 	void insert(int member_no, int movie_no);
 	

@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.kh.cgx.vo.movie.MovieActorVO" alias="movieActorVO"/>
 		<typeAlias type="com.kh.cgx.vo.mypage.ReserveVO" alias="ReserveVO"/>
 
-		<typeAlias type="com.kh.cgx.entity.movie.MovieVO" alias="movieVO2"/>
+		<typeAlias type="com.kh.cgx.entity.movie.MovieVO2" alias="movieVO2"/>
 
 		<typeAlias type="com.kh.cgx.vo.movie.MovieVO" alias="movieVO"/>
 

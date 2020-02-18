@@ -29,19 +29,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-<<<<<<< HEAD
-=======
-
 import com.kh.cgx.entity.admin.AdminDto;
 import com.kh.cgx.entity.movie.ActorDto;
 
->>>>>>> refs/remotes/origin/master
 import com.kh.cgx.entity.movie.MovieDto;
-<<<<<<< HEAD
-import com.kh.cgx.entity.movie.MovieVO;
-=======
->>>>>>> refs/remotes/origin/master
+
+import com.kh.cgx.entity.movie.MovieVO2;
+
 import com.kh.cgx.entity.movie.ReviewDto;
 import com.kh.cgx.repository.movie.DistDao;
 import com.kh.cgx.repository.movie.MovieDao;
@@ -137,7 +131,7 @@ public class MovieController {
 
 	// 기본 리스트와 검색 기능을 합친 메소드
 	@GetMapping("/finder-test")
-	public ModelAndView finder(@ModelAttribute MovieVO movieVO) {
+	public ModelAndView finder(@ModelAttribute MovieVO2 movieVO) {
 		log.info("genre={}",movieVO);
 		List<MovieDto> finder_list = movieDao.finder(movieVO);
 		// 검색결과수

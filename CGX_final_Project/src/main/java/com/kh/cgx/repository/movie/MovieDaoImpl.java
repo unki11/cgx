@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.cgx.entity.movie.MovieDto;
 
-import com.kh.cgx.entity.movie.MovieVO;
+import com.kh.cgx.entity.movie.MovieVO2;
 
 @Repository
 public class MovieDaoImpl implements MovieDao{
@@ -35,7 +35,7 @@ public class MovieDaoImpl implements MovieDao{
 
 	//게시글 전체 목록 + 검색 기능
 	@Override
-	public List<MovieDto> finder(MovieVO movieVO) {
+	public List<MovieDto> finder(MovieVO2 movieVO) {
 		//검색 옵션 , 키워드 맵에 저장
 		return sqlSession.selectList("movies.finder_list", movieVO);
 	}
@@ -61,7 +61,7 @@ public class MovieDaoImpl implements MovieDao{
 	}
 	
 	@Override
-	public List<MovieVO> getList5() {
+	public List<MovieVO2> getList5() {
 		return sqlSession.selectList("movies.movieSearch");
 	}
 
