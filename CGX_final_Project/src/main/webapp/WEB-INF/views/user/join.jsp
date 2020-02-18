@@ -63,6 +63,51 @@
 									});
 						});
 	});
+	
+	// Added
+	$(function() {
+		$("#checkEmail").click(function() {
+			$.ajax({
+				url : "<c:url value='/user/checkEmail' />",
+				type : "post",
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",  
+				data : {
+					'member_id' : $("input[name='member_id']").val(),
+					'member_email' : $("input[name='member_email']").val()
+				},
+				success : function(data) {
+					if (data == true) {
+						$("#checkEmail").hide();
+						$("input[name='email_code']").show();
+						$("#checkEmailCode").show();
+					}
+				}
+			});
+		});
+		$("#checkEmailCode").click(function() {
+			$.ajax({
+				url : "<c:url value='/user/checkEmailCode' />",
+				type : "post",
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",  
+				data : {
+					'email_code' : $("input[name='email_code']").val()
+				},
+				success : function(data) {
+					if (data == true) {
+						$("#checkEmail").hide();
+						$("input[name='email_code']").hide();
+						$("#checkEmailCode").hide();
+						$("#msg").text("이메일 인증됨");
+					} else {
+						$("#checkEmail").show();
+						$("input[name='email_code']").hide();
+						$("#checkEmailCode").hide();
+						$("#msg").text("이메일 인증실패");
+					}
+				}
+			});
+		});
+	});
 </script>
 </head>
 <body>
@@ -89,6 +134,10 @@
 						</div>
 						<div>
 							<input type="email" name="member_email" placeholder="email">
+							<input type="button" id="checkEmail" value="이메일인증">
+							<input type="text" name="email_code" placeholder="인증코드" style="display:none;">
+							<input type="button" id="checkEmailCode" value="인증코드확인" style="display:none;">
+							<p id="msg"></p>
 						</div>
 						<div>
 							<button type="submit">회원가입</button>

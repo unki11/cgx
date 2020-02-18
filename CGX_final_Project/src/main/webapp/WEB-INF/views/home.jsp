@@ -39,7 +39,7 @@
                 <a class="dropdown-item" href="#">무비차트</a>
                 <a class="dropdown-item" href="/com.kh.cgx/user/mypage">내정보</a>
                 <a class="dropdown-item" href="/com.kh.cgx/user/login">login</a>
-                <a class="dropdown-item" href="/com.kh.cgx/user/join">join</a>
+                <a class="dropdown-item" href="<c:url value="/user/joinWhether" />">join</a>
                 <a class="dropdown-item" href="/com.kh.cgx/user/find_id">find_id</a>
                 <a class="dropdown-item" href="/com.kh.cgx/user/find_pw">find_pw</a>
                 <a class="dropdown-item" href="/com.kh.cgx/user/logout">LogOut</a>
