@@ -1,5 +1,7 @@
 package com.kh.cgx.repository.user;
 
+import java.util.List;
+
 import com.kh.cgx.entity.user.MemberDto;
 
 
@@ -19,6 +21,7 @@ public interface MemberDao {
 	
 	MemberDto reconfirm_pw(MemberDto memberDto);
 	
+
 	// Added Start
 	MemberDto findMemberByMemberNameAndEmail(MemberDto input);
 	MemberDto findMemberByMemberNameAndIdAndEmail(MemberDto input);
@@ -26,4 +29,5 @@ public interface MemberDao {
 	int updateMember(MemberDto input);
 	MemberDto findMemberById(String member_id);
 	// Added End
+
 }
