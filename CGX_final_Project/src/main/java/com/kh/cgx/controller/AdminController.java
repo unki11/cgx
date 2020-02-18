@@ -161,12 +161,14 @@ public class AdminController {
 	@PostMapping("/Movie/adminInsert")
 	public String test2(@ModelAttribute MovieDto movieDto) {
 		movieDao.insert(movieDto);
+		log.info("movieDto");
 		return "redirect:/admin/Movie/adminInsert";
 	}
 	
 	@GetMapping("/Movie/adminDelete")
 	@ResponseBody
-	public void moviedelete(int no) {
+	public void moviedelete(int no) { 
+		log.info("no={}",no);
 		movieDao.delete(no);
 	}
 	

@@ -2,14 +2,13 @@ package com.kh.cgx.repository.movie;
 
 import java.util.List;
 
-import com.kh.cgx.entity.movie.ActorDto;
 import com.kh.cgx.entity.movie.MovieDto;
-import com.kh.cgx.vo.movie.MovieActorVO;
+import com.kh.cgx.entity.movie.MovieVO;
 
 
 public interface MovieDao {
 
-	List<MovieDto> finder(String type,Object keyword);
+	List<MovieDto> finder(MovieVO movieVO);
 
 	int count(String type , Object keyword) ;
 	
