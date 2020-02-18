@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 public class MovieTimeMovieVO {
 
-	private int movie_no;
+	private int movie_no,movie_runtime;
+	private String movie_title,movie_startdate,movie_grade,movie_genre,movie_status;
 	private List<MovieTimeScreenVO> list;
 }

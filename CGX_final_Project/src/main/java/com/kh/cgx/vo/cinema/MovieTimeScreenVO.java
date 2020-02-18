@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 
 public class MovieTimeScreenVO {
 
-	private int movie_no;
-	private int screen_no;
-	private List<MovieTimeDto> list;
+	private int screen_no,screen_all_seat;
+	private String screen_type,screen_name;
+	private List<MovieTimeSeatVO> list;
 }
