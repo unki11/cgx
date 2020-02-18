@@ -103,17 +103,6 @@ public class UsersController {
 		return "user/search";
 	}
 
-	@GetMapping("/find_pw")
-	public String find_pw() {
-
-		return "user/find_pw";
-	}
-
-	@GetMapping("/find_id")
-	public String find_id() {
-		return "user/find_id";
-	}
-
 	// Added Start
 	@PostMapping("/login")
 	public String login(@ModelAttribute MemberDto member, HttpSession session) {
