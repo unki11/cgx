@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.kh.cgx.entity.admin.SeatVO;
+import com.kh.cgx.entity.cinema.SeatDto;
 
 public class SeatDaoImpl implements SeatDao{
 	
@@ -17,6 +18,13 @@ public class SeatDaoImpl implements SeatDao{
 		return sqlSession.selectList("seat.getList");
 	}
 
+	
+	  @Override 
+	  public List<SeatDto> getList2() {
+		  return sqlSession.selectList("seat.search"); 
+	 }
+	 
+	
 	@Override
 	public void insert(SeatVO seatDto) {
 		sqlSession.insert("seat.insert", seatDto);

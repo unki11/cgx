@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 파인더 리스트 -->
-	<select id="finder_list" resultType="movies" parameterType="movieVO">
+	<select id="finder_list" resultType="movies" parameterType="movieVO2">
 		select*from movie
 	<where>
 	<if test="type != '' and keyword != ''">
@@ -115,14 +115,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 <!-- 배우 이름 출력 리스트 -->
-	<select id="actorList" resultType="String">
-		select actor_name from actor where movie_no= 1
+	<select id="actorList" resultType="String" parameterType="int">
+		select actor_name from actor where movie_no= #{movie_no}
 	
 	</select>
 
-<select id="movieDetail" resultType="movies">
-	select*from movie where movie_no = 1
+<select id="movieDetail" resultType="movies" parameterType="int">
+	select*from movie where movie_no = #{movie_no}
 </select>
+
+
+<select id="movieSearch" resultType="movieVO">
+	SELECT MV.*, NVL(MV_SUB.REVIEW_CONTENT,' ') AS REVIEW_CONTENT
+	FROM 	
+	    MOVIE MV LEFT JOIN 
+		(
+		 SELECT  RV.REVIEW_CONTENT , MT.MOVIE_NO
+		 FROM 	TICKET TK INNER JOIN REVIEW RV
+		 ON TK.TICKET_NO = RV.TICKET_NO 
+		 INNER JOIN MOVIETIME MT 
+		 ON MT.MOVIETIME_NO = TK.MOVIETIME_NO
+		 )MV_SUB
+	ON MV.MOVIE_NO = MV_SUB.MOVIE_NO
+	WHERE REPLACE(MV.MOVIE_TITLE,' ') LIKE '%'||#{keyword}||'%' OR REPLACE(MV.MOVIE_DIRECTOR,' ') LIKE '%'||#{keyword}||'%'
+	  	  OR REPLACE(MV.MOVIE_CONTENT,' ') LIKE '%'||#{keyword}||'%' OR REPLACE(MV_SUB.REVIEW_CONTENT,' ') LIKE '%'||#{keyword}||'%'
+	  
+</select>
+
+<insert id="wishinsert"> <!-- 지현이 추가 미완성 -->
+     INSERT INTO WISH(WISH_NO,MEMBER_NO,MOVIE_NO) values ('3',#{member_no},#{movie_no})
+</insert>
+
+
+
 
 
 

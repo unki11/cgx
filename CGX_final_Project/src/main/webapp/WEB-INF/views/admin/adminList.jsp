@@ -35,7 +35,7 @@
 						success:function(resp){
 							console.log("성공")
 						}
-					})
+					});
 				})
 				
 			}
