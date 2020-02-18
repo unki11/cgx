@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <script src="${pageContext.request.contextPath}/resources/js/crypto/crypto-js.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/crypto/hmac-sha256.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -25,9 +25,9 @@
 	
 		<input class="btn" type="submit" value="Login">
 	<div class="row-left">
-		<a href="/user/find_id.jsp">아이디 찾기</a><br>
-		<a href="/user/find_pw.jsp">비밀번호 찾기</a><br>
-		<a href="/user/join.jsp">회원가입</a>
+		<a href="<c:url value='/user/find_id' />">아이디 찾기</a><br>
+		<a href="<c:url value='/user/find_pw' />">비밀번호 찾기</a><br>
+		<a href="<c:url value='/user/join' />">회원가입</a>
 	</div>
 
 </form>

@@ -1,5 +1,8 @@
 package com.kh.cgx.repository.user;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,6 +18,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public void join(MemberDto memberDto) {
+	
 		sqlSession.insert("member.join", memberDto);
 
 	}
@@ -44,4 +48,27 @@ public class MemberDaoImpl implements MemberDao {
 		sqlSession.selectOne("member.reconfirm_pw", memberDto.getMember_pw());
 		return null;
 	}
+	
+	// Added Start
+	@Override
+	public MemberDto findMemberByMemberNameAndEmail(MemberDto input) {
+		return sqlSession.selectOne("member.findMemberByMemberNameAndEmail", input);
+	}
+	@Override
+	public MemberDto findMemberByMemberNameAndIdAndEmail(MemberDto input) {
+		return sqlSession.selectOne("member.findMemberByMemberNameAndIdAndEmail", input);
+	}
+	@Override
+	public int updateMemberPw(MemberDto input) {
+		return sqlSession.update("member.updateMemberPw", input);
+	}
+	@Override
+	public int updateMember(MemberDto input) {
+		return sqlSession.update("member.updateMember", input);
+	}
+	@Override
+	public MemberDto findMemberById(String member_id) {
+		return sqlSession.selectOne("member.login", member_id);
+	}
+	// Added End
 }

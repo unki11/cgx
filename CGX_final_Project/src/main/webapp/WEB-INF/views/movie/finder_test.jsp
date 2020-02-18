@@ -112,7 +112,7 @@ $(".grade_check").click(function(){
 		 				</li>
 		 				
 		 				<li>
-		 					<input type="checkbox" id="genre-fantasy" name="movie_genre" value="판타지" class="check">
+		 					<input type="checkbox" id="genre-fantasy" name="genre" value="판타지" class="check">
 		 					<label for="genre-fantasy">판타지</label>
 		 				</li>
 		 				

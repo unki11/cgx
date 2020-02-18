@@ -5,6 +5,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,48 +24,53 @@ import com.kh.cgx.vo.mypage.WatchedVO;
 @Controller
 @RequestMapping("/mypage")
 public class MypageController {
- 
- @Autowired
- private MemberDao memberdao;
- 
- @Autowired
- private MemberDto memberdto;
- 
- @Autowired
- private SqlSession sqlSession;
 
- @GetMapping("/mycgv")
- public String mycgv(Model model) {
-  int member_no=1;
-  MemberDto search=sqlSession.selectOne("mypage.search",member_no);
+	@Autowired
+	private MemberDao memberdao;
+
+	@Autowired
+	private MemberDto memberdto;
+
+	@Autowired
+	private SqlSession sqlSession;
+
+	@GetMapping("/mycgv")
+	public String mycgv(Model model, HttpSession session) {
+		int member_no = 1;
+		MemberDto search = sqlSession.selectOne("mypage.search", member_no);
+		session.setAttribute("member_no", member_no);
+
 //  System.out.println("list : "+list);
-  model.addAttribute("search",search);
-  return "mypage/mycgv";
- }
- 
- @GetMapping("/reserve")
- public String reserve(Model model) {
-  int member_no=1;
-  List<ReserveVO> ticketlist = sqlSession.selectList("mypage.ticketlist",member_no);
-  System.out.println(ticketlist);
-  model.addAttribute("ticketlist",ticketlist);
-  return "mypage/reserve";
- }
- 
- @GetMapping("/movielog")
- public String movielog() {
-  
-  return "mypage/movielog";
- }
- 
- @GetMapping("/movielog/watched")
- public String watched(Model model, @RequestParam() int member_no) {
-  member_no = 1;
+		model.addAttribute("search", search);
+		return "mypage/mycgv";
+	}
 
-  List<WatchedVO> list  = sqlSession.selectList("mypage.watched",member_no);
-  model.addAttribute("watchList",list);
+	@GetMapping("/reserve")
+	public String reserve(Model model) {
+		int member_no = 1;
+		List<ReserveVO> ticketlist = sqlSession.selectList("mypage.ticketlist", member_no);
+		System.out.println(ticketlist);
+		model.addAttribute("ticketlist", ticketlist);
+		return "mypage/reserve";
+	}
 
-  
-  return "mypage/watched";
- }
+	@GetMapping("/movielog")
+	public String movielog() {
+
+		return "mypage/movielog";
+	}
+
+	/*
+	 * @GetMapping("/movielog/watched") public String watched(Model model,
+	 * HttpSession session) {
+	 * 
+	 * String id=(String) session.getAttribute("id"); System.out.println("id="+id);
+	 * 
+	 * MemberDto dto=sqlSession.selectOne("member.login",id);
+	 * 
+	 * List<WatchedVO> list = sqlSession.selectList("mypage.watched",id);
+	 * model.addAttribute("watchList", list);
+	 * 
+	 * return "mypage/watched"; }
+	 */
 }

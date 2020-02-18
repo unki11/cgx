@@ -3,19 +3,21 @@ package com.kh.cgx.repository.cinema;
 import java.io.File;
 import java.io.IOException;
 
-import javax.annotation.PostConstruct;
-
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CinemaFileDao {
+public class CinemaFileDao implements InitializingBean{
 
 	private File directory = new File("D:/upload/cinema");
 	
 	
-	@PostConstruct//생성하면서 실행할 메소드(준비메소드)
-	public void init() {
+	//생성하면서 실행할 메소드(준비메소드)
+	//@PostConstruct 가 안될 경우 아래와 같이 사용함
+	//implements InitializingBean이 필요
+	@Override
+	public void afterPropertiesSet() throws Exception {
 		directory.mkdirs();
 	}
 	
@@ -25,4 +27,6 @@ public class CinemaFileDao {
 		byte[] data = FileUtils.readFileToByteArray(file);
 		return data;	
 	}
+
+	
 }
