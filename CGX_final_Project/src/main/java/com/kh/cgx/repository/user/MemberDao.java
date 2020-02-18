@@ -1,5 +1,7 @@
 package com.kh.cgx.repository.user;
 
+import java.util.List;
+
 import com.kh.cgx.entity.user.MemberDto;
 
 
@@ -18,5 +20,6 @@ public interface MemberDao {
 	// 비번 재확인
 	
 	MemberDto reconfirm_pw(MemberDto memberDto);
+	
 	
 }

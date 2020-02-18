@@ -63,13 +63,12 @@ public class MypageController {
 	@GetMapping("/movielog/watched")
 	public String watched(Model model, HttpSession session) {
 
-		/*
-		 * MemberDto memberdto = (MemberDto)session.getAttribute("MemberDto"); int
-		 * member_no = memberdto.getMember_no();
-		 */
-		int member_no = (int) session.getAttribute("member_no");
+		String id=(String) session.getAttribute("id");
+		System.out.println("id="+id);
 		
-		List<WatchedVO> list = sqlSession.selectList("mypage.watched", member_no);
+		MemberDto dto=sqlSession.selectOne("member.login",id);
+	
+		List<WatchedVO> list = sqlSession.selectList("mypage.watched",id);
 		model.addAttribute("watchList", list);
 
 		return "mypage/watched";
