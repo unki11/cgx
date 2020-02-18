@@ -29,12 +29,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-
 import com.kh.cgx.entity.admin.AdminDto;
 import com.kh.cgx.entity.movie.ActorDto;
 
 import com.kh.cgx.entity.movie.MovieDto;
+
+import com.kh.cgx.entity.movie.MovieVO2;
+
 import com.kh.cgx.entity.movie.ReviewDto;
 import com.kh.cgx.repository.movie.DistDao;
 import com.kh.cgx.repository.movie.MovieDao;
@@ -65,9 +66,6 @@ public class MovieController {
 
 	@Autowired
 	private PhysicalFileDao physicalFileDao;
-
-	@Autowired
-	private MovieDto movieDto;
 
 	@Autowired
 	private MovieDao movieDao;
@@ -133,25 +131,25 @@ public class MovieController {
 
 	// 기본 리스트와 검색 기능을 합친 메소드
 	@GetMapping("/finder-test")
-	public ModelAndView finder(@RequestParam(defaultValue = "movie_title") String type,
-			@RequestParam(defaultValue = "") Object keyword) {
-		List<MovieDto> finder_list = movieDao.finder(type, keyword);
+	public ModelAndView finder(@ModelAttribute MovieVO2 movieVO) {
+		log.info("genre={}",movieVO);
+		List<MovieDto> finder_list = movieDao.finder(movieVO);
 		// 검색결과수
-		int count = movieDao.count(type, keyword);
+		int count = movieDao.count(movieVO.getType(), movieVO.getKeyword());
 
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("finder_list", finder_list);
 		mv.addObject("count", count);
-		mv.addObject("type", type);
-		mv.addObject("keyword", keyword);
+		mv.addObject("type", movieVO.getType());
+		mv.addObject("keyword", movieVO.getKeyword());
 
 		// 데이터를 맵에 저장
 		Map<String, Object> param = new HashMap<String, Object>();
 
 		param.put("finder_list", finder_list);// 리스트
 		param.put("count", count);// 검색 결과 수
-		param.put("type", type);// 검색 타입
-		param.put("keyword", keyword);// 검색 키워드
+		param.put("type", movieVO.getType());// 검색 타입
+		param.put("keyword", movieVO.getKeyword());// 검색 키워드
 		mv.addObject("param", param);// 맵에 저장된 데이터를 mv 에 저장
 		mv.setViewName("movie/finder_test");// 뷰를 jsp로 설정
 

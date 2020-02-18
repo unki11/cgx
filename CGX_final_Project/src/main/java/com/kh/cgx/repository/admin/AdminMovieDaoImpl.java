@@ -9,8 +9,11 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.cgx.entity.movie.MovieDto;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 @Repository
+@Slf4j
 public class AdminMovieDaoImpl implements AdminMovieDao{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -32,7 +35,9 @@ public class AdminMovieDaoImpl implements AdminMovieDao{
 
 	@Override
 	public void delete(int no) {
+
 		sqlSession.delete("movies.delete", no);
+		log.info("no={}",no);
 		
 	}
 

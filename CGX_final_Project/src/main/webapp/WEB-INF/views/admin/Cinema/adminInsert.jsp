@@ -4,7 +4,7 @@
 
 <h1>극장 등록 페이지</h1>
 <form action="adminInsert" method="post">
-	<input type="text" name="cinema_no" placeholder="극장번호"><br><br>
+	<!-- <input type="text" name="cinema_no" placeholder="극장번호"><br><br> -->
 	<input type="text" name="files_no" placeholder="사진번호"><br><br>
 	<input type="text" name="cinema_area" placeholder="극장지역"><br><br>
 	<input type="text" name="cinema_phone" placeholder="극장전화번호"><br><br>

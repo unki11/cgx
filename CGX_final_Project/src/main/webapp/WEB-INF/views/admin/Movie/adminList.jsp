@@ -186,7 +186,8 @@
 <c:forEach var="movieDto" items="${list}">
 	<div>
 		<p class="no">${movieDto.movie_no}</p>
-		<img src="${pageContext.request.contextPath}/admin/download?files_no=${movieDto.files_no}">
+		<img src="${pageContext.request.contextPath}/download/img?file_no=${movieDto.files_no}">
+		<%-- <p>${movieDto.files_no}</p> --%> 
 		<p class="title">${movieDto.movie_title}</p>
 		<p class="director">${movieDto.movie_director}</p>
 		<p>${movieDto.movie_ticket_rate}</p>
