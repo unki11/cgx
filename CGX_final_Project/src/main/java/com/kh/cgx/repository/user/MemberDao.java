@@ -19,4 +19,11 @@ public interface MemberDao {
 	
 	MemberDto reconfirm_pw(MemberDto memberDto);
 	
+	// Added Start
+	MemberDto findMemberByMemberNameAndEmail(MemberDto input);
+	MemberDto findMemberByMemberNameAndIdAndEmail(MemberDto input);
+	int updateMemberPw(MemberDto input);
+	int updateMember(MemberDto input);
+	MemberDto findMemberById(String member_id);
+	// Added End
 }

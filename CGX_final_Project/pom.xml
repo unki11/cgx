@@ -239,10 +239,24 @@
 			<artifactId>javax.mail-api</artifactId>
 			<version>1.4.7</version>
 		</dependency>
+		<!-- Added Start -->
 
 
-		 
-		 
+
+<dependency>
+
+<!-- <groupId>javax.mail</groupId><artifactId>javax.mail-api</artifactId><version>1.4.7</version> -->
+
+
+<groupId>com.sun.mail</groupId>
+
+<artifactId>javax.mail</artifactId>
+
+<version>1.6.1</version>
+
+</dependency>
+
+	 
 		 <!-- json  -->
 		 <!-- https://mvnrepository.com/artifact/org.json/json -->
 <dependency>
@@ -250,6 +264,7 @@
     <artifactId>json</artifactId>
     <version>20190722</version>
 </dependency>
+
 		 
 	</dependencies>
 
