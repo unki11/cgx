@@ -20,7 +20,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         from seat a
 		where a.screen_no = 1 order by a.SEAT_ROW, a.SEAT_COL
 	</select> -->
-	
+	<select id="seat" parameterType="int" resultType="Seat">
+		select * from ticket,ticket_seat,seat where ticket.ticket_no = ticket_seat.ticket_no and ticket_seat.seat_no = seat.seat_no and ticket.movietime_no = #{movietime_no}
+	</select>
 	
 </mapper>
 

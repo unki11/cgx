@@ -39,12 +39,12 @@
 	    							var rtlist = rlist[index];
 	    							console.log("rtlist",rtlist);
 	    							$("<span>").text("상영시간표번호"+rtlist.movietime_no+"  ").appendTo("#movietime");
-	    							$("<span>").text("상영시간번호"+rtlist.movietime_time+"  ").appendTo("#movietime");
+	    							$("<span>").text("상영시간"+rtlist.movietime_time+"  ").appendTo("#movietime");
 	    							$("<span>").text("사용 좌석수"+rtlist.ticket_count+"  ").appendTo("#movietime");
 	    							$("<span>").html("<br>").appendTo("#movietime");
 	    							})
 	    						})
-	    						$("<h5>").text("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ").appendTo("#movietime");
+	    						$("<h5>").text("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ").appendTo("#movietime");
 	    					})
 	    			}
 	    			
@@ -102,7 +102,7 @@
 		<c:forEach items="${mlist.list}" var="slist">
 			<h5>${slist.screen_name}</h5>
 			<c:forEach items="${slist.list}" var="list">
-				<span>${list}</span>
+				<span>상영시간표번호${list.movietime_no} 상영시간${list.movietime_time} 사용 좌석수${list.ticket_count}</span>
 			</c:forEach>
 			<h5>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</h5>
 	</c:forEach>

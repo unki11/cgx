@@ -206,7 +206,8 @@
 				
 
         </div>
-
+		
+		<input type="hidden" value="${movietime_no}" name="movietime_no">
         <input type="submit" value="선택">
           </div>
     </form>

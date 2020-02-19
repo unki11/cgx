@@ -61,7 +61,7 @@ full outer join movietime m
 on t.movietime_no = m.movietime_no 
 full outer join screen s on m.screen_no = s.screen_no 
 where s.screen_no = #{screen_no} and movie_no = #{movie_no} and movietime_time 
-between sysdate and to_date(#{movietime_time_end},'YYMMDDHH24MI') 
+between to_date(#{movietime_time_start},'YYMMDDHH24MI') and to_date(#{movietime_time_end},'YYMMDDHH24MI') <![CDATA[and m.movietime_time >= sysdate]]>
 group by m.movietime_no,m.movietime_time
 	</select>
 	
