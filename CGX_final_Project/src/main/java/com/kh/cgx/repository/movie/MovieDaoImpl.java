@@ -11,7 +11,13 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.cgx.entity.movie.MovieDto;
 
+import com.kh.cgx.vo.movie.MovieActorVO;
+import com.kh.cgx.vo.movie.MovieVO;
+import com.kh.cgx.vo.movie.StillcutVO;
+
+
 import com.kh.cgx.entity.movie.MovieVO2;
+
 
 @Repository
 public class MovieDaoImpl implements MovieDao{
@@ -73,6 +79,14 @@ public class MovieDaoImpl implements MovieDao{
 		sqlSession.insert("movies.wishinsert", param);
 		
 	}
+
+	@Override
+	public List<StillcutVO> getStillcut(StillcutVO stillcutVO) {
+		
+		return sqlSession.selectList("movies.stillcut", stillcutVO.getMovie_no());
+	}
+
+
 
 
 	

@@ -5,11 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data @AllArgsConstructor @NoArgsConstructor @Builder
-public class VideoVO {
+@Data @NoArgsConstructor @AllArgsConstructor @Builder
+public class StillcutVO {
 
-	private String movie_title;
-	private String video_link;
+	private int stillcut_no;
 	private int movie_no;
+	private int files_no;
 	
 }
