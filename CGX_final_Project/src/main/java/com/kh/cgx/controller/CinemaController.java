@@ -32,6 +32,7 @@ import com.kh.cgx.entity.cinema.MovieTimeDto;
 import com.kh.cgx.entity.cinema.ScreenDto;
 import com.kh.cgx.entity.cinema.SeatDto;
 import com.kh.cgx.entity.movie.MovieDto;
+import com.kh.cgx.entity.mypage.TicketDto;
 import com.kh.cgx.repository.cinema.CinemaFileDao;
 import com.kh.cgx.vo.cinema.MovieTimeMovieVO;
 import com.kh.cgx.vo.cinema.MovieTimeScreenVO;
@@ -56,22 +57,22 @@ public class CinemaController {
 	
 	@GetMapping("/seat_payment")
 	public String seat_payment(int movietime_no) {
-		
-		return null;
+		log.info("movietime_no={}",movietime_no);
+		return "cinema/seat_payment";
 	}
 	
 	@GetMapping("/seat")
-	public String seat(Model model) {
+	public String seat(Model model,@RequestParam int movietime_no) {
 		
-		List<List<Integer>> seatreserved = new ArrayList<>();	
-		List<Integer> a = new ArrayList<Integer>();
-		List<Integer> b = new ArrayList<Integer>();
-		a.add(1);
-		a.add(2);
-		b.add(2);
-		b.add(2);
-		seatreserved.add(a);
-		seatreserved.add(b);
+		List<List<Integer>> seatreserved = new ArrayList<List<Integer>>();
+		List<SeatDto> seatlist = sqlSession.selectList("seat.seat", movietime_no);
+		for(SeatDto dto:seatlist) {
+			List<Integer> a = new ArrayList<Integer>();
+			a.add(dto.getSeat_row());
+			a.add(dto.getSeat_col());
+			seatreserved.add(a);
+		}
+		
 		System.out.println("seatset"+seatreserved);
 		List<SeatDto> List = sqlSession.selectList("seat.search");
 		log.info("list={}",List);
@@ -93,7 +94,7 @@ public class CinemaController {
 			log.info("seat={}",seat);
 		}
 
-		
+		model.addAttribute("movietime_no", movietime_no);
 		model.addAttribute("seatset", seatreserved);
 		model.addAttribute("seatall", seatall);	
 		model.addAttribute("rowsize", screenDto.getScreen_rowsize());
@@ -102,11 +103,30 @@ public class CinemaController {
 		return "cinema/seat";
 	}
 	
+//	@PostMapping("/seatInsert")
+//	@ResponseBody
+//	public List<List<String>> seatInsert(@RequestParam List<String> seat) {	
+//		List<List<String>> List = new ArrayList<List<String>>();
+//		
+//		for(int i = 0; i<seat.size(); i++) {
+//			List<String> list = new ArrayList<>();
+//			String a = seat.get(i);
+//			String [] b = a.split("-");
+//			list.add(b[0]);
+//			list.add(b[1]);
+//			
+//			List.add(list);
+//		}
+//		System.out.println(List);
+//		return List;
+//	}
+	
 	@PostMapping("/seatInsert")
-	@ResponseBody
-	public List<List<String>> seatInsert(@RequestParam List<String> seat) {	
+	public String seatInsert(@RequestParam List<String> seat,@RequestParam int movietime_no) {	
 		List<List<String>> List = new ArrayList<List<String>>();
 		
+
+		System.out.println("seat="+seat);
 		for(int i = 0; i<seat.size(); i++) {
 			List<String> list = new ArrayList<>();
 			String a = seat.get(i);
@@ -115,9 +135,32 @@ public class CinemaController {
 			list.add(b[1]);
 			
 			List.add(list);
+		} 
+		int ticket_no = sqlSession.selectOne("seat.ticket");
+		int screen_no = 1;
+		int member_no = 2;
+		String ticket_buy_no = "12312312316571";
+		int ticket_total_person = seat.size();	
+		
+		TicketDto ticketdto = new TicketDto();
+		ticketdto.builder().ticket_no(ticket_no)
+							.member_no(member_no)
+							.movietime_no(movietime_no)
+							.ticket_buy_no(ticket_buy_no)
+							.ticket_total_person(ticket_total_person).build();
+		
+		for(List<String> slist : List) {
+			SeatDto seatdto = new SeatDto();
+			seatdto.setSeat_row(Integer.parseInt(slist.get(0)));
+			seatdto.setSeat_col(Integer.parseInt(slist.get(1)));
+			seatdto.setScreen_no(screen_no);
+			int seat_no = sqlSession.selectOne("seat.seatsearch",seatdto);
+			
 		}
+		
 		System.out.println(List);
-		return List;
+		log.info("movietime_no={}",movietime_no);
+		return "cinema/seat_payment";
 	}
 	
 	@GetMapping("/")

@@ -24,6 +24,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from ticket,ticket_seat,seat where ticket.ticket_no = ticket_seat.ticket_no and ticket_seat.seat_no = seat.seat_no and ticket.movietime_no = #{movietime_no}
 	</select>
 	
+	<select id="seatsearch" parameterType="Seat" resultType="int">
+		select * from seat where screen_no = #{screen_no} and seat_row = #{seat_row} and seat_col= #{seat_col}
+	</select>
+	
+	<select id="ticket" resultType="int">
+		select ticket_no_seq.nextval ticket_no from dual
+	</select>
+	
+	<select id="insertticket" parameterType="Ticket">
+		
+	</select>
 </mapper>
 
 
