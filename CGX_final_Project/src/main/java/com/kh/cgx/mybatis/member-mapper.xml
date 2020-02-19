@@ -44,6 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select *
 		from member where member_id=#{member_id}
 	</select>
+	
 
 	<update id="updateLastLogin" parameterType="member">
 		update member set
@@ -55,11 +56,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from member where member_id = #{member_id}
 	</select>
 	
+	<!-- 가입여부확인 -->
+	<select id="checkMemberWhether" resultType="member">
+		select * from member where member_name = #{member_name} and member_birth = #{member_birth} and member_phone = #{member_phone}
+	</select>
+	
 	<!-- 비밀번호 재확인 -->
 	<select id="reconfirm_pw" parameterType="string" resultType="member">
 		select * from member where member_pw = #{member_pw} 
 	</select>
 	
+		<!-- Added Start -->
+	<select id="findMemberByMemberNameAndEmail" resultType="member">
+		select * from member where member_name = #{member_name} and member_email = #{member_email}
+	</select>
+	<select id="findMemberByMemberNameAndIdAndEmail" resultType="member">
+		select * from member where member_id = #{member_id} and member_name = #{member_name} and member_email = #{member_email}
+	</select>
+	<update id="updateMemberPw">
+		update member set member_pw = #{member_pw} where member_id=#{member_id}
+	</update>
+	<update id="updateMember">
+		update member set
+		member_name = #{member_name}, member_phone = #{member_phone}, member_birth = #{member_birth}, member_sex = #{member_sex} where member_id=#{member_id}
+	</update>
+	<!-- Added End -->
 	
 </mapper>
 

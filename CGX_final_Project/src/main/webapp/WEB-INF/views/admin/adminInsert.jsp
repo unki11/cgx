@@ -39,10 +39,10 @@
     
     <tbody>
         <form action="adminInsert" method="post">
-            <tr>
+<!--             <tr>
                 <th>매니저번호 입력창</th>
                 <td><input type="text" name="admin_no" placeholder="매니저번호" required></td>
-            </tr>
+            </tr> -->
 			
 			<tr>
                 <th>매니저 아이디 등록창</th>

@@ -32,9 +32,11 @@ import com.kh.cgx.entity.cinema.CinemaDto;
 import com.kh.cgx.entity.cinema.MovieTimeDto;
 import com.kh.cgx.entity.cinema.ScreenDto;
 import com.kh.cgx.entity.cinema.SeatDto;
+import com.kh.cgx.entity.movie.MovieDto;
 import com.kh.cgx.repository.cinema.CinemaFileDao;
 import com.kh.cgx.vo.cinema.MovieTimeMovieVO;
 import com.kh.cgx.vo.cinema.MovieTimeScreenVO;
+import com.kh.cgx.vo.cinema.MovieTimeSeatVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -142,10 +144,11 @@ public class CinemaController {
 		List<String> datelist = sqlSession.selectList("movietime.date",cinema_no);
 		List<List<String>> timelist = new ArrayList<>();
 		
-		String inputDate = "20"+"20/02/17";
+		
 
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		DateFormat dateFormat = new SimpleDateFormat("yy/MM/dd");
 
+		String inputDate = dateFormat.format(System.currentTimeMillis());
 		Date data = dateFormat.parse(inputDate);
 
 		Calendar calendar = Calendar.getInstance();
@@ -153,7 +156,7 @@ public class CinemaController {
 		calendar.setTime(data);
 
 		for(String time : datelist) {
-			inputDate = "20"+time;
+			inputDate = time;
 			
 			data = dateFormat.parse(inputDate);
 			
@@ -174,31 +177,44 @@ public class CinemaController {
 //		ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //		아래는 상영시간표 출력입니다/
 //		ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-		List<Integer> movie = sqlSession.selectList("movietime.movie",cinema_no);
-		List<Integer> screen = sqlSession.selectList("movietime.screen",cinema_no);
+		DateFormat dateFormat2 = new SimpleDateFormat("yyMMdd");
+
+		String inputDate2 = dateFormat2.format(System.currentTimeMillis());
+		
+		List<MovieDto> movie = sqlSession.selectList("movietime.movie",cinema_no);
+		List<ScreenDto> screen = sqlSession.selectList("movietime.screen",cinema_no);
 		List<MovieTimeScreenVO> MTSlist = new ArrayList<>();
 		List<MovieTimeMovieVO> MTMlist = new ArrayList<MovieTimeMovieVO>();
-		for(int M : movie) {
+		for(MovieDto M : movie) {
 			MovieTimeMovieVO movieTimeMovieVO = new MovieTimeMovieVO();
 
 			MTSlist = new ArrayList<>();
-			for(int S : screen) {
-				HashMap<String, Integer> map = new HashMap<String, Integer>();
-				map.put("movie_no",M); 
-				
-				map.put("screen_no",S);
+			for(ScreenDto S : screen) {
+				HashMap<String, Object> map = new HashMap<>();
+				map.put("movie_no",M.getMovie_no()); 
+				map.put("screen_no",S.getScreen_no());
 				map.put("cinema_no",cinema_no);
-				List<MovieTimeDto> mtlist = sqlSession.selectList("movietime.screenlist",map);
+				map.put("movietime_time_start", inputDate2+"0000");
+				map.put("movietime_time_end", inputDate2+"2359");
+				List<MovieTimeSeatVO> mtlist = sqlSession.selectList("movietime.screenlist",map);
 				if(mtlist.isEmpty()) {
 					continue;
 				}
 				MovieTimeScreenVO movieTimeScreenVO = new MovieTimeScreenVO();
-				movieTimeScreenVO.setMovie_no(M);
-				movieTimeScreenVO.setScreen_no(S);
+				movieTimeScreenVO.setScreen_no(S.getScreen_no());
+				movieTimeScreenVO.setScreen_all_seat(S.getScreen_all_seat());;
+				movieTimeScreenVO.setScreen_type(S.getScreen_type());;
+				movieTimeScreenVO.setScreen_name(S.getScreen_name());
 				movieTimeScreenVO.setList(mtlist);
 				MTSlist.add(movieTimeScreenVO);
 			}
-			movieTimeMovieVO.setMovie_no(M);
+			movieTimeMovieVO.setMovie_no(M.getMovie_no());
+			movieTimeMovieVO.setMovie_title(M.getMovie_title());
+			movieTimeMovieVO.setMovie_grade(M.getMovie_grade());
+			movieTimeMovieVO.setMovie_runtime(M.getMovie_runtime());
+			movieTimeMovieVO.setMovie_genre(M.getMovie_genre());
+			movieTimeMovieVO.setMovie_startdate(M.getMovie_startdate());
+			movieTimeMovieVO.setMovie_status(M.getMovie_status());
 			movieTimeMovieVO.setList(MTSlist);
 			MTMlist.add(movieTimeMovieVO);
 		}
@@ -211,87 +227,49 @@ public class CinemaController {
 		return "cinema/cinema";
 	}
 	
-	@GetMapping("/test")
-	public String test(Model model) {
-		 
-		List<Integer> movie = sqlSession.selectList("movietime.movie");
-		log.info("무비={}",movie);
-		List<Integer> screen = sqlSession.selectList("movietime.screen");
-		log.info("스크린={}",screen);
-		List<MovieTimeScreenVO> MTSlist = new ArrayList<>();
-		List<MovieTimeMovieVO> MTMlist = new ArrayList<MovieTimeMovieVO>();
-		for(int M : movie) {
-			MovieTimeMovieVO movieTimeMovieVO = new MovieTimeMovieVO();
-
-			MTSlist = new ArrayList<>();
-			for(int S : screen) {
-				HashMap<String, Integer> map = new HashMap<String, Integer>();
-				map.put("movie_no",M); 
-				
-				map.put("screen_no",S);
-				System.out.println("M"+M);
-				System.out.println("S"+S);
-
-				System.out.println("map"+map);
-				List<MovieTimeDto> mtlist = sqlSession.selectList("movietime.screenlist",map);
-				if(mtlist.isEmpty()) {
-					continue;
-				}
-				MovieTimeScreenVO movieTimeScreenVO = new MovieTimeScreenVO();
-				System.out.println("mtlist : "+mtlist);
-				movieTimeScreenVO.setMovie_no(M);
-				movieTimeScreenVO.setScreen_no(S);
-				movieTimeScreenVO.setList(mtlist);
-				System.out.println("movieTimeScreenVo"+movieTimeScreenVO.getList());
-				MTSlist.add(movieTimeScreenVO);
-				System.out.println("MTSlist체크 : "+MTSlist);
-			}
-			movieTimeMovieVO.setMovie_no(M);
-			movieTimeMovieVO.setList(MTSlist);
-			MTMlist.add(movieTimeMovieVO);
-		}
-		for(MovieTimeScreenVO list : MTSlist) {
-			System.out.println(list);
-		}
-		System.out.println(MTSlist);
-		
-		for(MovieTimeMovieVO list : MTMlist) {
-			System.err.println(list);
-		}
-		System.out.println(MTMlist);
-		model.addAttribute("list",MTMlist);
-		
-		return "cinema/cinema_test";
-	}
-	
 	@PostMapping("/movietimelist")
 	@ResponseBody
 	public List<MovieTimeMovieVO> ajax(int cinema_no,String movietime){
-		List<Integer> movie = sqlSession.selectList("movietime.movie",cinema_no);
-		List<Integer> screen = sqlSession.selectList("movietime.screen",cinema_no);
+		log.info(movietime);
+		List<MovieDto> movie = sqlSession.selectList("movietime.movie",cinema_no);
+		List<ScreenDto> screen = sqlSession.selectList("movietime.screen",cinema_no);
 		List<MovieTimeScreenVO> MTSlist = new ArrayList<>();
 		List<MovieTimeMovieVO> MTMlist = new ArrayList<MovieTimeMovieVO>();
-		for(int M : movie) {
+		System.out.println("movie size = " + movie.size());
+		for(MovieDto M : movie) {
 			MovieTimeMovieVO movieTimeMovieVO = new MovieTimeMovieVO();
-
 			MTSlist = new ArrayList<>();
-			for(int S : screen) {
-				HashMap<String, Integer> map = new HashMap<String, Integer>();
-				map.put("movie_no",M); 
+			for(ScreenDto S : screen) {
+				HashMap<String, Object> map = new HashMap<>();
+				map.put("movie_no",M.getMovie_no()); 
 				
-				map.put("screen_no",S);
+				map.put("screen_no",S.getScreen_no());
 				map.put("cinema_no",cinema_no);
-				List<MovieTimeDto> mtlist = sqlSession.selectList("movietime.screenlist",map);
+				map.put("movietime_time_start", movietime+"0000");
+				map.put("movietime_time_end",movietime+"2359");
+				List<MovieTimeSeatVO> mtlist = sqlSession.selectList("movietime.screenlist",map);
 				if(mtlist.isEmpty()) {
+					System.out.println("없어요"+mtlist);
 					continue;
 				}
 				MovieTimeScreenVO movieTimeScreenVO = new MovieTimeScreenVO();
-				movieTimeScreenVO.setMovie_no(M);
-				movieTimeScreenVO.setScreen_no(S);	
+				movieTimeScreenVO.setScreen_no(S.getScreen_no());	
+				movieTimeScreenVO.setScreen_all_seat(S.getScreen_all_seat());;
+				movieTimeScreenVO.setScreen_type(S.getScreen_type());;
+				movieTimeScreenVO.setScreen_name(S.getScreen_name());
 				movieTimeScreenVO.setList(mtlist);
-				MTSlist.add(movieTimeScreenVO);
+				MTSlist.add(movieTimeScreenVO);	
 			}
-			movieTimeMovieVO.setMovie_no(M);
+			if(MTSlist.isEmpty()) {
+				continue;
+			}
+			movieTimeMovieVO.setMovie_no(M.getMovie_no());
+			movieTimeMovieVO.setMovie_title(M.getMovie_title());
+			movieTimeMovieVO.setMovie_grade(M.getMovie_grade());
+			movieTimeMovieVO.setMovie_runtime(M.getMovie_runtime());
+			movieTimeMovieVO.setMovie_genre(M.getMovie_genre());
+			movieTimeMovieVO.setMovie_startdate(M.getMovie_startdate());
+			movieTimeMovieVO.setMovie_status(M.getMovie_status());
 			movieTimeMovieVO.setList(MTSlist);
 			MTMlist.add(movieTimeMovieVO);
 		}
@@ -307,9 +285,9 @@ public class CinemaController {
 		List<String> datelist = sqlSession.selectList("movietime.date");
 		List<List<String>> timelist = new ArrayList<>();
 		
-		String inputDate = "20"+"20/02/17";
+		String inputDate = "20/02/17";
 
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		DateFormat dateFormat = new SimpleDateFormat("yy/MM/dd");
 
 		Date data = dateFormat.parse(inputDate);
 
@@ -319,7 +297,7 @@ public class CinemaController {
 		log.info("calendar={}",calendar.get(Calendar.DAY_OF_WEEK));
 
 		for(String time : datelist) {
-			inputDate = "20"+time;
+			inputDate = time;
 			
 			data = dateFormat.parse(inputDate);
 			
