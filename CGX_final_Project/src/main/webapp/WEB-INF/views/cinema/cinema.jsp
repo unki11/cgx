@@ -15,8 +15,9 @@
 	$(function(){
 		$(".time").click(function(e){
 			e.preventDefault();
-	            var time =$(this).text();
+	            var time =$(this).find('span').text();
 	            var no = $("input[name=cinema_no]").val();
+	      
 	            console.log(time);
 	            console.log(no);
 	            
@@ -38,21 +39,42 @@
 	    						$.each(rlist,function(index){
 	    							var rtlist = rlist[index];
 	    							console.log("rtlist",rtlist);
-	    							$("<span>").text("상영시간표번호"+rtlist.movietime_no+"  ").appendTo("#movietime");
-	    							$("<span>").text("상영시간"+rtlist.movietime_time+"  ").appendTo("#movietime");
-	    							$("<span>").text("사용 좌석수"+rtlist.ticket_count+"  ").appendTo("#movietime");
-	    							$("<span>").html("<br>").appendTo("#movietime");
+	    							
+	    							var a = $("<a>").attr('href','seat?movietime_no='+rtlist.movietime_no).appendTo("#movietime")
+	    							var span = $("<span>").text("상영시간표번호"+rtlist.movietime_no+"  "+"상영시간"+rtlist.movietime_time+"  "+"사용 좌석수"+rtlist.ticket_count+"  ");
+	    							a.append(span);
+	    							a.appendTo("#movietime");
+	    							$("<div>").appendTo("#movietime")
 	    							})
 	    						})
 	    						$("<h5>").text("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ").appendTo("#movietime");
 	    					})
 	    			}
 	    			
-	    		})
+	    		})	
 			});
 		});
     </script>
+        <style>
+    	.w-70{
+    		width:70%;	
+    	}
+    	article{
+    		margin:auto;
+    		width: 980px;
+		}
+		.movietime{
+			width: 10%;
+        	color: red;
+        	border:1px solid black;
+        	float: left;
+		}
+		.hidden{
+			display: none;
+		}
+    	</style>
   <body>
+  <article>
   <h1>cinema페이지입니다</h1>	
     <div class="container">
       <div class="row">
@@ -91,8 +113,9 @@
     </div>
     <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
     	<c:forEach var="list" items="${timelist }">
-			<span>${list}</span>
-			<a class="time" href="#"><sapn>${list[0]}${list[1]}${list[2]}</sapn></a>
+			<span class="movietime"><a class="time" href="#">${list}<span class="hidden">${list[0]}${list[1]}${list[2]}</span></a></span>
+		
+		
 		</c:forEach>
     <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
     <h1>상영시간표 자르기</h1>
@@ -102,7 +125,7 @@
 		<c:forEach items="${mlist.list}" var="slist">
 			<h5>${slist.screen_name}</h5>
 			<c:forEach items="${slist.list}" var="list">
-				<span>상영시간표번호${list.movietime_no} 상영시간${list.movietime_time} 사용 좌석수${list.ticket_count}</span>
+				<a href="seat?movietime_no=${list.movietime_no}"><span>상영시간표번호${list.movietime_no} 상영시간${list.movietime_time} 사용 좌석수${list.ticket_count}</span></a>
 			</c:forEach>
 			<h5>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</h5>
 	</c:forEach>
@@ -117,5 +140,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  </article>
   </body>
 </html>

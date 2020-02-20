@@ -32,8 +32,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select ticket_no_seq.nextval ticket_no from dual
 	</select>
 	
-	<select id="insertticket" parameterType="Ticket">
-		
+	<select id="insertticket" parameterType="ticket">
+			insert into ticket values(
+			#{ticket_no},
+			#{member_no},
+			#{movietime_no},
+			'1232151123',
+			#{ticket_total_person}
+			)
+	</select>
+	
+	<select id="insertticket_seat" parameterType="MovieTimeSeatVO">
+			insert into ticket_seat VALUES (
+			ticket_no_seq.nextval,
+			#{ticket_no},
+			#{seat_no}
+			)
 	</select>
 </mapper>
 
