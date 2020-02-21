@@ -17,7 +17,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>매니저 로그인 페이지</title>
+<title>매니저 등록 페이지</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  
@@ -26,8 +26,21 @@
  
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="${pageContext.request.contextPath}/resources/js/crypto/secom.js"></script>
 <style>
+	body{
+		margin-top: 150px;
+		background-image: url("${pageContext.request.contextPath}/resources/img/admin1.jpg");
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-color: rgba( 255, 255, 255, 0.5);
+	}
 	
+	.container{
+		opacity: 3;
+		text-align: center;
+		color: white;
+	}
 </style>
 </head>
 <body>
@@ -61,7 +74,7 @@
             
             <tr>
                 <td colspan="2" >
-                    <input type="submit" value="매니저등록하기">
+                    <input type="submit" value="매니저등록하기" style="color: black;">
                     <!-- <a class="btn btn-default" onclick="sendData()"> 등록 </a>
                     <a class="btn btn-default" type="reset"> reset </a>
                     <a class="btn btn-default" onclick="javascript:location.href='list.jsp'">글 목록으로...</a> -->

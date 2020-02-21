@@ -5,6 +5,7 @@
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <script>
 	$(document).ready(function(){
 		$(".delete").click(function(){
@@ -181,13 +182,13 @@
 		});
 	});
 </script>  
-<h1>영화 목록 페이지</h1>
+<%-- <h1>영화 목록 페이지</h1>
 
 <c:forEach var="movieDto" items="${list}">
 	<div>
 		<p class="no">${movieDto.movie_no}</p>
 		<img src="${pageContext.request.contextPath}/download/img?file_no=${movieDto.files_no}">
-		<%-- <p>${movieDto.files_no}</p> --%> 
+		<p>${movieDto.files_no}</p> 
 		<p class="title">${movieDto.movie_title}</p>
 		<p class="director">${movieDto.movie_director}</p>
 		<p>${movieDto.movie_ticket_rate}</p>
@@ -202,4 +203,36 @@
 		<button class="update">수정</button>
 	</div>
 
-</c:forEach>
+</c:forEach> --%>
+
+<html>
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1>영화 목록</h1>
+          <ul class="list-group">
+          <c:forEach var="movieDto" items="${list}">
+	          <div>
+	            <li class="no">${movieDto.movie_no}</li>
+	            <img src="${pageContext.request.contextPath}/download/img?file_no=${movieDto.files_no}">
+	            <li class="title">${movieDto.movie_title}</li>
+	            <li class="director">${movieDto.movie_director}</li>
+	            <li>${movieDto.movie_ticket_rate}</li>
+	            <li class="startdate">${movieDto.movie_startdate}</li>
+	            <li class="runtime">${movieDto.movie_runtime}</li>
+	            <li class="country">${movieDto.movie_country}</li>
+	            <li class="grade">${movieDto.movie_grade}</li>
+	            <li class="status">${movieDto.movie_status}</li>
+	            <li class="publisher">${movieDto.movie_publisher}</li>
+	            <li class="genre">${movieDto.movie_genre}</li>
+	            <button class="delete">삭제</button>
+	            <button class="update">수정</button>
+	           </div>
+           </c:forEach>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -3,11 +3,28 @@
     
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>   
-    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>   
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <h1>finder페이지입니다</h1>
 <br><br>
-
+<style>
+	.row {
+		float: left;
+		width: 25%;
+		margin-left: 140px;
+	}
+	
+	.row::after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+	
+	.container{
+		
+	}
+	
+</style>
 <script>
 $(function(){
 //	장르 체크 
@@ -242,12 +259,43 @@ $(function(){
 
 
 
-<c:forEach var="finder_list" items="${finder_list}">
+<%-- <c:forEach var="finder_list" items="${finder_list}">
 
 <h5>${finder_list}</h5>
 <img src="download?files_no=${finder_list.files_no }">
 
+</c:forEach> --%>
+
+<html>
+<body>
+
+<c:forEach var="finder_list" items="${finder_list}">
+  <div class="row">
+  <div class="col-md-6 col-md-4">
+    <div class="thumbnail">
+      <div class="caption" style="background-color: #faefdc">
+	        <p class="finder">${finder_list.movie_no}</p>
+	        <img src="download?files_no=${finder_list.files_no}">
+	        <p class="finder">${finder_list.movie_title}</p>
+	        <p class="finder">${finder_list.movie_director}</p>
+	        <p class="finder">${finder_list.movie_ticket_rate}</p>
+	        <p class="finder">${finder_list.movie_startdate}</p>
+	        <p class="finder">${finder_list.movie_runtime}</p>
+	        <p class="finder">${finder_list.movie_country}</p>
+	        <p class="finder">${finder_list.movie_grade}</p>
+	        <p class="finder">${finder_list.movie_status}</p>
+	        <p class="finder">${finder_list.movie_publisher}</p>
+	        <p class="finder">${finder_list.movie_genre}</p>
+	  </div>
+    </div>
+  </div>
+</div>
 </c:forEach>
+
+</body>
+</html>
+
+
 
 
 
