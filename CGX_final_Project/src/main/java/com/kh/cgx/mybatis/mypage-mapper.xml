@@ -27,8 +27,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   select * from member
  </select>
  
- <select id="search" resultType="member" parameterType="int">
- select * from member where member_no = #{member_no} 
+ <select id="search" resultType="member" parameterType="string">
+ select * from member where member_id = #{member_id} 
  </select>
  
 <!--   <select id="ticketlist" resultType="ReserveVO" parameterType="int">

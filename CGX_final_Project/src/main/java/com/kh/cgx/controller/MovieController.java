@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
@@ -30,18 +29,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-
-import com.kh.cgx.entity.admin.AdminDto;
-import com.kh.cgx.entity.movie.ActorDto;
-
 import com.kh.cgx.entity.movie.MovieDto;
 import com.kh.cgx.entity.movie.ReviewDto;
+import com.kh.cgx.entity.user.MemberDto;
 import com.kh.cgx.repository.movie.DistDao;
 import com.kh.cgx.repository.movie.MovieDao;
 import com.kh.cgx.repository.movie.MovieProfileDao;
 import com.kh.cgx.repository.movie.PhysicalFileDao;
 import com.kh.cgx.repository.movie.VideoDao;
-import com.kh.cgx.vo.movie.DistVO;
 import com.kh.cgx.vo.movie.MovieActorVO;
 import com.kh.cgx.vo.movie.VideoVO;
 
@@ -81,28 +76,33 @@ public class MovieController {
 	}
 	
 	// 위시리스트 (지현이 추가)
-	@ResponseBody
-	@GetMapping("/movieWish")
-	public JSONObject movieWish (HttpSession session, @RequestParam int movieno) {
+	@ResponseBody //
+	@GetMapping("/movielog")
+	public String movielog (HttpSession session, @RequestParam int movie_no) {
 		
-		 JSONObject json = new JSONObject();
-		 int member_no = 1;
+//		 int member_no = 1;
 		 String code = "false";
 		 //로그인 다되면 session으로 처리
-		/*
-		 * MemberDto memberdto = (MemberDto)session.getAttribute("MemberDto");
-		 *  int member_no = memberdto.getMember_no();
-		 */
-		 try {
-			   movieDao.insert(member_no,movieno);
-			   code = "true";
-		 }catch(Exception e){
-			 e.printStackTrace();
-			 
+		 System.out.println("왔다감: "+movie_no); 
+		 String id = (String)session.getAttribute("id");
+		 System.out.println("세션"+id);
+		 MemberDto memberDto = sqlSession.selectOne("member.login",id);
+		 Map<String, Object> param = new HashMap<String, Object>();
+		 param.put("member_no", memberDto.getMember_no());
+		 param.put("movie_no", movie_no);
+		 int member_no = memberDto.getMember_no();
+		 int check = sqlSession.selectOne("movies.check",param);
+		 System.out.println(param);
+		 if(check>0) {
+			 System.out.println("삭제");
+			 sqlSession.delete("movies.deletewish",param);
+		 }else {
+			 System.out.println("등록");
+			 movieDao.insert(member_no,movie_no);
+			 code = "true";
 		 }
 		
-		 json.put("code",code);
-		 return json;
+		 return code;
 	}
 
 	// 상영 예정작

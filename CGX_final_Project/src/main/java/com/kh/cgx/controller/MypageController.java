@@ -36,20 +36,26 @@ public class MypageController {
 
 	@GetMapping("/mycgv")
 	public String mycgv(Model model, HttpSession session) {
-		int member_no = 1;
-		MemberDto search = sqlSession.selectOne("mypage.search", member_no);
-		session.setAttribute("member_no", member_no);
-
+		  
+	 String id=(String) session.getAttribute("id"); 	
+		//찾는기능
+		MemberDto search = sqlSession.selectOne("mypage.search",id);
+		System.out.println(id);
+		
 //  System.out.println("list : "+list);
 		model.addAttribute("search", search);
 		return "mypage/mycgv";
 	}
 
 	@GetMapping("/reserve")
-	public String reserve(Model model) {
-		int member_no = 1;
-		List<ReserveVO> ticketlist = sqlSession.selectList("mypage.ticketlist", member_no);
-		System.out.println(ticketlist);
+	public String reserve(Model model,HttpSession session) {
+		//int member_no = 1;
+		String id=(String) session.getAttribute("id"); 	
+	    MemberDto dto1 = new MemberDto();
+	    dto1.setMember_id(id);		
+		//list
+		List<ReserveVO> ticketlist = sqlSession.selectList("mypage.ticketlist", dto1.getMember_no());
+	//	System.out.println(ticketlist);
 		model.addAttribute("ticketlist", ticketlist);
 		return "mypage/reserve";
 	}
@@ -60,17 +66,18 @@ public class MypageController {
 		return "mypage/movielog";
 	}
 
-	/*
-	 * @GetMapping("/movielog/watched") public String watched(Model model,
-	 * HttpSession session) {
-	 * 
-	 * String id=(String) session.getAttribute("id"); System.out.println("id="+id);
-	 * 
-	 * MemberDto dto=sqlSession.selectOne("member.login",id);
-	 * 
-	 * List<WatchedVO> list = sqlSession.selectList("mypage.watched",id);
-	 * model.addAttribute("watchList", list);
-	 * 
-	 * return "mypage/watched"; }
-	 */
+	  @GetMapping("/movielog/watched") public String watched(Model model,
+	  HttpSession session) {
+	  
+	  String id=(String) session.getAttribute("id"); 	
+	  MemberDto dto1 = new MemberDto();
+	  dto1.setMember_id(id);
+	//  System.out.println("id="+id);
+	  MemberDto dto=sqlSession.selectOne("member.login",dto1);
+	
+	  List<WatchedVO> list = sqlSession.selectList("mypage.watched",dto.getMember_no());
+	  model.addAttribute("watchList", list);
+	  
+	 return "mypage/watched"; }
+	 
 }

@@ -79,8 +79,10 @@ public class MovieDaoImpl implements MovieDao{
 		
 	}
 
-
-	
+	public List<MovieVO> getList6() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("movie.whishmember");
+	}
 
 	
 }
