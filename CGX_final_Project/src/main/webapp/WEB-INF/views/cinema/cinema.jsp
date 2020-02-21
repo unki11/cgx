@@ -4,11 +4,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>극장</title>
 </head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
  <script src="https://code.jquery.com/jquery-3.4.1.js" type="text/javascript"></script>
  <style type="text/javascript">
+
       p { margin:20px 0px; }
     </style>
     <script>
@@ -66,16 +67,28 @@
 		.movietime{
 			width: 10%;
         	color: red;
-        	border:1px solid black;
         	float: left;
 		}
 		.hidden{
 			display: none;
 		}
+		
+		.box { 
+		border-width: thick;  
+		border-color: black; 
+		border-radius: 10px 10px 10px 10px;
+		 }
+
     	</style>
-  <body>
+    	
+  <body style="background-color: #f5f5dc;">
   <article>
   <h1>cinema페이지입니다</h1>	
+  <ol class="breadcrumb">
+  <li><a href="#">Home</a>></li>
+  <li><a href="#">Library</a>></li>
+  <li class="active">Data</li>
+</ol>
     <div class="container">
       <div class="row">
         <div class="col">
@@ -112,11 +125,13 @@
       </div>
     </div>
     <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
-    	<c:forEach var="list" items="${timelist }">
-			<span class="movietime"><a class="time" href="#">${list}<span class="hidden">${list[0]}${list[1]}${list[2]}</span></a></span>
+    	<div class="btn-toolbar" role="toolbar">
+    	<c:forEach var="list" items="${timelist}">
+			<span class="movietime box"><a class="time" href="#">${list}<span class="hidden">${list[0]}${list[1]}${list[2]}</span></a></span>
 		
 		
 		</c:forEach>
+		</div>
     <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
     <h1>상영시간표 자르기</h1>
     <div id="movietime">

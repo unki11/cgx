@@ -265,6 +265,7 @@ public class CinemaController {
 			movieTimeMovieVO.setList(MTSlist);
 			MTMlist.add(movieTimeMovieVO);
 		}
+		System.out.println("MTMLISt"+MTMlist);
 		model.addAttribute("list",MTMlist);
 		/*
 		 * List<MovieTimeDto> movieTime_list =
