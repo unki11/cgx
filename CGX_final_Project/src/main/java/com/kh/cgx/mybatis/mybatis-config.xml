@@ -25,26 +25,15 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.kh.cgx.entity.mypage.TicketDto" alias="ticket"/>
 		<typeAlias type="com.kh.cgx.entity.cinema.SeatDto" alias="Seat"/>
 		<typeAlias type="com.kh.cgx.vo.movie.VideoVO" alias="videoVO"/>
-
-		<typeAlias type="com.kh.cgx.entity.cinema.SeatDto" alias="Seat"/>
+		<typeAlias type="com.kh.cgx.vo.movie.StillcutVO" alias="stillcutVO"/>
 		<typeAlias type="com.kh.cgx.entity.admin.AdminDto" alias="adminDto"/>
-
-		<typeAlias type="com.kh.cgx.entity.admin.AdminDto" alias="adminDto"/>
-<!-- 		<typeAlias type="com.kh.cgx.vo.movie.DistVO" alias="distVO"/> -->
 		<typeAlias type="com.kh.cgx.vo.mypage.WatchedVO" alias="watchedVO"/>
-
 		<typeAlias type="com.kh.cgx.entity.admin.ManagerDto" alias="managerDto"/>
-		
-		
-	
 		<typeAlias type="com.kh.cgx.entity.movie.ReviewDto" alias="reviewDto"/>
 		<typeAlias type="com.kh.cgx.entity.movie.ActorDto" alias="actorDto"/>
 		<typeAlias type="com.kh.cgx.vo.movie.MovieActorVO" alias="movieActorVO"/>
-
 		<typeAlias type="com.kh.cgx.vo.mypage.ReserveVO" alias="ReserveVO"/>
-
 		<typeAlias type="com.kh.cgx.entity.movie.MovieVO2" alias="movieVO2"/>
-
 		<typeAlias type="com.kh.cgx.vo.movie.MovieVO" alias="movieVO"/>
 		<typeAlias type="com.kh.cgx.vo.cinema.MovieTimeSeatVO" alias="MovieTimeSeatVO"/>
 
