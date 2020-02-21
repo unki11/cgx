@@ -8,4 +8,6 @@ import com.kh.cgx.vo.movie.VideoVO;
 public interface VideoDao {
 
 	List<VideoVO> getList(VideoVO videoVO);
+	
+	List<VideoVO> getListInfo(VideoVO videoVO);
 }

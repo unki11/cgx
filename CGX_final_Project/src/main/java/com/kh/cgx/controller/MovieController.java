@@ -37,13 +37,14 @@ import com.kh.cgx.entity.movie.MovieDto;
 import com.kh.cgx.entity.movie.MovieVO2;
 
 import com.kh.cgx.entity.movie.ReviewDto;
-import com.kh.cgx.repository.movie.DistDao;
+
 import com.kh.cgx.repository.movie.MovieDao;
 import com.kh.cgx.repository.movie.MovieProfileDao;
 import com.kh.cgx.repository.movie.PhysicalFileDao;
 import com.kh.cgx.repository.movie.VideoDao;
-import com.kh.cgx.vo.movie.DistVO;
+
 import com.kh.cgx.vo.movie.MovieActorVO;
+import com.kh.cgx.vo.movie.StillcutVO;
 import com.kh.cgx.vo.movie.VideoVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -52,8 +53,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/movie")
 @Slf4j
 public class MovieController {
-	@Autowired
-	private DistDao distDao;
+	
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -113,10 +113,10 @@ public class MovieController {
 
 	// 무비 트레일러
 	@GetMapping("/trailer")
-	public String trailer(@ModelAttribute VideoVO videoVO, ModelMap model) {
-//		System.out.println("vo값  = "+vo.getMovie_title() + vo.getVideo_link());
+	public String trailer(@ModelAttribute VideoVO videoVO, ModelMap modelMap) {
+//		System.out.println("vo값  = "+videoVO);
 		List<VideoVO> video_list = videoDao.getList(videoVO);
-		model.addAttribute("video_list", video_list);
+		modelMap.addAttribute("video_list", video_list);
 
 		return "movie/trailer";
 	}
@@ -191,13 +191,30 @@ public class MovieController {
 
 //	영화 상세 정보
 	@GetMapping("/detail")
-	private String getList4(Model model, @RequestParam int movie_no
+	private String getList4(Model model, @RequestParam int movie_no,
+			@ModelAttribute VideoVO videoVO, ModelMap modelMap,
+			@ModelAttribute StillcutVO stillcutVO, Object files_no 
 			) {
 		
-		List<String> actorList = movieDao.getList4(movie_no);
-		MovieDto movieDto = sqlSession.selectOne("movies.movieDetail",movie_no);
 		
+		Map<String, Object> stillMap = new HashMap<String, Object>();
+		stillMap.put("files_no", files_no);
+		
+		stillcutVO.setMovie_no(movie_no);
+		videoVO.setMovie_no(movie_no); 
+		MovieDto movieDto = sqlSession.selectOne("movies.movieDetail",movie_no);
+		List<String> actorList = movieDao.getList4(movie_no);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("movie_no", movie_no);
+		map.put("member_sex","남");
+		
+		int man = sqlSession.selectOne("movies.humanCount",map);
+		map.remove("member_sex");
+		map.put("member_sex", "여");
+		int woman = sqlSession.selectOne("movies.humanCount",map);
 		MovieActorVO movieActorVO = MovieActorVO.builder()
+																
 																.actorList(actorList)
 																.movie_no(movieDto.getMovie_no())
 																.files_no(movieDto.getFiles_no())
@@ -215,8 +232,17 @@ public class MovieController {
 																
 																.build();
 		
-		model.addAttribute("movieActorVO", movieActorVO);
 		
+		List<StillcutVO> info_stillcut = movieDao.getStillcut(stillcutVO);
+		model.addAttribute("files_no", files_no);
+		model.addAttribute("info_stillcut", info_stillcut);
+		
+		List<VideoVO> info_trailer = videoDao.getListInfo(videoVO);
+		modelMap.addAttribute("info_trailer", info_trailer);
+		
+		model.addAttribute("movieActorVO", movieActorVO);
+		model.addAttribute("man", man);
+		model.addAttribute("woman",woman);
 		
 		
 //		System.out.println( "model : "+movieActorVO);
