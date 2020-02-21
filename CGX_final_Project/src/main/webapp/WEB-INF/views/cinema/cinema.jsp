@@ -27,23 +27,21 @@
 	    			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 	    			success:function(data){
 	    				console.log(data);
-	    				
+	    				$("#movietime").empty();
 	    				$.each(data, function(index){
 	    					var movie_no = data[index].movie_no;
-	    					console.log(movie_no);
 	    					var list = data[index].list;
-	    					console.log(list);
+	    					$("<h3>").text("ㅡㅡㅡㅡ"+data[index].movie_title+"ㅡㅡㅡㅡ").appendTo("#movietime");
 	    					$.each(list, function(index){
-	    						console.log("list={}",list);
 	    						var rlist = list[index].list;
+	    						$("<span>").text("ㅡㅡㅡㅡ"+list[index].screen_name+"ㅡㅡㅡㅡ").appendTo("#movietime");
+	    						$("<span>").html("<br>").appendTo("#movietime");
 	    						$.each(rlist,function(index){
-	    							console.log("rlist",rlist);
 	    							var rtlist = rlist[index];
 	    							console.log("rtlist",rtlist);
 	    							$("<span>").text("상영시간표번호"+rtlist.movietime_no+"  ").appendTo("#movietime");
-	    							$("<span>").text("극장번호"+rtlist.movie_no+"  ").appendTo("#movietime");
-	    							$("<span>").text("상영관번호"+rtlist.screen_no+"  ").appendTo("#movietime");
 	    							$("<span>").text("상영시간번호"+rtlist.movietime_time+"  ").appendTo("#movietime");
+	    							$("<span>").text("사용 좌석수"+rtlist.ticket_count+"  ").appendTo("#movietime");
 	    							$("<span>").html("<br>").appendTo("#movietime");
 	    							})
 	    						})
@@ -97,15 +95,9 @@
 			<a class="time" href="#"><sapn>${list[0]}${list[1]}${list[2]}</sapn></a>
 		</c:forEach>
     <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
+    <h1>상영시간표 자르기</h1>
     <div id="movietime">
-    </div>
-    <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
-    <input type="hidden" value="${cinema_no}" name="cinema_no">
-    <c:forEach var="screen" items="${screen_list}">
-		<h1>${screen}</h1>
-	</c:forEach>
-		<h1>상영시간표 자르기</h1>
-	<c:forEach items="${list}" var="mlist" >
+    	<c:forEach items="${list}" var="mlist" >
 		<c:forEach items="${mlist.list}" var="slist">
 			<c:forEach items="${slist.list}" var="list">
 				<h5>${list}</h5>
@@ -113,6 +105,14 @@
 			<h5>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</h5>
 	</c:forEach>
 	</c:forEach>
+    </div>
+    <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
+    <input type="hidden" value="${cinema_no}" name="cinema_no">
+    <c:forEach var="screen" items="${screen_list}">
+		<h1>${screen}</h1>
+	</c:forEach>
+		
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   </body>

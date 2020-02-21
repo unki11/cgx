@@ -36,22 +36,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		A on movietime.screen_no = A.screen_no
 	</select>
 	
-	<select id="movie" resultType="int" parameterType="int">
-	select DISTINCT movie_no from 
-(select movietime.* from movietime INNER join (select screen.screen_no from screen INNER join cinema on screen.cinema_no = cinema.cinema_no where cinema.cinema_no = #{cinema_no})A on movietime.screen_no = A.screen_no)
-order by movie_no asc
+	<select id="movie" resultType="movies" parameterType="int">
+select DISTINCT m.* from movie m inner join (
+select  * from movietime INNER join 
+(select screen.screen_no from screen INNER join cinema on screen.cinema_no = cinema.cinema_no where cinema.cinema_no = #{cinema_no}
+)A 
+on movietime.screen_no = A.screen_no and movietime.movietime_time >= sysdate
+)mt on m.movie_no = mt.movie_no 
+order by m.movie_no
 	</select>
 	
-	<select id="screen" resultType="int" parameterType="int">
-	select DISTINCT screen_no from 
-(select movietime.* from movietime INNER join (select screen.screen_no from screen INNER join cinema on screen.cinema_no = cinema.cinema_no where cinema.cinema_no = #{cinema_no})A on movietime.screen_no = A.screen_no)
-order by screen_no asc
+	<select id="screen" resultType="ScreenDto" parameterType="int">
+	select * from screen s inner join (select DISTINCT screen_no from 
+(select movietime.* from movietime INNER join (select screen.screen_no from screen INNER join cinema on screen.cinema_no = cinema.cinema_no where cinema.cinema_no = #{cinema_no})A on movietime.screen_no = A.screen_no)B
+where B.movietime_time >= sysdate order by screen_no asc)mt on s.screen_no = mt.screen_no
 	</select>
 	
-	<select id="screenlist" resultType="MovieTimeDto" parameterType="map">
-		select movietime.* from movietime INNER join 
-(select screen.screen_no from screen INNER join cinema on screen.cinema_no = cinema.cinema_no where cinema.cinema_no = #{cinema_no})A 
-on movietime.screen_no = A.screen_no where movietime.screen_no = #{screen_no} and movie_no=#{movie_no} order by movietime.movietime_time asc
+	<select id="screenlist" resultType="com.kh.cgx.vo.cinema.MovieTimeSeatVO" parameterType="map">	
+
+select m.movietime_no,m.movietime_time,(
+select count(*) from seat where screen_no = #{screen_no})- NVL(sum(t.TICKET_TOTAL_PERSON), 0) ticket_count 
+from ticket t 
+full outer join movietime m 
+on t.movietime_no = m.movietime_no 
+full outer join screen s on m.screen_no = s.screen_no 
+where s.screen_no = #{screen_no} and movie_no = #{movie_no} and movietime_time 
+between to_date(#{movietime_time_start},'YYMMDDHH24MI') and to_date(#{movietime_time_end},'YYMMDDHH24MI') 
+group by m.movietime_no,m.movietime_time
 	</select>
 	
 	<select id="date" resultType="string" parameterType="int">

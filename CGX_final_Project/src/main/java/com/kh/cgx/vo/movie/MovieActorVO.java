@@ -27,4 +27,6 @@ public class MovieActorVO {
 	private String movie_genre;
 	private String movie_content;
 	private List<String> actorList;
+
+
 }
