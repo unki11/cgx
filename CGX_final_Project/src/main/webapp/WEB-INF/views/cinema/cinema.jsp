@@ -112,7 +112,7 @@
 			</c:forEach>
               </div>
               <div class="tab-pane fade" id="asd">
-                <c:forEach var="cinema2" items="${cinema_list2}">
+                  <c:forEach var="cinema2" items="${cinema_list2}">
                 <a href="?cinema_no=${cinema2.CINEMA_NO}">
 					<h3>${cinema2}</h3>
 					<h3>${cinema2.FILES_NO}</h3>

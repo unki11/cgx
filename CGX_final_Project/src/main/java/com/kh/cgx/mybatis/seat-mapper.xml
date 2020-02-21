@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="seatsearch" parameterType="Seat" resultType="int">
-		select * from seat where screen_no = #{screen_no} and seat_row = #{seat_row} and seat_col= #{seat_col}
+		select seat_no from seat where screen_no = #{screen_no} and seat_row = #{seat_row} and seat_col= #{seat_col}
 	</select>
 	
 	<select id="ticket" resultType="int">

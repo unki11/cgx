@@ -25,7 +25,7 @@
 </head>
 <body>
 <article class="w-70">
-    <form action="seatInsert" method="post">
+    <form action="${pagecontext.request.contextpath}/com.kh.cgx/pay/kakao/info" method="post">
         <div class="cinema-wrap" data-name="seat" data-rowsize="${rowsize}" data-colsize="${colsize }" style="width:922px;">
             <div class="cinema-screen">스크린</div>
                 

@@ -47,6 +47,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 		<typeAlias type="com.kh.cgx.vo.movie.MovieVO" alias="movieVO"/>
 		<typeAlias type="com.kh.cgx.vo.cinema.MovieTimeSeatVO" alias="MovieTimeSeatVO"/>
+		
+		<typeAlias type="com.kh.cgx.entity.pay.PayDto" alias="payDto"/>          
 	</typeAliases>
 	
 </configuration>

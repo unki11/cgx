@@ -74,7 +74,6 @@ public class CinemaController {
 		}
 		
 		List<SeatDto> List = sqlSession.selectList("seat.search");
-		log.info("list={}",List);
 		List<List<Integer>> seatall = new ArrayList<>();
 		ScreenDto screenDto = sqlSession.selectOne("seat.size");
 		for(SeatDto list : List) {
@@ -96,7 +95,6 @@ public class CinemaController {
 		model.addAttribute("seatall", seatall);	
 		model.addAttribute("rowsize", screenDto.getScreen_rowsize());
 		model.addAttribute("colsize", screenDto.getScreen_colsize());
-		log.info("seatall={}",seatall);
 		return "cinema/seat";
 	}
 	
@@ -122,7 +120,7 @@ public class CinemaController {
 	public String seatInsert(@RequestParam List<String> seat,@RequestParam int movietime_no) {	
 		List<List<String>> List = new ArrayList<List<String>>();
 		
-
+		
 		for(int i = 0; i<seat.size(); i++) {
 			List<String> list = new ArrayList<>();
 			String a = seat.get(i);
@@ -138,7 +136,7 @@ public class CinemaController {
 		String ticket_buy_no = "12312312316571";
 		int ticket_total_person = seat.size();	
 		
-		 TicketDto ticketdto = TicketDto.builder().ticket_no(ticket_no)
+		TicketDto ticketdto = TicketDto.builder().ticket_no(ticket_no)
 							.member_no(member_no)
 							.movietime_no(movietime_no)
 							.ticket_buy_no(ticket_buy_no)
