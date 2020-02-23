@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         ON MV.MOVIE_NO = MT.MOVIE_NO 
         INNER JOIN SCREEN SC
         ON MT.SCREEN_NO = SC.SCREEN_NO
- </select>  
+ </select> 
  
  
  <select id="watched" resultType="watchedVO" parameterType="int">
@@ -76,6 +76,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         inner join ticket on ticket.member_no = A.member_no
         inner join coupon on coupon.member_no = A.member_no
          where A.member_no = #{member_no}
+ 	
  </delete>
  
  
