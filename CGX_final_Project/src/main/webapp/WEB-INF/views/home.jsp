@@ -3,93 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-	<title>Home</title>
-    <style>
-        
-        /* .bg-1light{
-            background-color: #efe4b0;
-        } */
-        
-        .navbar a > img{
-         	width:160px;
-        }
-        
-    </style>
-</head>
-<body>
+
 
 <jsp:include page="header.jsp"></jsp:include> 
- 
+ <% request.setAttribute("id", "rladnsrl"); %>
 
-   <nav class="navbar navbar-expand-lg navbar-light bg-1light">
-        <a class="navbar-brand" href="http://localhost:8080/com.kh.cgx/"><img src="${pageContext.request.contextPath}/resources/img/latte2.png"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-    
-    	
-    		
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown" style="padding: 3rem;">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" 
-              aria-expanded="false">영화
-            </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">무비차트</a>
-                <a class="dropdown-item" href="/com.kh.cgx/user/mypage">내정보</a>
-                <a class="dropdown-item" href="/com.kh.cgx/user/login">login</a>
-                <a class="dropdown-item" href="<c:url value="/user/joinWhether" />">join</a>
-                <a class="dropdown-item" href="/com.kh.cgx/user/find_id">find_id</a>
-                <a class="dropdown-item" href="/com.kh.cgx/user/find_pw">find_pw</a>
-                <a class="dropdown-item" href="/com.kh.cgx/user/logout">LogOut</a>
-                <a class="dropdown-item" href="#">HD 트레일러</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">무비파인더</a>
-              </div>
-            </li>
-            <li class="nav-item dropdown" style="padding: 3rem;">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  예매
-                </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">빠른예매</a>
-                <a class="dropdown-item" href="#">상영시간표</a>
-              </div>
-            </li>
-            <li class="nav-item dropdown" style="padding: 3rem;">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                극장
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="${pageContext.request.contextPath}/cinema/">CGV극장</a>
-                <a class="dropdown-item" href="#">특별관</a>
-              </div>  
-            </li>
-            <li class="nav-item dropdown" style="padding: 3rem;">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="-1" aria-disabled="true">
-                  이벤트
-                </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">이벤트</a>
-                <a class="dropdown-item" href="${pageContext.request.contextPath}/goods/">기프트샵</a>
-              </div>
-            </li>
-            
-              <div>
-            <a class="click" href="${pageContext.request.contextPath}/user/login" style="padding: 1rem;"> 로그인</a>
-            <a class="click" href="${pageContext.request.contextPath}/user/join" style="padding: 1rem;"> 회원가입</a>
-            <a class="click" href="${pageContext.request.contextPath}/mypage/mycgv" style="padding: 1rem;"> my cgv</a>
-            </div>
-          </ul>
-          
-          
-          <form class="form-inline my-2 my-lg-3">
-            <input class="form-control mr-lg-4" type="search" placeholder="영화검색" aria-label="Search">
-            <button class="btn btn-outline-success my-3 my-lg-3" type="submit">검색하기</button>
-          </form>
-        </div>
-      </nav>
+
       <!-- 헤더 끝 -->
       
 
@@ -179,7 +98,7 @@
       
       
       
-      
+      <%=request.getAttribute("id") %>
       
       
       <!-- 푸터시작 -->

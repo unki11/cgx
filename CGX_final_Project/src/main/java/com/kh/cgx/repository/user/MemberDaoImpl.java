@@ -1,5 +1,8 @@
 package com.kh.cgx.repository.user;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,6 +18,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public void join(MemberDto memberDto) {
+	
 		sqlSession.insert("member.join", memberDto);
 
 	}

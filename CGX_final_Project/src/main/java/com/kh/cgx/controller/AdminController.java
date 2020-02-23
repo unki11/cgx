@@ -4,12 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -161,12 +158,14 @@ public class AdminController {
 	@PostMapping("/Movie/adminInsert")
 	public String test2(@ModelAttribute MovieDto movieDto) {
 		movieDao.insert(movieDto);
+		log.info("movieDto");
 		return "redirect:/admin/Movie/adminInsert";
 	}
 	
 	@GetMapping("/Movie/adminDelete")
 	@ResponseBody
-	public void moviedelete(int no) {
+	public void moviedelete(int no) { 
+		log.info("no={}",no);
 		movieDao.delete(no);
 	}
 	

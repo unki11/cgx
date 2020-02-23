@@ -62,6 +62,7 @@ public class MypageController {
 		return "mypage/movielog";
 	}
 
+
 	@GetMapping("/movielog/watched")
 	public String watched(Model model, HttpSession session) {
 
@@ -87,4 +88,19 @@ public class MypageController {
 		
 		return result;
 	}
+
+	/*
+	 * @GetMapping("/movielog/watched") public String watched(Model model,
+	 * HttpSession session) {
+	 * 
+	 * String id=(String) session.getAttribute("id"); System.out.println("id="+id);
+	 * 
+	 * MemberDto dto=sqlSession.selectOne("member.login",id);
+	 * 
+	 * List<WatchedVO> list = sqlSession.selectList("mypage.watched",id);
+	 * model.addAttribute("watchList", list);
+	 * 
+	 * return "mypage/watched"; }
+	 */
+
 }

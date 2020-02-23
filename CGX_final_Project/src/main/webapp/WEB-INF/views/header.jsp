@@ -80,6 +80,11 @@
                 <a class="dropdown-item" href="/com.kh.cgx/goods/">기프트샵</a>
               </div>
             </li>
+             <div>
+            <a class="click" href="${pageContext.request.contextPath}/user/login" style="padding: 1rem;"> 로그인</a>
+            <a class="click" href="${pageContext.request.contextPath}/user/join" style="padding: 1rem;"> 회원가입</a>
+            <a class="click" href="${pageContext.request.contextPath}/mypage/mycgv" style="padding: 1rem;"> my cgv</a>
+            </div>
           </ul>
             <input class="form-control mr-lg-4" type="text" id="keyWord" placeholder="영화검색" aria-label="Search">
             <button class="btn btn-outline-success my-3 my-lg-3" onclick="fn_search()">검색하기</button>
