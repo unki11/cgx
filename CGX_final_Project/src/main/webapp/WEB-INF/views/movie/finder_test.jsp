@@ -271,7 +271,7 @@ $(function(){
 
 <c:forEach var="finder_list" items="${finder_list}">
   <div class="row">
-  <div class="col-md-6 col-md-4">
+  <div class="col-md-7 col-md-3">
     <div class="thumbnail">
       <div class="caption" style="background-color: #faefdc">
 	        <p class="finder">${finder_list.movie_no}</p>

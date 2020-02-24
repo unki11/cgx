@@ -15,7 +15,7 @@
 	<br><br>	
 <!-- 	<input type="text" name="screen_no" placeholder="상영관선택">	 -->
 	<h3>상영관선택</h3>
-	<select name="screend_no">
+	<select name="screen_no">
 		<c:forEach var="screenDto" items="${screenDto}">
 			<option>${screenDto.screen_no}</option>
 		</c:forEach>
@@ -79,11 +79,12 @@
             <tr>
                 <th>상영관선택</th>
                 <td>
-                <select name="screend_no">
+                <input type="text" name="screen_no" placeholder="상영관입력">
+                <%-- <select name="screen_no">
 					<c:forEach var="screenDto" items="${screenDto}">
 						<option>${screenDto.screen_no}</option>
 					</c:forEach>
-				</select>
+				</select> --%>
                 </td>
             </tr>
             

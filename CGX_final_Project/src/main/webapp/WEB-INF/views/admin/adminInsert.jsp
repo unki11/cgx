@@ -30,16 +30,13 @@
 <style>
 	body{
 		margin-top: 150px;
-		background-image: url("${pageContext.request.contextPath}/resources/img/admin1.jpg");
-		background-repeat: no-repeat;
-		background-size: cover;
-		background-color: rgba( 255, 255, 255, 0.5);
+		
 	}
 	
 	.container{
 		opacity: 3;
 		text-align: center;
-		color: white;
+		color: black;
 	}
 </style>
 </head>

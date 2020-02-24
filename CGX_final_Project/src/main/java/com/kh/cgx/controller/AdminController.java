@@ -219,6 +219,7 @@ public class AdminController {
 	
 	@PostMapping("/Screen/adminInsert")
 	public String test21(@ModelAttribute AdminScreenDto screenDto) {
+		log.info("no={}",screenDto);
 		screenDao.insert(screenDto);
 		return "redirect:/admin/Screen/adminInsert";
 	}
