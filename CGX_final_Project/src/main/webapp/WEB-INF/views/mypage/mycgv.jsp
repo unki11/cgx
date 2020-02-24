@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
 
 <form action="mycgv" method="post">
 
@@ -17,8 +18,12 @@
 		
 		
 		<a href="">쿠폰</a>
+		
+		<br>
+		
+		<button type="button" onclick="deleteUser()">회원탈퇴</button>
 		<br><br><br><br>
-	</div>
+ 	</div>
 </main>
 	
 <article class="w-40">
@@ -42,5 +47,17 @@
 
 </form>
 
-
+<script type="text/javascript">
+function deleteUser() {
+	if (confirm("정말로 탈퇴하시겠습니까?")) {
+		$.ajax({
+			url : '${pageContext.request.contextPath}/mypage/delete/user',
+			method : 'POST',
+			success : function (data) {
+				console.log(data);
+			}
+		})
+	}
+}
+</script>
 
