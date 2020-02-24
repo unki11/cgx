@@ -5,6 +5,7 @@
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">  
 <script>
 	$(document).ready(function(){
 		$(".delete").click(function(){
@@ -20,7 +21,7 @@
 		})
 	});
 </script>
-<h1>상영관 조회 페이지</h1>
+<%-- <h1>상영관 조회 페이지</h1>
 
 <c:forEach var="screenDto" items="${list}">
 	<div>
@@ -34,4 +35,30 @@
 		
 		<button class="delete">삭제</button>
 	</div>
-</c:forEach>
+</c:forEach> --%>
+
+<html>
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1>상영관 조회 페이지</h1>
+          <ul class="list-group">
+          <c:forEach var="screenDto" items="${list}">
+	          <div>
+		            <li class="no">${screenDto.screen_no}</li>
+		            <li>극장: ${screenDto.cinema_no}</li>
+		            <li>전체좌석 :${screenDto.screen_all_seat}</li>
+		            <li>상영관 종류 :${screenDto.screen_type}</li>
+		            <li>상영관 이름 :${screenDto.screen_name}</li>
+		            <li>상영관 줄 :${screenDto.screen_rowsize}</li>
+		            <li>상영관 칸 :${screenDto.screen_colsize}</li>
+		            <button class="delete">삭제</button>
+	           </div>
+           </c:forEach>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
