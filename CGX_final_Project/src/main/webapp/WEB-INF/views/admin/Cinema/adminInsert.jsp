@@ -6,6 +6,7 @@
 <form action="adminInsert" method="post">
 	<input type="text" name="cinema_no" placeholder="극장번호"><br><br>
 	<input type="text" name="files_no" placeholder="사진번호"><br><br>
+>>>>>>> refs/remotes/origin/master
 	<input type="text" name="cinema_area" placeholder="극장지역"><br><br>
 	<input type="text" name="cinema_phone" placeholder="극장전화번호"><br><br>
 	<input type="text" name="cinema_addr" placeholder="극장주소"><br><br>
@@ -40,11 +41,11 @@
     </thead>
     
     <tbody>
-        <form action="adminInsert" method="post">
+        <form action="adminInsert" method="post" enctype="multipart/form-data">
             
             <tr>
                 <th>극장 사진 등록창</th>
-                <td><input type="text" name="files_no" placeholder="사진번호" required></td>
+                <td><input type="file" name="files" placeholder="사진번호"></td>
             </tr>
             
             <tr>

@@ -27,6 +27,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from movietime
 	</select>
 
+	<select id="one" resultType="MovieTimeDto" parameterType="int">
+		select * from movietime where movietime_no = #{movietime_no}
+	</select>
 	<select id="search" resultType="map">
 		select movietime.* from movietime 
 		INNER join 
@@ -61,12 +64,19 @@ full outer join movietime m
 on t.movietime_no = m.movietime_no 
 full outer join screen s on m.screen_no = s.screen_no 
 where s.screen_no = #{screen_no} and movie_no = #{movie_no} and movietime_time 
-between to_date(#{movietime_time_start},'YYMMDDHH24MI') and to_date(#{movietime_time_end},'YYMMDDHH24MI') 
+between to_date(#{movietime_time_start},'YYMMDDHH24MI') and to_date(#{movietime_time_end},'YYMMDDHH24MI') <![CDATA[and m.movietime_time >= sysdate]]>
 group by m.movietime_no,m.movietime_time
 	</select>
 	
 	<select id="date" resultType="string" parameterType="int">
 		select to_char(movietime_time,'YY/MM/DD') from movietime inner join screen on movietime.screen_no = screen.screen_no inner join cinema on cinema.cinema_no = screen.cinema_no where cinema.cinema_no = #{cinema_no} and movietime_time >= sysdate GROUP by to_char(movietime_time,'YY/MM/DD') order by to_char(movietime_time,'YY/MM/DD') asc
+	</select>
+	
+	<select id="movietitle" parameterType="int" resultType="string">
+		select movie.movie_title from movie inner join movietime on movie.movie_no = movietime.movie_no where movietime_no=#{movietime_no}
+	</select>
+	<select id="screen_no" parameterType="int" resultType="int">
+		select screen_no from movietime where movietime_no = #{movietime_no}
 	</select>
 </mapper>
 

@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!-- <h1>영화 등록 페이지 </h1>
 <form action="adminInsert" method="post">
+>>>>>>> refs/remotes/origin/master
 	
 	<input type="text" name="movie_no" placeholder="영화번호"><br><br>
 
-	<input type="text" name="files_no" placeholder="사진번호"><br><br>
+	<input type="file" name="files" placeholder="사진번호"><br><br>
 	<input type="text" name="movie_ticket_rate" placeholder="영화예매율"><br><br>
 	<input type="text" name="movie_title" placeholder="영화제목"><br><br>
 	<input type="text" name="movie_director" placeholder="영화감독"><br><br>
@@ -52,11 +52,11 @@
     </thead>
     
     <tbody>
-        <form action="adminInsert" method="post">
+        <form action="adminInsert" method="post" enctype="multipart/form-data">
 
 			<tr>
                 <th>사진 등록창</th>
-                <td><input type="text" name="files_no" placeholder="사진번호" required></td>
+                <td><input type="file" name="files" placeholder="사진번호"></td>
             </tr>
             
             <tr>

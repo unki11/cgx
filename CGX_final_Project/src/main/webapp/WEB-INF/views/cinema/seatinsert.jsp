@@ -2,13 +2,13 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>영화관 좌석 배치</title>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/hiphop5782/js/cinema/hakademy-cinema.css">
-    <script src="https://cdn.jsdelivr.net/gh/hiphop5782/js/cinema/hakademy-cinema.js"></script>
-    <script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/hiphop5782/js/cinema/hakademy-cinema.css">
+<script src="https://cdn.jsdelivr.net/gh/hiphop5782/js/cinema/hakademy-cinema.js"></script>
+       <script>
         window.addEventListener("load", function(){
             var tag = document.querySelector(".cinema-wrap");
             var cinema = new Hakademy.Reservation(tag);
@@ -24,9 +24,9 @@
     </style>
 </head>
 <body>
-<article class="w-70">
-${seatall}
-    <form action="${pagecontext.request.contextpath}/com.kh.cgx/pay/kakao/info" method="post">
+	<article class="w-70">
+	<h1>모든좌석${seatall}</h1>
+    <form action="screeninsert" method="post">
         <div class="cinema-wrap" data-name="seat" data-rowsize="${rowsize}" data-colsize="${colsize }" style="width:922px;">
             <div class="cinema-screen">스크린</div>
                 
@@ -35,15 +35,8 @@ ${seatall}
             <div class="cinema-seat-area" data-rowsize="${rowsize}" data-colsize="${colsize }">
 					
 					<c:forEach var="list" items="${seatall}">
-					<c:choose>
-					<c:when test="${list[2]!=0}">
 						<div class="cinema-seat" data-row="${list[0]}" data-column="${list[1]}"></div>
-					</c:when>
-					<c:otherwise>
-						<div class="cinema-seat disabled" data-row="${list[0]}" data-column="${list[1]}"></div>
-					</c:otherwise>
                 		    
-					  </c:choose>
 				  </c:forEach>
 				
 				  
@@ -51,7 +44,7 @@ ${seatall}
 
         </div>
 		
-		<input type="hidden" value="${movietime_no}" name="movietime_no">
+		<input type="hidden" value="${screen_no}" name="screen_no">
         <input type="submit" value="선택">
           </div>
     </form>
@@ -60,4 +53,3 @@ ${seatall}
   </article>        
 </body>
 </html>
-
