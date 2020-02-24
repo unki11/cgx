@@ -10,4 +10,5 @@ public interface AdminMovieDao {
 	List<MovieDto> getList();
 	void delete(int no);
 	void update(MovieDto movieDto);
+	int file();
 }

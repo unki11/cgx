@@ -11,7 +11,7 @@ public class TicketDto {
 	private int ticket_no;
 	private int member_no;
 	private int movietime_no;
-	private int ticket_buy_no;
+	private String ticket_buy_no;
 	private int ticket_total_person;
 	
 }
