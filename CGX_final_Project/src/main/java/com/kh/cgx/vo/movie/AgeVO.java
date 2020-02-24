@@ -6,11 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
-public class VideoVO {
-
-	private String movie_title;
-	private String video_link;
-	private int movie_no;
-	private String video_id;
+public class AgeVO {
 	
+	
+	private int age;
+	private int  cnt;
 }
