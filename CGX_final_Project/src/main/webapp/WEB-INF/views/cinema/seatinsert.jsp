@@ -26,7 +26,7 @@
 <body>
 	<article class="w-70">
 	<h1>모든좌석${seatall}</h1>
-    <form action="${pagecontext.request.contextpath}/com.kh.cgx/pay/kakao/info" method="post">
+    <form action="screeninsert" method="post">
         <div class="cinema-wrap" data-name="seat" data-rowsize="${rowsize}" data-colsize="${colsize }" style="width:922px;">
             <div class="cinema-screen">스크린</div>
                 
@@ -44,7 +44,7 @@
 
         </div>
 		
-		<input type="hidden" value="${movietime_no}" name="movietime_no">
+		<input type="hidden" value="${screen_no}" name="screen_no">
         <input type="submit" value="선택">
           </div>
     </form>

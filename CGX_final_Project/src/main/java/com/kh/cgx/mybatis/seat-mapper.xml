@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="seat">
 	
-	<select id="search" resultType="Seat">
-		select * from seat where screen_no = 1 and seat_col <![CDATA[<=]]> 10 and seat_row  <![CDATA[<=]]> 10
+	<select id="search" resultType="Seat" parameterType="int">
+		select * from seat where screen_no = #{screen_no} order by seat_row,seat_col
 	</select>
 	
 	<select id="size" resultType="ScreenDto" parameterType="int">
@@ -32,7 +32,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select ticket_no_seq.nextval ticket_no from dual
 	</select>
 	
-	<select id="insertticket" parameterType="ticket">
+	<insert id="seatinsert" parameterType="Seat">
+		insert into seat values(
+			SEAT_NO_SEQ.nextval,
+			#{screen_no},
+			#{seat_row},
+			#{seat_col},
+			'0'
+		)
+	
+	</insert>
+	
+	<insert id="insertticket" parameterType="ticket">
 			insert into ticket values(
 			#{ticket_no},
 			#{member_no},
@@ -40,7 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			'1232151123',
 			#{ticket_total_person}
 			)
-	</select>
+	</insert>
 	
 	<select id="insertticket_seat" parameterType="MovieTimeSeatVO">
 			insert into ticket_seat VALUES (
@@ -49,6 +60,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{seat_no}
 			)
 	</select>
+	
+	<delete id="seatdelete" parameterType="int">
+		delete from seat where screen_no=#{screen_no}
+	</delete>
 </mapper>
 
 

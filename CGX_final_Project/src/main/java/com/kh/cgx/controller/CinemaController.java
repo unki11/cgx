@@ -1,6 +1,6 @@
 package com.kh.cgx.controller;
-import java.io.File;	
-import java.io.IOException;
+import java.io.File;			
+import java.io.IOException;	
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.DateFormat;
@@ -79,19 +79,50 @@ public class CinemaController {
 				System.out.println("list"+list);
 			}
 		}
-		
+			
 		System.out.println("ScreenDto"+screenDto);
 		System.out.println("List"+List);
 		
 		model.addAttribute("seatall",List);
 		model.addAttribute("rowsize", screenDto.getScreen_rowsize());
 		model.addAttribute("colsize", screenDto.getScreen_colsize());
+		model.addAttribute("screen_no",screen_no);
+		return "cinema/seatinsert";
+	}
+	
+	@PostMapping("/screeninsert")
+	public String screeninsert2(@RequestParam List<String> seat,@RequestParam int screen_no) {
+		log.info("seat={}",seat);
+		
+		List<List<String>> List = new ArrayList<List<String>>();
+
+		for(int i = 0; i<seat.size(); i++) {
+			List<String> list = new ArrayList<>();
+			String a = seat.get(i);
+			String [] b = a.split("-");
+			list.add(b[0]);
+			list.add(b[1]);
+			
+			List.add(list);
+		} 
+		System.out.println("List"+List);
+		sqlSession.delete("seat.seatdelete",screen_no);
+		for(List<String> slist : List) {
+			SeatDto seatDto = new SeatDto();
+			seatDto.setScreen_no(screen_no);
+			seatDto.setSeat_row(Integer.parseInt(slist.get(0)));
+			seatDto.setSeat_col(Integer.parseInt(slist.get(1)));
+			seatDto.setSeat_grade('0');
+			System.out.println("seatDto"+seatDto);
+			sqlSession.insert("seat.seatinsert",seatDto);
+		}
 		return "cinema/seatinsert";
 	}
 	
 	@GetMapping("/seat")
 	public String seat(Model model,@RequestParam int movietime_no) {
 		
+		MovieTimeDto movieTimeDto = sqlSession.selectOne("movietime.one",movietime_no);
 		List<List<Integer>> seatreserved = new ArrayList<List<Integer>>();
 		List<SeatDto> seatlist = sqlSession.selectList("seat.seat", movietime_no);
 		for(SeatDto dto:seatlist) {
@@ -100,10 +131,9 @@ public class CinemaController {
 			a.add(dto.getSeat_col());
 			seatreserved.add(a);
 		}
-		
-		List<SeatDto> List = sqlSession.selectList("seat.search");
+		List<SeatDto> List = sqlSession.selectList("seat.search",movieTimeDto.getScreen_no());
 		List<List<Integer>> seatall = new ArrayList<>();
-		ScreenDto screenDto = sqlSession.selectOne("seat.size",1);
+		ScreenDto screenDto = sqlSession.selectOne("seat.size",movieTimeDto.getScreen_no());
 		for(SeatDto list : List) {
 			List<Integer> seat = new ArrayList<Integer>();
 			seat.add(list.getSeat_row());
@@ -117,7 +147,7 @@ public class CinemaController {
 			seat.add(1);
 			seatall.add(seat);
 		}
-
+		System.out.println("seatall"+seatall);
 		model.addAttribute("movietime_no", movietime_no);
 		model.addAttribute("seatset", seatreserved);
 		model.addAttribute("seatall", seatall);	

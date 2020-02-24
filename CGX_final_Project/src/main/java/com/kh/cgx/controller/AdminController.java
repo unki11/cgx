@@ -15,6 +15,7 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,6 +61,9 @@ public class AdminController {
 	@Autowired
 	private ManagerDao managerDao;
 	
+	@Autowired
+	private PasswordEncoder encoder;
+	
 	
 	@GetMapping("/adminList")
 	public ModelAndView test(ModelAndView mav) {
@@ -76,6 +80,7 @@ public class AdminController {
 	
 	@PostMapping("/adminInsert")
 	public String test2(@ModelAttribute AdminDto adminDto) {
+		adminDto.setAdmin_pw(encoder.encode(adminDto.getAdmin_pw()));
 		adminDao.insert(adminDto);
 		return "redirect:/admin/adminInsert";
 	}
@@ -101,16 +106,30 @@ public class AdminController {
 	
 	@PostMapping("/adminLogin")
 	public String adminLogin2(HttpSession session, @ModelAttribute AdminDto adminDto) {
-		AdminDto result = adminDao.login(adminDto);
-		if(result == null) {
+		/*
+		 * AdminDto result = adminDao.login(adminDto); if(result == null) { return
+		 * "/admin/adminLogin"; }
+		 * 
+		 * else { session.setAttribute("id", result.getAdmin_id()); return
+		 * "redirect:/admin/Manager/managerInsert"; }
+		 */
+		
+		AdminDto find = adminDao.login(adminDto);
+		if(find == null) {
 			return "/admin/adminLogin";
 		}
-		
 		else {
-			session.setAttribute("id", result.getAdmin_id());
-			return "redirect:/admin/Manager/managerInsert";
+			boolean correct = encoder.matches(adminDto.getAdmin_pw(),find.getAdmin_pw());
+			
+				if(correct == true) {
+					return "redirect:/admin/Manager/managerInsert";
+				}
+				else {
+					return "/admin/adminLogin";
+				}
+			}
 		}
-	}
+
 	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //		시네마
 	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
@@ -176,8 +195,9 @@ public class AdminController {
 		files.transferTo(target);
 		
 		movieDto.setFiles_no(files_no);
+		log.info("movieDto={}",movieDto);
 		movieDao.insert(movieDto);
-		log.info("movieDto");
+		
 		return "redirect:/admin/Movie/adminInsert";
 	}
 	
@@ -219,6 +239,7 @@ public class AdminController {
 	
 	@PostMapping("/Screen/adminInsert")
 	public String test21(@ModelAttribute AdminScreenDto screenDto) {
+		log.info("no={}",screenDto);
 		screenDao.insert(screenDto);
 		return "redirect:/admin/Screen/adminInsert";
 	}

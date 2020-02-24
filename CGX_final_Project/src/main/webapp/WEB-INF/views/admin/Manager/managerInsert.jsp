@@ -60,10 +60,8 @@
 						console.log(date);
 					})
 	})
- 				
-	
 </script>
-<h1>매니저 페이지</h1>
+<%-- <h1>매니저 페이지</h1>
 <h2>상영 시간표 입력</h2>
 <form action="managerInsert" method="post">
 	<h3>영화선택</h3>
@@ -102,4 +100,95 @@
 	<h3>영화가격입력</h3>
 	<input type="text" name="movietime_price" placeholder="가격"><br><br><br>
 	<input type="submit" value="상영시간 등록">
-</form>
+</form> --%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>상영시간표 등록 페이지</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style>
+	body{
+		margin-top: 150px;
+	}
+</style>
+</head>
+<body>
+<div class="container">
+<table class="table table-bordered">
+    <thead>
+        <caption> 상영시간표 등록  </caption>
+    </thead>
+    
+    <tbody>
+        <form action="managerInsert" method="post">
+            
+            <tr>
+                <th>영화 선택창</th>
+                <td>
+                	<select name="movie_no" id="movie">
+						<option>영화를 선택하세요</option>
+					</select>
+                </td>
+            </tr>
+            
+            <tr>
+                <th>극장 선택창</th>
+                <td>
+                	<select name="cinema_no" id="cinema">
+						<option>극장을 선택하세요</option>
+					</select>
+                </td>
+            </tr>
+            
+            <tr>
+                <th>상영관 선택창</th>
+                <td>
+                	<select name="screen_no" id="screen">
+						<option>${screenDto.screen_no}</option>
+					</select>
+                </td>
+            </tr>
+            
+            <tr>
+                <th>상영시간 등록창</th>
+                <td>
+                	<input id="date" type="date" name="movietime_time" placeholder="상영날짜입력">
+                	<select name="movietime_hour" required>
+						<c:forEach var="hour" begin="00" end="23">
+							<option>${hour}</option>
+						</c:forEach>
+					</select>
+					시
+					<select name="movietime_min" required>
+						<c:forEach var="min" begin="00" end="55" step="5">
+							<option>${min}</option>
+						</c:forEach>
+					</select>
+					분
+                </td>
+            </tr>
+            
+            <tr>
+                <th>영화 가격 등록창</th>
+                <td>
+                	<input type="text" name="movietime_price" placeholder="가격">
+                </td>
+            </tr>
+					
+            <tr>
+                <td colspan="2" >
+                    <input type="submit" value="상영시간표 등록하기">
+                    
+                </td>
+            </tr>
+        </form>
+    </tbody>
+</table>
+</div>
+</body>
+</html>

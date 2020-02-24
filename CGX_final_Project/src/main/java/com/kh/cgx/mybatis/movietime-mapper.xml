@@ -27,6 +27,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from movietime
 	</select>
 
+	<select id="one" resultType="MovieTimeDto" parameterType="int">
+		select * from movietime where movietime_no = #{movietime_no}
+	</select>
 	<select id="search" resultType="map">
 		select movietime.* from movietime 
 		INNER join 
