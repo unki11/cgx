@@ -3,11 +3,11 @@
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 
 <h1>영화 등록 페이지 </h1>
-<form action="adminInsert" method="post">
+<form action="adminInsert" method="post" enctype="multipart/form-data">
 	
 <!-- 	<input type="text" name="movie_no" placeholder="영화번호"><br><br> -->
 
-	<input type="text" name="files_no" placeholder="사진번호"><br><br>
+	<input type="file" name="files" placeholder="사진번호"><br><br>
 	<input type="text" name="movie_ticket_rate" placeholder="영화예매율"><br><br>
 	<input type="text" name="movie_title" placeholder="영화제목"><br><br>
 	<input type="text" name="movie_director" placeholder="영화감독"><br><br>

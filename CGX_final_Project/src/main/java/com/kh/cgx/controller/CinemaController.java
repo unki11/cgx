@@ -61,6 +61,34 @@ public class CinemaController {
 		return "cinema/seat_payment";
 	}
 	
+	@GetMapping("/screeninsert")
+	public String screeninsert(Model model,int screen_no) {
+		
+		ScreenDto screenDto = new ScreenDto();
+		screenDto = sqlSession.selectOne("seat.size",screen_no);
+		
+		int row = screenDto.getScreen_rowsize();
+		int col = screenDto.getScreen_colsize();
+		List<List<Integer>> List = new ArrayList<List<Integer>>();
+		for(int a=1;a<row+1;a++) {
+			for(int b=1;b<col+1;b++) {
+				List<Integer> list = new ArrayList<Integer>();
+				list.add(a);
+				list.add(b);
+				List.add(list);
+				System.out.println("list"+list);
+			}
+		}
+		
+		System.out.println("ScreenDto"+screenDto);
+		System.out.println("List"+List);
+		
+		model.addAttribute("seatall",List);
+		model.addAttribute("rowsize", screenDto.getScreen_rowsize());
+		model.addAttribute("colsize", screenDto.getScreen_colsize());
+		return "cinema/seatinsert";
+	}
+	
 	@GetMapping("/seat")
 	public String seat(Model model,@RequestParam int movietime_no) {
 		
@@ -75,7 +103,7 @@ public class CinemaController {
 		
 		List<SeatDto> List = sqlSession.selectList("seat.search");
 		List<List<Integer>> seatall = new ArrayList<>();
-		ScreenDto screenDto = sqlSession.selectOne("seat.size");
+		ScreenDto screenDto = sqlSession.selectOne("seat.size",1);
 		for(SeatDto list : List) {
 			List<Integer> seat = new ArrayList<Integer>();
 			seat.add(list.getSeat_row());

@@ -10,8 +10,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from seat where screen_no = 1 and seat_col <![CDATA[<=]]> 10 and seat_row  <![CDATA[<=]]> 10
 	</select>
 	
-	<select id="size" resultType="ScreenDto">
-		select * from screen where screen_no=1
+	<select id="size" resultType="ScreenDto" parameterType="int">
+		select * from screen where screen_no=#{screen_no}
 	</select>
 	
 <!-- 	<select id="getList" resultType="Seat">

@@ -105,7 +105,7 @@
               <div class="tab-pane fade show active" id="qwe">
                <c:forEach var="cinema1" items="${cinema_list1}">
                <a href="?cinema_no=${cinema1.CINEMA_NO}">
-				<h3>${cinema1}</h3>
+				<h3>${cinema1.CINEMA_AREA}</h3>
 				<h3>시네마 ${cinema1.CINEMA_NO}</h3>
 				<h3><img src="download?file_no=${cinema1.FILES_NO}" width="200" height="150"></h3>
 				</a>
