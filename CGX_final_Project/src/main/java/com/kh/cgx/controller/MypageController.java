@@ -12,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.cgx.entity.mypage.TicketDto;
 import com.kh.cgx.entity.user.MemberDto;
@@ -60,6 +62,33 @@ public class MypageController {
 		return "mypage/movielog";
 	}
 
+
+	@GetMapping("/movielog/watched")
+	public String watched(Model model, HttpSession session) {
+
+		/*
+		 * MemberDto memberdto = (MemberDto)session.getAttribute("MemberDto"); int
+		 * member_no = memberdto.getMember_no();
+		 */
+		int member_no = (int) session.getAttribute("member_no");
+		
+		List<WatchedVO> list = sqlSession.selectList("mypage.watched", member_no);
+		model.addAttribute("watchList", list);
+
+		return "mypage/watched";
+	}
+	
+	@ResponseBody
+	@PostMapping("/delete/user")
+	public int deleteUser (HttpSession session) {
+		int result = 0;
+		int member_no = (int) session.getAttribute("member_no");
+		
+		result = sqlSession.delete("mypage.deleteUser", member_no);
+		
+		return result;
+	}
+
 	/*
 	 * @GetMapping("/movielog/watched") public String watched(Model model,
 	 * HttpSession session) {
@@ -73,4 +102,5 @@ public class MypageController {
 	 * 
 	 * return "mypage/watched"; }
 	 */
+
 }
