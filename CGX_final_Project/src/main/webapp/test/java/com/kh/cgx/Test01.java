@@ -26,14 +26,8 @@ public class Test01 {
 	
 	@Test
 	public void test() {
-		/*
-		 * List<PersonVO> list = sqlSession.selectList("person.selectPerson");
-		 * log.info("list 크기 = {}", list.size());
-		 * 
-		 * for(PersonVO person : list) { log.info("번호 : {}, 이름 : {}", person.getNo(),
-		 * person.getName()); for(ScoreDto score : person.getList()) {
-		 * log.info("-> 시험명 : {}, 점수 : {}", score.getName(), score.getValue()); } }
-		 */
+		int movietime_no=1;
+		System.out.println(movietime_no);
 	}
 	
 }

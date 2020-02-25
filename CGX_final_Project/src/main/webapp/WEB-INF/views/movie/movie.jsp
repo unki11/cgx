@@ -33,9 +33,13 @@
 
 <c:forEach var="list" items="${list }">
 
-<h5>${list }</h5>
-<a href="detail?movie_no=${list.movie_no}"><img src="download?files_no=${list.files_no }"></a>
+<a href="detail?movie_no=${list.movie_no}"><img src="download?files_no=${list.files_no }" style="width: 185px; height: 260px"></a>
+<h3>${list.movie_title }</h3>
+ <h5>예매율 ${list.movie_ticket_rate}%</h5>
+ <h5>개봉 :  ${list.movie_startdate}</h5>
 <button id="wish${list.movie_no}" value="${list.movie_no}" onclick="fn_wish(this.value)">좋아요</button> <!-- 지현이추가 -->
+<button>예매</button>
+<br><br><br><br>
 </c:forEach>
 
 

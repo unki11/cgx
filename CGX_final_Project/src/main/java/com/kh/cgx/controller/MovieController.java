@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
@@ -29,20 +28,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import com.kh.cgx.entity.admin.AdminDto;
-import com.kh.cgx.entity.movie.ActorDto;
 
 import com.kh.cgx.entity.movie.MovieDto;
-
 import com.kh.cgx.entity.movie.MovieVO2;
-
 import com.kh.cgx.entity.movie.ReviewDto;
-
 import com.kh.cgx.repository.movie.MovieDao;
 import com.kh.cgx.repository.movie.MovieProfileDao;
 import com.kh.cgx.repository.movie.PhysicalFileDao;
 import com.kh.cgx.repository.movie.VideoDao;
-
+import com.kh.cgx.vo.movie.AgeVO;
 import com.kh.cgx.vo.movie.MovieActorVO;
 import com.kh.cgx.vo.movie.StillcutVO;
 import com.kh.cgx.vo.movie.VideoVO;
@@ -54,6 +48,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MovieController {
 	
+	@Autowired
+	private AgeVO ageVO;
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -121,25 +117,19 @@ public class MovieController {
 		return "movie/trailer";
 	}
 
-	//영화 상세 정보의 예매 분포도 구하는 부분
-//	@GetMapping("/detail1")
-//	public String distribution(@ModelAttribute DistVO distVO, ModelMap modelMap) {
-//		List<DistVO> dist_list = distDao.getList(distVO);
-//		modelMap.addAttribute("dist_list" , dist_list);
-//		return"movie/detail1";
-//	}
+
 
 	// 기본 리스트와 검색 기능을 합친 메소드
 	@GetMapping("/finder-test")
 	public ModelAndView finder(@ModelAttribute MovieVO2 movieVO) {
-		log.info("genre={}",movieVO);
+//		log.info("genre={}",movieVO);
 		List<MovieDto> finder_list = movieDao.finder(movieVO);
 		// 검색결과수
-		int count = movieDao.count(movieVO.getType(), movieVO.getKeyword());
+//		int count = movieDao.count(movieVO.getType(), movieVO.getKeyword());
 
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("finder_list", finder_list);
-		mv.addObject("count", count);
+//		mv.addObject("count", count);
 		mv.addObject("type", movieVO.getType());
 		mv.addObject("keyword", movieVO.getKeyword());
 
@@ -147,7 +137,7 @@ public class MovieController {
 		Map<String, Object> param = new HashMap<String, Object>();
 
 		param.put("finder_list", finder_list);// 리스트
-		param.put("count", count);// 검색 결과 수
+//		param.put("count", count);// 검색 결과 수
 		param.put("type", movieVO.getType());// 검색 타입
 		param.put("keyword", movieVO.getKeyword());// 검색 키워드
 		mv.addObject("param", param);// 맵에 저장된 데이터를 mv 에 저장
@@ -193,26 +183,44 @@ public class MovieController {
 	@GetMapping("/detail")
 	private String getList4(Model model, @RequestParam int movie_no,
 			@ModelAttribute VideoVO videoVO, ModelMap modelMap,
-			@ModelAttribute StillcutVO stillcutVO, Object files_no 
+			@ModelAttribute StillcutVO stillcutVO, Object files_no,
+			Object age , Object cnt
 			) {
 		
-		
+//		해당 영화 스틸컷 파일 넘버,무비 넘버 불러 오기
 		Map<String, Object> stillMap = new HashMap<String, Object>();
 		stillMap.put("files_no", files_no);
-		
 		stillcutVO.setMovie_no(movie_no);
+		
+//		해당 영화 트레일러 영상 불러오기
 		videoVO.setMovie_no(movie_no); 
 		MovieDto movieDto = sqlSession.selectOne("movies.movieDetail",movie_no);
+//		해당영화 배우 리스트 불러오기
 		List<String> actorList = movieDao.getList4(movie_no);
-		
+//		해당 영화 남여 예매 분포도 구하기
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("movie_no", movie_no);
 		map.put("member_sex","남");
-		
+
 		int man = sqlSession.selectOne("movies.humanCount",map);
 		map.remove("member_sex");
 		map.put("member_sex", "여");
 		int woman = sqlSession.selectOne("movies.humanCount",map);
+//		연령별 예매 분포
+		List<AgeVO> ageList = movieDao.getAgeList(movie_no);
+		
+		int total = 0;
+		for(AgeVO vo : ageList) {
+			if(vo.getAge() < 50) {
+				model.addAttribute("age"+vo.getAge(), vo.getCnt());
+			}
+			else {
+				total += vo.getCnt();
+			}
+		}
+		model.addAttribute("age50", total);
+		//데이터가 age0, age10, age20, age30, age40, age50 으로 6개 저장됨(없을 수도 있음)
+		
 		MovieActorVO movieActorVO = MovieActorVO.builder()
 																
 																.actorList(actorList)
@@ -232,17 +240,25 @@ public class MovieController {
 																
 																.build();
 		
-		
+//		스틸컷
 		List<StillcutVO> info_stillcut = movieDao.getStillcut(stillcutVO);
 		model.addAttribute("files_no", files_no);
 		model.addAttribute("info_stillcut", info_stillcut);
-		
+//		트레일러
 		List<VideoVO> info_trailer = videoDao.getListInfo(videoVO);
 		modelMap.addAttribute("info_trailer", info_trailer);
-		
+//		남여 예매 분포
 		model.addAttribute("movieActorVO", movieActorVO);
 		model.addAttribute("man", man);
 		model.addAttribute("woman",woman);
+
+
+		
+		
+		
+//		System.out.println("age = "+ age + "cnt = "+cnt);
+//		log.info("age = "+ age + "cnt = "+cnt);
+		
 		
 		
 //		System.out.println( "model : "+movieActorVO);
@@ -251,6 +267,9 @@ public class MovieController {
 		return "movie/detail";
 	}
 
+	
+	
+	
 	
 	@GetMapping("/review")
 	private String reivewinsert() {

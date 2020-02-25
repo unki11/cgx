@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.cgx.entity.admin.AdminDto;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class AdminDaoImpl implements AdminDao{
 	
 	@Autowired
@@ -39,7 +41,8 @@ public class AdminDaoImpl implements AdminDao{
 
 	@Override
 	public AdminDto login(AdminDto adminDto) {
-		return sqlSession.selectOne("admin.login",adminDto);
+
+		return sqlSession.selectOne("admin.get",adminDto);
 		
 	}
 		
