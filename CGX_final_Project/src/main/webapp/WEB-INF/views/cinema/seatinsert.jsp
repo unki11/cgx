@@ -32,7 +32,7 @@
                 
                 	
              
-            <div class="cinema-seat-a	rea" data-rowsize="${rowsize}" data-colsize="${colsize }">
+            <div class="cinema-seat-area" data-rowsize="${rowsize}" data-colsize="${colsize }">
 					
 					<c:forEach var="list" items="${seatall}">
 						<div class="cinema-seat" data-row="${list[0]}" data-column="${list[1]}"></div>

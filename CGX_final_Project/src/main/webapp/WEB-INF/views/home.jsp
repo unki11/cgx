@@ -6,9 +6,6 @@
 
 
 <jsp:include page="header.jsp"></jsp:include> 
- <% request.setAttribute("id", "rladnsrl"); %>
-
-
       <!-- 헤더 끝 -->
       
 

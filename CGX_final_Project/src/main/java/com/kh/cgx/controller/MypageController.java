@@ -70,7 +70,10 @@ public class MypageController {
 		 * MemberDto memberdto = (MemberDto)session.getAttribute("MemberDto"); int
 		 * member_no = memberdto.getMember_no();
 		 */
-		int member_no = (int) session.getAttribute("member_no");
+		String member_id = (String)session.getAttribute("id");
+		MemberDto memberDto = MemberDto.builder().member_id(member_id).build();
+		MemberDto dto = memberdao.login(memberDto);
+		int member_no = dto.getMember_no();
 		
 		List<WatchedVO> list = sqlSession.selectList("mypage.watched", member_no);
 		model.addAttribute("watchList", list);
