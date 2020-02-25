@@ -19,16 +19,11 @@
 
   
  <c:forEach var="list" items="${watchList}">
- 
      <div>
-      
          <img src=/resources/latte.png" title="${list.movie_title}">      
          <span>상영관 ${list.screen_name}</span><br>
          <span>명수${list.ticket_total_person}</span><br>
          <span>영화시간 : ${list.movietime_time}</span>
-       
-
-        
      </div>
  </c:forEach>
 </body>
