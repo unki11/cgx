@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,10 +8,14 @@
 </head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
  <script src="https://code.jquery.com/jquery-3.4.1.js" type="text/javascript"></script>
+<<<<<<< HEAD
+ <style>
+=======
  <style type="text/javascript">
 
+>>>>>>> refs/remotes/origin/master
       p { margin:20px 0px; }
-    </style>
+ </style>
     <script>
 	$(function(){
 		$(".time").click(function(e){
@@ -90,7 +94,7 @@
 </ol>
     <div class="container">
       <div class="row">
-        <div class="col">
+        <div class="col-xs-4">
           <p>Tab</p>
             <ul class="nav nav-tabs">
               <li class="nav-item">
@@ -101,13 +105,14 @@
               </li>
             </ul>
             <div class="tab-content">
-              <div class="tab-pane fade show active" id="qwe">
-               <c:forEach var="cinema1" items="${cinema_list1}">
+             <div class="tab-pane fade show active" id="qwe">
+             <c:forEach var="cinema1" items="${cinema_list1}">
                <a href="?cinema_no=${cinema1.CINEMA_NO}">
 				<h3>${cinema1.CINEMA_AREA}</h3>
 				<h3>시네마 ${cinema1.CINEMA_NO}</h3>
 				</a>
 			</c:forEach>
+
               </div>
               <div class="tab-pane fade" id="asd">
                   <c:forEach var="cinema2" items="${cinema_list2}">
@@ -118,10 +123,9 @@
 				</a>
 				</c:forEach>
               </div>
-            </div>
-        </div>
-      </div>
-    </div>
+	          		
+          		
+          			
     <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
     	${cinemaDto}<br>
     	${cinemaDto.files_no}
