@@ -3,21 +3,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+<!-- 발표전 풀기
+<script> 
+	alert("공지사항입니다.")
+	alert("미흡하지만 이쁘게 봐주세요 !")
+</script>
+  -->
 
 
 <jsp:include page="header.jsp"></jsp:include> 
- <% request.setAttribute("id", "rladnsrl"); %>
+
 
 
       <!-- 헤더 끝 -->
       
 
       <h1>${sessionScope.id }</h1>
-      <h1>${id }</h1>
-      
-      
-      
-      
+
       
      <body>
     <div class="jumbotron">
@@ -98,7 +100,7 @@
       
       
       
-      <%=request.getAttribute("id") %>
+      
       
       
       <!-- 푸터시작 -->

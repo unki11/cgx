@@ -190,14 +190,21 @@ where
 	  
 </select>
 
-<insert id="wishinsert"> <!-- 지현이 추가 미완성 -->
-     INSERT INTO WISH(WISH_NO,MEMBER_NO,MOVIE_NO) values ('3',#{member_no},#{movie_no})
+<insert id="wishinsert" parameterType="map"> <!-- 지현이 추가 -->
+     INSERT INTO WISH(WISH_NO,MEMBER_NO,MOVIE_NO) values (movie_no_seq.nextval,#{member_no},#{movie_no})
 </insert>
 
+<select id="whishmember" parameterType="int" resultType="movieVO"> <!-- 지현이 추가  -->
+ select member_id from member where member_no= #{member_no}
+</select>
 
+<select id="check" parameterType="map" resultType="int">
+	select count(*) from wish where member_no = #{member_no} and movie_no = #{movie_no}
+</select>
 
-
-
+<delete id="deletewish" parameterType="map">
+	delete wish where member_no = #{member_no} and movie_no= #{movie_no}
+</delete>
 
 </mapper>
 

@@ -82,6 +82,10 @@ public class MovieDaoImpl implements MovieDao{
 		
 	}
 
+	public List<MovieVO> getList6() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("movie.whishmember");
+	}
 //	스틸컷
 	@Override
 	public List<StillcutVO> getStillcut(StillcutVO stillcutVO) {
@@ -99,7 +103,6 @@ public class MovieDaoImpl implements MovieDao{
 
 
 
-	
 
 	
 }
