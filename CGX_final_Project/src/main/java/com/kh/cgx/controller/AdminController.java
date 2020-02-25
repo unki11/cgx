@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.cgx.entity.admin.AdminCinemaDto;
@@ -145,7 +147,15 @@ public class AdminController {
 	}
 	
 	@PostMapping("/Cinema/adminInsert")
-	public String test2(@ModelAttribute AdminCinemaDto cinemaDto) {
+	public String test2(@ModelAttribute AdminCinemaDto cinemaDto,@RequestParam MultipartFile files) throws IllegalStateException, IOException {
+		int files_no = movieDao.file();
+		
+		File dir = new File("D:/upload/movie");
+		dir.mkdirs();//디렉터리 생성
+
+		File target = new File(dir, String.valueOf(files_no));
+		files.transferTo(target);
+		cinemaDto.setFiles_no(files_no);
 		cinemaDao.insert(cinemaDto);
 		return "redirect:/admin/Cinema/adminInsert";
 	}
@@ -175,9 +185,19 @@ public class AdminController {
 	}	
 	
 	@PostMapping("/Movie/adminInsert")
-	public String test2(@ModelAttribute MovieDto movieDto) {
+	public String test2(@ModelAttribute MovieDto movieDto,@RequestParam MultipartFile files) throws IllegalStateException, IOException {
+		int files_no = movieDao.file();
+		
+		File dir = new File("D:/upload/movie");
+		dir.mkdirs();//디렉터리 생성
+
+		File target = new File(dir, String.valueOf(files_no));
+		files.transferTo(target);
+		
+		movieDto.setFiles_no(files_no);
+		log.info("movieDto={}",movieDto);
 		movieDao.insert(movieDto);
-		log.info("movieDto");
+		
 		return "redirect:/admin/Movie/adminInsert";
 	}
 	

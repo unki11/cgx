@@ -6,7 +6,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/small-business.css">
 <head>
-<jsp:include page="../header.jsp"></jsp:include>
 <style>
 	.container{
 		text-align: center;
@@ -22,8 +21,13 @@
 		background-color: #efe4b0;
 	}
 </style>
+
+<title>예매내역</title>
 </head>
+<jsp:include page="../header.jsp"></jsp:include>
 		<!-- 헤더시작 -->
+	
+	
 
 <body>
 <!-- <h1 style="text-align: center;">예약확인 페이지입니다</h1> -->
@@ -58,7 +62,7 @@
 	            	<p class="card text-white bg-danger mb-3">확인하세요.</p>
         		</div>
     			</div>
-    		</c:forEach> --%>
+    		</c:forEach>
 	</div>
 	  <div>------------------------------------------------------</div>
 </body>

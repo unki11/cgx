@@ -45,6 +45,11 @@ public class AdminMovieDaoImpl implements AdminMovieDao{
 	public void update(MovieDto movieDto) {
 		sqlSession.update("movies.update", movieDto);
 		
+	}
+
+	@Override
+	public int file() {
+		return sqlSession.selectOne("cinema.files");
 	};
 	
 }

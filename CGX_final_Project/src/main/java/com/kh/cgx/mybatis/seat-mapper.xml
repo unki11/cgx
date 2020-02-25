@@ -6,12 +6,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="seat">
 	
-	<select id="search" resultType="Seat">
-		select * from seat where screen_no = 1 and seat_col <![CDATA[<=]]> 10 and seat_row  <![CDATA[<=]]> 10
+	<select id="search" resultType="Seat" parameterType="int">
+		select * from seat where screen_no = #{screen_no} order by seat_row,seat_col
 	</select>
 	
-	<select id="size" resultType="ScreenDto">
-		select * from screen where screen_no=1
+	<select id="size" resultType="ScreenDto" parameterType="int">
+		select * from screen where screen_no=#{screen_no}
 	</select>
 	
 <!-- 	<select id="getList" resultType="Seat">
@@ -20,8 +20,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         from seat a
 		where a.screen_no = 1 order by a.SEAT_ROW, a.SEAT_COL
 	</select> -->
+	<select id="seat" parameterType="int" resultType="Seat">
+		select * from ticket,ticket_seat,seat where ticket.ticket_no = ticket_seat.ticket_no and ticket_seat.seat_no = seat.seat_no and ticket.movietime_no = #{movietime_no}
+	</select>
 	
+	<select id="seatsearch" parameterType="Seat" resultType="int">
+		select seat_no from seat where screen_no = #{screen_no} and seat_row = #{seat_row} and seat_col= #{seat_col}
+	</select>
 	
+	<select id="ticket" resultType="int">
+		select ticket_no_seq.nextval ticket_no from dual
+	</select>
+	
+	<insert id="seatinsert" parameterType="Seat">
+		insert into seat values(
+			SEAT_NO_SEQ.nextval,
+			#{screen_no},
+			#{seat_row},
+			#{seat_col},
+			'0'
+		)
+	
+	</insert>
+	
+	<insert id="insertticket" parameterType="ticket">
+			insert into ticket values(
+			#{ticket_no},
+			#{member_no},
+			#{movietime_no},
+			'1232151123',
+			#{ticket_total_person}
+			)
+	</insert>
+	
+	<select id="insertticket_seat" parameterType="MovieTimeSeatVO">
+			insert into ticket_seat VALUES (
+			ticket_no_seq.nextval,
+			#{ticket_no},
+			#{seat_no}
+			)
+	</select>
+	
+	<delete id="seatdelete" parameterType="int">
+		delete from seat where screen_no=#{screen_no}
+	</delete>
 </mapper>
 
 
