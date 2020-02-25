@@ -3,9 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <head>
-<jsp:include page="../header.jsp"></jsp:include>
+
+<title>예매내역</title>
 </head>
+<jsp:include page="../header.jsp"></jsp:include>
 		<!-- 헤더시작 -->
+	
+	
 
 <body>
 <h1>reserve페이지입니다</h1>
