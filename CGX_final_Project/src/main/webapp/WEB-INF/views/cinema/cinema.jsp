@@ -79,8 +79,7 @@
 		border-radius: 10px 10px 10px 10px;
 		 }
 
-    	</style>
-    	
+    	</style> 	
   <body style="background-color: #f5f5dc;">
   <article>
   <h1>cinema페이지입니다</h1>	
@@ -107,7 +106,6 @@
                <a href="?cinema_no=${cinema1.CINEMA_NO}">
 				<h3>${cinema1.CINEMA_AREA}</h3>
 				<h3>시네마 ${cinema1.CINEMA_NO}</h3>
-				<h3><img src="download?file_no=${cinema1.FILES_NO}" width="200" height="150"></h3>
 				</a>
 			</c:forEach>
               </div>
@@ -116,7 +114,7 @@
                 <a href="?cinema_no=${cinema2.CINEMA_NO}">
 					<h3>${cinema2}</h3>
 					<h3>${cinema2.FILES_NO}</h3>
-					<h3><img src="${pageContext.request.contextPath}/download/img?file_no=${cinema2.FILES_NO}" width="200" height="150"></h3>
+					<h3><img src="${pageContext.request.contextPath}/download/img?files_no=${cinema2.FILES_NO}" width="200" height="150"></h3>
 				</a>
 				</c:forEach>
               </div>
@@ -124,6 +122,10 @@
         </div>
       </div>
     </div>
+    <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
+    	${cinemaDto}<br>
+    	${cinemaDto.files_no}
+    	<img src="${pageContext.request.contextPath}/download/img?files_no=${cinemaDto.files_no}" width="100%" height="500">
     <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
     	<div class="btn-toolbar" role="toolbar">
     	<c:forEach var="list" items="${timelist}">
@@ -149,7 +151,7 @@
     <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
     <input type="hidden" value="${cinema_no}" name="cinema_no">
     <c:forEach var="screen" items="${screen_list}">
-		<h1>${screen}</h1>
+		<h1>${screen.SCREEN_NAME}</h1>
 	</c:forEach>
 		
 
