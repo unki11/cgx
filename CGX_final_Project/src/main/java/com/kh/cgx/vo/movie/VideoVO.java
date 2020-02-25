@@ -11,5 +11,6 @@ public class VideoVO {
 	private String movie_title;
 	private String video_link;
 	private int movie_no;
+	private String video_id;
 	
 }

@@ -3,9 +3,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+<!-- 발표전 풀기
+<script> 
+	alert("공지사항입니다.")
+	alert("미흡하지만 이쁘게 봐주세요 !")
+</script>
+  -->
 
 
 <jsp:include page="header.jsp"></jsp:include> 
+
 
 
       <!-- 헤더 끝 -->

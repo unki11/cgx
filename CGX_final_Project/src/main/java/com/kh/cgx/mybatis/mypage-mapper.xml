@@ -71,6 +71,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      AND member.member_no = #{member_no}
  </select> 
  
+ <delete id="deleteUser" parameterType="int">
+ 	DELETE FROM member A
+        inner join ticket on ticket.member_no = A.member_no
+        inner join coupon on coupon.member_no = A.member_no
+         where A.member_no = #{member_no}
+ 	
+ </delete>
  
  
  

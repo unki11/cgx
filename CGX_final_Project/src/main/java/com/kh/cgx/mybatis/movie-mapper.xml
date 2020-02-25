@@ -161,6 +161,17 @@ where
 	
 	</select>
 
+	<select id="ageCount" resultType="ageVO" parameterType="int">
+	
+			select age * 10 age, count(*) cnt from (
+   		 select trunc(trunc(extract(year from sysdate)- trunc (to_number(member_birth / 10000))+1/10 )/10) age, member.* from member 
+		)A 
+			inner join ticket T on T.member_no = A.member_no
+			inner join movietime MT on MT.movietime_no = T.movietime_no
+			inner join (select * from movie where movie_no=#{movie_no}) MV on MV.movie_no = MT.movie_no
+	group by age
+	order by age
+	</select>
 
 <select id="movieSearch" resultType="movieVO">
 	SELECT MV.*, NVL(MV_SUB.REVIEW_CONTENT,' ') AS REVIEW_CONTENT
