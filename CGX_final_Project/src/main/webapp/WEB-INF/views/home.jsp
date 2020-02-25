@@ -12,9 +12,6 @@
 
 
 <jsp:include page="header.jsp"></jsp:include> 
-
-
-
       <!-- 헤더 끝 -->
       
 

@@ -76,14 +76,9 @@ public class CinemaController {
 				list.add(a);
 				list.add(b);
 				List.add(list);
-				System.out.println("list"+list);
 			}
 		}
-			
-		System.out.println("ScreenDto"+screenDto);
-		System.out.println("List"+List);
-		
-		model.addAttribute("seatall",List);
+		model.addAttribute("seatall", List);	
 		model.addAttribute("rowsize", screenDto.getScreen_rowsize());
 		model.addAttribute("colsize", screenDto.getScreen_colsize());
 		model.addAttribute("screen_no",screen_no);
@@ -92,7 +87,6 @@ public class CinemaController {
 	
 	@PostMapping("/screeninsert")
 	public String screeninsert2(@RequestParam List<String> seat,@RequestParam int screen_no) {
-		log.info("seat={}",seat);
 		
 		List<List<String>> List = new ArrayList<List<String>>();
 
@@ -147,7 +141,6 @@ public class CinemaController {
 			seat.add(1);
 			seatall.add(seat);
 		}
-		System.out.println("seatall"+seatall);
 		model.addAttribute("movietime_no", movietime_no);
 		model.addAttribute("seatset", seatreserved);
 		model.addAttribute("seatall", seatall);	
@@ -232,8 +225,10 @@ public class CinemaController {
 		List<ScreenDto> screen_list = sqlSession.selectList("screen.search",cinema_no);
 
 		model.addAttribute("screen_list", screen_list);
-		
+		CinemaDto cinemaDto = sqlSession.selectOne("cinema.one",cinema_no);
+		System.out.println(cinemaDto);
 		List<MovieTimeDto> movieTime_list = sqlSession.selectList("movietime.search",cinema_no);
+		model.addAttribute("cinemaDto",cinemaDto);
 		model.addAttribute("movietime_list", movieTime_list);
 		model.addAttribute("cinema_no",cinema_no);
 //		ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
