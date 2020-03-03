@@ -67,21 +67,26 @@ public class MypageController {
 
 		return "mypage/movielog";
 	}
-	
-	  @GetMapping("/movielog/watched") 
-	  public String watched(Model model,
-	  HttpSession session) {
-	  
-	  String id=(String) session.getAttribute("id"); 	
-	  MemberDto dto1 = new MemberDto();
-	  dto1.setMember_id(id);
-	//  System.out.println("id="+id);
-	  MemberDto dto=sqlSession.selectOne("member.login",dto1);
-	
-	  List<WatchedVO> list = sqlSession.selectList("mypage.watched",dto.getMember_no());
-	  model.addAttribute("watchList", list);
-	  
-	 return "mypage/watched"; }
+
+
+	@GetMapping("/movielog/watched")
+	public String watched(Model model, HttpSession session) {
+
+		/*
+		 * MemberDto memberdto = (MemberDto)session.getAttribute("MemberDto"); int
+		 * member_no = memberdto.getMember_no();
+		 */
+		String member_id = (String)session.getAttribute("id");
+		MemberDto memberDto = MemberDto.builder().member_id(member_id).build();
+		MemberDto dto = memberdao.login(memberDto);
+		int member_no = dto.getMember_no();
+		
+		List<WatchedVO> list = sqlSession.selectList("mypage.watched", member_no);
+		model.addAttribute("watchList", list);
+
+		return "mypage/watched";
+	}
+
 
 	@ResponseBody
 	@PostMapping("/delete/user")

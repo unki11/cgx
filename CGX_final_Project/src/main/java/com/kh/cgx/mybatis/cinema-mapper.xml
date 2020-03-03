@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="cinema">
 	
-	<select id="list" resultType="map" >
-		select * from cinema where cinema_no
+	<select id="one" resultType="CinemaDto" parameterType="int">
+		select * from cinema where cinema_no = #{cinema_no}
 	</select>
 	
 	<select id="search" resultType="map" parameterType="string">

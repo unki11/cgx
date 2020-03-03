@@ -19,23 +19,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DownloadController {
 
 	@GetMapping("/img")
-	public ResponseEntity<ByteArrayResource> download(@RequestParam int file_no) throws IOException{
+	public ResponseEntity<ByteArrayResource> download(@RequestParam int files_no) throws IOException{
 //		ResponseEntity : 스프링에서 응답해줄 데이터가 담긴 상자
 //		ByteArrayResource : 스프링에서 관리할 수 있는 Byte 형식의 데이터셋
-		File directory = new File("C:/upload/cinema");
-		
+		File directory = new File("D:/upload/cinema");
+		System.out.println("files_no : "+files_no);
 		directory.mkdirs();
-		File file = new File(directory, String.valueOf(file_no));
+		File file = new File(directory, String.valueOf(files_no));
 		byte[] data = FileUtils.readFileToByteArray(file);
 //		실제파일을 불러온다 : physicalFileDao
 //		헤더설정 및 전송은 스프링의 방식으로 진행
 		ByteArrayResource resource = new ByteArrayResource(data);
-		
+		System.out.println("files : "+data);
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("attachment;");
 		buffer.append("filename=");
 		buffer.append("\"");
-		buffer.append(URLEncoder.encode(String.valueOf(file_no), "UTF-8"));
+		buffer.append(URLEncoder.encode(String.valueOf(files_no), "UTF-8"));
 		buffer.append("\"");
 		
 		return ResponseEntity.ok()
