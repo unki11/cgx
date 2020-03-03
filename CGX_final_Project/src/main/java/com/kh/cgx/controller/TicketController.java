@@ -35,7 +35,6 @@ import com.kh.cgx.repository.movie.VideoDao;
 import com.kh.cgx.vo.movie.AgeVO;
 import com.kh.cgx.vo.movie.AreaVO;
 import com.kh.cgx.vo.movie.MovieActorVO;
-
 import com.kh.cgx.vo.movie.SelectMovieTimeVO;
 import com.kh.cgx.vo.movie.StillcutVO;
 import com.kh.cgx.vo.movie.VideoVO;
@@ -105,31 +104,65 @@ public class TicketController {
 		
 		
 		@GetMapping("/stepDateTime")
-//	 	상영 시간표 리스트
-	public ModelAndView ticket3(@ModelAttribute SelectMovieTimeVO selectMovieTimeVO) {
+//	 	상영 시간표 리스트 전 날짜 선택
+	public String ticket4(
+			@RequestParam(value="date" ,required=false) String date,
+			@RequestParam int cinema_no,
+			@RequestParam int movie_no,
+			Model model) {
  
 //			selectMovieTimeVO.setCinema_area(cinema_area);
 //			selectMovieTimeVO.setMovie_no(movie_no);
 			
-			List<SelectMovieTimeVO> timeList =mainTicketDao.timeList(selectMovieTimeVO); 
-			ModelAndView mv = new ModelAndView();
-			mv.addObject("timeList", timeList);
-			mv.addObject("cinema_area", selectMovieTimeVO.getCinema_area());
-			mv.addObject("movie_no", selectMovieTimeVO.getMovie_no());
+//			List<SelectMovieTimeVO> timeList =mainTicketDao.timeList(selectMovieTimeVO); 
+//			ModelAndView mv = new ModelAndView();
+//			mv.addObject("timeList", timeList);
+//			mv.addObject("cinema_no", selectMovieTimeVO.getCinema_no());
+//			mv.addObject("movie_no", selectMovieTimeVO.getMovie_no());
+//			mv.addObject("date", selectMovieTimeVO.getDate());
 			
 			
 			Map<String,Object> dateMap = new HashMap<String, Object>();
-			dateMap.put("cinema_area",selectMovieTimeVO.getCinema_area());
-			dateMap.put("movie_no",selectMovieTimeVO.getMovie_no());
-			dateMap.put("timeList", timeList);
-			mv.addObject("dateMap", dateMap);
-			mv.setViewName("ticket/dateTime");
+			dateMap.put("cinema_no",cinema_no);
+			dateMap.put("movie_no",movie_no);
+//			dateMap.put("timeList", timeList);
+			dateMap.put("date", date);
+			
+			List<SelectMovieTimeVO> list = sqlSession.selectList("ticket.timeCut", dateMap);
+			
+			model.addAttribute("list", list);
+//			mv.addObject("dateMap", dateMap);
+//			mv.setViewName("ticket/dateTime");
 			
 		
-		 return mv;
+		 return "ticket/dateTime";
 		}
 	
-	
+//	@GetMapping("stepTime")
+//// 	상영 시간표 리스트
+//public ModelAndView ticket3(@ModelAttribute SelectMovieTimeVO selectMovieTimeVO) {
+//
+////		selectMovieTimeVO.setCinema_area(cinema_area);
+////		selectMovieTimeVO.setMovie_no(movie_no);
+//		
+//		List<SelectMovieTimeVO> timeList2 =mainTicketDao.timeList2(selectMovieTimeVO); 
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("timeList2", timeList2);
+//		mv.addObject("cinema_area", selectMovieTimeVO.getCinema_area());
+//		mv.addObject("movie_no", selectMovieTimeVO.getMovie_no());
+//		mv.addObject("day", selectMovieTimeVO.getDay());
+//		
+//		Map<String,Object> dateMap = new HashMap<String, Object>();
+//		dateMap.put("cinema_area",selectMovieTimeVO.getCinema_area());
+//		dateMap.put("movie_no",selectMovieTimeVO.getMovie_no());
+//		dateMap.put("timeList2", timeList2);
+//		dateMap.put("day", selectMovieTimeVO.getDay());
+//		mv.addObject("dateMap", dateMap);
+//		mv.setViewName("ticket/dateTime");
+//		
+//	
+//	 return mv;
+//	}
 	
 	@GetMapping("/download")
 	public ResponseEntity<ByteArrayResource> download(@RequestParam int files_no) throws IOException{
@@ -252,4 +285,57 @@ public class TicketController {
 		
 		return "ticket/detail";
 	}
+	
+	
+	/**
+	 * 상영시간표를 사용자에게 출력해주기 위한 처리
+	 * 필요한 파라미터 : 
+	 * 	- 상영일 : date
+	 * - 상영지점번호 : cinema_no
+	 * - 영화번호 : movie_no
+	 * - sql 구문 : 
+	 * 		select 
+	 * 			movietime.* 		
+	 *		from 
+	 *				movietime + movie + screen + cinema
+	 *		where 
+	 *				movietime.movietime_start = ? 
+	 *				and 
+	 *				cinema.cinema_no=? 
+	 *				and 
+	 *				movie.movie_no=? 
+	 *		order by 
+	 *				movietime.movietime_start asc
+	 */
+	@GetMapping("/step_time")
+	public String stepTime(
+				//요청 파라미터
+				@RequestParam(value="date" ,required=false) String date,
+				@RequestParam int cinema_no,
+				@RequestParam int movie_no,
+				//전달을 위한 도구
+				Model model
+			) {
+		
+//		List<SelectMovieTimeVO> timeList =mainTicketDao.timeList(selectMovieTimeVO);
+		
+		Map<String, Object> param = new HashMap<>();
+		param.put("cinema_no", cinema_no);
+		param.put("movie_no", movie_no);
+		param.put("date", date);
+//		param.put("timeList", timeList);
+		List<MovieTimeDto> list = sqlSession.selectList("ticket.getMovietimeListByCinemaAndMovieAndDate", param);
+		
+		model.addAttribute("list", list);
+		
+		return "ticket/time";
+	}
 }
+
+
+
+
+
+
+
+

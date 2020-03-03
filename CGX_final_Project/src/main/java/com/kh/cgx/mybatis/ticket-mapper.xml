@@ -67,14 +67,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <select id="timeCut" resultType="timeCut" parameterType="map">
 select
-    screen.* ,
-    to_char(movietime.movietime_time,'HH24:MI') movie_hour 
+    movie.* ,
+    cinema.*,
+    screen.*
+    
+<!--      to_char(movietime.movietime_time,'YYYY-MM-DD') day -->
 from
     screen
    inner join movietime on screen.screen_no = movietime.screen_no
    inner join cinema on screen.cinema_no = cinema.cinema_no
    inner join movie on movietime.movie_no = movie.movie_no
-   where movietime.movie_no = #{movie_no} and cinema.cinema_area =#{cinema_area}
+   where movietime.movie_no = #{movie_no} and cinema.cinema_no =#{cinema_no}
+<!-- 	and to_char(movietime.movietime_time, 'YYYY-MM-DD') = #{date}  -->
+<!--      and  movietime.movietime_time= #{day} -->
 </select>
+
+
+
+
+	<!-- 상영시간표 조회 구문 -->
+	<select id="getMovietimeListByCinemaAndMovieAndDate" parameterType="map" resultType="MovieTimeDto">
+			select 
+	  			SC.*,
+	  			MT.*,
+	  			to_char(MT.movietime_time,'HH24:MI') movie_hour 
+	 		from 
+	 				movietime MT
+	 					inner join screen SC on MT.screen_no = SC.screen_no
+	 					inner join Cinema CI on SC.cinema_no = CI.cinema_no
+	 					inner join Movie MV on MT.movie_no = MV.movie_no
+	 		where 
+	 				<!-- to_char(?, 'YYYY-MM-DD') 를 사용하면 시간이 2020-02-27 과 같이 문자열로 변환됨 -->
+	 				to_char(MT.movietime_time, 'YYYY-MM-DD') = #{date} 
+	 				and 
+	 				CI.cinema_no = #{cinema_no} 
+	 				and 
+	 				MV.movie_no = #{movie_no} 
+	 		order by 
+	 				MT.movietime_time asc
+	</select>
+
+
 
 </mapper>
