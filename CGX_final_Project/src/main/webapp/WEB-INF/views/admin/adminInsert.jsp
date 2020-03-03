@@ -18,19 +18,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>매니저 등록 페이지</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
- 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css">
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
  
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="${pageContext.request.contextPath}/resources/js/crypto/secom.js"></script>
+<script src="${pageContext.request.contextPath}/resources/secom.js"></script>
 <style>
 	body{
 		margin-top: 150px;
-		
+		background-image: url("${pageContext.request.contextPath}/resources/img/all.jpg");
+		background-size: cover;
+	}
+	html{
+		background-image: url("${pageContext.request.contextPath}/resources/img/latte2.png");
+		background-repeat: no-repeat;
+		background-position: top;
 	}
 	
 	.container{
@@ -38,10 +45,13 @@
 		text-align: center;
 		color: black;
 	}
+	.fadeIn fourth{
+        background-color: red;
+    }
 </style>
 </head>
 <body>
-<div class="container">
+<%-- <div class="container">
 <table class="table table-bordered">
     <thead>
         <caption> 매니저 등록  </caption>
@@ -72,14 +82,38 @@
             <tr>
                 <td colspan="2" >
                     <input type="submit" value="매니저등록하기" style="color: black;">
-                    <!-- <a class="btn btn-default" onclick="sendData()"> 등록 </a>
-                    <a class="btn btn-default" type="reset"> reset </a>
-                    <a class="btn btn-default" onclick="javascript:location.href='list.jsp'">글 목록으로...</a> -->
                 </td>
             </tr>
         </form>
     </tbody>
 </table>
+</div> --%>
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="${pageContext.request.contextPath}/resources/img/latte2.png" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form action="adminInsert" method="post">
+      <input type="text" id="login" class="fadeIn second" name="admin_id" placeholder="매니저아이디" required>
+      <input type="password" id="password" class="fadeIn third" name="admin_pw" placeholder="매니저비밀번호" required>
+      <input type="text" id="login" class="fadeIn second" name="admin_grade" placeholder="매니저등급" required>
+      <input type="submit" class="fadeIn fourth" value="매니저등록하기 " style="background-color: red;">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="/com.kh.cgx/admin/adminList">
+      	<input class="btn btn-info" value="매니저목록보기">
+      </a>
+    </div>
+
+  </div>
 </div>
 </body>
 </html>

@@ -15,12 +15,22 @@
         
         .bg-1light{
             background-color: #efe4b0;
+            font-size: large;
         }
         .menu{
         	
         	text-align: right;
         }
-        
+        .image{
+			height: 150px;
+			width: 100%;
+		}
+		.btn{
+			margin-left: 150px;
+			bottom: 600px;
+			display: inline-block;	
+		}
+		
     </style>
     <script type="text/javascript">
     
@@ -42,10 +52,10 @@
 	<div class="menu">
          <a class="click" href="${pageContext.request.contextPath}/user/login" style="padding: 1rem;"> 로그인</a>
          <a class="click" href="${pageContext.request.contextPath}/user/join" style="padding: 1rem;"> 회원가입</a>
-         <a class="click" href="${pageContext.request.contextPath}/mypage/mycgv" style="padding: 1rem;"> my cgv</a>
+         <a class="click" href="${pageContext.request.contextPath}/mypage/mycgv" style="padding: 1rem;"> My cgx</a>
     </div>	
-   <nav class="navbar navbar-expand-lg navbar-light bg-1light">
-        <a class="navbar-brand" href="http://localhost:8080/com.kh.cgx/"><img src="${pageContext.request.contextPath}/resources/img/latte2.png"></a>
+   <nav class="navbar navbar-expand-lg navbar-light bg-1light"><a href="http://localhost:8080/com.kh.cgx/"><img src="${pageContext.request.contextPath}/resources/img/latte2.png" class="image"></a>
+        <a class="navbar-brand" href="http://localhost:8080/com.kh.cgx/"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -92,9 +102,9 @@
             </li>
             
           </ul>
-            <input class="form-control mr-sm-2" type="text" id="keyWord" placeholder="영화검색" aria-label="Search" style="width: 200px;">
-            <button class="btn btn-danger" onclick="fn_search()">검색하기</button>
+            <input class="form-control mr-md-3" type="text" id="keyWord" placeholder="영화검색" aria-label="Search" style="width: 250px; margin-top: 35px;">
         </div>
+            <button class="btn btn-danger" onclick="fn_search()" style="margin-right: 50px;">검색하기</button>
       </nav>
       
       <!-- 헤더 끝 -->

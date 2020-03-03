@@ -82,7 +82,7 @@ public class AdminController {
 	public String test2(@ModelAttribute AdminDto adminDto) {
 		adminDto.setAdmin_pw(encoder.encode(adminDto.getAdmin_pw()));
 		adminDao.insert(adminDto);
-		return "redirect:/admin/adminInsert";
+		return "redirect:/admin/adminLogin";
 	}
 	
 	@PostMapping("/adminUpdate")
