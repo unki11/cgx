@@ -86,7 +86,7 @@ from
 
 
 	<!-- 상영시간표 조회 구문 -->
-	<select id="getMovietimeListByCinemaAndMovieAndDate" parameterType="map" resultType="MovieTimeDto">
+	<select id="getMovietimeListByCinemaAndMovieAndDate" parameterType="map" resultType="ticketVO">
 			select 
 	  			SC.*,
 	  			MT.*,
