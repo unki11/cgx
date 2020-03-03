@@ -37,6 +37,7 @@ import com.kh.cgx.vo.movie.AreaVO;
 import com.kh.cgx.vo.movie.MovieActorVO;
 import com.kh.cgx.vo.movie.SelectMovieTimeVO;
 import com.kh.cgx.vo.movie.StillcutVO;
+import com.kh.cgx.vo.movie.TicketVO;
 import com.kh.cgx.vo.movie.VideoVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -324,7 +325,7 @@ public class TicketController {
 		param.put("movie_no", movie_no);
 		param.put("date", date);
 //		param.put("timeList", timeList);
-		List<MovieTimeDto> list = sqlSession.selectList("ticket.getMovietimeListByCinemaAndMovieAndDate", param);
+		List<TicketVO> list = sqlSession.selectList("ticket.getMovietimeListByCinemaAndMovieAndDate", param);
 		
 		model.addAttribute("list", list);
 		
