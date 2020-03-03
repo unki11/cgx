@@ -64,6 +64,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="seatdelete" parameterType="int">
 		delete from seat where screen_no=#{screen_no}
 	</delete>
+	
+	<update id="updateticket" parameterType="map">
+		update ticket set ticket_total_person = #{ticket_total_person} where ticket_no = #{ticket_no}
+	</update>
 </mapper>
 
 

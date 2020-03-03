@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,10 +8,14 @@
 </head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
  <script src="https://code.jquery.com/jquery-3.4.1.js" type="text/javascript"></script>
+<<<<<<< HEAD
+ <style>
+=======
  <style type="text/javascript">
 
+>>>>>>> refs/remotes/origin/master
       p { margin:20px 0px; }
-    </style>
+ </style>
     <script>
 	$(function(){
 		$(".time").click(function(e){
@@ -79,8 +83,7 @@
 		border-radius: 10px 10px 10px 10px;
 		 }
 
-    	</style>
-    	
+    	</style> 	
   <body style="background-color: #f5f5dc;">
   <article>
   <h1>cinema페이지입니다</h1>	
@@ -91,7 +94,7 @@
 </ol>
     <div class="container">
       <div class="row">
-        <div class="col">
+        <div class="col-xs-4">
           <p>Tab</p>
             <ul class="nav nav-tabs">
               <li class="nav-item">
@@ -102,28 +105,31 @@
               </li>
             </ul>
             <div class="tab-content">
-              <div class="tab-pane fade show active" id="qwe">
-               <c:forEach var="cinema1" items="${cinema_list1}">
+             <div class="tab-pane fade show active" id="qwe">
+             <c:forEach var="cinema1" items="${cinema_list1}">
                <a href="?cinema_no=${cinema1.CINEMA_NO}">
 				<h3>${cinema1.CINEMA_AREA}</h3>
 				<h3>시네마 ${cinema1.CINEMA_NO}</h3>
-				<h3><img src="download?file_no=${cinema1.FILES_NO}" width="200" height="150"></h3>
 				</a>
 			</c:forEach>
+
               </div>
               <div class="tab-pane fade" id="asd">
                   <c:forEach var="cinema2" items="${cinema_list2}">
                 <a href="?cinema_no=${cinema2.CINEMA_NO}">
 					<h3>${cinema2}</h3>
 					<h3>${cinema2.FILES_NO}</h3>
-					<h3><img src="${pageContext.request.contextPath}/download/img?file_no=${cinema2.FILES_NO}" width="200" height="150"></h3>
+					<h3><img src="${pageContext.request.contextPath}/download/img?files_no=${cinema2.FILES_NO}" width="200" height="150"></h3>
 				</a>
 				</c:forEach>
               </div>
-            </div>
-        </div>
-      </div>
-    </div>
+	          		
+          		
+          			
+    <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
+    	${cinemaDto}<br>
+    	${cinemaDto.files_no}
+    	<img src="${pageContext.request.contextPath}/download/img?files_no=${cinemaDto.files_no}" width="100%" height="500">
     <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
     	<div class="btn-toolbar" role="toolbar">
     	<c:forEach var="list" items="${timelist}">
@@ -149,7 +155,7 @@
     <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
     <input type="hidden" value="${cinema_no}" name="cinema_no">
     <c:forEach var="screen" items="${screen_list}">
-		<h1>${screen}</h1>
+		<h1>${screen.SCREEN_NAME}</h1>
 	</c:forEach>
 		
 
