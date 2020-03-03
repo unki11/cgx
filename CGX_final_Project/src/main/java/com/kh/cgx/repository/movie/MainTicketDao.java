@@ -17,6 +17,7 @@ public interface MainTicketDao {
 	
 	List<AreaVO> getAreaAndCinemaList(int movie_no);
 
-	List<SelectMovieTimeVO> timeList(SelectMovieTimeVO selectMovieTimeVO);
+//	List<SelectMovieTimeVO> timeList(SelectMovieTimeVO selectMovieTimeVO);
 
+//	List<SelectMovieTimeVO> timeList2(SelectMovieTimeVO selectMovieTimeVO);
 }
