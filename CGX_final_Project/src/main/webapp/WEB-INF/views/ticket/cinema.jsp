@@ -3,9 +3,16 @@
 
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
+    <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+ 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+	<script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
+	<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
     
-    
-    
+    </head> 
+         
          <style>
         * {
             box-sizing: border-box;
@@ -70,7 +77,11 @@
         }
 
     </style>
+   
     
+    
+    
+
     
     <div class="section theater-section">
    		<!-- col-head -->
@@ -89,7 +100,9 @@
     								${areaList.name }
     								<ul>
     								<c:forEach  var="cinemaDto" items="${areaList.list}">
-    									<a href="stepDateTime?movie_no=${areaList.movie_no}&cinema_area=${cinemaDto.cinema_area}"><li>${cinemaDto.cinema_area }</li></a>
+    									 <a href="stepDateTime?movie_no=${areaList.movie_no}&cinema_no=${cinemaDto.cinema_no}">
+    									 <li>${cinemaDto.cinema_area }</li>
+    									 </a>
     								</c:forEach>
     								</ul>
     							</li>	
@@ -101,3 +114,4 @@
     		</div>
     		
    		</div>
+	

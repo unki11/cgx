@@ -40,12 +40,20 @@ public class MainTicketDaoImpl implements MainTicketDao{
 		return sqlSession.selectList("ticket.getAreaAndCinemaList",movie_no);
 	}
 
-	@Override
-	public List<SelectMovieTimeVO> timeList(SelectMovieTimeVO selectMovieTimeVO){
-		
-		return sqlSession.selectList("ticket.timeCut",selectMovieTimeVO);
-	}
+//	@Override
+//	public List<SelectMovieTimeVO> timeList(SelectMovieTimeVO selectMovieTimeVO){
+//		
+//		return sqlSession.selectList("ticket.getMovietimeListByCinemaAndMovieAndDate",selectMovieTimeVO);
+//	}
 
+//	@Override
+//	public List<SelectMovieTimeVO> timeList2(SelectMovieTimeVO selectMovieTimeVO) {
+//		
+//		return sqlSession.selectList("ticket.timeCut2",selectMovieTimeVO);
+//	}
+
+	
+	
 
 
 

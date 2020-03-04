@@ -5,7 +5,6 @@
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
-  
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <script>
 	$(document).ready(function() {
@@ -68,10 +67,13 @@
 		})
 		
 	});
-/*  	alert("공지사항입니다 ");
-	alert("금일 정기 점검있습니다. 점검일시: 2020-02-24 18:00 ~ 2020-02-24 24:00"); */
 </script>    
-				
+<style>
+	body{
+		background-image: url("${pageContext.request.contextPath}/resources/img/all.jpg");
+	}
+
+</style>			
 			
 			
 
@@ -90,7 +92,7 @@
 </c:forEach> --%>
 <html>
 <body>
-    <div class="container">
+    <div class="container" style="text-align: center;">
       <div class="row">
         <div class="col-12">
           <h1>매니저 목록</h1>
@@ -98,10 +100,11 @@
           <c:forEach var="adminDto" items="${list}">
 	          <div>
 	            <li class="no">${adminDto.admin_no}</li>
-	            <li class="list-group-item">${adminDto.admin_id}</li>
+	            <li class="list-group-item-danger active">${adminDto.admin_id}</li>
 	            <li class="grade">${adminDto.admin_grade}</li>
-	            <button class="update">수정</button>
-	            <button class="delete">삭제</button>
+	            <button class="update btn btn-warning">수정</button>
+	            <button class="delete btn btn-danger">삭제</button>
+	            <br><br>
 	           </div>
            </c:forEach>
           </ul>

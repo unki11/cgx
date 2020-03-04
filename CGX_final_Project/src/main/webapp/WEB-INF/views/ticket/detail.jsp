@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="../header.jsp"></jsp:include> 
  <head>
  
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -54,6 +55,11 @@ a.video span{
 @media screen and {
     a.video span{
         background-size: 20%;
+ }
+ 
+#container{
+    background-color: #fdfcf0;
+}
  
  
  </style>
@@ -159,9 +165,9 @@ chart.render();
 
  </script>
 
- <body>
- <div id="info-all" align="center">
-    <h1>상세정보</h1>
+
+ <div id="container" align="center">
+    <h1>영화상세</h1>
     <br><br>
     <div class="movie-info">
     	<a href="detail?movie_no=${movieActorVO.movie_no}"><img src="download?files_no=${movieActorVO.files_no }"></a>
@@ -204,7 +210,7 @@ chart.render();
         </a>
       
     </div>
-<br><br><br><br><br><br><br><br>
+
     </c:forEach>
 	
 	<!-- 무비 트레일러 끝 -->
@@ -263,11 +269,14 @@ chart.render();
 	<br><br><br><br><br><br><br><br><br><br>
 	
 </div>
-</body>
+
+	
+ 
+
 	
 
  
-	
+	<jsp:include page="../footer.jsp"></jsp:include> 
 
 
   

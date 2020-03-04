@@ -4,7 +4,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.io.Console;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -47,7 +49,7 @@ public class KaKaoPayController {
 		
 		int ticket_no = sqlSession.selectOne("seat.ticket");
 		int screen_no = sqlSession.selectOne("movietime.screen_no",movietime_no);
-		int member_no = 2;
+		int member_no = 1;
 		String partner_order_id = String.valueOf(ticket_no);
 		String partner_user_id = String.valueOf(member_no);
 		String item_name = sqlSession.selectOne("movietime.movietitle",movietime_no);
@@ -55,13 +57,12 @@ public class KaKaoPayController {
 		int total_amount = quantity*10000;
 		
 		String ticket_buy_no = "12312312316571";
-		int ticket_total_person = seat.size();	
 		
 		 TicketDto ticketdto = TicketDto.builder().ticket_no(ticket_no)
 							.member_no(member_no)
 							.movietime_no(movietime_no)
 							.ticket_buy_no(ticket_buy_no)
-							.ticket_total_person(ticket_total_person).build();
+							.ticket_total_person(0).build();
 		sqlSession.insert("seat.insertticket",ticketdto);
 		
 		KakaoPayReadyVO kakaoPayReadyVO = KakaoPayReadyVO.builder()
@@ -108,6 +109,12 @@ public class KaKaoPayController {
 		int ticket_no = (int) session.getAttribute("ticket_no");
 		int screen_no = (int) session.getAttribute("screen_no");
 		List<String> seat = (List<String>) session.getAttribute("seat");
+		int ticket_total_person = seat.size();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("ticket_no", ticket_no);
+		map.put("ticket_total_person", ticket_total_person);
+		sqlSession.update("seat.updateticket",map);
+		
 		List<List<String>> List = new ArrayList<List<String>>();
 
 		for(int i = 0; i<seat.size(); i++) {

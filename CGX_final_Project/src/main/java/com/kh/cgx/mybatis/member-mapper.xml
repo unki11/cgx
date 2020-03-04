@@ -81,7 +81,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		member_name = #{member_name}, member_phone = #{member_phone}, member_birth = #{member_birth}, member_sex = #{member_sex} where member_id=#{member_id}
 	</update>
 	<!-- Added End -->
-	
+
 </mapper>
 
 
