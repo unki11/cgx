@@ -16,7 +16,7 @@
     </script>
     <style>
     	.w-70{
-    		width:70%;	
+    		width:90%;	
     	}
     	article{
     		margin:auto;
@@ -25,7 +25,6 @@
 </head>
 <body>
 <article class="w-70">
-${seatall}
     <form action="${pagecontext.request.contextpath}/com.kh.cgx/pay/kakao/info" method="post">
         <div class="cinema-wrap" data-name="seat" data-rowsize="${rowsize}" data-colsize="${colsize }" style="width:922px;">
             <div class="cinema-screen">스크린</div>

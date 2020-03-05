@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.cgx.entity.movie.MovieDto;
 import com.kh.cgx.vo.movie.AgeVO;
@@ -79,12 +80,20 @@ public class MovieDaoImpl implements MovieDao{
 		param.put("member_no", member_no);
 		param.put("movie_no", movie_no);
 		sqlSession.insert("movies.wishinsert", param);
+	}
+	
+	@Override
+	public void delete(int member_no, int movie_no) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("member_no", member_no);
+		param.put("movie_no", movie_no);
+		sqlSession.delete("movies.deletewish",param);
 		
 	}
-
-	public List<MovieVO> getList6() {
+	@Override
+	public List<MovieVO> getList6(int member_no) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("movie.whishmember");
+		return sqlSession.selectList("movies.whishmember", member_no);
 	}
 //	스틸컷
 	@Override
@@ -99,6 +108,9 @@ public class MovieDaoImpl implements MovieDao{
 		return sqlSession.selectList("movies.ageCount",movie_no);
 		
 	}
+
+
+
 
 
 

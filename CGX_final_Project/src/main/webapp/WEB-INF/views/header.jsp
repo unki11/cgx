@@ -5,12 +5,20 @@
 <html>
 <head>
 	<title>Home</title>
+
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <!--   <script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"  type="text/javascript"></script> -->
-<!--   <script src="http://code.jquery.com/jquery-1.11.1.js" type="text/javascript"></script> -->
-  <script src="https://code.jquery.com/jquery-3.4.1.js" ></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<!--
+   <script src="https://code.jquery.com/jquery-3.4.1.js" ></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
+    
+<!--     <script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"  type="text/javascript"></script> -->
+<!--   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+<!--   <script src="http://code.jquery.com/jquery-1.11.1.js" type="text/javascript"></script> -->
+<!--     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
     <style>
         
         .bg-1light{
@@ -53,6 +61,7 @@
          <a class="click" href="${pageContext.request.contextPath}/user/login" style="padding: 1rem;"> 로그인</a>
          <a class="click" href="${pageContext.request.contextPath}/user/join" style="padding: 1rem;"> 회원가입</a>
          <a class="click" href="${pageContext.request.contextPath}/mypage/mycgv" style="padding: 1rem;"> My cgx</a>
+         <a class="click" href="${pageContext.request.contextPath}/user/logout" style="padding: 1rem;"> 로그아웃</a>
     </div>	
    <nav class="navbar navbar-expand-lg navbar-light bg-1light"><a href="http://localhost:8080/com.kh.cgx/"><img src="${pageContext.request.contextPath}/resources/img/latte2.png" class="image"></a>
         <a class="navbar-brand" href="http://localhost:8080/com.kh.cgx/"></a>
@@ -67,8 +76,8 @@
               aria-expanded="false">영화
             </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">무비차트</a>
-                <a class="dropdown-item" href="#">HD 트레일러</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/movie/">무비차트</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/movie/trailer">HD 트레일러</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">무비파인더</a>
               </div>
@@ -87,7 +96,7 @@
                 극장
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">CGV극장</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/cinema/">CGV극장</a>
                 <a class="dropdown-item" href="#">특별관</a>
               </div>  
             </li>

@@ -2,13 +2,8 @@
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
- 
-<jsp:include page="../header.jsp"></jsp:include>    
-
-        <script src="https://code.jquery.com/jquery-3.4.1.js" ></script>
-        
-        
-        
+<jsp:include page="../header.jsp"></jsp:include>
+<head>        
         <style>
         * {
 	box-sizing: border-box;
@@ -226,6 +221,7 @@ input, select, img {
     margin-top: 7px;
 }
 
+
 .score {
     font-size: 11px;
 }
@@ -315,27 +311,31 @@ input, select, img {
  
     
         </style>
-        
-        <script>
+  </head>         
+         <script>
 $(function(){
 	$(".wish").click(function(e){
 		var value = (this).value;
-		console.log(value)
+		console.log(value);
 		$.ajax({
-			url:"movielog?movie_no="+value,
+			url:"likeupdate?movie_no="+value,
 			type:"get",
 			dataType :"json",
 	 		success:function(data){
 	 			console.log(data);
-	 			if(data == true){
+	 			var result = data;
+	 			console.log(data.code);
+	 			if(result.code == "true"){
 	 				alert("위시리스트에 저장되었습니다.");
-	 			}else{
+	 				window.location.reload(true);
+	 			}else if(result.code == "false"){
 	 				alert("위시리스트 삭제.");
+	 				window.location.reload(true);
 	 			} 
 
 			}
 		});
-	})
+	});
 });
 	
 
@@ -374,7 +374,7 @@ $(function(){
 <%-- <button class="wish" value="${list.movie_no}">좋아요</button> <!-- 지현이추가 --> --%>
 <a href="detail?movie_no=${list.movie_no}">
 		<span class="thumb-image">                          
-			<img src="download?files_no=${list.files_no }" style="width: 185px; height: 260px">
+			<img src="${pageContext.request.contextPath}/download/img?files_no=${list.files_no }" style="width: 185px; height: 260px">
 		</span>
 		</a>
 		
@@ -385,11 +385,14 @@ $(function(){
  		</div>
  <span class="txt-info"><strong>개봉 :  ${list.movie_startdate}</strong></span>
  
- <span class="like">
-	<button id="wish${list.movie_no}" value="${list.movie_no}" onclick="fn_wish(this.value)">좋아요</button> <!-- 지현이추가 -->
-	<button>예매</button>
-</span>
-	</div>
+ 
+<%-- <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
+	
+	</button> <!-- 지현이추가 --> 
+<h3>${list.movie_wish }</h3>
+	<button>예매</button> --%>
+
+	</div>	
 	</div>
 		</li>
 </c:forEach>
@@ -430,7 +433,7 @@ $(function(){
 
 
 	<ol>
-<c:forEach var="list" items="${list }" begin="8" end="11">
+<c:forEach var="list" items="${list }" begin="8" >
 
 		<li>
 	<div  class="box-image">
@@ -467,3 +470,6 @@ $(function(){
 </body>
 
 <jsp:include page="../footer.jsp"></jsp:include> 
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+ <script src="https://code.jquery.com/jquery-3.4.1.js" ></script>

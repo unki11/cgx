@@ -6,14 +6,10 @@
     <meta charset="UTF-8">
     <title>극장</title>
 </head>
+
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
  <script src="https://code.jquery.com/jquery-3.4.1.js" type="text/javascript"></script>
-<<<<<<< HEAD
  <style>
-=======
- <style type="text/javascript">
-
->>>>>>> refs/remotes/origin/master
       p { margin:20px 0px; }
  </style>
     <script>
@@ -84,7 +80,7 @@
 		 }
 
     	</style> 	
-  <body style="background-color: #f5f5dc;">
+  <body>
   <article>
   <h1>cinema페이지입니다</h1>	
   <ol class="breadcrumb">
@@ -105,7 +101,7 @@
               </li>
             </ul>
             <div class="tab-content">
-             <div class="tab-pane fade show active" id="qwe">
+             <div class="tab-pane fade show active" style="width: 100px" id="qwe">
              <c:forEach var="cinema1" items="${cinema_list1}">
                <a href="?cinema_no=${cinema1.CINEMA_NO}">
 				<h3>${cinema1.CINEMA_AREA}</h3>
@@ -118,8 +114,7 @@
                   <c:forEach var="cinema2" items="${cinema_list2}">
                 <a href="?cinema_no=${cinema2.CINEMA_NO}">
 					<h3>${cinema2}</h3>
-					<h3>${cinema2.FILES_NO}</h3>
-					<h3><img src="${pageContext.request.contextPath}/download/img?files_no=${cinema2.FILES_NO}" width="200" height="150"></h3>
+
 				</a>
 				</c:forEach>
               </div>
@@ -127,9 +122,9 @@
           		
           			
     <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
-    	${cinemaDto}<br>
     	${cinemaDto.files_no}
     	<img src="${pageContext.request.contextPath}/download/img?files_no=${cinemaDto.files_no}" width="100%" height="500">
+    	지점 : ${cinemaDto.cinema_area} &nbsp; &nbsp; &nbsp; 전화번호 : ${cinemaDto.cinema_phone} &nbsp; &nbsp; &nbsp; 주소 : ${cinemaDto.cinema_addr}<br>
     <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
     	<div class="btn-toolbar" role="toolbar">
     	<c:forEach var="list" items="${timelist}">

@@ -1,5 +1,7 @@
 package com.kh.cgx.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.util.Properties;
 import java.util.Random;
 
@@ -110,7 +112,7 @@ public class UsersController {
 		log.info("member={}",member);
 //		[2] 필요한 처리를 한다
 		if (find == null) { // id가 없으면
-			return "redirect:/login?error";
+			return "redirect:/user/login";
 		} else {// id가 있으면 ---> 비밀번호 매칭 검사 : encoder.matches()
 			boolean correct = encoder.matches(member.getMember_pw(), find.getMember_pw());
 			log.info("correct = {}", correct);
@@ -118,11 +120,11 @@ public class UsersController {
 				session.setAttribute("id", find.getMember_id());
 				return "redirect:/";
 			} else {// 비밀번호 불일치
-				return "redirect:/login?error";
+				return "redirect:/user/login";
 			}
 		}
 	}
-	
+
 	@GetMapping("/find_id")
 	public String findid() {
 		return "user/find_id";
@@ -133,9 +135,15 @@ public class UsersController {
 		MemberDto memberDto = memberDao.findMemberByMemberNameAndEmail(input);
 		if (memberDto != null) {
 			boolean sendResult = sendMail(memberDto.getMember_email(), "CGX 로그인 아이디", "CGX 로그인 아이디: " + memberDto.getMember_id());
-			model.addAttribute("sendResult", sendResult);
+			model.addAttribute(""
+					+ "", sendResult);
 		}
 		return "user/find_id";
+	}
+	
+	@GetMapping("/find_pw")
+	public String findpw() {
+		return "user/find_pw";
 	}
 	@PostMapping("/find_pw")
 	public String findPw(@ModelAttribute MemberDto input, Model model) {
@@ -264,5 +272,39 @@ public class UsersController {
 //		memberDao.updateLastLogin(find);
 			return "redirect:reconfirm_pw?error";
 		}
+	}
+	
+	@GetMapping("/delete")
+	public String Delete() {
+		return "user/delete";
+	}
+	
+	@PostMapping("/delete")
+	public String delete(HttpSession session) {
+		String id = (String) session.getAttribute("id");
+		if(id!=null) {
+			sqlSession.delete("member.delete",id);
+			session.removeAttribute("id");
+		}
+		return "redirect:/";
+	}
+	
+	@GetMapping("/change_pw")
+	public String Change_pw() {
+		
+		return "user/change_pw";
+	}
+	
+	@PostMapping("/change_pw")
+	public String change_pw(HttpSession session,@ModelAttribute MemberDto member) {
+		String id = (String) session.getAttribute("id");
+		if(id!=null) {
+			member.setMember_pw(encoder.encode(member.getMember_pw()));
+			System.out.println(member.getMember_pw());
+			member.setMember_id(id);
+			sqlSession.update("member.change_pw",member);
+			session.removeAttribute("id");
+		}
+		return "user/login";
 	}
 }

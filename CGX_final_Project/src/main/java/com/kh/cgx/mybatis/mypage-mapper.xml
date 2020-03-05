@@ -4,82 +4,74 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!--
- namespace : 영역을 부르는 별칭
- parameterType : 이 명령을 실행하기 위해 필요한 데이터의 형태
- resultType : 기대되는 결과물의 형태(목록이든 아니든 dto 형태로 표기)
- 
- 태그때문에 못쓰게 되는 기호들은 다음의 영역으로 해결이 가능
-
- <![CDATA[
-  SQL 구문
- ]]>
- 
- 형태에 따라 파라미터를 다르게 설정할 수 있다
- - # 은 형태를 추론하여 자동으로 따옴표 설정 및 인코딩 처리를 수행
- - $ 는 값을 있는 그대로 출력하는 명령이므로 주로 "항목"에 사용
-  - $ 는 SQL Injection 이라는 해킹공격에 매우 취약하므로 사용에 주의
- -->
+<!-- namespace : 영역을 부르는 별칭 parameterType : 이 명령을 실행하기 위해 필요한 데이터의 형태 resultType 
+	: 기대되는 결과물의 형태(목록이든 아니든 dto 형태로 표기) 태그때문에 못쓰게 되는 기호들은 다음의 영역으로 해결이 가능 <![CDATA[ 
+	SQL 구문 ]]> 형태에 따라 파라미터를 다르게 설정할 수 있다 - # 은 형태를 추론하여 자동으로 따옴표 설정 및 인코딩 처리를 
+	수행 - $ 는 값을 있는 그대로 출력하는 명령이므로 주로 "항목"에 사용 - $ 는 SQL Injection 이라는 해킹공격에 매우 
+	취약하므로 사용에 주의 -->
 
 <mapper namespace="mypage">
- 
- <select id="list" resultType="map" >
-  select * from member
- </select>
- 
- <select id="search" resultType="member" parameterType="string">
- select * from member where member_id = #{member_id} 
- </select>
- 
-<!--   <select id="ticketlist" resultType="ReserveVO" parameterType="int">
-         
-         select 
- 			 *
-			from 
-   			 movie 
-        inner join movietime on movie.movie_no = movietime.movie_no
-        inner join screen on movietime.screen_no = screen.screen_no
-        inner join seat on screen.screen_no=seat.screen_no
-        inner join ticket_seat on ticket_seat.seat_no = seat.seat_no
-        inner join ticket on ticket.movietime_no = movietime.movietime_no
-        inner join member on member.member_no = ticket.member_no
-         where member.member_no = #{member_no}
- </select>  -->
-   <select id="ticketlist" resultType="ReserveVO" parameterType="int">
- 		SELECT  TK.TICKET_NO, TK.TICKET_TOTAL_PERSON, MV.MOVIE_TITLE, MV.FILES_NO, SC.SCREEN_NAME
-        FROM
-         (SELECT * FROM TICKET WHERE MEMBER_NO = #{member_no})TK INNER JOIN  MOVIETIME MT
-        ON TK.MOVIETIME_NO = MT.MOVIETIME_NO
-        INNER JOIN MOVIE MV
-        ON MV.MOVIE_NO = MT.MOVIE_NO 
-        INNER JOIN SCREEN SC
-        ON MT.SCREEN_NO = SC.SCREEN_NO
- </select> 
- 
- 
- <select id="watched" resultType="watchedVO" parameterType="int">
-   select 
-   *
-   from 
-    movie 
-        inner join movietime on movie.movie_no = movietime.movie_no
-        inner join screen on movietime.screen_no = screen.screen_no
-        inner join ticket on ticket.movietime_no = movietime.movietime_no
-        inner join member on member.member_no = ticket.member_no
-        
-  WHERE movietime.movietime_time <![CDATA[ < ]]> sysdate
-     AND member.member_no = #{member_no}
- </select> 
- 
- <delete id="deleteUser" parameterType="int">
- 	DELETE FROM member A
-        inner join ticket on ticket.member_no = A.member_no
-        inner join coupon on coupon.member_no = A.member_no
-         where A.member_no = #{member_no}
- 	
- </delete>
- 
- 
+
+	<select id="list" resultType="map">
+		select * from member
+	</select>
+
+	<select id="search" resultType="member" parameterType="string">
+		select * from member where member_id = #{member_id}
+	</select>
+
+	<!-- <select id="ticketlist" resultType="ReserveVO" parameterType="int"> 
+		select * from movie inner join movietime on movie.movie_no = movietime.movie_no 
+		inner join screen on movietime.screen_no = screen.screen_no inner join seat 
+		on screen.screen_no=seat.screen_no inner join ticket_seat on ticket_seat.seat_no 
+		= seat.seat_no inner join ticket on ticket.movietime_no = movietime.movietime_no 
+		inner join member on member.member_no = ticket.member_no where member.member_no 
+		= #{member_no} </select> -->
+	<select id="ticketlist" resultType="ReserveVO"
+		parameterType="int">
+		SELECT TK.TICKET_NO, TK.TICKET_TOTAL_PERSON, MV.MOVIE_TITLE, MV.FILES_NO,
+		SC.SCREEN_NAME
+		FROM
+		(SELECT * FROM TICKET WHERE MEMBER_NO = #{member_no})TK INNER JOIN MOVIETIME
+		MT
+		ON TK.MOVIETIME_NO = MT.MOVIETIME_NO
+		INNER JOIN MOVIE MV
+		ON MV.MOVIE_NO = MT.MOVIE_NO
+		INNER JOIN SCREEN SC
+		ON MT.SCREEN_NO = SC.SCREEN_NO
+	</select>
+
+
+	<select id="watched" resultType="watchedVO" parameterType="int">
+		select
+		*
+		from
+		movie
+		inner join movietime on movie.movie_no = movietime.movie_no
+		inner join screen on movietime.screen_no = screen.screen_no
+		inner join ticket on ticket.movietime_no = movietime.movietime_no
+		inner join member on member.member_no = ticket.member_no
+
+		WHERE movietime.movietime_time <![CDATA[ < ]]>
+		sysdate
+		AND member.member_no = #{member_no}
+	</select>
+
+	<delete id="deleteUser" parameterType="int">
+		DELETE FROM member A
+		inner join ticket on ticket.member_no = A.member_no
+		inner join coupon on coupon.member_no = A.member_no
+		where A.member_no = #{member_no}
+
+	</delete>
+
+ 	<select id="watchList">
+		select
+		B.movie_title, B.movie_no
+		from wish A inner join movie B
+		on A.movie_no = B.movie_no
+		where A.member_no = {member_no};
+	</select>
  
 
 </mapper>

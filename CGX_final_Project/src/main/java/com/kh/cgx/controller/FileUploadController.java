@@ -54,7 +54,7 @@ public class FileUploadController {
 		
 		//파일저장 : 저장을 할 가상의 파일 객체가 필요
 		//저장경로 : C:/upload
-		File dir = new File("C:\\upload");
+		File dir = new File("D:\\upload\\kh2a");
 		File target = new File(dir , String.valueOf(filesDto.getFiles_no()));
 		
 		dir.mkdirs();//디렉터리 생성
@@ -73,7 +73,7 @@ public class FileUploadController {
 			) throws IllegalStateException, IOException {
 		
 		//저장경로 : C:/upload에 파일을 저장
-		File dir = new File("C:\\upload");
+		File dir = new File("D:\\upload\\kh2a");
 		dir.mkdirs();
 		
 		for(MultipartFile mf : file) {
@@ -98,7 +98,7 @@ public class FileUploadController {
 										.build());
 		}
 		System.out.println(list);
-		File dir = new File("C:\\upload");
+		File dir = new File("D:\\upload\\kh2a");
 		for(int i = 0 ; i < list.size();i++) {
 			MultipartFile mf = vo.getFile().get(i);
 			FilesDto dto = list.get(i);
