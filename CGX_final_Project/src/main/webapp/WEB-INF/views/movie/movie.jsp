@@ -430,7 +430,7 @@ $(function(){
 
 
 	<ol>
-<c:forEach var="list" items="${list }" begin="8" end="11">
+<c:forEach var="list" items="${list }" begin="8" >
 
 		<li>
 	<div  class="box-image">
