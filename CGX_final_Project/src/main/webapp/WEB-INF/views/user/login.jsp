@@ -36,15 +36,15 @@
 
 			<!-- Icon -->
 			<div class="fadeIn first">
-				<img src="/image/라떼시네마2 (3).png" id="icon" alt="User Icon" />
+				<img src="${pageContext.request.contextPath}/resources/img/latte2.png" id="icon" alt="User Icon" />
 			</div>
 
 			<form action="login" method="post">
 				<input type="text" id="login" class="fadeIn second" name="member_id"
 					placeholder="아이디"> <input type="password" id="password"
 					class="fadeIn third" name="member_pw" placeholder="비밀번호"> <input
-					type="submit" class="fadeIn fourth" value="Log In"
-					style="background-color: burlywood;">
+					type="submit" class="fadeIn fourth btn " value="Log In"
+					style="background-color: #ff0206;">
 
 
 				<!-- Remind Passowrd s-->
