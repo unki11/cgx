@@ -2,12 +2,13 @@
 /* BASIC */
 
 html {
-    background-color: #56baed;
+    background-color: white;
   }
   
   body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
+    background-color: white;
   }
   
   a {
@@ -82,7 +83,7 @@ html {
   /* FORM TYPOGRAPHY*/
   
   input[type=button], input[type=submit], input[type=reset]  {
-    background-color: #56baed;
+    background-color: white;
     border: none;
     color: white;
     padding: 15px 80px;
@@ -236,7 +237,7 @@ html {
     bottom: -10px;
     width: 0;
     height: 2px;
-    background-color: #56baed;
+    background-color: white;
     content: "";
     transition: width 0.2s;
   }

@@ -30,6 +30,14 @@
 <style>
 	body{
 		margin-top: 150px;
+		background-image: url("${pageContext.request.contextPath}/resources/img/all.jpg");
+		background-size: cover;
+	}
+	
+	html{
+		background-image: url("${pageContext.request.contextPath}/resources/img/latte2.png");
+		background-repeat: no-repeat;
+		background-position: top;
 	}
 </style>
 </head>
@@ -63,10 +71,12 @@
                 <td><input type="text" name="cinema_addr" placeholder="극장주소" required></td>
             </tr>
             
-            <tr>
+            <tr style="text-align: center;">
                 <td colspan="2" >
-                    <input type="submit" value="극장 등록하기">
-                    
+                    <input type="submit" value="극장 등록하기" class="btn btn-danger">
+                    <a class="underlineHover" href="/com.kh.cgx/admin/Cinema/adminList">
+                    	<input class="btn btn-info" value="극장목록보기">
+                    </a>
                 </td>
             </tr>
         </form>

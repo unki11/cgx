@@ -21,6 +21,15 @@
 		})
 	});
 </script>
+<style>
+	body{
+		background-image: url("${pageContext.request.contextPath}/resources/img/all.jpg");
+		text-align: center;
+	}
+	.row {
+      margin-bottom: 10px;
+    }
+</style>
 <%-- <h1>상영관 조회 페이지</h1>
 
 <c:forEach var="screenDto" items="${list}">
@@ -40,20 +49,24 @@
 <html>
 <body>
     <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <h1>상영관 조회 페이지</h1>
+       <div class="row">
+        <!-- <div class="col-12"> -->
+          <div class="col">
+          <h1>상영관 목록 페이지</h1>
           <ul class="list-group">
           <c:forEach var="screenDto" items="${list}">
 	          <div>
-		            <li class="no">${screenDto.screen_no}</li>
-		            <li>극장: ${screenDto.cinema_no}</li>
+	          	<ul type="square">
+		            <li class="no list-group-item-danger active">${screenDto.screen_no}</li>
+		            <li class="list-group">극장: ${screenDto.cinema_no}</li>
 		            <li>전체좌석 :${screenDto.screen_all_seat}</li>
 		            <li>상영관 종류 :${screenDto.screen_type}</li>
 		            <li>상영관 이름 :${screenDto.screen_name}</li>
 		            <li>상영관 줄 :${screenDto.screen_rowsize}</li>
 		            <li>상영관 칸 :${screenDto.screen_colsize}</li>
-		            <button class="delete">삭제</button>
+		            <button class="delete btn btn-danger">삭제</button>
+		        </ul>    
+		            <br>
 	           </div>
            </c:forEach>
           </ul>

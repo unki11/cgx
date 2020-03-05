@@ -20,5 +20,7 @@ public class SelectMovieTimeVO {
 	private int screen_no;
 	private int movie_no;
 	private String cinema_area;
+	private int cinema_no;
+	private String date;
 	
 }

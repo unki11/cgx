@@ -3,12 +3,19 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../header.jsp"></jsp:include> 
+ <head>
  
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
+<!--     <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> 이거키면 동영상 안켜짐 -->  
+    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+    <script src="path/to/chartjs/dist/Chart.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
  
+ </head>
 
- 
-
-<head>
  <style>
  
  .videos{
@@ -50,14 +57,13 @@ a.video span{
         background-size: 20%;
  }
  
-#container{
+
+.container{
     background-color: #fdfcf0;
 }
  
- 
  </style>
 
- </head>
  
  <script>
 
@@ -160,7 +166,7 @@ chart.render();
  </script>
 
 
- <div id="container" align="center">
+ <div class="container" align="center">
     <h1>영화상세</h1>
     <br><br>
     <div class="movie-info">
@@ -172,7 +178,7 @@ chart.render();
         <h5>장르 :  ${movieActorVO.movie_genre} / 기본 :${movieActorVO.movie_grade}, ${movieActorVO.movie_runtime}분, ${movieActorVO.movie_country} </h5>
         <h5>개봉 :  ${movieActorVO.movie_startdate}</h5>
         
-        <button>예매</button>
+        <button class="btn btn-danger">예매</button>
         
         <h2>${movieActorVO.movie_content}</h2>
         
@@ -204,9 +210,9 @@ chart.render();
         </a>
       
     </div>
-<br><br><br><br><br><br>
+
     </c:forEach>
-	
+	<br><br><br><br><br><br>
 	<!-- 무비 트레일러 끝 -->
 	<br><br><br>
 	
@@ -264,22 +270,12 @@ chart.render();
 	
 </div>
 
-	
  
 
 	
 
  
 	<jsp:include page="../footer.jsp"></jsp:include> 
-
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
-<!--     <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> 이거키면 동영상 안나옴 -->
-    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-    <script src="path/to/chartjs/dist/Chart.js"></script>
- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 
 
   

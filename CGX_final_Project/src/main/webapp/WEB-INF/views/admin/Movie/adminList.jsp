@@ -7,22 +7,13 @@
   crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <style>
+	body{
+		background-image: url("${pageContext.request.contextPath}/resources/img/all.jpg");
+		text-align: center;
+	}
 	.row {
-		float: left;
-		width: 33.3%;
-		margin-left: 250px;
-		display: left;
-	}
-	
-	.row::after {
-		content: "";
-		display: block;
-		clear: both;
-	}
-	.movie{
-		float: left;
-		display: inline-block;
-	}
+      margin-bottom: 10px;
+    }
 </style>
 <script>
 	$(document).ready(function(){
@@ -227,25 +218,27 @@
 <body>
       <div class="container">
       <div class="row">
-        <div class="col-md-6 col-xs-4">
+        <div class="col">
           <h2>영화목록</h2>
           <ul class="list-group">
           <c:forEach var="movieDto" items="${list}">
 	          <div>
-	            <li class="no">${movieDto.movie_no}</li>
-	            <img src="${pageContext.request.contextPath}/download/img?file_no=${movieDto.files_no}">
-	            <li class="title">${movieDto.movie_title}</li>
-	            <li class="director">${movieDto.movie_director}</li>
-	            <li>${movieDto.movie_ticket_rate}</li>
-	            <li class="startdate">${movieDto.movie_startdate}</li>
-	            <li class="runtime">${movieDto.movie_runtime}</li>
-	            <li class="country">${movieDto.movie_country}</li>
-	            <li class="grade">${movieDto.movie_grade}</li>
-	            <li class="status">${movieDto.movie_status}</li>
-	            <li class="publisher">${movieDto.movie_publisher}</li>
-	            <li class="genre">${movieDto.movie_genre}</li>
-	            <button class="delete">삭제</button>
-	            <button class="update">수정</button>
+	          	<ul type="square">
+		            <li class="no list-group-item-danger active">${movieDto.movie_no}</li>
+		            <img src="${pageContext.request.contextPath}/download/img?file_no=${movieDto.files_no}">
+		            <li class="title">${movieDto.movie_title}</li>
+		            <li class="director">${movieDto.movie_director}</li>
+		            <li>${movieDto.movie_ticket_rate}</li>
+		            <li class="startdate">${movieDto.movie_startdate}</li>
+		            <li class="runtime">${movieDto.movie_runtime}</li>
+		            <li class="country">${movieDto.movie_country}</li>
+		            <li class="grade">${movieDto.movie_grade}</li>
+		            <li class="status">${movieDto.movie_status}</li>
+		            <li class="publisher">${movieDto.movie_publisher}</li>
+		            <li class="genre">${movieDto.movie_genre}</li>
+		            <button class="delete btn btn-danger">삭제</button>
+		            <button class="update btn btn-warning">수정</button>
+		         </ul>   
 	           </div>
            </c:forEach>
           </ul>
