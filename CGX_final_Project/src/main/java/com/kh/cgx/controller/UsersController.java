@@ -112,7 +112,7 @@ public class UsersController {
 		log.info("member={}",member);
 //		[2] 필요한 처리를 한다
 		if (find == null) { // id가 없으면
-			return "redirect:/login?error";
+			return "redirect:/user/login";
 		} else {// id가 있으면 ---> 비밀번호 매칭 검사 : encoder.matches()
 			boolean correct = encoder.matches(member.getMember_pw(), find.getMember_pw());
 			log.info("correct = {}", correct);
@@ -120,7 +120,7 @@ public class UsersController {
 				session.setAttribute("id", find.getMember_id());
 				return "redirect:/";
 			} else {// 비밀번호 불일치
-				return "redirect:/login?error";
+				return "redirect:/user/login";
 			}
 		}
 	}
