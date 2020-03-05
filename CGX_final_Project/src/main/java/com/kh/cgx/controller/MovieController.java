@@ -286,6 +286,14 @@ public class MovieController {
 //		System.out.println( "model : "+movieActorVO);
 //		System.out.println(movieActorVO);
 		
+		
+		
+		
+//		ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+		
+		List<ReviewDto> reviewlist = sqlSession.selectList("movies.review", movie_no);
+		
+		model.addAttribute("reviewlist",reviewlist);
 		return "movie/detail";
 	}
 

@@ -206,6 +206,13 @@ where
 	delete wish where member_no = #{member_no} and movie_no= #{movie_no}
 </delete>
 
+<select id="review" parameterType="int" resultType="reviewDto">
+	select r.* from review r 
+		inner join ticket t on r.ticket_no = t.ticket_no 
+		inner join movietime mt on t.movietime_no = mt.movietime_no 
+		inner join movie m on mt.movie_no = m.movie_no
+	where m.movie_no = #{movie_no}
+</select>
 </mapper>
 
 

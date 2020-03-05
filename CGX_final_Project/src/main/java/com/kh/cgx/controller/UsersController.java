@@ -122,6 +122,12 @@ public class UsersController {
 			}
 		}
 	}
+	
+	@GetMapping("/find_id")
+	public String findid() {
+		return "user/find_id";
+	}
+	
 	@PostMapping("/find_id")
 	public String findId(@ModelAttribute MemberDto input, Model model) {
 		MemberDto memberDto = memberDao.findMemberByMemberNameAndEmail(input);

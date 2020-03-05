@@ -267,7 +267,9 @@ chart.render();
 	<!-- 이미지 슬라이드 종료 -->
 	
 	<br><br><br><br><br><br><br><br><br><br>
-	
+	<c:forEach items="${reviewlist}" var="review">
+		${review}
+	</c:forEach>
 </div>
 
  
