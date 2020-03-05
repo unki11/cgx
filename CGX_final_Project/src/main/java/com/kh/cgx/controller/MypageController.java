@@ -2,6 +2,7 @@ package com.kh.cgx.controller;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -62,12 +63,39 @@ public class MypageController {
 		return "mypage/reserve";
 	}
 
-	@GetMapping("/movielog")
+	@GetMapping("/movielog")  //@RequstPrama int member_no 받기 
 	public String movielog() {
 
+	     //위시리스트 list 쿼리 
+		//List<WatchedVO> list = sqlSession.selectList("mypage.watched", member_no);
+		 //model.addAttribute("list", list);  쿼리담기
+	
 		return "mypage/movielog";
 	}
 
+	// 위시리스트 (지현이 추가)
+	@ResponseBody 
+	@GetMapping("/deletewish")
+	public Object deletewish (HttpSession session, @RequestParam int movie_no) {
+		
+//		 int member_no = 1;
+		Map<String, Object> data = new HashMap<String, Object>();
+
+		 System.out.println("왔다감: "+movie_no); 
+		 String id = (String)session.getAttribute("id");
+		 System.out.println("세션"+id);
+		 MemberDto memberDto = sqlSession.selectOne("member.login",id);
+		 Map<String, Object> param = new HashMap<String, Object>();
+		 param.put("member_no", memberDto.getMember_no());
+		 param.put("movie_no", movie_no);
+		 
+		 sqlSession.delete("movies.deletewish",param); //추가하기!! 잊지말기!
+ 		 sqlSession.update("movies.updatewishreset", movie_no); //추가하기
+		 data.put("message", "삭제완료되었습니다."); 
+		
+		
+		 return data;
+	}
 
 	@GetMapping("/movielog/watched")
 	public String watched(Model model, HttpSession session) {
@@ -99,17 +127,18 @@ public class MypageController {
 		return result;
 	}
 
-	/*
-	 * @GetMapping("/movielog/watched") public String watched(Model model,
-	 * HttpSession session) {
-	 * 
-	 * String id=(String) session.getAttribute("id"); System.out.println("id="+id);
-	 * 
-	 * MemberDto dto=sqlSession.selectOne("member.login",id);
-	 * 
-	 * List<WatchedVO> list = sqlSession.selectList("mypage.watched",id);
-	 * model.addAttribute("watchList", list);
-	 * 
-	 * return "mypage/watched"; }
-	 */
+	
+//	  @GetMapping("/movielog/watched") public String watched2(Model model,
+//	  HttpSession session) {
+//	  
+//	  String id=(String) session.getAttribute("id"); 
+//	  System.out.println("id="+id);
+//	  
+//	  MemberDto dto=sqlSession.selectOne("member.login",id);
+//	  
+//	  List<WatchedVO> list = sqlSession.selectList("mypage.watched",id);
+//	  model.addAttribute("watchList", list);
+//	  
+//	  return "mypage/watched"; }
+	 
 }
