@@ -58,6 +58,7 @@
          <a class="click" href="${pageContext.request.contextPath}/user/login" style="padding: 1rem;"> 로그인</a>
          <a class="click" href="${pageContext.request.contextPath}/user/join" style="padding: 1rem;"> 회원가입</a>
          <a class="click" href="${pageContext.request.contextPath}/mypage/mycgv" style="padding: 1rem;"> My cgx</a>
+         <a class="click" href="${pageContext.request.contextPath}/user/logout" style="padding: 1rem;"> 로그아웃</a>
     </div>	
    <nav class="navbar navbar-expand-lg navbar-light bg-1light"><a href="http://localhost:8080/com.kh.cgx/"><img src="${pageContext.request.contextPath}/resources/img/latte2.png" class="image"></a>
         <a class="navbar-brand" href="http://localhost:8080/com.kh.cgx/"></a>
