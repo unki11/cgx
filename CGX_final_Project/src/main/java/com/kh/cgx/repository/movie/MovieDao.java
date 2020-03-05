@@ -30,11 +30,15 @@ public interface MovieDao {
 	List<StillcutVO> getStillcut(StillcutVO stillcutVO);
 //	무비 파인더 검색 창
 	List<MovieVO2> getList5();
-//위시리스트
+//위시리스트 등록
 	void insert(int member_no, int movie_no);
+//위시리스트 삭제
+	void delete(int member_no, int movie_no);
 //연령별 예매 분포
 	List<AgeVO> getAgeList(int movie_no);
 
+	//위시리스트
+	List<MovieVO> getList6(int member_no);
 
 	
 	

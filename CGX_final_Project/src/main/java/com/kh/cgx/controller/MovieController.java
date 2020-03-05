@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.ibatis.session.SqlSession;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
@@ -93,15 +92,17 @@ public class MovieController {
 	
 	// 위시리스트 (지현이 추가)
 	@ResponseBody //
-	@GetMapping("/movielog")
-	public String movielog (HttpSession session, @RequestParam int movie_no) {
-		
+	@GetMapping("/likeupdate")//주소 변경
+	public Object movielog (HttpSession session, @RequestParam int movie_no,Model model) {
 //		 int member_no = 1;
-		 String code = "false";
+		log.info("movie_no={}",movie_no);
+		Map<String, Object> data = new HashMap<String, Object>();
+
+		 //String code = "false";
 		 //로그인 다되면 session으로 처리
 		 System.out.println("왔다감: "+movie_no); 
 		 String id = (String)session.getAttribute("id");
-		 System.out.println("세션"+id);
+		// System.out.println("세션"+id);
 		 MemberDto memberDto = sqlSession.selectOne("member.login",id);
 		 Map<String, Object> param = new HashMap<String, Object>();
 		 param.put("member_no", memberDto.getMember_no());
@@ -112,13 +113,27 @@ public class MovieController {
 		 if(check>0) {
 			 System.out.println("삭제");
 			 sqlSession.delete("movies.deletewish",param);
+			// movieDao.delete(member_no,movie_no);
+     		 sqlSession.update("movies.updatewishreset", movie_no);
+			 data.put("code", "false");
 		 }else {
 			 System.out.println("등록");
 			 movieDao.insert(member_no,movie_no);
-			 code = "true";
+		
+			sqlSession.update("movies.mvwishupdate",movie_no);
+			// code = "true";
+			 data.put("code", "true");
 		 }
 		
-		 return code;
+		 return data;
+	}
+	
+	@GetMapping("/movielog")
+	public String movielog(Model model, @RequestParam int member_no) {
+		model.addAttribute("likemovie", movieDao.getList6(member_no));
+		//log.info("like = {}", movieDao.getList6(member_no));
+		
+		return "mypage/movielog";
 	}
 
 	// 상영 예정작
