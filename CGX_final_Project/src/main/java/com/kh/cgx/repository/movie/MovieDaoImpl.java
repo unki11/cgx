@@ -16,10 +16,11 @@ import com.kh.cgx.vo.movie.MovieActorVO;
 import com.kh.cgx.vo.movie.MovieVO;
 import com.kh.cgx.vo.movie.StillcutVO;
 
+import lombok.extern.slf4j.Slf4j;
 
 import com.kh.cgx.entity.movie.MovieVO2;
 
-
+@Slf4j
 @Repository
 public class MovieDaoImpl implements MovieDao{
 
@@ -33,6 +34,9 @@ public class MovieDaoImpl implements MovieDao{
 //	무비차트
 	@Override
 	public List<MovieDto> getList3() {
+		
+		List<MovieDto>test = sqlSession.selectList("movies.list");
+//		log.info("dddddddd={}", test);
 		return sqlSession.selectList("movies.list");
 	}
 

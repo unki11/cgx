@@ -28,7 +28,7 @@ public class MovieTimeSearchExample {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@Test
+//	@Test
 	public void test() {
 		//기능 실행을 위해 필요한 준비물(나중에 페이지에서 넘어올 파라미터)
 		Map<String, Object> param = new HashMap<>();

@@ -86,6 +86,7 @@ public class MovieController {
 	@GetMapping("/")
 	public String movie(Model model) {
 		List<MovieDto> list = movieDao.getList3();
+		System.out.println(list);
 		model.addAttribute("list", list);
 		return "movie/movie";
 	}
@@ -95,11 +96,13 @@ public class MovieController {
 	@GetMapping("/likeupdate")//주소 변경
 	public Object movielog (HttpSession session, @RequestParam int movie_no,Model model) {
 //		 int member_no = 1;
-		log.info("movie_no={}",movie_no);
+//		log.info("movie_no={}",movie_no);
 		Map<String, Object> data = new HashMap<String, Object>();
 
 		 //String code = "false";
 		 //로그인 다되면 session으로 처리
+
+//		 System.out.println("왔다감: "+movie_no); 
 		 String id = (String)session.getAttribute("id");
 		// System.out.println("세션"+id);
 		 MemberDto memberDto = sqlSession.selectOne("member.login",id);
