@@ -714,7 +714,7 @@ chart.render();
     <div class="box-image">
        
             <span class="thumb-image"> 
-                <a href="detail?movie_no=${movieActorVO.movie_no}"><img src="download?files_no=${movieActorVO.files_no }"></a>
+                <a href="detail?movie_no=${movieActorVO.movie_no}"><img src="${pageContext.request.contextPath}/download/img?files_no=${movieActorVO.files_no }"></a>
                 
             </span> 
         </a> 
@@ -818,6 +818,11 @@ chart.render();
             <div class="movie-detail-ad">
                 <iframe src="http://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@SponsorBar_800" width="800" height="90" title="더보이2" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="SponsorBar_800" id="SponsorBar_800"></iframe>
             </div>
+            <div>
+			<c:forEach items="${reviewlist}" var="review">
+					${review.review_content}	
+			</c:forEach>
+			</div>
             
             <!-- .sect-staff -->
             <div id="ctl00_PlaceHolderContent_Section_Trailer" class="sect-trailer">
@@ -895,8 +900,6 @@ chart.render();
 			</c:forEach>
 		  </div> 
 		
-		
-		
 		  <!-- Left and right controls -->
 		  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
 		    <span class="glyphicon glyphicon-chevron-left"></span>
@@ -906,39 +909,13 @@ chart.render();
 		    <span class="glyphicon glyphicon-chevron-right"></span>
 			<span class="sr-only">Next</span>
 		</a>
+
 	</div>
 	<!-- 이미지 슬라이드 종료 -->
-                        
-                        
-                        
-                      
-                    </div>
-                </div>
-            </div><!-- .sect-stillcut -->
-                        
-                     
-                        
-                        
-                      
-                        
-                      
-                        
+	
+	<br><br><br><br><br><br><br><br><br><br>
+</div>
 
-
-              </div>
-    
-           </div>
-           </div>
-          
-        
-
-
-               
-
-
-            <!--/ Contents End -->
-
-		</div>
 	</body>	
 		<jsp:include page="../footer.jsp"></jsp:include>    
 		

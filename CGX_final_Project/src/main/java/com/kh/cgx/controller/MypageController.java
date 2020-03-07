@@ -43,7 +43,6 @@ public class MypageController {
 	 String id=(String) session.getAttribute("id"); 	
 		//찾는기능
 		MemberDto search = sqlSession.selectOne("mypage.search",id);
-		System.out.println(id);
 		
 //  System.out.println("list : "+list);
 		model.addAttribute("search", search);
@@ -81,9 +80,7 @@ public class MypageController {
 //		 int member_no = 1;
 		Map<String, Object> data = new HashMap<String, Object>();
 
-		 System.out.println("왔다감: "+movie_no); 
 		 String id = (String)session.getAttribute("id");
-		 System.out.println("세션"+id);
 		 MemberDto memberDto = sqlSession.selectOne("member.login",id);
 		 Map<String, Object> param = new HashMap<String, Object>();
 		 param.put("member_no", memberDto.getMember_no());

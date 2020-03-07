@@ -7,7 +7,7 @@
 	<title>Home</title>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!-- <script src="https://code.jquery.com/jquery-3.4.1.js" ></script> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -75,8 +75,8 @@
               aria-expanded="false">영화
             </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">무비차트</a>
-                <a class="dropdown-item" href="#">HD 트레일러</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/movie/">무비차트</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/movie/trailer">HD 트레일러</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">무비파인더</a>
               </div>
@@ -95,7 +95,7 @@
                 극장
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">CGV극장</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/cinema/">CGV극장</a>
                 <a class="dropdown-item" href="#">특별관</a>
               </div>  
             </li>

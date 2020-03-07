@@ -5,26 +5,17 @@
 <head>
     <meta charset="UTF-8">
     <title>극장</title>
+    <jsp:include page="../header.jsp"></jsp:include>
 </head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
- <script src="https://code.jquery.com/jquery-3.4.1.js" type="text/javascript"></script>
-<<<<<<< HEAD
  <style>
-=======
- <style type="text/javascript">
-
->>>>>>> refs/remotes/origin/master
       p { margin:20px 0px; }
  </style>
     <script>
 	$(function(){
 		$(".time").click(function(e){
 			e.preventDefault();
-	            var time =$(this).find('span').text();
+	            var time =$(this).find('.hidden-day').text();
 	            var no = $("input[name=cinema_no]").val();
-	      
-	            console.log(time);
-	            console.log(no);
 	            
 	        	$.ajax({
 	    			url:"movietimelist",
@@ -68,23 +59,66 @@
     		margin:auto;
     		width: 980px;
 		}
-		.movietime{
-			width: 10%;
-        	color: red;
-        	float: left;
-		}
-		.hidden{
+
+		.hidden-day{
 			display: none;
 		}
 		
-		.box { 
-		border-width: thick;  
-		border-color: black; 
-		border-radius: 10px 10px 10px 10px;
-		 }
-
+		*{
+            box-sizing: border-box;
+            font-family: nomal;
+            
+        }
+        article{
+            margin: auto;
+        }
+        hr{
+            height: 0.5px;
+            background-color: black;
+        }
+        .area{
+            width: 100%; height: 400px; background-color: bisque;
+        }
+        .area2{
+            width: 980px; height: 100%;margin: auto
+        }
+        .main-cinema{
+            font-size: 5rem; text-align: center;font-family: cinema;
+        }
+        .cinema-ex{
+            z-index: 2;
+            bottom: 152px;
+            position: relative;
+            height: 150px;
+            background-color: black; 
+            opacity: 0.8;
+            color: white;
+            padding: 30px
+        }
+        .float-left{
+            float: left;
+        }
+        .float-left::after{
+            clear: both;
+        }
+        .date{
+            width: 10%; 
+            text-align: center;
+            border: 2px solid black;
+            border-radius: 15%;
+        }
+        .day{
+            font-size: 2.5rem;
+        }
+        .movietime-time{
+            width: 10%;
+            border: 1px solid g	ray;
+        }
+        a:link { color: gray; text-decoration: none;}
+ 		a:visited { color: gray; text-decoration: none;}
+ 		a:hover { color: black; text-decoration: none;}
     	</style> 	
-  <body style="background-color: #f5f5dc;">
+  <body style="background-color: beige">
   <article>
   <h1>cinema페이지입니다</h1>	
   <ol class="breadcrumb">
@@ -105,7 +139,7 @@
               </li>
             </ul>
             <div class="tab-content">
-             <div class="tab-pane fade show active" id="qwe">
+             <div class="tab-pane fade show active" style="width: 100px" id="qwe">
              <c:forEach var="cinema1" items="${cinema_list1}">
                <a href="?cinema_no=${cinema1.CINEMA_NO}">
 				<h3>${cinema1.CINEMA_AREA}</h3>
@@ -118,49 +152,52 @@
                   <c:forEach var="cinema2" items="${cinema_list2}">
                 <a href="?cinema_no=${cinema2.CINEMA_NO}">
 					<h3>${cinema2}</h3>
-					<h3>${cinema2.FILES_NO}</h3>
-					<h3><img src="${pageContext.request.contextPath}/download/img?files_no=${cinema2.FILES_NO}" width="200" height="150"></h3>
+
 				</a>
 				</c:forEach>
               </div>
 	          		
           		
           			
-    <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
-    	${cinemaDto}<br>
-    	${cinemaDto.files_no}
-    	<img src="${pageContext.request.contextPath}/download/img?files_no=${cinemaDto.files_no}" width="100%" height="500">
-    <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
-    	<div class="btn-toolbar" role="toolbar">
+    <div>ㅡㅡ11ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
+    	<div style="font-size: 2.5rem">${cinemaDto.cinema_area}</div>
+    	<img src="${pageContext.request.contextPath}/download/img?files_no=${cinemaDto.files_no}" width="100%" height="500px">
+    	 <div class="cinema-ex">
+    	 	<div class="float-left" style="width: 60%;">안녕하세요</div><div style="float: left;width: 40%;">김운기입니다.</div>
+    	 </div>
+    	 <div style="width: 90%; margin: auto;">
+    	 <hr style="height: 4px">
     	<c:forEach var="list" items="${timelist}">
-			<span class="movietime box"><a class="time" href="#">${list}<span class="hidden">${list[0]}${list[1]}${list[2]}</span></a></span>
-		
-		
+    	<a class="time" href="#">
+			<div class="date float-left">
+			<span class="hidden-day">${list[0]}${list[1]}${list[2]}</span>
+			<span>${list[1]}월 ${list[3]}</span><span class="day"><strong>${list[2]}</strong></span>	
+			</div></a>
 		</c:forEach>
-		</div>
-    <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
-    <h1>상영시간표 자르기</h1>
+		<div style="clear: both;"></div>
+		<hr>
     <div id="movietime">
+    	
     	<c:forEach items="${list}" var="mlist" >
-    		<h3>${mlist.movie_title}</h3>
-		<c:forEach items="${mlist.list}" var="slist">
-			<h5>${slist.screen_name}</h5>
-			<c:forEach items="${slist.list}" var="list">
-				<a href="seat?movietime_no=${list.movietime_no}"><span>상영시간표번호${list.movietime_no} 상영시간${list.movietime_time} 사용 좌석수${list.ticket_count}</span></a>
+    		<hr>
+    		<strong style="font-size: 1.5rem">${mlist.movie_title}</strong>
+   			<br>
+			<c:forEach items="${mlist.list}" var="slist">
+			<br>
+			 <div style="width: 90%;margin: auto;">${slist.screen_name}</div>
+				<c:forEach items="${slist.list}" var="list">
+					<a href="seat?movietime_no=${list.movietime_no}">
+					<span> 상영시간${list.movietime_time} 사용 좌석수${list.ticket_count}</span>
+					</a>
+				</c:forEach>
 			</c:forEach>
-			<h5>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</h5>
-	</c:forEach>
-	</c:forEach>
+		</c:forEach>
     </div>
     <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
     <input type="hidden" value="${cinema_no}" name="cinema_no">
     <c:forEach var="screen" items="${screen_list}">
 		<h1>${screen.SCREEN_NAME}</h1>
 	</c:forEach>
-		
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+		</div>
   </article>
-  </body>
-</html>
+  <jsp:include page="../footer.jsp"></jsp:include>  
