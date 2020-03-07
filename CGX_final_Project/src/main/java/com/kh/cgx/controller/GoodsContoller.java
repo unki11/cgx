@@ -42,7 +42,6 @@ public class GoodsContoller {
 //		String goods_category="팝콘";
 //		System.out.println(goods_category);
 		List<GoodsDto> list2 = sqlSession.selectList("goods.list2",goods_category);
-		System.out.println(list2);
 		model.addAttribute("list2",list2);
 		return "goods/categorypage";
 	}

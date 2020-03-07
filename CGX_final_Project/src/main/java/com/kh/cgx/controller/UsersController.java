@@ -88,7 +88,6 @@ public class UsersController {
 	@GetMapping("/checkId")
 	public String checkId(String member_id, Model model) {
 		// 멤머에 아이디를 쏴줌. checkId로
-		System.out.println("Controller.idCheck() 호출");
 		MemberDto memberDto = sqlSession.selectOne("member.checkId", member_id);
 		if (memberDto != null) {
 			return "중복된 아이디가 있습니다.";
@@ -255,9 +254,7 @@ public class UsersController {
 
 	@PostMapping("/reconfirm_pw")
 	public String reconfirm_pw(MemberDto memberDto) {
-		System.out.println("비번재확");
 		MemberDto reconfirm_pw = memberDao.reconfirm_pw(memberDto);
-		System.out.println(reconfirm_pw);
 		if (reconfirm_pw != null) {// 비번이 맞을 경우
 			String pw1 = memberDto.getMember_pw();// 회원이 가져온 비밀번호
 			String pw2 = reconfirm_pw.getMember_pw();// ㅉ아이디로 검색한 비밀번호
@@ -300,7 +297,6 @@ public class UsersController {
 		String id = (String) session.getAttribute("id");
 		if(id!=null) {
 			member.setMember_pw(encoder.encode(member.getMember_pw()));
-			System.out.println(member.getMember_pw());
 			member.setMember_id(id);
 			sqlSession.update("member.change_pw",member);
 			session.removeAttribute("id");

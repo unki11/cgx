@@ -100,7 +100,6 @@ public class MovieController {
 
 		 //String code = "false";
 		 //로그인 다되면 session으로 처리
-		 System.out.println("왔다감: "+movie_no); 
 		 String id = (String)session.getAttribute("id");
 		// System.out.println("세션"+id);
 		 MemberDto memberDto = sqlSession.selectOne("member.login",id);
@@ -109,15 +108,12 @@ public class MovieController {
 		 param.put("movie_no", movie_no);
 		 int member_no = memberDto.getMember_no();
 		 int check = sqlSession.selectOne("movies.check",param);
-		 System.out.println(param);
 		 if(check>0) {
-			 System.out.println("삭제");
 			 sqlSession.delete("movies.deletewish",param);
 			// movieDao.delete(member_no,movie_no);
      		 sqlSession.update("movies.updatewishreset", movie_no);
 			 data.put("code", "false");
 		 }else {
-			 System.out.println("등록");
 			 movieDao.insert(member_no,movie_no);
 		
 			sqlSession.update("movies.mvwishupdate",movie_no);

@@ -41,15 +41,10 @@ public class FileUploadController {
 				@RequestParam String name,
 				@RequestParam MultipartFile file
 			) throws IllegalStateException, IOException {
-		System.out.println("name = "+name);
-		System.out.println("file = "+file);
+
 		
 		//분석 : 이름 ,종류 ,크기 , 실제 데이터
-		System.out.println("유무  = "+ file.isEmpty());//비어있냐?
-		System.out.println("name = "+file.getName());//파라미터이름
-		System.out.println("origin = "+file.getOriginalFilename());//파일명
-		System.out.println("size = "+ file.getSize());//파일사이즈
-		System.out.println("type = "+file.getContentType());//파일 유형
+
 		
 		
 		//파일저장 : 저장을 할 가상의 파일 객체가 필요
@@ -90,19 +85,16 @@ public class FileUploadController {
 	@PostMapping("/upload3")
 	public String upload3(@ModelAttribute FileVO vo) throws IllegalStateException, IOException {
 //		System.out.println(vo);
-		System.out.println(vo);
 		List<FilesDto> list = new ArrayList<>();
 		for(MultipartFile mf : vo.getFile()) {
 			list.add(filesDto.builder()
 										.files_no(vo.getFiles_no())
 										.build());
 		}
-		System.out.println(list);
 		File dir = new File("D:\\upload\\kh2a");
 		for(int i = 0 ; i < list.size();i++) {
 			MultipartFile mf = vo.getFile().get(i);
 			FilesDto dto = list.get(i);
-			System.out.println(dto);
 			File target = new File(dir , String.valueOf(dto.getFiles_no()));
 			mf.transferTo(target);
 			filesDao.regist(dto);

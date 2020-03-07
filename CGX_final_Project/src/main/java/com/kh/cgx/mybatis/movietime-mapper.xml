@@ -57,7 +57,7 @@ where B.movietime_time >= sysdate order by screen_no asc)mt on s.screen_no = mt.
 	
 	<select id="screenlist" resultType="com.kh.cgx.vo.cinema.MovieTimeSeatVO" parameterType="map">	
 
-select m.movietime_no,m.movietime_time,(
+select m.movietime_no,to_char(m.movietime_time,'HH24MI') movietime_time,(
 select count(*) from seat where screen_no = #{screen_no})- NVL(sum(t.TICKET_TOTAL_PERSON), 0) ticket_count 
 from ticket t 
 full outer join movietime m 
