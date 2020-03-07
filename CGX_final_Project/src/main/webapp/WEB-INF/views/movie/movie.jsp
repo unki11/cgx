@@ -369,7 +369,7 @@ $(function(){
 	
 
 	<ol>
-<c:forEach var="list" items="${list }" begin="0" end="3">
+<c:forEach var="list" items="${list}" begin="0" end="3">
 
 		<li>
 	<div  class="box-image">
@@ -391,10 +391,9 @@ $(function(){
  <span class="txt-info"><strong>개봉 :  ${list.movie_startdate}</strong></span>
  
  
-<button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
+<button class="wish"  value="${list.movie_no}" style="color: red;"></button> <!-- 지현이추가 --> 
+<%-- <h3>${list.movie_wish}</h3> --%>
 	
-	</button> <!-- 지현이추가 --> 
-<h3>${list.movie_wish }</h3>
 	<button>예매</button>
 
 	</div>
