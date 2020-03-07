@@ -1,5 +1,5 @@
 package com.kh.cgx.controller;
-import java.io.File;			
+import java.io.File;				
 import java.io.IOException;	
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -39,9 +39,6 @@ import com.kh.cgx.vo.cinema.MovieTimeMovieVO;
 import com.kh.cgx.vo.cinema.MovieTimeScreenVO;
 import com.kh.cgx.vo.cinema.MovieTimeSeatVO;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Controller
 @RequestMapping("/cinema")
 public class CinemaController {
@@ -208,7 +205,7 @@ public class CinemaController {
 	
 	@GetMapping("/")
 	public String cinema2(@RequestParam(required = false, defaultValue ="1") int cinema_no,Model model) throws ParseException {
-			
+		System.out.println("인정");
 		cinemaDto=CinemaDto.builder().cinema_no(cinema_no).build();
 		
 //		List<CinemaDto> cinema_list = sqlSession.selectList("cinema.list");

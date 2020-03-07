@@ -159,7 +159,7 @@
 	          		
           		
           			
-    <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
+    <div>ㅡㅡ11ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
     	<div style="font-size: 2.5rem">${cinemaDto.cinema_area}</div>
     	<img src="${pageContext.request.contextPath}/download/img?files_no=${cinemaDto.files_no}" width="100%" height="500px">
     	 <div class="cinema-ex">
@@ -187,8 +187,7 @@
 			 <div style="width: 90%;margin: auto;">${slist.screen_name}</div>
 				<c:forEach items="${slist.list}" var="list">
 					<a href="seat?movietime_no=${list.movietime_no}">
-					<span>상영시간표번호${list.movietime_no} 상영시간${list.movietime_time} 사용 좌석수${list.ticket_count}</span>
-
+					<span> 상영시간${list.movietime_time} 사용 좌석수${list.ticket_count}</span>
 					</a>
 				</c:forEach>
 			</c:forEach>
