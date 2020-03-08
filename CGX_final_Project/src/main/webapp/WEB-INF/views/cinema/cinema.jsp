@@ -16,7 +16,9 @@
 			e.preventDefault();
 	            var time =$(this).find('.hidden-day').text();
 	            var no = $("input[name=cinema_no]").val();
-	            
+	            $('.date').removeClass('date');
+	            console.log(this);
+	            $(this).find('.float-left').addClass('date');
 	        	$.ajax({
 	    			url:"movietimelist",
 	    			method:"post",
@@ -48,12 +50,6 @@
 									var movietime = $("<div>");
 									var strong = $("<strong>").css('font-size','1.2rem').text(""+rtlist.movietime_time).appendTo("#movietime");
 									var seat = $("<div>").css('color','dodgerblue').text(""+rtlist.ticket_count+"석");
-
-									
-									console.log(movietime);
-									console.log(mtime);
-									console.log(strong);
-									console.log(seat);
 									
 									movietime.append(strong);
 	    							mtime.append(movietime);
@@ -104,7 +100,14 @@
             width: 100%; height: 400px; background-color: bisque;
         }
         .area2{
-            width: 980px;background-color: black;margin: auto;height: 100%;border-radius:10%;
+            width: 980px;background-color: #353535;margin: auto;height: 100%;border-radius:10%;
+            padding: 30px;
+            
+        }
+        .area3{
+        	border-radius:15%;
+        	height : 100%;
+        	border: 2px solid gray;
         }
         .main-cinema{
             font-size: 5rem; text-align: center;font-family: cinema;
@@ -125,11 +128,15 @@
         .float-left::after{
             clear: both;
         }
-        .date{
-            width: 10%; 
+        .date-base{
+        	width: 10%; 
             text-align: center;
+        }
+        .date{
             border: 2px solid black;
             border-radius: 15%;
+            background-color: white;
+            color: black;
         }
         .day{
             font-size: 2.5rem;
@@ -139,7 +146,7 @@
             border: 1px solid g	ray;
         }
         .tap{
-        	width: 960px;height: 300px;padding: 20px;
+        	width: 960px;height: 200px;padding: 20px;
         }
         .time-movie{
         	float: left;
@@ -167,6 +174,7 @@
 </ol>
   <div class="area">
   <div class="area2">
+  <div class="area3">
   <br><br>
     <div class="container">
       <div class="row">
@@ -183,7 +191,7 @@
              <div class="tab-pane fade show active tap" id="qwe">
              <c:forEach var="cinema1" items="${cinema_list1}">
                
-				<div style="float: left;font-size: 1.5rem;"><a href="?cinema_no=${cinema1.CINEMA_NO}">
+				<div style="float: left;font-size: 1.5rem;"><a href="?cinema_no=${cinema1.CINEMA_NO}" style="color: white;">
 				    ${cinema1.CINEMA_AREA}
 				</a> &nbsp;|&nbsp;</div>
 				
@@ -191,9 +199,9 @@
               </div>
               <div class="tab-pane fade tap" id="asd">
                   <c:forEach var="cinema2" items="${cinema_list2}">
-                <div style="float: left;font-size: 1.5rem;"><a href="?cinema_no=${cinema2.CINEMA_NO}">
+                <div style="float: left;font-size: 1.5rem;color: white;"><a href="?cinema_no=${cinema2.CINEMA_NO}">
 				    ${cinema2.CINEMA_AREA}
-				</a> &nbsp;|&nbsp;</div>
+				</a> &nbsp;|&nbsp;&nbsp;</div>
 				</c:forEach>
               </div>
 	         </div>
@@ -201,6 +209,7 @@
 	         </div>
 	         </div>
 	        </div> 
+	        </div>
           </div>		
       <article>     			
     <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
@@ -213,10 +222,11 @@
     	 <hr style="height: 4px">
     	<c:forEach var="list" items="${timelist}">
     	<a class="time" href="#">
-			<div class="date float-left">
-			<span class="hidden-day">${list[0]}${list[1]}${list[2]}</span>
-			<span>${list[1]}월 ${list[3]}</span><span class="day"><strong>${list[2]}</strong></span>	
-			</div></a>
+			<div class="float-left date-base">
+				<span class="hidden-day">${list[0]}${list[1]}${list[2]}</span>
+				<span>${list[1]}월 ${list[3]}</span><span class="day"><strong>${list[2]}</strong></span>	
+			</div>
+		</a>
 		</c:forEach>
 		<div style="clear: both;"></div>
 		<hr>
