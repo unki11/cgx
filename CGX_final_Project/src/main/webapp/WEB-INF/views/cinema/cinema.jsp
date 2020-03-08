@@ -28,8 +28,13 @@
 	    				$.each(data, function(index){
 	    					var movie_no = data[index].movie_no;
 	    					var list = data[index].list;
-	    					$("<h3>").text(data[index].movie_title).appendTo("#movietime");
+	    					var movieT = $("<strong>").css('font-size','1.5rem').text(data[index].movie_title+" ("+data[index].movie_grade+") ");
+	    					var spanT = $("<span>").css('font-size','0.9rem').text(data[index].movie_genre+" / "+data[index].movie_startdate+"개봉");
+	    					spanT.appendTo(movieT);
+	    					movieT.appendTo("#movietime");
+	    					$("<br>").appendTo("#movietime");	
 	    					$.each(list, function(index){
+	    						$("<br>").appendTo("#movietime");
 	    						var rlist = list[index].list;
 	    						var div = $("<div>").attr('class','screen');
 	    						$("<div>").text(list[index].screen_type+" | "+list[index].screen_name).appendTo(div);
@@ -41,8 +46,8 @@
 	    							var mtime = $("<div>").attr('class','time-movie');
 	    							var span = $("<span>").text("상영시간표번호"+rtlist.movietime_no+"  "+"상영시간"+rtlist.movietime_time+"  "+"사용 좌석수"+rtlist.ticket_count+"  ");
 									var movietime = $("<div>");
-									var strong = $("<strong>").text(""+rtlist.movietime_time);
-									var seat = $("<div>").text(""+rtlist.ticket_count+"석");
+									var strong = $("<strong>").css('font-size','1.2rem').text(""+rtlist.movietime_time).appendTo("#movietime");
+									var seat = $("<div>").css('color','dodgerblue').text(""+rtlist.ticket_count+"석");
 
 									
 									console.log(movietime);
@@ -62,7 +67,7 @@
     								div.appendTo("#movietime")
     							
     								})
-	    						$("<h5>").text("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ").appendTo("#movietime");
+	    						$("<hr>").appendTo("#movietime");
 	    					})
 	    			}
 	    			
@@ -218,8 +223,11 @@
     <div id="movietime">
     	
     	<c:forEach items="${list}" var="mlist" >
-    		<hr>
-    		<strong style="font-size: 1.5rem">${mlist.movie_title} (${mlist.movie_grade}) <span style="font-size: 0.9rem"> ${mlist.movie_genre} / ${mlist.movie_startdate}개봉</span></strong>
+    		
+    		<strong style="font-size: 1.5rem">
+    		${mlist.movie_title} (${mlist.movie_grade}) 
+    		<span style="font-size: 0.9rem"> ${mlist.movie_genre} / ${mlist.movie_startdate}개봉</span>
+    		</strong>
    			<br>
 			<c:forEach items="${mlist.list}" var="slist">
 			<br>
@@ -238,6 +246,7 @@
 				<div class="clear"></div>
 				</div>
 			</c:forEach>
+			<hr>
 		</c:forEach>
     </div>
     <br><br>
