@@ -194,8 +194,20 @@ where
      INSERT INTO WISH(WISH_NO,MEMBER_NO,MOVIE_NO) values (movie_no_seq.nextval,#{member_no},#{movie_no})
 </insert>
 
+<update id="mvwishupdate">
+     UPDATE movie SET movie_wish = movie_wish + 1 WHERE movie_no= #{movie_no}
+</update>
+
+<update id="updatewishreset">
+     UPDATE movie SET movie_wish = movie_wish - 1 WHERE movie_no= #{movie_no}
+</update>
+
 <select id="whishmember" parameterType="int" resultType="movieVO"> <!-- 지현이 추가  -->
- select member_id from member where member_no= #{member_no}
+select 
+B.movie_title, B.movie_no 
+from wish A inner join  movie B
+on A.movie_no = B.movie_no
+where A.member_no = #{member_no}
 </select>
 
 <select id="check" parameterType="map" resultType="int">
@@ -206,6 +218,13 @@ where
 	delete wish where member_no = #{member_no} and movie_no= #{movie_no}
 </delete>
 
+<select id="review" parameterType="int" resultType="reviewDto">
+	select r.* from review r 
+		inner join ticket t on r.ticket_no = t.ticket_no 
+		inner join movietime mt on t.movietime_no = mt.movietime_no 
+		inner join movie m on mt.movie_no = m.movie_no
+	where m.movie_no = #{movie_no}
+</select>
 </mapper>
 
 

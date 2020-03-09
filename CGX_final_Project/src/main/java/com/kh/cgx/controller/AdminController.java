@@ -284,9 +284,6 @@ public class AdminController {
 	@PostMapping("/Manager/managerInsert")
 	public String managerInsert(@ModelAttribute ManagerDto managerDto, @RequestParam String movietime_hour, @RequestParam String movietime_min) {
 		String date = managerDto.getMovietime_time();
-		System.out.println(managerDto);
-		System.out.println(movietime_hour);
-		System.out.println(movietime_min);
 		date += " ";
 		date += movietime_hour;
 		date += ":";

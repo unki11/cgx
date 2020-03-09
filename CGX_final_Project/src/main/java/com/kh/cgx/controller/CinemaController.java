@@ -1,5 +1,5 @@
 package com.kh.cgx.controller;
-import java.io.File;			
+import java.io.File;				
 import java.io.IOException;	
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -39,9 +39,6 @@ import com.kh.cgx.vo.cinema.MovieTimeMovieVO;
 import com.kh.cgx.vo.cinema.MovieTimeScreenVO;
 import com.kh.cgx.vo.cinema.MovieTimeSeatVO;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Controller
 @RequestMapping("/cinema")
 public class CinemaController {
@@ -99,7 +96,6 @@ public class CinemaController {
 			
 			List.add(list);
 		} 
-		System.out.println("List"+List);
 		sqlSession.delete("seat.seatdelete",screen_no);
 		for(List<String> slist : List) {
 			SeatDto seatDto = new SeatDto();
@@ -107,7 +103,6 @@ public class CinemaController {
 			seatDto.setSeat_row(Integer.parseInt(slist.get(0)));
 			seatDto.setSeat_col(Integer.parseInt(slist.get(1)));
 			seatDto.setSeat_grade('0');
-			System.out.println("seatDto"+seatDto);
 			sqlSession.insert("seat.seatinsert",seatDto);
 		}
 		return "cinema/seatinsert";
@@ -210,7 +205,7 @@ public class CinemaController {
 	
 	@GetMapping("/")
 	public String cinema2(@RequestParam(required = false, defaultValue ="1") int cinema_no,Model model) throws ParseException {
-			
+		System.out.println("인정");
 		cinemaDto=CinemaDto.builder().cinema_no(cinema_no).build();
 		
 //		List<CinemaDto> cinema_list = sqlSession.selectList("cinema.list");
@@ -226,7 +221,6 @@ public class CinemaController {
 
 		model.addAttribute("screen_list", screen_list);
 		CinemaDto cinemaDto = sqlSession.selectOne("cinema.one",cinema_no);
-		System.out.println(cinemaDto);
 		List<MovieTimeDto> movieTime_list = sqlSession.selectList("movietime.search",cinema_no);
 		model.addAttribute("cinemaDto",cinemaDto);
 		model.addAttribute("movietime_list", movieTime_list);
@@ -292,6 +286,7 @@ public class CinemaController {
 				map.put("movietime_time_start", inputDate2+"0000");
 				map.put("movietime_time_end",inputDate2+"2359");
 				List<MovieTimeSeatVO> mtlist = sqlSession.selectList("movietime.screenlist",map);
+				System.out.println("시간"+mtlist);
 				if(mtlist.isEmpty()) {
 					continue;
 				}
@@ -316,7 +311,6 @@ public class CinemaController {
 			movieTimeMovieVO.setList(MTSlist);
 			MTMlist.add(movieTimeMovieVO);
 		}
-		System.out.println("MTMLISt"+MTMlist);
 		model.addAttribute("list",MTMlist);
 		/*
 		 * List<MovieTimeDto> movieTime_list =
@@ -345,6 +339,7 @@ public class CinemaController {
 				map.put("movietime_time_start", movietime+"0000");
 				map.put("movietime_time_end",movietime+"2359");
 				List<MovieTimeSeatVO> mtlist = sqlSession.selectList("movietime.screenlist",map);
+				System.out.println("시간"+mtlist);
 				if(mtlist.isEmpty()) {
 					continue;
 				}
@@ -409,9 +404,6 @@ public class CinemaController {
 			timelist.add(data1);
 			
 		}
-		for(List<String> tim : timelist) {
-			log.info("time={}",tim);
-		}
 		model.addAttribute("timelist", timelist);
 		return "cinema/time";
 	}
@@ -419,7 +411,6 @@ public class CinemaController {
 	@PostMapping("/test")
 	@ResponseBody
 	public String test2(@RequestParam String id,Model model){
-		log.info("dto는={}",id);
 //		model.addAttribute("resp", "test");
 //		model.addAttribute("id", id);
 		
@@ -432,7 +423,6 @@ public class CinemaController {
 	@PostMapping("/upload")
 	public String test3(@RequestParam List<MultipartFile> files,Model model) throws IllegalStateException, IOException {
 		
-		log.info("리스트={}",files);
 		File dir = new File("D:/upload/cinema");
 		dir.mkdirs();//디렉터리 생성
 		
@@ -440,7 +430,6 @@ public class CinemaController {
 			int no = sqlSession.selectOne("cinema.files");
 			File target = new File(dir, String.valueOf(no));
 			mf.transferTo(target);//파일 저장
-			log.info("target={}",target);
 			sqlSession.insert("cinema.filesinsert",no);
 		}
 		return "cinema/upload1";

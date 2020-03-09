@@ -50,7 +50,7 @@ $(function(){
  
 });
 
-// //한개의 체크박스 선택 해제시 전체 선택 체크박스도 해제
+//한개의 체크박스 선택 해제시 전체 선택 체크박스도 해제
 // $(".check").click(function(){
 //  if($("input[name='genre']:checked").length == 9){
 //      $("#all_genre").prop("checked",true);
