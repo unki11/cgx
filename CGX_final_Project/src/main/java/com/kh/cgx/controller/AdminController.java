@@ -120,9 +120,13 @@ public class AdminController {
 		}
 		else {
 			boolean correct = encoder.matches(adminDto.getAdmin_pw(),find.getAdmin_pw());
-			
 				if(correct == true) {
-					return "redirect:/admin/Manager/managerInsert";
+					session.setAttribute("admin_id", adminDto.getAdmin_id());
+					if("master".equals(adminDto.getAdmin_id())) {
+						return "redirect:/admin/adminList";
+					}else {
+						return "redirect:/admin/Manager/managerInsert";
+					}
 				}
 				else {
 					return "/admin/adminLogin";

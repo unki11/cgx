@@ -70,7 +70,7 @@
                 <a class="dropdown-item" href="#">무비차트</a>
                 <a class="dropdown-item" href="#">HD 트레일러</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">무비파인더</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/movie/finder-test">무비파인더</a>
               </div>
             </li>
             <li class="nav-item dropdown" style="padding: 3rem;">

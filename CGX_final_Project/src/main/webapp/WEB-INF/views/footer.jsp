@@ -11,8 +11,9 @@
      }
     
 	
-</style>   
-    
+</style>
+ 
+<div class="container-fluid">    
 <!-- 푸터시작 -->
 <footer class="bg-1light">   
 	 <br><br>	 
@@ -30,5 +31,6 @@
 호스팅사업자 : CGX |책임자 : 흠흠냐 |대표이메일 : hagisilta@ah.net |CGV고객센터 : 1004-1004
  © CJ CGV. All Rights Reserved
 </footer>
+</div>
 </body>
 </html>

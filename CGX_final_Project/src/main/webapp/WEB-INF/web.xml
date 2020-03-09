@@ -27,6 +27,28 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<filter-mapping>
+		<filter-name>WebFilter</filter-name>
+		<url-pattern>/admin/adminList</url-pattern>
+		<url-pattern>/admin/adminInsert</url-pattern>
+		<url-pattern>/admin/Movie/adminInsert</url-pattern>
+		<url-pattern>/admin/Movie/adminList</url-pattern>
+		<url-pattern>/admin/Cinema/adminInsert</url-pattern>
+		<url-pattern>/admin/Cinema/adminList</url-pattern>
+		<url-pattern>/admin/Screen/adminInsert</url-pattern>
+		<url-pattern>/admin/Screen/adminList</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>WebFilter</filter-name>
+		<filter-class>com.kh.cgx.controller.WebFilter</filter-class>
+		<init-param>
+			<param-name>passPage</param-name>
+			<param-value>/,/index.html,error.html</param-value>
+		</init-param>
+	</filter>
+
+
+
 	
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
