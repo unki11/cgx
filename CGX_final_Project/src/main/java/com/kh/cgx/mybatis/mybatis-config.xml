@@ -41,6 +41,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.kh.cgx.vo.cinema.MovieTimeSeatVO" alias="MovieTimeSeatVO"/>
 		<typeAlias type="com.kh.cgx.vo.movie.AreaVO" alias="areaVO"/>
 		<typeAlias type="com.kh.cgx.vo.movie.SelectMovieTimeVO" alias="timeCut"/>
+		<typeAlias type="com.kh.cgx.vo.cinema.SeatTicketVO" alias="SeatTicketVO"/>
 	</typeAliases>
 	
 </configuration>
