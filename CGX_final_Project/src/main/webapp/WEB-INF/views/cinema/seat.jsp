@@ -2,10 +2,11 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>영화관 좌석 배치</title>
+    <jsp:include page="../header.jsp"></jsp:include>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/hiphop5782/js/cinema/hakademy-cinema.css">
     <script src="https://cdn.jsdelivr.net/gh/hiphop5782/js/cinema/hakademy-cinema.js"></script>
     <script>
@@ -15,12 +16,9 @@
         });
     </script>
     <style>
-    	.w-70{
-    		width:90%;	
-    	}
-    	article{
-    		margin:auto;
-		}
+    	
+    	
+	}
     </style>
 </head>
 <body>
@@ -58,5 +56,6 @@
 
   </article>        
 </body>
+<jsp:include page="../footer.jsp"></jsp:include>
 </html>
 
