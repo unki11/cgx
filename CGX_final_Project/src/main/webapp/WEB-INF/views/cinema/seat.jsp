@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>영화관 좌석 배치</title>
@@ -201,6 +201,7 @@
         })(window);
     </script>
     <style>
+<<<<<<< HEAD
     	.w-70{
     		width:90%;	
     	}
@@ -255,6 +256,11 @@
 	margin:auto;
 	height: 200px;background-color: black;
 }
+=======
+    	
+    	
+	}
+>>>>>>> refs/remotes/origin/master
     </style>
 </head>
 <body>
@@ -295,5 +301,6 @@ ${seat}
 <jsp:include page="../footer.jsp"></jsp:include> 	
   </article>        
 </body>
+<jsp:include page="../footer.jsp"></jsp:include>
 </html>
 

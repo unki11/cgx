@@ -28,8 +28,9 @@
 	}
 	
 	html{
-		background-image: url("${pageContext.request.contextPath}/resources/img/all.jpg");
-		background-size: cover;
+		background-image: url("${pageContext.request.contextPath}/resources/img/latte2.png");
+		background-repeat: no-repeat;
+		background-position: top;
 	}
 </style>
 </head>
