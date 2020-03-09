@@ -18,22 +18,11 @@
 		clear: both;
 	}
 	
-	.container{
-		display: block;
-	}
-	
 	body{
 		background-image: url("${pageContext.request.contextPath}/resources/img/all.jpg");
 	}
 	
-	footer{
-		width: 100%;
-		height: 250px;
-	}
-	
-	.round{
-		text-align: center;
-	}
+
 </style>
 <script>
 $(function(){
@@ -279,12 +268,15 @@ $(function(){
 </c:forEach> --%>
 
 
-<div class="container-fluid">
+<div class="row" style="width: 100%">
+<!-- <div class="container-fluid"> -->
 <c:forEach var="finder_list" items="${finder_list}">
-  <div class="row">
-  <div class="col-md-7 col-md-3">
+  <div class="col-md-3">
+<!--   <div class="row"> -->
+  <div class="col-md-12">
+<!--   <div class="col-md-7"> -->
     <div class="list-group">
-      <div class="caption" style="background-color: #faefdc">
+      <div class="caption" style="background-color: #fcfcf0">
       <ul type="square">
 	        <li class="finder list-group-item-danger active">${finder_list.movie_no}</li>
 	        <img src="download?files_no=${finder_list.files_no}">
@@ -305,13 +297,15 @@ $(function(){
 </div>
 </c:forEach>
 </div>
+
+<jsp:include page="../footer.jsp"></jsp:include>
+
 </body>
 </html>
-<footer>
-<div>
-	<jsp:include page="../footer.jsp"></jsp:include>
-</div>
-</footer>
+
+
+	
+
 
 
 

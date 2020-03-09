@@ -46,15 +46,20 @@ $(function(){
 	.container{
 		width: 450px;
 	}
-	img{
+/* 	img{
 		height: 250px;
 		width: 100%;
-	}
+	} */
 	.swiper-container{
 		height: 300px;
 	}
 	.row{
 		font-size: large;
+	}
+	
+	.row > img{
+		height: 250px;
+		width: 100%;
 	}
 </style>
 <!-- 발표전 풀기
