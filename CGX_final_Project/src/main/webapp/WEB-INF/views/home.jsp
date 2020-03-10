@@ -170,7 +170,7 @@ $(function(){
 	<div class="swiper-pagination"></div>
 </div>
    
-<div><img src="${pageContext.request.contextPath}/resources/img/alltype.jpg" style="height: 80px"></div>
+<div><img src="${pageContext.request.contextPath}/resources/img/alltype.jpg" style="height: 80px; margin-left: 130px;"></div>
 </body> 
       <!-- 푸터시작 -->
 <jsp:include page="footer.jsp"></jsp:include>      

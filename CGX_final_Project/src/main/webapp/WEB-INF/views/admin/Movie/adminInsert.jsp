@@ -134,6 +134,10 @@
                 	<a class="underlineHover" href="/com.kh.cgx/admin/Movie/adminList">
                     	<input class="btn btn-info" value="영화목록보기">
                     </a>
+                    
+                    <a class="underlineHover" href="/com.kh.cgx/admin/adminList">
+                    	<input class="btn btn-info" value="관리자메인화면가기">
+                    </a>
                 </td>
             </tr>
         </form>

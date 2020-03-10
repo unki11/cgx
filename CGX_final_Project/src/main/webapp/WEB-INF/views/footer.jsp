@@ -15,9 +15,9 @@
 		<i class="fa fa-facebook-official fa-2x" aria-hidden="true">FaceBook</i>
 	</a>		 
 	<p>서울 영등포구 선유동2로 57 이레빌딩</p> 
-	<p>사업자정보확인 호스팅사업자 : CGX | 책임자 : 흠흠냐 | 대표이메일 : hagisilta@ah.net | CGX고객센터 : 1004-1004
+	<p>사업자정보확인 호스팅사업자 : CGX | 책임자 : 김운기 | 대표이메일 : hagisilta@ah.net | CGX고객센터 : 1004-1004
 	© CJ CGV. All Rights Reserved</p>
 </div>
 </div>
-<img src="${pageContext.request.contextPath}/resources/img/block.jpg">
+<img src="${pageContext.request.contextPath}/resources/img/block.jpg" style="width: 100%;">
 </html>

@@ -4,16 +4,19 @@
 <%@ page session="false" %>
 <html>
 <head>
+	
 	<title>Home</title>
-
+	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!-- <script src="https://code.jquery.com/jquery-3.4.1.js" ></script> -->
+	
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 <!--     <script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"  type="text/javascript"></script> -->
 <!--   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 <!--   <script src="http://code.jquery.com/jquery-1.11.1.js" type="text/javascript"></script> -->
@@ -24,6 +27,7 @@
             background-color: #fcfcd7;
             font-size: large;
             font-weight: bold;
+            width: 100%;
         }
         .menu{
         	font-size: large;
@@ -49,8 +53,8 @@
 	        font-weight: bold;
 	        font-size: large;
 			width: 100%;
-     }
-		
+     	}
+
     </style>
     <script type="text/javascript">
     
@@ -74,14 +78,15 @@
     </script>
 </head>
 <body>
-	<div class="menu" style="background-color: #fcfcf0;">
+
+	<div class="menu" style="background-color: #fcfcf0; cursor: pointer; font-family: cgxfont;">
          <a class="click" href="${pageContext.request.contextPath}/user/login" style="padding: 1rem; color: black;"> 로그인</a>
          <a class="click" href="${pageContext.request.contextPath}/user/join" style="padding: 1rem; color: black;"> 회원가입</a>
          <a class="click" href="${pageContext.request.contextPath}/mypage/mycgv" style="padding: 1rem; color: black;"> My cgx</a>
          <a class="click" href="${pageContext.request.contextPath}/user/logout" style="padding: 1rem; color: black;"> 로그아웃</a>
     </div>
-    <img src="${pageContext.request.contextPath}/resources/img/line.jpg">
-   <div class="container-fluid">	
+    <img src="${pageContext.request.contextPath}/resources/img/line.jpg" style="width: 100%;">
+   <div class="container-fluid" style="background-color: #fcfcd7">	
    <nav class="navbar navbar-expand-lg navbar-light bg-1light"><a href="http://localhost:8080/com.kh.cgx/"><img src="${pageContext.request.contextPath}/resources/img/latte2.png" class="image"></a>
         <a class="navbar-brand" href="http://localhost:8080/com.kh.cgx/"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -133,6 +138,6 @@
         </div>
       </nav>
      </div>
-     <img src="${pageContext.request.contextPath}/resources/img/line.jpg">
+     <img src="${pageContext.request.contextPath}/resources/img/line.jpg" style="width: 100%;">
       <!-- 헤더 끝 -->
       
