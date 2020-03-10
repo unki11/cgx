@@ -96,7 +96,7 @@ public class TicketController {
 		List<AreaVO> areaList = mainTicketDao.getAreaAndCinemaList(movie_no);
 		model.addAttribute("areaList", areaList);
 		
-		ModelAndView mv = new ModelAndView();
+	
 		
 		
 		return "ticket/cinema";

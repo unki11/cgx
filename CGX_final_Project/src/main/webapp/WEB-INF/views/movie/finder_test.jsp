@@ -23,7 +23,9 @@
 	.container{
 		
 	}
-	
+	body{
+background-color: #fcfcf0;
+}
 </style>
 <script>
 $(function(){

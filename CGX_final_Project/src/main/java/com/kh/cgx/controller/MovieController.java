@@ -155,7 +155,7 @@ public class MovieController {
 		return "movie/trailer";
 	}
 
-
+	
 
 	// 기본 리스트와 검색 기능을 합친 메소드
 	@GetMapping("/finder-test")

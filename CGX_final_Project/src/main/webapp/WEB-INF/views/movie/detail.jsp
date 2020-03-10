@@ -519,7 +519,9 @@ b, strong {
     top: -2px;
     background-position: -25px 0;
 }
-
+body{
+background-color: #fcfcf0;
+}
 body, input, textarea, select, button, table {
     font-size: 13px;
     line-height: 1.2;
@@ -588,6 +590,9 @@ ul {
     height: 185px;
     position: absolute;
     user-select: none;
+}
+	.content{
+	font-size: inherit;
 }
     </style>
     </head>
@@ -691,7 +696,7 @@ chart.render();
     
     
     
-    <body>
+    <body style="background-color: #fcfcf0;">
     <div id="contaniner" class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
 
        
@@ -790,8 +795,8 @@ chart.render();
             <!-- 메뉴가 선택되면 a 에 title="선택" 이라고 넣는다 -->
            
             <div class="sect-story-movie">
-                <strong>${movieActorVO.movie_title}<br>
-					<h2>${movieActorVO.movie_content}</h2>
+                <strong>${movieActorVO.movie_title}</strong>
+					<h2 class="content" style="font-size: inherit;">${movieActorVO.movie_content}</h2>
             </div><!-- .sect-story -->
             <div id="ctl00_PlaceHolderContent_Section_Chart" class="sect-graph">
                 <ul class="graph">

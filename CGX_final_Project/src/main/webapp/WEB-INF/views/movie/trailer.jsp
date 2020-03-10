@@ -326,6 +326,9 @@ a {
 	width:1030px;
 	height:900px;
 }
+body{
+background-color: #fcfcf0;
+}
 </style>
 
 </head>
@@ -342,7 +345,7 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
 
 
  
-    <body>
+<body style="background-color: #fcfcf0;">
   
   <div id="contaniner">
   	<div id="contents">
@@ -401,7 +404,6 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
   				<c:forEach var="videoVO" items="${video_list }" >
   				<li>
   					<div class="box-image">
-<%--   					<h1>${videoVO.movie_title}</h1> --%>
     <a href=" ${videoVO.video_link}" data-toggle="lightbox" class="video">
         <span class="thumb-image"></span>
          <img src="http://img.youtube.com/vi/${videoVO.video_id }/maxresdefault.jpg" style="width:240px; height: 135px;">
