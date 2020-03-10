@@ -92,7 +92,7 @@
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
-
+`
     <!-- Icon -->
     <div class="fadeIn first">
       <img src="${pageContext.request.contextPath}/resources/img/latte2.png" id="icon" alt="User Icon" />
