@@ -52,7 +52,10 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <h1>극장 목록</h1>
+          <h2>극장 목록</h2>
+          <a class="underlineHover" href="/com.kh.cgx/admin/adminList">
+             <input class="btn btn-info" value="관리자메인화면가기">
+          </a>
           <ul class="list-group">
           <c:forEach var="cinemaDto" items="${list}">
 	          <div>
@@ -62,7 +65,7 @@
 		            <li>${cinemaDto.cinema_area}</li>
 		            <li>${cinemaDto.cinema_phone}</li>
 		            <li>${cinemaDto.cinema_addr}</li>
-		            <button class="delete">삭제</button>
+		            <button class="delete btn btn-danger">삭제</button>
 		         </ul>   
 	           </div>
            </c:forEach>

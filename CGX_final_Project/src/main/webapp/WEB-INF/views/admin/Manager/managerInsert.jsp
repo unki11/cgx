@@ -131,8 +131,7 @@
 <table class="table table-bordered">
     <thead>
         <caption> 상영시간표 등록  </caption>
-    </thead>
-    
+    </thead>    
     <tbody>
         <form action="managerInsert" method="post">
             
@@ -192,8 +191,15 @@
             <tr style="text-align: center;">
                 <td colspan="2" >
                     <input type="submit" value="상영시간표 등록하기" class="btn btn-danger">
-                    
+                <a class="underlineHover" href="http://localhost:8080/com.kh.cgx/">
+                    <input class="btn btn-info" value="메인화면가기">
+                </a>
+                
+                <a class="underlineHover" href="/com.kh.cgx/admin/adminLogin">
+             		<input class="btn btn-info" value="로그인화면으로가기">
+          		</a>
                 </td>
+
             </tr>
         </form>
     </tbody>

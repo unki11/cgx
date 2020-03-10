@@ -71,7 +71,9 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <img src="${pageContext.request.contextPath}/resources/img/latte2.png" id="icon" alt="User Icon" />
+      <a href="http://localhost:8080/com.kh.cgx/">
+      	<img src="${pageContext.request.contextPath}/resources/img/latte2.png" id="icon" alt="User Icon" />
+      </a>
     </div>
 
     <!-- Login Form -->
