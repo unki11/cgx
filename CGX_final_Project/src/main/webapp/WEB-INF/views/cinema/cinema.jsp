@@ -199,7 +199,7 @@
               </div>
               <div class="tab-pane fade tap" id="asd">
                   <c:forEach var="cinema2" items="${cinema_list2}">
-                <div style="float: left;font-size: 1.5rem;color: white;"><a href="?cinema_no=${cinema2.CINEMA_NO}">
+                <div style="float: left;font-size: 1.5rem;"><a href="?cinema_no=${cinema2.CINEMA_NO}" st>
 				    ${cinema2.CINEMA_AREA}
 				</a> &nbsp;|&nbsp;&nbsp;</div>
 				</c:forEach>
