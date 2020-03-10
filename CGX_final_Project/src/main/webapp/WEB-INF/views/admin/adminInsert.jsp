@@ -111,6 +111,8 @@
       <a class="underlineHover" href="/com.kh.cgx/admin/adminList">
       	<input class="btn btn-info" value="매니저목록보기">
       </a>
+      
+      
     </div>
 
   </div>

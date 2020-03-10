@@ -63,6 +63,7 @@
 <body>
 <div class="container">
 <table class="table table-bordered">
+	
     <tbody>
         <form action="adminInsert" method="post">
 <!--             <tr>
@@ -113,6 +114,10 @@
                     <input class="btn btn-danger" type="submit" value="상영관등록">
                     <a class="underlineHover" href="/com.kh.cgx/admin/Screen/adminList">
                     	<input class="btn btn-info" value="상영관목록보기">
+                    </a>
+                    
+                    <a class="underlineHover" href="/com.kh.cgx/admin/adminList">
+                    	<input class="btn btn-info" value="관리자메인화면가기">
                     </a>
                 </td>
             </tr>

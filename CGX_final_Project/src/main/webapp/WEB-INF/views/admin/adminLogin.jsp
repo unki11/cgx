@@ -28,8 +28,9 @@
 	}
 	
 	html{
-		background-image: url("${pageContext.request.contextPath}/resources/img/all.jpg");
-		background-size: cover;
+		background-image: url("${pageContext.request.contextPath}/resources/img/latte2.png");
+		background-repeat: no-repeat;
+		background-position: top;
 	}
 </style>
 </head>
@@ -70,7 +71,9 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <img src="${pageContext.request.contextPath}/resources/img/latte2.png" id="icon" alt="User Icon" />
+      <a href="http://localhost:8080/com.kh.cgx/">
+      	<img src="${pageContext.request.contextPath}/resources/img/latte2.png" id="icon" alt="User Icon" />
+      </a>
     </div>
 
     <!-- Login Form -->

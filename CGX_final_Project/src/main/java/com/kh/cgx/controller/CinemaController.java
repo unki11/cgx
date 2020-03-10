@@ -1,5 +1,5 @@
 package com.kh.cgx.controller;
-import java.io.File;				
+import java.io.File;					
 import java.io.IOException;	
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -38,6 +39,7 @@ import com.kh.cgx.repository.cinema.CinemaFileDao;
 import com.kh.cgx.vo.cinema.MovieTimeMovieVO;
 import com.kh.cgx.vo.cinema.MovieTimeScreenVO;
 import com.kh.cgx.vo.cinema.MovieTimeSeatVO;
+import com.kh.cgx.vo.cinema.SeatTicketVO;
 
 @Controller
 @RequestMapping("/cinema")
@@ -110,7 +112,8 @@ public class CinemaController {
 	
 	@GetMapping("/seat")
 	public String seat(Model model,@RequestParam int movietime_no) {
-		
+
+		SeatTicketVO seatvo =sqlSession.selectOne("seat.seatcheck",movietime_no);
 		MovieTimeDto movieTimeDto = sqlSession.selectOne("movietime.one",movietime_no);
 		List<List<Integer>> seatreserved = new ArrayList<List<Integer>>();
 		List<SeatDto> seatlist = sqlSession.selectList("seat.seat", movietime_no);
@@ -136,6 +139,7 @@ public class CinemaController {
 			seat.add(1);
 			seatall.add(seat);
 		}
+		model.addAttribute("seat", seatvo);
 		model.addAttribute("movietime_no", movietime_no);
 		model.addAttribute("seatset", seatreserved);
 		model.addAttribute("seatall", seatall);	
@@ -205,7 +209,6 @@ public class CinemaController {
 	
 	@GetMapping("/")
 	public String cinema2(@RequestParam(required = false, defaultValue ="1") int cinema_no,Model model) throws ParseException {
-		System.out.println("인정");
 		cinemaDto=CinemaDto.builder().cinema_no(cinema_no).build();
 		
 //		List<CinemaDto> cinema_list = sqlSession.selectList("cinema.list");
@@ -286,7 +289,6 @@ public class CinemaController {
 				map.put("movietime_time_start", inputDate2+"0000");
 				map.put("movietime_time_end",inputDate2+"2359");
 				List<MovieTimeSeatVO> mtlist = sqlSession.selectList("movietime.screenlist",map);
-				System.out.println("시간"+mtlist);
 				if(mtlist.isEmpty()) {
 					continue;
 				}
@@ -339,7 +341,6 @@ public class CinemaController {
 				map.put("movietime_time_start", movietime+"0000");
 				map.put("movietime_time_end",movietime+"2359");
 				List<MovieTimeSeatVO> mtlist = sqlSession.selectList("movietime.screenlist",map);
-				System.out.println("시간"+mtlist);
 				if(mtlist.isEmpty()) {
 					continue;
 				}

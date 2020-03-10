@@ -48,11 +48,15 @@
 
 <html>
 <body>
+	
     <div class="container">
        <div class="row">
         <!-- <div class="col-12"> -->
           <div class="col">
-          <h1>상영관 목록 페이지</h1>
+          <h2>상영관 목록 페이지</h2>
+          <a class="underlineHover" href="/com.kh.cgx/admin/adminList">
+             <input class="btn btn-info" value="관리자메인화면가기">
+          </a>
           <ul class="list-group">
           <c:forEach var="screenDto" items="${list}">
 	          <div>
