@@ -18,12 +18,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getCinemaList" resultType="CinemaDto" parameterType="int">
-		select c.* from manager m inner join cinema c on m.cinema_no = c.cinema_no where manager_no = #{no}
+		select c.* from manager m inner join cinema c on m.cinema_no = c.cinema_no where admin_no = #{no}
 	</select>
 	
 	<select id="getScreenList" resultType="ScreenDto" parameterType="int">
 		select * from screen where cinema_no=#{cinema_no} order by screen_no asc 
 	</select>
+	
+	<insert id="ready" parameterType="readyDto">
+		insert into manager values(manager_no_seq.nextval,#{admin_no},#{cinema_no})
+	</insert>
 	
 <!-- <update id="update" parameterType="managerDto">
 		update admin set admin_grade = #{admin_grade} where admin_no = #{admin_no}

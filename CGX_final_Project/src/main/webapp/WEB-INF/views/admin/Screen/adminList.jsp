@@ -16,6 +16,7 @@
 				type:"get",
 				success:function(resp){
 					consloe.log("성공")
+					window.location.reload(true);
 				}
 			})
 		})

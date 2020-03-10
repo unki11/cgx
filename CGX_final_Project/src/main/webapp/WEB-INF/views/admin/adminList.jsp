@@ -62,6 +62,7 @@
 				type:"get",
 				success:function(resp){
 					console.log("성공")
+					window.location.reload(true);
 				}
 			})
 		})
@@ -114,6 +115,10 @@
 		  <a class="underlineHover" href="/com.kh.cgx/admin/Movie/adminInsert">
       		<input class="btn btn-primary" value="영화등록" style="width: 120px;">
 		  </a>
+		  <a class="underlineHover" href="/com.kh.cgx/admin/adminInsert">
+      		<input class="btn btn-secondary" value="매니저등록" style="width: 120px;">
+		  </a>
+		  <br><br>
           <ul class="list-group">
           <c:forEach var="adminDto" items="${list}">
 	          <div>
