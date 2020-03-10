@@ -31,6 +31,7 @@ import com.kh.cgx.entity.admin.AdminCinemaDto;
 import com.kh.cgx.entity.admin.AdminDto;
 import com.kh.cgx.entity.admin.AdminScreenDto;
 import com.kh.cgx.entity.admin.ManagerDto;
+import com.kh.cgx.entity.admin.ManagerReadyDto;
 import com.kh.cgx.entity.cinema.CinemaDto;
 import com.kh.cgx.entity.cinema.ScreenDto;
 import com.kh.cgx.entity.movie.MovieDto;
@@ -113,7 +114,7 @@ public class AdminController {
 		 * else { session.setAttribute("id", result.getAdmin_id()); return
 		 * "redirect:/admin/Manager/managerInsert"; }
 		 */
-		
+		log.info("admin_id={}",adminDto.getAdmin_id());
 		AdminDto find = adminDao.login(adminDto);
 		if(find == null) {
 			return "/admin/adminLogin";
@@ -121,7 +122,9 @@ public class AdminController {
 		else {
 			boolean correct = encoder.matches(adminDto.getAdmin_pw(),find.getAdmin_pw());
 				if(correct == true) {
-					session.setAttribute("admin_id", adminDto.getAdmin_id());
+					log.info("admin_no={}",adminDto.getAdmin_no());
+					session.setAttribute("admin_id", find.getAdmin_id());
+					session.setAttribute("admin_no", find.getAdmin_no());
 					if("master".equals(adminDto.getAdmin_id())) {
 						return "redirect:/admin/adminList";
 					}else {
@@ -294,6 +297,17 @@ public class AdminController {
 		
 
 		return "redirect:/admin/Manager/managerInsert";
+	}
+	
+	@GetMapping("/Manager/managerReady")
+	public String managerReady() {
+		return "/admin/Manager/managerReady";
+	}
+	
+	@PostMapping("/Manager/managerReady")
+	public String managerReady2(@ModelAttribute ManagerReadyDto readyDto) {
+		managerDao.insert(readyDto);
+		return "/admin/Manager/managerInsert";
 	}
 	
 //	@GetMapping("/Manager/managerList")

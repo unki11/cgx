@@ -25,6 +25,7 @@
 				type:"get",
 				success:function(resp){
 					console.log("성공")
+					window.location.reload(true);
 				}
 			})
 		})
