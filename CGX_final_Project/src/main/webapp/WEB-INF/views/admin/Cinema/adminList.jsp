@@ -25,27 +25,13 @@
 				type:"get",
 				success:function(resp){
 					console.log("성공")
+					window.location.reload(true);
 				}
 			})
 		})
 	});
 
 </script>
-<%-- <h1>극장 리스트 페이지</h1>
-
-<c:forEach var="cinemaDto" items="${list}">
-	<div>
-		<p class="no">${cinemaDto.cinema_no}</p>
-		<p>${cinemaDto.files_no}</p>
-		<img src="${pageContext.request.contextPath}/admin/download?files_no=${cinemaDto.files_no}">
-		<p>${cinemaDto.cinema_area}</p>
-		<p>${cinemaDto.cinema_phone}</p>
-		<p>${cinemaDto.cinema_addr}</p>
-		
-		<button class="delete">삭제</button>
-	</div>
-
-</c:forEach> --%>
 
 <html>
 <body>

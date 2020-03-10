@@ -26,15 +26,20 @@
 			
 		})
 		
+		var admin_no = ${sessionScope.admin_no};
+		console.log(admin_no)
+		
 		$.ajax({
-			url:"managerInsert/cinema?no="+1, // 1은 매니저 번호 자리
+			url:"managerInsert/cinema?no="+admin_no, // 1은 매니저 번호 자리
 			method:"get",
 			success:function(data){
 				console.log("성공")
-				
+				console.log(data)
 				$.each(data, function(index){
 					var cinema = data[index].cinema_no;
-					 $("<option>").text(cinema).attr("value",cinema).appendTo("#cinema");
+					var area = data[index].cinema_area;
+					 $("<option>").text(area).attr("value",cinema).appendTo("#cinema");
+					 
 				})
 				
 			 $("#cinema").change(function(){
@@ -48,7 +53,8 @@
 						
 						$.each(data, function(index){
 							var screen = data[index].screen_no;
-							 $("<option>").text(screen).attr("value",screen).appendTo("#screen");
+							var name = data[index].screen_name;
+							 $("<option>").text(name).attr("value",screen).appendTo("#screen");
 						})
 					}
 				})	
