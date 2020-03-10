@@ -150,7 +150,8 @@ a {
 .steps{
 width: 996px;
 height: 595px;
-margin: auto;f
+    margin-top: 30px;
+    margin-bottom: 30px;
    text-align: center;
 }
 

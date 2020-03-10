@@ -5,27 +5,20 @@
 <head>
     <meta charset="UTF-8">
     <title>극장</title>
+    <jsp:include page="../header.jsp"></jsp:include>
 </head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
- <script src="https://code.jquery.com/jquery-3.4.1.js" type="text/javascript"></script>
-<<<<<<< HEAD
  <style>
-=======
- <style type="text/javascript">
-
->>>>>>> refs/remotes/origin/master
       p { margin:20px 0px; }
  </style>
     <script>
 	$(function(){
 		$(".time").click(function(e){
 			e.preventDefault();
-	            var time =$(this).find('span').text();
+	            var time =$(this).find('.hidden-day').text();
 	            var no = $("input[name=cinema_no]").val();
-	      
-	            console.log(time);
-	            console.log(no);
-	            
+	            $('.date').removeClass('date');
+	            console.log(this);
+	            $(this).find('.float-left').addClass('date');
 	        	$.ajax({
 	    			url:"movietimelist",
 	    			method:"post",
@@ -37,22 +30,40 @@
 	    				$.each(data, function(index){
 	    					var movie_no = data[index].movie_no;
 	    					var list = data[index].list;
-	    					$("<h3>").text(data[index].movie_title).appendTo("#movietime");
+	    					var movieT = $("<strong>").css('font-size','1.5rem').text(data[index].movie_title+" ("+data[index].movie_grade+") ");
+	    					var spanT = $("<span>").css('font-size','0.9rem').text(data[index].movie_genre+" / "+data[index].movie_startdate+"개봉");
+	    					spanT.appendTo(movieT);
+	    					movieT.appendTo("#movietime");
+	    					$("<br>").appendTo("#movietime");	
 	    					$.each(list, function(index){
+	    						$("<br>").appendTo("#movietime");
 	    						var rlist = list[index].list;
-	    						$("<h5>").text(list[index].screen_name).appendTo("#movietime");
+	    						var div = $("<div>").attr('class','screen');
+	    						$("<div>").text(list[index].screen_type+" | "+list[index].screen_name).appendTo(div);
 	    						$.each(rlist,function(index){
 	    							var rtlist = rlist[index];
 	    							console.log("rtlist",rtlist);
 	    							
-	    							var a = $("<a>").attr('href','seat?movietime_no='+rtlist.movietime_no).appendTo("#movietime")
+	    							var a = $("<a>").attr('href','seat?movietime_no='+rtlist.movietime_no).appendTo(div)
+	    							var mtime = $("<div>").attr('class','time-movie');
 	    							var span = $("<span>").text("상영시간표번호"+rtlist.movietime_no+"  "+"상영시간"+rtlist.movietime_time+"  "+"사용 좌석수"+rtlist.ticket_count+"  ");
-	    							a.append(span);
-	    							a.appendTo("#movietime");
-	    							$("<div>").appendTo("#movietime")
+									var movietime = $("<div>");
+									var strong = $("<strong>").css('font-size','1.2rem').text(""+rtlist.movietime_time).appendTo("#movietime");
+									var seat = $("<div>").css('color','dodgerblue').text(""+rtlist.ticket_count+"석");
+									
+									movietime.append(strong);
+	    							mtime.append(movietime);
+	    							mtime.append(seat);
+	    							a.append(mtime);
+	    							a.appendTo(div);
+	    							
 	    							})
-	    						})
-	    						$("<h5>").text("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ").appendTo("#movietime");
+	    							$("<br>").appendTo(div);
+	    							$("<div>").attr('class','clear').appendTo(div);		
+    								div.appendTo("#movietime")
+    							
+    								})
+	    						$("<hr>").appendTo("#movietime");
 	    					})
 	    			}
 	    			
@@ -68,34 +79,106 @@
     		margin:auto;
     		width: 980px;
 		}
-		.movietime{
-			width: 10%;
-        	color: red;
-        	float: left;
-		}
-		.hidden{
+
+		.hidden-day{
 			display: none;
 		}
 		
-		.box { 
-		border-width: thick;  
-		border-color: black; 
-		border-radius: 10px 10px 10px 10px;
-		 }
-
+		*{
+            box-sizing: border-box;
+            font-family: nomal;
+            
+        }
+        article{
+            margin: auto;
+        }
+        hr{
+            height: 0.5px;
+            background-color: black;
+        }
+        .area{
+            width: 100%; height: 400px; background-color: bisque;
+        }
+        .area2{
+            width: 980px;background-color: #353535;margin: auto;height: 100%;border-radius:10%;
+            padding: 30px;
+            
+        }
+        .area3{
+        	border-radius:15%;
+        	height : 100%;
+        	border: 2px solid gray;
+        }
+        .main-cinema{
+            font-size: 5rem; text-align: center;font-family: cinema;
+        }
+        .cinema-ex{
+            z-index: 2;
+            bottom: 152px;
+            position: relative;
+            height: 150px;
+            background-color: black; 
+            opacity: 0.8;
+            color: white;
+            padding: 30px
+        }
+        .float-left{
+            float: left;
+        }
+        .float-left::after{
+            clear: both;
+        }
+        .date-base{
+        	width: 10%; 
+            text-align: center;
+        }
+        .date{
+            border: 2px solid black;
+            border-radius: 15%;
+            background-color: white;
+            color: black;
+        }
+        .day{
+            font-size: 2.5rem;
+        }
+        .movietime-time{
+            width: 10%;
+            border: 1px solid g	ray;
+        }
+        .tap{
+        	width: 960px;height: 200px;padding: 20px;
+        }
+        .time-movie{
+        	float: left;
+        	width: 10%;
+        	border: 1px solid gray;
+        	text-align: center;
+        }
+        .clear{
+        	clear: both;
+        }
+        .screen{
+        	width: 90%;margin: auto;
+        }
+        a:link { color: gray; text-decoration: none;}
+ 		a:visited { color: gray; text-decoration: none;}
+ 		a:hover { color: black; text-decoration: none;}
     	</style> 	
-  <body style="background-color: #f5f5dc;">
-  <article>
+  <body style="background-color: beige">
+ 
   <h1>cinema페이지입니다</h1>	
   <ol class="breadcrumb">
   <li><a href="#">Home</a>></li>
   <li><a href="#">Library</a>></li>
   <li class="active">Data</li>
 </ol>
+  <div class="area">
+  <div class="area2">
+  <div class="area3">
+  <br><br>
     <div class="container">
       <div class="row">
-        <div class="col-xs-4">
-          <p>Tab</p>
+        <div class="col-xs-4" style="width: 100%">
             <ul class="nav nav-tabs">
               <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#qwe">서울</a>
@@ -104,63 +187,80 @@
                 <a class="nav-link" data-toggle="tab" href="#asd">경기</a>
               </li>
             </ul>
-            <div class="tab-content">
-             <div class="tab-pane fade show active" id="qwe">
+            <div class="tab-content" style="width: 980px">
+             <div class="tab-pane fade show active tap" id="qwe">
              <c:forEach var="cinema1" items="${cinema_list1}">
-               <a href="?cinema_no=${cinema1.CINEMA_NO}">
-				<h3>${cinema1.CINEMA_AREA}</h3>
-				<h3>시네마 ${cinema1.CINEMA_NO}</h3>
-				</a>
+               
+				<div style="float: left;font-size: 1.5rem;"><a href="?cinema_no=${cinema1.CINEMA_NO}" style="color: white;">
+				    ${cinema1.CINEMA_AREA}
+				</a> &nbsp;|&nbsp;</div>
+				
 			</c:forEach>
-
               </div>
-              <div class="tab-pane fade" id="asd">
+              <div class="tab-pane fade tap" id="asd">
                   <c:forEach var="cinema2" items="${cinema_list2}">
-                <a href="?cinema_no=${cinema2.CINEMA_NO}">
-					<h3>${cinema2}</h3>
-					<h3>${cinema2.FILES_NO}</h3>
-					<h3><img src="${pageContext.request.contextPath}/download/img?files_no=${cinema2.FILES_NO}" width="200" height="150"></h3>
-				</a>
+                <div style="float: left;font-size: 1.5rem;"><a href="?cinema_no=${cinema2.CINEMA_NO}" st>
+				    ${cinema2.CINEMA_AREA}
+				</a> &nbsp;|&nbsp;&nbsp;</div>
 				</c:forEach>
               </div>
-	          		
-          		
-          			
-    <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
-    	${cinemaDto}<br>
-    	${cinemaDto.files_no}
-    	<img src="${pageContext.request.contextPath}/download/img?files_no=${cinemaDto.files_no}" width="100%" height="500">
-    <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
-    	<div class="btn-toolbar" role="toolbar">
+	         </div>
+	         </div> 		
+	         </div>
+	         </div>
+	        </div> 
+	        </div>
+          </div>		
+      <article>     			
+    <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
+    	<div style="font-size: 2.5rem">${cinemaDto.cinema_area}</div>
+    	<img src="${pageContext.request.contextPath}/download/img?files_no=${cinemaDto.files_no}" width="100%" height="500px">
+    	 <div class="cinema-ex">
+    	 	<div class="float-left" style="width: 60%;">안녕하세요</div><div style="float: left;width: 40%;">김운기입니다.</div>
+    	 </div>
+    	 <div style="width: 90%; margin: auto;">
+    	 <hr style="height: 4px">
     	<c:forEach var="list" items="${timelist}">
-			<span class="movietime box"><a class="time" href="#">${list}<span class="hidden">${list[0]}${list[1]}${list[2]}</span></a></span>
-		
-		
+    	<a class="time" href="#">
+			<div class="float-left date-base">
+				<span class="hidden-day">${list[0]}${list[1]}${list[2]}</span>
+				<span>${list[1]}월 ${list[3]}</span><span class="day"><strong>${list[2]}</strong></span>	
+			</div>
+		</a>
 		</c:forEach>
-		</div>
-    <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
-    <h1>상영시간표 자르기</h1>
+		<div style="clear: both;"></div>
+		<hr>
     <div id="movietime">
+    	
     	<c:forEach items="${list}" var="mlist" >
-    		<h3>${mlist.movie_title}</h3>
-		<c:forEach items="${mlist.list}" var="slist">
-			<h5>${slist.screen_name}</h5>
-			<c:forEach items="${slist.list}" var="list">
-				<a href="seat?movietime_no=${list.movietime_no}"><span>상영시간표번호${list.movietime_no} 상영시간${list.movietime_time} 사용 좌석수${list.ticket_count}</span></a>
+    		
+    		<strong style="font-size: 1.5rem">
+    		${mlist.movie_title} (${mlist.movie_grade}) 
+    		<span style="font-size: 0.9rem"> ${mlist.movie_genre} / ${mlist.movie_startdate}개봉</span>
+    		</strong>
+   			<br>
+			<c:forEach items="${mlist.list}" var="slist">
+			<br>
+			<div class="screen">
+			 <div>${slist.screen_type} | ${slist.screen_name}</div>
+				<c:forEach items="${slist.list}" var="list">
+					<a href="seat?movietime_no=${list.movietime_no}">
+					 <div class="time-movie">
+					 	<div style="font-size: 1.2rem">
+					 		<strong>${list.movietime_time}</strong>
+					 	</div>
+					 	<div style="color: dodgerblue;">${list.ticket_count}석</div>
+					 </div>
+					</a>
+				</c:forEach>
+				<div class="clear"></div>
+				</div>
 			</c:forEach>
-			<h5>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</h5>
-	</c:forEach>
-	</c:forEach>
+			<hr>
+		</c:forEach>
     </div>
-    <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
+    <br><br>
     <input type="hidden" value="${cinema_no}" name="cinema_no">
-    <c:forEach var="screen" items="${screen_list}">
-		<h1>${screen.SCREEN_NAME}</h1>
-	</c:forEach>
-		
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+		</div>
   </article>
-  </body>
-</html>
+  <jsp:include page="../footer.jsp"></jsp:include>  

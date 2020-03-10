@@ -2,13 +2,8 @@
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
- 
-<jsp:include page="../header.jsp"></jsp:include>    
-
-       
-        
-        
-        
+<jsp:include page="../header.jsp"></jsp:include>
+<head>        
         <style>
         * {
 	box-sizing: border-box;
@@ -320,7 +315,7 @@ input, select, img {
 
     
         </style>
-        
+  </head>         
          <script>
 $(function(){
 	$(".wish").click(function(e){
@@ -395,12 +390,25 @@ $(function(){
  <span class="txt-info"><strong>개봉 :  ${list.movie_startdate}</strong></span>
  
  
+
+<%-- <%-- <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
+=======
 <button class="wish"  value="${list.movie_no}" style="color: red;"></button> <!-- 지현이추가 --> 
+
 <h3>${list.movie_wish}</h3>
 	
 	<button class="btn btn-danger">예매</button>
+=======
+<%-- <h3>${list.movie_wish}</h3> --%> 
 
-	</div>
+	
+<span class="like">
+	<button id="wish${list.movie_no}" value="${list.movie_no}" onclick="fn_wish(this.value)">좋아요</button> <!-- 지현이추가 -->
+	<button class="btn btn-danger">예매</button>
+</span>
+
+
+	</div>	
 	</div>
 		</li>
 </c:forEach>

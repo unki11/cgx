@@ -70,7 +70,6 @@ public class SeatController {
 			
 			List.add(list);
 		}
-		System.out.println(List);
 		return List;
 	}
 	
@@ -94,7 +93,6 @@ public class SeatController {
 			
 			List.add(list);
 		}
-		System.out.println(List);
 		return List;
 	}
 	*/

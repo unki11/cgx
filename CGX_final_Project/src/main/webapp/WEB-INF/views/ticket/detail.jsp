@@ -9,7 +9,7 @@
    
     <head>
     <style>
-       * {
+          * {
 	box-sizing: 
 -box;
 	}
@@ -186,13 +186,17 @@ input, select, img {
     position: relative;
 }
 .title {
-    display: block;
+    display: contents;
     color: #333333;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
   
 }
+.sect-trailer{
+    margin-top: 30px;
+}
+
 .wrap-movie-detail .sect-trailer .title {
     margin-top: 10px;
     font-size: 13px;
@@ -408,13 +412,13 @@ dd {
 .graph {
     overflow: hidden;
     border-bottom: 1px solid #cccccc;
+    height: 290px;
 }
 .graph li:first-child {
     border-left: none;
 }
 .graph li {
     overflow: hidden;
-    height: 250px;
 }
 .sect-graph li {
     width: 33.3%;
@@ -439,7 +443,8 @@ li {
     line-height: 58px;
 }
 .graph .radar-graph {
-    margin: 0 30px 0 15px;
+  margin-left: 7px;
+    margin-top: 15px;
 }
 element.style {
     width: 221px;
@@ -459,6 +464,7 @@ b, strong {
     width: 100%;
     height: 39px;
     background: #e2e0d2;
+    margin-bottom: 30px;
 }
 .heading h4 {
     float: left;
@@ -497,6 +503,7 @@ b, strong {
 .sect-stillcut .slider-wrap {
     width: 800px;
     height: 450px;
+    margin-top: 20px;
 }
 .slider {
     overflow: hidden;
@@ -548,6 +555,7 @@ h4 {
 
   ol, ul {
     list-style: none;
+        margin-top: 20px;
 }
 ul {
     display: block;
@@ -556,7 +564,7 @@ ul {
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    padding-inline-start: 40px;
+    
 }
    
   
@@ -586,11 +594,15 @@ ul {
     line-height: 13px;
 }
 .canvasjs-chart-canvas{
-	width: 245px;
+	width: 246px;
     height: 185px;
     position: absolute;
     user-select: none;
 }
+	.content{
+	font-size: inherit;
+}
+
     </style>
     </head>
      <script>
@@ -606,9 +618,8 @@ ul {
 	 
 	 
 	 //매력 포인트 그래프 
-     var chart = new CanvasJS.Chart("charm-point",
-{
-
+     var chart = new CanvasJS.Chart("charm-point",{
+    	 width:252,height:200, 
 data: [
 {        
  type: "column",
@@ -628,6 +639,8 @@ chart.render();
 
 //성별 예매 분포 그래프
  var options = {
+		 width:252,height:200, 
+
  animationEnabled: true,
  title: {
 	text: "성별 예매 분포도"
@@ -649,6 +662,8 @@ chart.render();
  
  //연령별 예매 분포
  var optionss = {
+		 width:252,height:200, 
+ 
      animationEnabled: true,
      title: {
          text: "연령별 예매 분포"
@@ -795,23 +810,25 @@ chart.render();
                 <strong>${movieActorVO.movie_title}</strong>
 					<h2 style="font-size: inherit;">${movieActorVO.movie_content}</h2>
             </div><!-- .sect-story -->
-            <div id="ctl00_PlaceHolderContent_Section_Chart" class="sect-graph">
+            <div id="ctl00_PlaceHolderContent_Section_Chart" class="sect-graph" style="width: 850;">
                 <ul class="graph">
                     <li>
                         <strong>매력포인트</strong>
 						<div class="radar-graph" id="chart1">							
-                            <div id="charm-point" style="height: 200px; width: 100%;"></div>
+                            <div id="charm-point" style="height: 250px; width: 100%;"></div>
 						</div>
                     </li>
                     <li>
                         <strong>성별 예매 분포</strong>
-                        
-                        	<div id="sex-reserv" style="height: 200px; width: 100%;"></div>
-                      
+                        <div class="radar-graph" id="chart1">	
+                        	<div id="sex-reserv" style="height: 250px; width: 100%;"></div>
+                      </div>
                     </li>
                     <li>
                         <strong>연령별 예매 분포</strong>
-                        <div id="age-reserv" style="height: 200px; width: 100%;"></div>
+                        <div class="radar-graph" id="chart1">	
+                        <div id="age-reserv" style="height: 250px; width: 100%;"></div>
+                        </div>
                     </li>
                 </ul>
             </div>            

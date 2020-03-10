@@ -220,6 +220,9 @@
       <div class="row">
         <div class="col">
           <h2>영화목록</h2>
+          <a class="underlineHover" href="/com.kh.cgx/admin/adminList">
+             <input class="btn btn-info" value="관리자메인화면가기">
+          </a>
           <ul class="list-group">
           <c:forEach var="movieDto" items="${list}">
 	          <div>

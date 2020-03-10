@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
     
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -20,10 +21,19 @@
     
 	
 </style>   
+
+
+</body>
+
 <!-- 푸터시작 -->
+
 <footer class="bg-1light">   
  <div class="container-fluid">
 	 <br><br>	 
+
+<div class="row footer-col">  
+<div class="col-12">   	 
+
 	<a href="http://www.cgv.co.kr" style="color: red;">
 		<i class="fa fa-film fa-2x" aria-hidden="true" style="padding: 3rem;">CGV</i>
 	</a>
@@ -33,11 +43,14 @@
 	<a href="https://www.facebook.com/CJCGV">	
 		<i class="fa fa-facebook-official fa-2x" aria-hidden="true">FaceBook</i>
 	</a>		 
-<p>(07212)서울 영등포구 선유동2로 57 이레빌딩 </p>
-<p>대표이사 :흠냐냐  |사업자등록번호 : 104-88-12345 | 통신판매업신고번호 : 2019-서울-1234 |  </p> 사업자정보확인
-호스팅사업자 : CGX |책임자 : 흠흠냐 |대표이메일 : hagisilta@ah.net |CGV고객센터 : 1004-1004
- © CJ CGV. All Rights Reserved
+	<p>서울 영등포구 선유동2로 57 이레빌딩</p> 
+	<p>사업자정보확인 호스팅사업자 : CGX | 책임자 : 김운기 | 대표이메일 : hagisilta@ah.net | CGX고객센터 : 1004-1004
+	© CJ CGV. All Rights Reserved</p>
+	</div>
+</div>
+<img src="${pageContext.request.contextPath}/resources/img/block.jpg" style="width: 100%;">
 </div>   
 </footer>
 </body>
+
 </html>

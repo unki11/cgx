@@ -120,9 +120,13 @@ public class AdminController {
 		}
 		else {
 			boolean correct = encoder.matches(adminDto.getAdmin_pw(),find.getAdmin_pw());
-			
 				if(correct == true) {
-					return "redirect:/admin/Manager/managerInsert";
+					session.setAttribute("admin_id", adminDto.getAdmin_id());
+					if("master".equals(adminDto.getAdmin_id())) {
+						return "redirect:/admin/adminList";
+					}else {
+						return "redirect:/admin/Manager/managerInsert";
+					}
 				}
 				else {
 					return "/admin/adminLogin";
@@ -280,9 +284,6 @@ public class AdminController {
 	@PostMapping("/Manager/managerInsert")
 	public String managerInsert(@ModelAttribute ManagerDto managerDto, @RequestParam String movietime_hour, @RequestParam String movietime_min) {
 		String date = managerDto.getMovietime_time();
-		System.out.println(managerDto);
-		System.out.println(movietime_hour);
-		System.out.println(movietime_min);
 		date += " ";
 		date += movietime_hour;
 		date += ":";

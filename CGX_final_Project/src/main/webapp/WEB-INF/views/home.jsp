@@ -46,16 +46,17 @@ $(function(){
 	.container{
 		width: 450px;
 	}
-	img{
+/* 	img{
 		height: 250px;
 		width: 100%;
-	}
+	} */
 	.swiper-container{
 		height: 300px;
 	}
 	.row{
 		font-size: large;
 	}
+
 	  .videos img{
         width: 100%;
         height: auto;
@@ -100,7 +101,10 @@ div[class^="sect-"] {
     zoom: 1;
 }
 .sect-common {
-    height: 450px;
+   
+    margin-top: 30px;
+    height: 491px;
+    margin-bottom: 30px;
 }
 .sect-common:before {
     left: 0;
@@ -375,6 +379,28 @@ a {
 	height:900px;
 }
 
+
+	
+	.row > img{
+		height: 250px;
+		width: 100%;
+	}
+	h3 {
+    height: 41px;
+    margin: 30px 0 15px;
+    background: url(../images/common/bg/bg_h3_line.jpg) repeat-x 0 50%;
+    line-height: 41px;
+    text-align: center;
+    font-weight: 500;
+}
+h3 > img {
+    padding: 0 8px;
+    background-color: #fdfcf0;
+}
+input, select, img {
+    vertical-align: middle;
+}
+
 </style>
 
 <!-- 발표전 풀기
@@ -403,6 +429,7 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
   
   	<div id="contents">
   		<div class="sect-common">
+  			<h3><img src="http://img.cgv.co.kr/R2014/images/title/h3_movie_selection.gif" alt="MOVIE SELECTION"></h3>
   			<div class="cols-player">
   				<h3>
   				<span class="ico-trailer hd">HD</span>
@@ -538,15 +565,14 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
 	<!-- 페이징 -->
 	<div class="swiper-pagination"></div>
 </div>
-   
-<div><img src="${pageContext.request.contextPath}/resources/img/alltype.jpg" style="height: 80px"></div>
+
 </div>
+   <div align="center"><img src="${pageContext.request.contextPath}/resources/img/alltype.jpg" style="height: 80px; margin-left: 130px;"></div>
 </body> 
       <!-- 푸터시작 -->
 <jsp:include page="footer.jsp"></jsp:include>      
 
-</body>
-</html>
+
 
 
     

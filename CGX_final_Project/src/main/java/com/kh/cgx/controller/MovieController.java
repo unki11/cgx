@@ -101,6 +101,7 @@ public class MovieController {
 
 		 //String code = "false";
 		 //로그인 다되면 session으로 처리
+
 //		 System.out.println("왔다감: "+movie_no); 
 		 String id = (String)session.getAttribute("id");
 		// System.out.println("세션"+id);
@@ -110,15 +111,12 @@ public class MovieController {
 		 param.put("movie_no", movie_no);
 		 int member_no = memberDto.getMember_no();
 		 int check = sqlSession.selectOne("movies.check",param);
-		 System.out.println(param);
 		 if(check>0) {
-			 System.out.println("삭제");
 			 sqlSession.delete("movies.deletewish",param);
 			// movieDao.delete(member_no,movie_no);
      		 sqlSession.update("movies.updatewishreset", movie_no);
 			 data.put("code", "false");
 		 }else {
-			 System.out.println("등록");
 			 movieDao.insert(member_no,movie_no);
 		
 			sqlSession.update("movies.mvwishupdate",movie_no);
@@ -188,7 +186,7 @@ public class MovieController {
 	public ResponseEntity<ByteArrayResource> download(@RequestParam int files_no) throws IOException{
 //		ResponseEntity : 스프링에서 응답해줄 데이터가 담긴 상자
 //		ByteArrayResource : 스프링에서 관리할 수 있는 Byte 형식의 데이터셋
-		File directory = new File("C:\\upload");
+		File directory = new File("C:/upload");	
 		File file = new File(directory, String.valueOf(files_no));
 		byte[] data = FileUtils.readFileToByteArray(file);
 //		실제파일을 불러온다 : physicalFileDao
@@ -302,6 +300,14 @@ public class MovieController {
 //		System.out.println( "model : "+movieActorVO);
 //		System.out.println(movieActorVO);
 		
+		
+		
+		
+//		ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+		
+		List<ReviewDto> reviewlist = sqlSession.selectList("movies.review", movie_no);
+		
+		model.addAttribute("reviewlist",reviewlist);
 		return "movie/detail";
 	}
 

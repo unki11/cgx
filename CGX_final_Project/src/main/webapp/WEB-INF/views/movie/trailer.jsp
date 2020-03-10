@@ -53,6 +53,7 @@ div[class^="sect-"] {
 }
 .sect-common {
     height: 450px;
+    margin-top: 30px;
 }
 .sect-common:before {
     left: 0;

@@ -92,7 +92,7 @@
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
-
+`
     <!-- Icon -->
     <div class="fadeIn first">
       <img src="${pageContext.request.contextPath}/resources/img/latte2.png" id="icon" alt="User Icon" />
@@ -111,6 +111,8 @@
       <a class="underlineHover" href="/com.kh.cgx/admin/adminList">
       	<input class="btn btn-info" value="매니저목록보기">
       </a>
+      
+      
     </div>
 
   </div>

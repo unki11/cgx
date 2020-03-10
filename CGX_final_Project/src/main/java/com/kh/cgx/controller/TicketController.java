@@ -169,7 +169,7 @@ public class TicketController {
 	public ResponseEntity<ByteArrayResource> download(@RequestParam int files_no) throws IOException{
 //		ResponseEntity : 스프링에서 응답해줄 데이터가 담긴 상자
 //		ByteArrayResource : 스프링에서 관리할 수 있는 Byte 형식의 데이터셋
-		File directory = new File("C:\\upload");
+		File directory = new File("C:/upload");
 		File file = new File(directory, String.valueOf(files_no));
 		byte[] data = FileUtils.readFileToByteArray(file);
 //		실제파일을 불러온다 : physicalFileDao

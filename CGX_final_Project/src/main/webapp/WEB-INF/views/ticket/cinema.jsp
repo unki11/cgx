@@ -191,6 +191,8 @@ background-color: #fcfcf0;
  float: right;
  }
  .steps {
+     margin-top: 30px;
+    margin-bottom: 30px;
     position: relative;
     width: 996px;
     background-color: #F2F0E4;
