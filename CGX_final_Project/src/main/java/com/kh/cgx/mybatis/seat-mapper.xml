@@ -68,6 +68,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateticket" parameterType="map">
 		update ticket set ticket_total_person = #{ticket_total_person} where ticket_no = #{ticket_no}
 	</update>
+	
+	<select id="seatcheck" resultType="SeatTicketVO" parameterType="int">
+select mt.movietime_no,f.files_no,c.cinema_area,s.screen_name,s.screen_type,mt.movietime_price,m.movie_grade,m.movie_title,m.movie_runtime
+		,to_char(mt.movietime_time,'YY.MM.DD.HH24:MI') movietime_time,
+		to_char(mt.movietime_time + m.movie_runtime/(60*24),'HH24:MI') end,
+        (
+        select count(*) from seat 
+            inner join screen s on seat.screen_no = s.screen_no 
+            inner join movietime mot on mot.screen_no = s.screen_no
+            where mot.movietime_no=#{movietime_no}
+        ) all_seat
+        ,(
+        select count(*) from seat 
+            inner join screen s on seat.screen_no = s.screen_no 
+            inner join movietime mot on mot.screen_no = s.screen_no
+            where mot.movietime_no=#{movietime_no}
+        )-count(t.ticket_no) ticket_count
+		from 
+		movietime mt 
+			full outer join 
+				screen s on mt.screen_no = s.screen_no 
+			full outer join
+				cinema c on s.cinema_no = c.cinema_no
+			full outer join 
+				movie m on mt.movie_no = m.movie_no
+			full outer join
+				files f on m.files_no = f.files_no
+            full outer join
+                ticket t on t.movietime_no = mt.movietime_no 
+			where mt.movietime_no=#{movietime_no}
+            GROUP by mt.movietime_no,f.files_no,c.cinema_area,s.screen_name,
+            s.screen_type,mt.movietime_price,m.movie_grade,m.movie_title,m.movie_runtime,movietime_time,
+            s.screen_all_seat
+	</select>
 </mapper>
 
 
