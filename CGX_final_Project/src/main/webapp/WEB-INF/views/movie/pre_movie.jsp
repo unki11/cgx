@@ -10,7 +10,9 @@
         * {
 	box-sizing: border-box;
 	}
-      
+      body{
+background-color: #fcfcf0;
+}
    #contents {
     clear: both;
     padding-bottom: 50px;
@@ -315,7 +317,7 @@ input, select, img {
 
 
 
-<body>
+<body style="background-color: #fcfcf0;">
 <div id="contents">
 	<div class="wrap-movie-chart">
 
