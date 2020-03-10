@@ -348,7 +348,7 @@ $(function(){
 
 		<div class="tit-heading-wrap">
             <h3>무비차트</h3>
-           
+                                                                                                                                                                                                         
             <div class="submenu">
                 <ul>
                     <li class="on"><a href="${pageContext.request.contextPath }/movie/" title="선택">무비차트</a></li>
@@ -382,15 +382,15 @@ $(function(){
 	<a href="detail?movie_no=${list.movie_no}"><strong class="title">${list.movie_title }</strong></a>
 		<div class="score">
  			<strong class="percent">예매율 <span>${list.movie_ticket_rate}%</span></strong>
- 		</div>
+ 		</div> 
  <span class="txt-info"><strong>개봉 :  ${list.movie_startdate}</strong></span>
  
  
 
-<%-- <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
-=======
-<button class="wish"  value="${list.movie_no}" style="color: red;"></button> <!-- 지현이추가 --> 
-<%-- <h3>${list.movie_wish}</h3> --%>
+ <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
+${list.movie_wish}
+<%-- <button class="wish"  value="${list.movie_no}" style="color: red;"> --%>
+</button> <!-- 지현이추가 --> 
 
 	
 	<button>예매</button>
