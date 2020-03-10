@@ -22,8 +22,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
 <style>
+
 .fadeIn fourth {
 	background-color: red;
 }
