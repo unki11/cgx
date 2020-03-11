@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="../header.jsp"></jsp:include>
 <head>
 <head>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -22,7 +23,6 @@
 </script>
 <title>나의 위시리스트</title>
 </head>
-<jsp:include page="../header.jsp"></jsp:include>
 <!-- 헤더시작 -->
 
 
@@ -33,7 +33,11 @@
 	<div>
 		<p class="no">${loglist.movie_no}</p>
 		<p>${loglist.movie_title}</p>
-		<button class="wish" value="${loglist.movie_no}">삭제</button>
+		
+	<a href="${pageContext.request.contextPath}/mypage/movielogdelete?movie_no=${loglist.movie_no}">
+	
+	<button class="delete" value="${loglist.movie_no}">삭제</button>
+	</a>
 	</div>
 
 </c:forEach>

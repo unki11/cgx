@@ -93,44 +93,49 @@ public class MovieController {
 	}
 	
 	// 위시리스트 (지현이 추가)
-	@ResponseBody //
 	@GetMapping("/likeupdate")//주소 변경
-	public Object movielog (HttpSession session, @RequestParam int movie_no,Model model) {
-//		 int member_no = 1;
-//		log.info("movie_no={}",movie_no);
-		Map<String, Object> data = new HashMap<String, Object>();
+	@ResponseBody //
+	public Object movielog (HttpSession session, @RequestParam int movie_no) {
 
-		 //String code = "false";
-		 //로그인 다되면 session으로 처리
-
-//		 System.out.println("왔다감: "+movie_no); 
-		 String id = (String)session.getAttribute("id");
-		// System.out.println("세션"+id);
-		 MemberDto memberDto = sqlSession.selectOne("member.login",id);
-		 Map<String, Object> param = new HashMap<String, Object>();
-		 param.put("member_no", memberDto.getMember_no());
-		 param.put("movie_no", movie_no);
-		 int member_no = memberDto.getMember_no();
-		 int check = sqlSession.selectOne("movies.check",param);
-		 if(check>0) {
-			 sqlSession.delete("movies.deletewish",param);
-			// movieDao.delete(member_no,movie_no);
-     		 sqlSession.update("movies.updatewishreset", movie_no);
-			 data.put("code", "false");
-		 }else {
-			 movieDao.insert(member_no,movie_no);
+		//1. 세션에서 아이디 추출
+		String id = (String)session.getAttribute("id");
 		
-			sqlSession.update("movies.mvwishupdate",movie_no);
-			// code = "true";
-			 data.put("code", "true");
-		 }
+		//2. 아이디를 이용하여 데이터베이스에서 회원정보 조회
+		MemberDto memberDto = sqlSession.selectOne("member.login",id);
 		
-		 return data;
+		//3. 회원 번호와 영화 번호를 이용하여 데이터베이스에서 좋아요 기록을 조회
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("member_no", memberDto.getMember_no());
+		param.put("movie_no", movie_no);
+		int check = sqlSession.selectOne("movies.check",param);
+		
+		//4. check를 이용하여 기록이 있는 경우와 없는 경우로 구분하여 조건을 설정
+		if(check>0) {//좋아요 했던것을 취소
+			sqlSession.delete("movies.deletewish",param);
+		}
+		else {//좋아요를 방금 누름
+			sqlSession.insert("movies.wishinsert", param);
+		}
+		
+		//5. 추가/삭제에 따른 영화의 좋아요 개수를 변경
+		sqlSession.update("movies.wishReset", movie_no);
+		
+		//6. 결과 알려주기 위해서 데이터 수집
+		// - 좋아요 개수 : wishCount
+		// - 좋아요 결과 : wishResult
+		
+		Integer count = sqlSession.selectOne("wishCount",movie_no);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("wishResult", check == 0);//0이면 true, 1이면 false
+		map.put("wishCount", count == null? 0 : count);
+		return map;
 	}
 	
 	@GetMapping("/movielog")
-	public String movielog(Model model, @RequestParam int member_no) {
-		model.addAttribute("likemovie", movieDao.getList6(member_no));
+	public String movielog(HttpSession session,Model model) {
+		String id = (String)session.getAttribute("id");
+		MemberDto memberDto = sqlSession.selectOne("member.login",id);
+		model.addAttribute("likemovie", movieDao.getList6(memberDto.getMember_no()));
 		//log.info("like = {}", movieDao.getList6(member_no));
 		
 		return "mypage/movielog";
@@ -154,7 +159,7 @@ public class MovieController {
 		return "movie/trailer";
 	}
 
-	
+
 
 	// 기본 리스트와 검색 기능을 합친 메소드
 	@GetMapping("/finder-test")
@@ -187,7 +192,7 @@ public class MovieController {
 	public ResponseEntity<ByteArrayResource> download(@RequestParam int files_no) throws IOException{
 //		ResponseEntity : 스프링에서 응답해줄 데이터가 담긴 상자
 //		ByteArrayResource : 스프링에서 관리할 수 있는 Byte 형식의 데이터셋
-		File directory = new File("C:/upload");	
+		File directory = new File("D:/upload/kh2a");	
 		File file = new File(directory, String.valueOf(files_no));
 		byte[] data = FileUtils.readFileToByteArray(file);
 //		실제파일을 불러온다 : physicalFileDao

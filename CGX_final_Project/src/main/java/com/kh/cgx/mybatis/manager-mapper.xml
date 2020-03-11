@@ -29,6 +29,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into manager values(manager_no_seq.nextval,#{admin_no},#{cinema_no})
 	</insert>
 	
+	<insert id="actorinsert" parameterType="actorDto">
+		insert into actor values(actor_no_seq.nextval,#{movie_no},#{actor_name})
+	</insert>
+	
 <!-- <update id="update" parameterType="managerDto">
 		update admin set admin_grade = #{admin_grade} where admin_no = #{admin_no}
 	</update>
