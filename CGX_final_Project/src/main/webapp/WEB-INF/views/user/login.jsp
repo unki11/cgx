@@ -54,9 +54,8 @@
 
 			<form action="login" method="post">
 				<input type="text" id="login" class="fadeIn second" name="member_id" placeholder="아이디" required> 
-				<input type="password" id="password" class="fadeIn third" name="member_pw" placeholder="비밀번호" required> <input
-					type="submit" class="fadeIn fourth btn " value="LogIn"
-					style="background-color: #ff0206;">
+				<input type="password" id="password" class="fadeIn third" name="member_pw" placeholder="비밀번호" required>
+				 <input type="submit" class="fadeIn fourth btn " value="LogIn" style="background-color: #ff0206;">
 
 
 				<!-- Remind Passowrd s-->

@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-<title>내정보변경</title>
+<title>내 정보 변경</title>
  <style>
 	body{
 		margin-top: 100px;
@@ -39,8 +39,6 @@
 	<h1>내 정보</h1>
 	<form action="<c:url value='/user/change_information' />" method="post">
 	
-		
-		이메일 <input  type="text" name="member_email" placeholder="이메일" required value="<c:out value='${login.member_email }' />"><br/>
 		전화번호<input  type="text" name="member_phone" value="<c:out value='${login.member_phone }' />"><br/>
 		
 		<input type="submit" value="변경">
