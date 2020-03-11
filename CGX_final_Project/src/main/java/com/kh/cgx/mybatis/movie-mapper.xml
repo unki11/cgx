@@ -203,7 +203,7 @@ where
 </update>
 
 <update id="wishReset" parameterType="int">
-	update movie set movie_wish = (select count(*) from wish where movie_no=#{movie_no})
+	update movie set movie_wish = (select count(*) from wish where movie_no=#{movie_no}) where movie_no=#{movie_no}
 </update>
 
 <select id="wishCount" parameterType="int" resultType="int">

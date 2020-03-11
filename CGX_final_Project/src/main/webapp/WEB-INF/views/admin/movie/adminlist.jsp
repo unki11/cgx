@@ -21,10 +21,11 @@
 			var movieno = $(this).parent().find(".no").text();
 			
 			$.ajax({
-				url:"adminDelete?no="+movieno,
+				url:"admindelete?no="+movieno,
 				type:"get",
 				success:function(resp){
 					console.log("성공")
+					window.location.reload(true);
 				}
 			})
 		})
@@ -118,7 +119,7 @@
 									"movie_status":moviestatus,"movie_publisher":moviepublisher,"movie_genre":moviegenre}
 					console.log(alldata);
 					$.ajax({
-						url:"adminUpdate",
+						url:"adminupdate",
 						type:"post",
 						data: alldata,
 						success:function(resp){
@@ -220,6 +221,9 @@
       <div class="row">
         <div class="col">
           <h2>영화목록</h2>
+          <a class="underlineHover" href="/com.kh.cgx/admin/adminlist">
+             <input class="btn btn-info" value="관리자메인화면가기">
+          </a>
           <ul class="list-group">
           <c:forEach var="movieDto" items="${list}">
 	          <div>

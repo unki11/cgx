@@ -9,7 +9,7 @@
 <script>
 	$(function(){
 		$.ajax({
-			url:"managerInsert/movie",
+			url:"managerinsert/movie",
 			method:"get",
 			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 			success:function(data){
@@ -26,15 +26,20 @@
 			
 		})
 		
+		var admin_no = ${sessionScope.admin_no};
+		console.log(admin_no)
+		
 		$.ajax({
-			url:"managerInsert/cinema?no="+1, // 1은 매니저 번호 자리
+			url:"managerinsert/cinema?no="+admin_no, // 1은 매니저 번호 자리
 			method:"get",
 			success:function(data){
 				console.log("성공")
-				
+				console.log(data)
 				$.each(data, function(index){
 					var cinema = data[index].cinema_no;
-					 $("<option>").text(cinema).attr("value",cinema).appendTo("#cinema");
+					var area = data[index].cinema_area;
+					 $("<option>").text(area).attr("value",cinema).appendTo("#cinema");
+					 
 				})
 				
 			 $("#cinema").change(function(){
@@ -42,13 +47,14 @@
 	             var cinema = $(this).val();
 				
 				$.ajax({
-					url:"managerInsert/screen?no="+cinema,
+					url:"managerinsert/screen?no="+cinema,
 					method:"get",
 					success:function(data){
 						
 						$.each(data, function(index){
 							var screen = data[index].screen_no;
-							 $("<option>").text(screen).attr("value",screen).appendTo("#screen");
+							var name = data[index].screen_name;
+							 $("<option>").text(name).attr("value",screen).appendTo("#screen");
 						})
 					}
 				})	
@@ -131,8 +137,7 @@
 <table class="table table-bordered">
     <thead>
         <caption> 상영시간표 등록  </caption>
-    </thead>
-    
+    </thead>    
     <tbody>
         <form action="managerInsert" method="post">
             
@@ -192,8 +197,15 @@
             <tr style="text-align: center;">
                 <td colspan="2" >
                     <input type="submit" value="상영시간표 등록하기" class="btn btn-danger">
-                    
+                <a class="underlineHover" href="http://localhost:8080/com.kh.cgx/">
+                    <input class="btn btn-info" value="메인화면가기">
+                </a>
+                
+          		<a class="underlineHover" href="${pageContext.request.contextPath}/admin/adminlogout">
+             		<input class="btn btn-danger" value="로그아웃">
+          		</a>
                 </td>
+
             </tr>
         </form>
     </tbody>

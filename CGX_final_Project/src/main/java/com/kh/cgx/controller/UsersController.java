@@ -211,7 +211,7 @@ public class UsersController {
 		return "user/mypage";
 	}
 	@GetMapping("/change_information")
-	public String chage_information(HttpSession session, Model model) {
+	public String change_information(HttpSession session, Model model) {
 		String id = (String) session.getAttribute("id");
 		if (id == null) {
 			return "redirect:/user/login?error";

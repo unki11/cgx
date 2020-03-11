@@ -8,7 +8,9 @@
         * {
 	box-sizing: border-box;
 	}
-      
+    
+
+
    #contents {
     clear: both;
     padding-bottom: 50px;
@@ -194,6 +196,8 @@ input, select, img {
 }
 
 .wrap-movie-chart .box-contents {
+
+    display: contents;
     height: 93px;
 }
 
@@ -306,13 +310,13 @@ input, select, img {
     width: 0;
     zoom: 1;
 }
-      </style>
-      
-<script>
-$(function() {
-	
-
-$(".wish").click(function(){
+        </style>
+        
+  </head>         
+        
+    <script>
+    $(function(){    
+		$(".wish").click(function(){
 		var this1 = $(this);
 		var value = $(this).val();
 		console.log(value);	
@@ -351,7 +355,7 @@ $(".wish").click(function(){
   </head>         
 
 
-<body>
+<body style="background-color: #fcfcf0;">
 <div id="contents">
 	<div class="wrap-movie-chart">
 
@@ -383,7 +387,7 @@ $(".wish").click(function(){
 <%-- <button class="wish" value="${list.movie_no}">좋아요</button> <!-- 지현이추가 --> --%>
 <a href="detail?movie_no=${list.movie_no}">
 		<span class="thumb-image">                          
-			<img src="${pageContext.request.contextPath}/download/img?files_no=${list.files_no }" style="width: 185px; height: 260px">
+			<img src="download?files_no=${list.files_no }" style="width: 185px; height: 260px">
 		</span>
 		</a>
 		
@@ -394,15 +398,14 @@ $(".wish").click(function(){
  		</div> 
  <span class="txt-info"><strong>개봉 :  ${list.movie_startdate}</strong></span>
  
- 
+<span class="like">
 
- <button class="wish far fa-heart btn" value="${list.movie_no}" style="color: red;">
+	 <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
 ${list.movie_wish}
-<%-- <button class="wish"  value="${list.movie_no}" style="color: red;"> --%>
-</button> <!-- 지현이추가 --> 
+</button> <!-- 지현추가 -->  
+<button class="btn btn-danger">예매</button>
+</span>
 
-	
-	<button>예매</button>
 
 	</div>	
 	</div>
@@ -431,10 +434,11 @@ ${list.movie_wish}
  <span class="txt-info"><strong>개봉 :  ${list.movie_startdate}</strong></span>
  
  <span class="like">
+
 	 <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
 ${list.movie_wish}
 </button> <!-- 지현추가 --> 
-	<button>예매</button>
+<button class="btn btn-danger">예매</button>
 </span>
 	</div>
 	</div>
@@ -449,9 +453,7 @@ ${list.movie_wish}
 		<li>
 	<div  class="box-image">
 		
-<%-- <h5>${list }</h5> --%>
-<%-- <a href="detail?movie_no=${list.movie_no}"><img src="download?files_no=${list.files_no }"></a> --%>
-<%-- <button class="wish" value="${list.movie_no}">좋아요</button> <!-- 지현이추가 --> --%>
+
 <a href="detail?movie_no=${list.movie_no}">
 		<span class="thumb-image">                          
 			<img src="download?files_no=${list.files_no }" style="width: 185px; height: 260px">
@@ -466,10 +468,15 @@ ${list.movie_wish}
  <span class="txt-info"><strong>개봉 :  ${list.movie_startdate}</strong></span>
  
  <span class="like">
+if(true){
+	 <button class="wish fas fa-heart btn"  value="${list.movie_no}" style="color: red;">
+<span class="mwish">${list.movie_wish}</span>
+</button> <!-- 지현추가 --> 
+}else{
 	 <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
 <span class="mwish">${list.movie_wish}</span>
 </button> <!-- 지현추가 --> 
-	<button>예매</button>
+}
 </span>
 	</div>
 	</div>
@@ -482,4 +489,15 @@ ${list.movie_wish}
 
 </body>
 
+
 <jsp:include page="../footer.jsp"></jsp:include> 
+
+
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.js" ></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
+

@@ -4,18 +4,47 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/join.css">
 <meta charset="UTF-8">
-<title>내 정보 p -> 변경 click-> 재 로그인 p</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>내정보변경</title>
+ <style>
+	body{
+		margin-top: 100px;
+		background-image: url("${pageContext.request.contextPath}/resources/img/all.jpg");
+		background-size: cover;
+	}
+	html{
+		background-image: url("${pageContext.request.contextPath}/resources/img/latte2.png");
+		background-repeat: no-repeat;
+		background-position: top;
+	}
+	
+	.container{
+		opacity: 3;
+		text-align: center;
+		color: black;
+	}
+	.fadeIn fourth{
+        background-color: red;
+    }
+</style>
 </head>
+<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include> 
 <body>
-	<h1>내 정보 </h1>
+	<h1>내 정보</h1>
 	<form action="<c:url value='/user/change_information' />" method="post">
-		<input  type="hidden" name="member_id" value="<c:out value='${login.member_id }' />">
-		이름 <input  type="text" name="member_name" placeholder="이름" required value="<c:out value='${login.member_name }' />"><br/>
+	
+		
+		이메일 <input  type="text" name="member_email" placeholder="이메일" required value="<c:out value='${login.member_email }' />"><br/>
 		전화번호<input  type="text" name="member_phone" value="<c:out value='${login.member_phone }' />"><br/>
-		생일<input  type="text" name="member_birth" value="<c:out value='${login.member_birth }' />"><br/>
-		성별<input  type="text" name="member_sex" value="<c:out value='${login.member_sex }' />"><br/>
+		
 		<input type="submit" value="변경">
 	</form>
 </body>
+<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>   
 </html>

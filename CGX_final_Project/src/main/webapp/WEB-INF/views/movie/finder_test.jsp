@@ -20,8 +20,11 @@
 	
 	body{
 		background-image: url("${pageContext.request.contextPath}/resources/img/all.jpg");
+		background-color: #fcfcf0;
 	}
+
 	
+
 
 </style>
 <script>
@@ -107,6 +110,7 @@ $(function(){
 <body>
 <div class="container">
 <div class="sect-finder" align="center">
+<br><br>
 	<h3>찾으시는 영화 목록을 검색해주세요.</h3>
 	<form id="movie-search" action="${pageContext.request.contextPath }/movie/finder-test" novalidate="novalidate">
 		<!-- checkbox ID 값과 label for값을 똑같이 한다 -->

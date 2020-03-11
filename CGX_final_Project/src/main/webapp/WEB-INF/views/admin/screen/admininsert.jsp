@@ -2,33 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%-- <h1>상영관 등록 페이지</h1>
-
-<form action="adminInsert" method="post">
-<!-- 	<input type="text" name="cinema_no" placeholder="극장번호"> -->
-	<h3>극장선택</h3>
-	<select name="cinema_no">
-		<c:forEach var="cinemaDto" items="${cinemaDto}">
-			<option>${cinemaDto.cinema_no}</option>
-		</c:forEach>	
-	</select>
-	<br><br>	
-<!-- 	<input type="text" name="screen_no" placeholder="상영관선택">	 -->
-	<h3>상영관선택</h3>
-	<select name="screen_no">
-		<c:forEach var="screenDto" items="${screenDto}">
-			<option>${screenDto.screen_no}</option>
-		</c:forEach>
-	</select>
-		
-	<br><br>
-	<input type="text" name="screen_all_seat" placeholder="전체좌석수"><br><br>
-	<input type="text" name="screen_type" placeholder="상영관종류"><br><br>
-	<input type="text" name="screen_name" placeholder="상영관이름"><br><br>
-	<input type="text" name="screen_rowsize" placeholder="상영관줄"><br><br>
-	<input type="text" name="screen_colsize" placeholder="상영관칸"><br><br>
-	<input type="submit" value="상영관등록">
-</form> --%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -63,8 +36,9 @@
 <body>
 <div class="container">
 <table class="table table-bordered">
+	
     <tbody>
-        <form action="adminInsert" method="post">
+        <form action="admininsert" method="post">
 <!--             <tr>
                 <th>매니저번호 입력창</th>
                 <td><input type="text" name="admin_no" placeholder="매니저번호" required></td>
@@ -111,8 +85,12 @@
             <tr style="text-align: center;">
                 <td colspan="2" >
                     <input class="btn btn-danger" type="submit" value="상영관등록">
-                    <a class="underlineHover" href="/com.kh.cgx/admin/Screen/adminList">
+                    <a class="underlineHover" href="/com.kh.cgx/admin/screen/adminlist">
                     	<input class="btn btn-info" value="상영관목록보기">
+                    </a>
+                    
+                    <a class="underlineHover" href="/com.kh.cgx/admin/adminlist">
+                    	<input class="btn btn-info" value="관리자메인화면가기">
                     </a>
                 </td>
             </tr>

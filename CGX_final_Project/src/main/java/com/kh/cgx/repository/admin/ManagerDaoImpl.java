@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.kh.cgx.entity.admin.ManagerDto;
+import com.kh.cgx.entity.admin.ManagerReadyDto;
 import com.kh.cgx.entity.cinema.CinemaDto;
 import com.kh.cgx.entity.cinema.ScreenDto;
 import com.kh.cgx.entity.movie.MovieDto;
@@ -43,6 +44,12 @@ public class ManagerDaoImpl implements ManagerDao{
 	@Override
 	public List<ManagerDto> getList() {
 		return null;
+	}
+
+	@Override
+	public void insert(ManagerReadyDto readyDto) {
+		sqlSession.insert("manager.ready", readyDto);
+		
 	}
 	
 }

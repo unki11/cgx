@@ -173,19 +173,19 @@ $.fn.datepicker.dates['kr'] = {
  	<!--날짜 선택 구간  -->
  		
  		<div class="select-date">
- 		
  		<form action="step_time" method="get" class="step-time">
 <%--  		<c:forEach var="dateDto" items="${list}"> --%>
     <input type="hidden" name="movie_no" value="${param.movie_no}">
     <input type="hidden" name="cinema_no" value="${param.cinema_no}">
+
     <input type="text" id="datePicker" class="form-control" name="date">
     <input type="submit" class="btn btn-danger" value="선택">
 <%--      </c:forEach>  --%>
 </form>
  		</div>
  	</div>		
- 		</div>
  		
+ 		</div>
  	</div>	
  </div>		
  		
@@ -199,8 +199,8 @@ $.fn.datepicker.dates['kr'] = {
    		
    		
    		
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
  	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 	<script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
