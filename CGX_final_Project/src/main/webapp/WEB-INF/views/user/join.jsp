@@ -184,12 +184,14 @@
         <input type="text" id="phone" class="fadeIn third" name="member_phone" placeholder="핸드폰번호">
         <input type="text" id="birth" class="fadeIn third" name="member_birth" placeholder="생년월일">
         <input type="text" id="sex" class="fadeIn third" name="member_sex" placeholder="성별">
-        <input type="text" id="email" class="fadeIn third" name="member_email" placeholder="이메일">
+        <input type="email" id="email" class="fadeIn third" name="member_email" placeholder="이메일">
         <input type="button" id="checkEmail" value="이메일인증">
         <input type="text" name="email_code" placeholder="인증코드" style="display:none;">
         <input type="button" id="checkEmailCode" value="인증코드확인" style="display:none;"><p id="msg"></p>
         <input type="button" id="join" class="fadeIn fourth"  value="회원가입" style="background-color: red;">
+
         <input type="text" id="checkEmailYn" value="N">	
+
       </form>
     </div>
   </div>

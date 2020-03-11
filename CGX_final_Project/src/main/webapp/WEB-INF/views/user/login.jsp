@@ -1,29 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!DOCTYPE >
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>로그인</title>
-
-<script
-	src="${pageContext.request.contextPath}/resources/js/crypto/crypto-js.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/crypto/hmac-sha256.js"></script>
+<title>매니저 등록 페이지</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/crypto/secom.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+ 
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="${pageContext.request.contextPath}/resources/secom.js"></script>
 <style>
 	body{
 		margin-top: 150px;
@@ -43,11 +36,11 @@
 	}
 	.fadeIn fourth{
         background-color: red;
-}
+    }
 </style>
 
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include> 
-
+</head>
 <body>
 
 	<div class="wrapper fadeInDown">
@@ -61,9 +54,8 @@
 
 			<form action="login" method="post">
 				<input type="text" id="login" class="fadeIn second" name="member_id" placeholder="아이디" required> 
-				<input type="password" id="password" class="fadeIn third" name="member_pw" placeholder="비밀번호" required> <input
-					type="submit" class="fadeIn fourth btn " value="Log In"
-					style="background-color: #ff0206;">
+				<input type="password" id="password" class="fadeIn third" name="member_pw" placeholder="비밀번호" required>
+				 <input type="submit" class="fadeIn fourth btn " value="LogIn" style="background-color: #ff0206;">
 
 
 				<!-- Remind Passowrd s-->

@@ -93,6 +93,27 @@ public class MypageController {
 		
 		 return data;
 	}
+	
+	
+	//위시리스트에서 삭제 
+	@GetMapping("/movielogdelete")
+	public Object delete (HttpSession session, @RequestParam int movie_no) {
+		
+		Map<String, Object> data = new HashMap<String, Object>();
+
+		 String id = (String)session.getAttribute("id");
+		 MemberDto memberDto = sqlSession.selectOne("member.login",id);
+		 Map<String, Object> param = new HashMap<String, Object>();
+		 param.put("member_no", memberDto.getMember_no());
+		 param.put("movie_no", movie_no);
+		 
+		 sqlSession.delete("movies.deletewish",param); 
+		 sqlSession.update("movies.updatewishreset", movie_no);
+		 data.put("message", "삭제완료되었습니다."); 
+		
+		 
+		 return "redirect:/movie/movielog";
+	}
 
 	@GetMapping("/movielog/watched")
 	public String watched(Model model, HttpSession session) {

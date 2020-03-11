@@ -139,7 +139,7 @@
         <caption> 상영시간표 등록  </caption>
     </thead>    
     <tbody>
-        <form action="managerInsert" method="post">
+        <form action="managerinsert" method="post">
             
             <tr>
                 <th>영화 선택창</th>

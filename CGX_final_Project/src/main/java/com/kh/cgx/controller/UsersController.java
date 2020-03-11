@@ -68,12 +68,7 @@ public class UsersController {
 
 	}
 
-	@GetMapping("/login")
-	public String login() {
-		return "/user/login";
-	}
 
-	
 
 
 
@@ -100,6 +95,11 @@ public class UsersController {
 	public String search1() {
 
 		return "user/search";
+	}
+	
+	@GetMapping("/login")
+	public String login() {
+		return "user/login";
 	}
 
 	// Added Start
@@ -137,7 +137,7 @@ public class UsersController {
 			model.addAttribute(""
 					+ "", sendResult);
 		}
-		return "user/find_id";
+		return "user/login";
 	}
 	
 	@GetMapping("/find_pw")
@@ -303,4 +303,12 @@ public class UsersController {
 		}
 		return "user/login";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
