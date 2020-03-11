@@ -19,8 +19,7 @@
 	}
 	
 	body{
-		background-image: url("${pageContext.request.contextPath}/resources/img/all.jpg");
-		background-color: #fcfcf0;
+		background-color: #fcfdf0;
 	}
 
 	
@@ -108,8 +107,8 @@ $(function(){
 
 <html>
 <body>
-<div class="container">
-<div class="sect-finder" align="center">
+<div class="container-fluid">
+<div class="sect-finder" align="center" style="background-color: #fcfdf0;">
 <br><br>
 	<h3>찾으시는 영화 목록을 검색해주세요.</h3>
 	<form id="movie-search" action="${pageContext.request.contextPath }/movie/finder-test" novalidate="novalidate">
@@ -301,11 +300,11 @@ $(function(){
 </div>
 </c:forEach>
 </div>
-
-<jsp:include page="../footer.jsp"></jsp:include>
-
 </body>
+<jsp:include page="../footer.jsp"></jsp:include>
 </html>
+
+
 
 
 	

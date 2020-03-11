@@ -60,10 +60,10 @@ li {
     text-align: -webkit-match-parent;
 }
 
-.tit-heading-wrap > .submenu > ul > li.on > a, .tit-heading-wrap > .submenu > ul > li > a:hover, .tit-heading-wrap > .submenu > ul > li > a:focus {
-    background: url(../images/common/ico/ico_arrow07.png) no-repeat 0 3px;
-    color: #e40000;
-}
+ .tit-heading-wrap > .submenu > ul > li.on > a, .tit-heading-wrap > .submenu > ul > li > a:hover, .tit-heading-wrap > .submenu > ul > li > a:focus { 
+
+ color: #e40000; 
+ } 
 
 .tit-heading-wrap > .submenu > ul > li > a {
     display: inline-block;
@@ -397,13 +397,18 @@ input, select, img {
  			<strong class="percent">예매율 <span>${list.movie_ticket_rate}%</span></strong>
  		</div> 
  <span class="txt-info"><strong>개봉 :  ${list.movie_startdate}</strong></span>
- 
+  
+
 <span class="like">
+
 
 	 <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
 ${list.movie_wish}
 </button> <!-- 지현추가 -->  
 <button class="btn btn-danger">예매</button>
+
+	</a>
+
 </span>
 
 

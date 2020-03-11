@@ -268,7 +268,7 @@ em {
     position: absolute;
     width: 5px;
     height: 5px;
-    background: #fdfcf0 url(../images/sprite/sprite_corner01.png) no-repeat;
+/*     background: #fdfcf0 url(../images/sprite/sprite_corner01.png) no-repeat; */
 }
 .round.lightblue:after {
     left: -2px;
@@ -623,11 +623,11 @@ ul {
 			{        
 		 		type: "column",
 		 		dataPoints: [
-		     		{ label: "감독연출", y: 89 },	
-		     		{ label: "스토리", y: 91 },	
-		     		{ label: "영상미", y: 77 },
-		     		{ label: "배우연기", y: 85 },	
-		     		{ label: "ost", y: 90 }
+		     		{ label: "감독연출", y: ${egg.review_1} },	
+		     		{ label: "스토리", y: ${egg.review_2} },	
+		     		{ label: "영상미", y: ${egg.review_3}},
+		     		{ label: "배우연기", y: ${egg.review_4} },	
+		     		{ label: "ost", y: ${egg.review_5} }
 		 		]
 			}	
 		]
@@ -787,8 +787,9 @@ ul {
         <span class="like">
             
 
-        
-           <button>예매</button>
+       <a href="${pageContext.request.contextPath }/ticket/stepcinema?movie_no=${movieActorVO.movie_no}">
+	<button class="btn btn-danger">예매</button>
+	</a>
         
         </span>
     </div>
@@ -920,11 +921,24 @@ ul {
 		    <span class="glyphicon glyphicon-chevron-right"></span>
 			<span class="sr-only">Next</span>
 		</a>
-
-	</div>
-	<!-- 이미지 슬라이드 종료 -->
 	
-	<br><br><br><br><br><br><br><br><br><br>
+	</div>
+	<br><br><br>
+	<!-- 이미지 슬라이드 종료 -->
+		${egg.review_egg }%
+	<br><br><br>
+
+		<c:forEach items="${reviewlist}" var="review" begin="0" end="7">
+		<div style="float: left; width: 50%;height: 100px;border: 1px solid black;padding: 20px;margin: auto;">
+			아이디:${review.member_id}
+			내용 : ${review.review_content}
+		</div>
+		</c:forEach>
+		<div style="clear: both;"></div>
+	<br><br>
+	->더보기
+	<br><br><br><br><br><br><br><br>
+	
 </div>
 
 
@@ -944,5 +958,5 @@ ul {
  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
 <!--     <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> 이거키면 동영상 안켜짐 -->  
     <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-    <script src="path/to/chartjs/dist/Chart.js"></script>
+<!--     <script src="path/to/chartjs/dist/Chart.js"></script> -->
  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>

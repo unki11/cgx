@@ -9,6 +9,7 @@ import com.kh.cgx.entity.admin.ManagerDto;
 import com.kh.cgx.entity.admin.ManagerReadyDto;
 import com.kh.cgx.entity.cinema.CinemaDto;
 import com.kh.cgx.entity.cinema.ScreenDto;
+import com.kh.cgx.entity.movie.ActorDto;
 import com.kh.cgx.entity.movie.MovieDto;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,12 @@ public class ManagerDaoImpl implements ManagerDao{
 
 	@Override
 	public List<MovieDto> getMovieList() {
+		return sqlSession.selectList("manager.getMovieList");
+		 
+	}
+	
+	@Override
+	public List<MovieDto> getMovie() {
 		return sqlSession.selectList("manager.getMovieList");
 		 
 	}
@@ -49,6 +56,12 @@ public class ManagerDaoImpl implements ManagerDao{
 	@Override
 	public void insert(ManagerReadyDto readyDto) {
 		sqlSession.insert("manager.ready", readyDto);
+		
+	}
+
+	@Override
+	public void actorinsert(ActorDto actorDto) {
+		sqlSession.insert("manager.actorinsert",actorDto);
 		
 	}
 	

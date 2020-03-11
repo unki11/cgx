@@ -28,7 +28,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 파인더 리스트 -->
 	<select id="finder_list" resultType="movies" parameterType="movieVO2">
-		select*from movie
+		select * from movie M
+			inner join actor A
+			on M.movie_no = A.movie_no
 	<where>
 	<if test="type != '' and keyword != ''">
 		<choose>
@@ -37,6 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				 movie_title like '%'||#{keyword}||'%'
 <!-- 				or actor_name like '%'||#{keyword}||'%' -->
 				or movie_director like '%'||#{keyword}||'%'
+				or actor_name like '%'||#{keyword}||'%'
 			</when>
 			
 			<!-- 전체 검색 이 아닐경우 -->
@@ -67,7 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</foreach>
 	</if>
 	</where>
-		order by movie_no asc
+		order by M.movie_no asc
 	</select>
 	
 	<!-- 검색 결과 수 -->
@@ -226,12 +229,24 @@ where A.member_no = #{member_no}
 	delete wish where member_no = #{member_no} and movie_no= #{movie_no}
 </delete>
 
-<select id="review" parameterType="int" resultType="reviewDto">
-	select r.* from review r 
+<select id="review" parameterType="int" resultType="reviewvo">
+	select r.*,me.member_id from review r 
 		inner join ticket t on r.ticket_no = t.ticket_no 
 		inner join movietime mt on t.movietime_no = mt.movietime_no 
 		inner join movie m on mt.movie_no = m.movie_no
+        inner join member me on t.member_no = me.member_no
 	where m.movie_no = #{movie_no}
+</select>
+
+<select id="egg" parameterType="int" resultType="reviewDto">
+	select NVL(round(sum(r.review_egg)/count(*)*100,0),0) review_egg,
+		NVL(round(sum(r.review_1)/count(*)*100,0),0) review_1,
+		NVL(round(sum(r.review_2)/count(*)*100,0),0) review_2,
+		NVL(round(sum(r.review_3)/count(*)*100,0),0) review_3,
+		NVL(round(sum(r.review_4)/count(*)*100,0),0) review_4,
+		NVL(round(sum(r.review_5)/count(*)*100,0),0) review_5
+	from review r inner join ticket t on r.ticket_no = t.ticket_no inner join movietime mt on t.movietime_no = mt.movietime_no
+		inner join movie m on mt.movie_no = m.movie_no where m.movie_no = #{movie_no}
 </select>
 </mapper>
 

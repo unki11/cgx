@@ -400,7 +400,7 @@ $.fn.datepicker.dates['kr'] = {
 		    									<c:forEach  var="cinemaDto" items="${areaList.list}">
 		    									 	
 		    										 <li class="list-group-item list-group-item-warning">
-		    										 	<a class="alink" href="stepCinema?movie_no=${areaList.movie_no}&cinema_no=${cinemaDto.cinema_no}">
+		    										 	<a class="alink" href="stepcinema?movie_no=${areaList.movie_no}&cinema_no=${cinemaDto.cinema_no}">
 		    										 		${cinemaDto.cinema_area }
 		    										 	</a>
 		    										 </li>
