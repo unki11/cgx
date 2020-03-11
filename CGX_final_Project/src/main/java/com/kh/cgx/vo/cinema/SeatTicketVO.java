@@ -20,4 +20,6 @@ public class SeatTicketVO {
 	String end;
 	int all_seat;
 	int ticket_count;
+	String movie_genre;
+	String movie_director;
 }

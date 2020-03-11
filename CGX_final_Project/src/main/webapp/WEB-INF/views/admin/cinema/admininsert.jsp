@@ -49,7 +49,7 @@
     </thead>
     
     <tbody>
-        <form action="adminInsert" method="post" enctype="multipart/form-data">
+        <form action="admininsert" method="post" enctype="multipart/form-data">
             
             <tr>
                 <th>극장 사진 등록창</th>
@@ -74,10 +74,10 @@
             <tr style="text-align: center;">
                 <td colspan="2" >
                     <input type="submit" value="극장 등록하기" class="btn btn-danger">
-                    <a class="underlineHover" href="/com.kh.cgx/admin/Cinema/adminList">
+                    <a class="underlineHover" href="/com.kh.cgx/admin/cinema/adminlist">
                     	<input class="btn btn-info" value="극장목록보기">
                     </a>
-                    <a class="underlineHover" href="/com.kh.cgx/admin/adminList">
+                    <a class="underlineHover" href="/com.kh.cgx/admin/adminlist">
                     	<input class="btn btn-info" value="관리자메인화면가기">
                     </a>
                 </td>

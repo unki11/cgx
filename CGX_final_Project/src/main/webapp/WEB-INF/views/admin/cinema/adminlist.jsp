@@ -21,7 +21,7 @@
 			var cinemano = $(this).parent().find(".no").text();
 			
 			$.ajax({
-				url:"adminDelete?no="+cinemano,
+				url:"admindelete?no="+cinemano,
 				type:"get",
 				success:function(resp){
 					console.log("성공")
@@ -39,7 +39,7 @@
       <div class="row">
         <div class="col">
           <h2>극장 목록</h2>
-          <a class="underlineHover" href="/com.kh.cgx/admin/adminList">
+          <a class="underlineHover" href="/com.kh.cgx/admin/adminlist">
              <input class="btn btn-info" value="관리자메인화면가기">
           </a>
           <ul class="list-group">

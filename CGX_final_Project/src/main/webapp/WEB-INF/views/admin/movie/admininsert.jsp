@@ -41,7 +41,7 @@
     </thead>
     
     <tbody>
-        <form action="adminInsert" method="post" enctype="multipart/form-data">
+        <form action="admininsert" method="post" enctype="multipart/form-data">
 
 			<tr>
                 <th>영화포스터 등록창</th>
@@ -150,11 +150,11 @@
                     <!-- <a class="btn btn-default" onclick="sendData()"> 등록 </a>
                     <a class="btn btn-default" type="reset"> reset </a>
                     <a class="btn btn-default" onclick="javascript:location.href='list.jsp'">글 목록으로...</a> -->
-                	<a class="underlineHover" href="/com.kh.cgx/admin/Movie/adminList">
+                	<a class="underlineHover" href="/com.kh.cgx/admin/movie/adminlist">
                     	<input class="btn btn-info" value="영화목록보기">
                     </a>
                     
-                    <a class="underlineHover" href="/com.kh.cgx/admin/adminList">
+                    <a class="underlineHover" href="/com.kh.cgx/admin/adminlist">
                     	<input class="btn btn-info" value="관리자메인화면가기">
                     </a>
                 </td>

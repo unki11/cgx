@@ -63,7 +63,7 @@ li {
 }
 
 .tit-heading-wrap > .submenu > ul > li.on > a, .tit-heading-wrap > .submenu > ul > li > a:hover, .tit-heading-wrap > .submenu > ul > li > a:focus {
-    background: url(../images/common/ico/ico_arrow07.png) no-repeat 0 3px;
+   
     color: #e40000;
 }
 

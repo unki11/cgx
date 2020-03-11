@@ -9,6 +9,7 @@
     <jsp:include page="../header.jsp"></jsp:include>
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/hiphop5782/js/cinema/hakademy-cinema.css"> -->
    <!--  <script src="https://cdn.jsdelivr.net/gh/hiphop5782/js/cinema/hakademy-cinema.js"></script> -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <script>
         window.addEventListener("load", function(){
             var tag = document.querySelector(".cinema-wrap");
@@ -201,7 +202,6 @@
         })(window);
     </script>
     <style>
-<<<<<<< HEAD
     	.w-70{
     		width:90%;	
     	}
@@ -254,18 +254,40 @@
 .dark-seat {
 	width:922px;
 	margin:auto;
-	height: 200px;background-color: black;
+	font-size:1.2rem;
+	padding : 5px;
+	background-color: black;
+	text-align: center;
 }
-=======
-    	
-    	
-	}
->>>>>>> refs/remotes/origin/master
+.border-ticket{
+	border: 1px solid black;
+	float: left;	
+	padding: 15px;
+}
+.movie-seat{
+	font-size: 1rem;
+}
+.test{
+	border-right: 1px solid white;
+}
     </style>
 </head>
 <body>
-<article>
-${seat}
+<article style="margin: auto;">
+<div class="dark-seat" style="height: 40px;color: white;">영화 / 좌석</div>
+<div style="width: 922px;margin: auto;text-align: center;">
+	<div class="border-ticket" style="width: 50%;height: 100px;font-size: 1.3rem"> 
+	<span class="movie-seat">제목 :</span>  ${seat.movie_title} (${seat.movie_grade}) <br> 
+	<span class="movie-seat">장르 : </span> ${seat.movie_genre} / 
+	<span class="movie-seat">감독 : </span>${seat.movie_director} /
+	<span class="movie-seat">상영시간 : </span> ${seat.movie_runtime}분</div>
+	<div class="border-ticket" style="width: 50%;height: 100px;">
+	 당산점 &nbsp;|&nbsp; 운기관 &nbsp; | &nbsp; 남은좌석 
+	<span>143</span>/159 <br>	
+	<span style="font-size: 2rem">${seat.movietime_time} ~ 14:56</span>
+	</div>	
+	<div style="clear: both;"></div>
+</div>
     <form action="${pagecontext.request.contextpath}/com.kh.cgx/pay/kakao/info" method="post">
         <div class="cinema-wrap" data-name="seat" data-rowsize="${rowsize}" data-colsize="${colsize }" style="width:922px;margin: auto;">
             <div class="cinema-screen">스크린</div>
@@ -292,15 +314,28 @@ ${seat}
         </div>
 
    		</div>
-   		<div class="dark-seat">
+   		<div class="dark-seat" style="height: 200px;">
+   			<div class="test float-left" style="width: 150px">
+   				<img src="${pageContext.request.contextPath}/download/img?files_no=${seat.files_no }" style="width: 140px; height: 190px">
+   			</div>			
+   			<div class="test float-left" style="width: 250px;color: white;text-align: left;padding: 15px;height: 190px;">
+   				${seat.movie_title} <br><br>
+   				${seat.screen_type} <br>
+   				${seat.movie_genre }<br>
+   				${seat.movie_grade }
+   			</div>
+   			<div class="test float-left" style="width: 270px;color: white;text-align: left;padding: 30px;height: 190px;">
+   				극장 &nbsp; ${seat.cinema_area} <br><br>
+   				일시 &nbsp; ${seat.movietime_time}<br><br>
+   				상영관 &nbsp; ${seat.screen_name}<br><br>
+   			</div>
 		<input type="hidden" value="${movietime_no}" name="movietime_no">
-        <input type="submit" value="선택">
+        <button type="submit" class="btn btn-danger" style="width: 225px;height: 95%;font-size: 3rem;border-radius: 10%;margin: auto;"><i class="far fa-hand-point-right" style="font-size: 5rem"></i><br> 선택</button>
          </div>
     </form>
 
 <jsp:include page="../footer.jsp"></jsp:include> 	
   </article>        
 </body>
-<jsp:include page="../footer.jsp"></jsp:include>
 </html>
 

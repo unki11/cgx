@@ -54,6 +54,7 @@ import com.kh.cgx.repository.movie.PhysicalFileDao;
 import com.kh.cgx.repository.movie.VideoDao;
 import com.kh.cgx.vo.movie.AgeVO;
 import com.kh.cgx.vo.movie.MovieActorVO;
+import com.kh.cgx.vo.movie.ReviewVO;
 import com.kh.cgx.vo.movie.StillcutVO;
 import com.kh.cgx.vo.movie.VideoVO;
 
@@ -222,7 +223,6 @@ public class MovieController {
 			@ModelAttribute StillcutVO stillcutVO, Object files_no,
 			Object age , Object cnt
 			) {
-		
 //		해당 영화 스틸컷 파일 넘버,무비 넘버 불러 오기
 		Map<String, Object> stillMap = new HashMap<String, Object>();
 		stillMap.put("files_no", files_no);
@@ -304,10 +304,11 @@ public class MovieController {
 		
 		
 //		ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-		
-		List<ReviewDto> reviewlist = sqlSession.selectList("movies.review", movie_no);
+		ReviewDto egg = sqlSession.selectOne("movies.egg", movie_no);
+		List<ReviewVO> reviewlist = sqlSession.selectList("movies.review", movie_no);
 		
 		model.addAttribute("reviewlist",reviewlist);
+		model.addAttribute("egg",egg);
 		return "movie/detail";
 	}
 
