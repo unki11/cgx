@@ -268,7 +268,7 @@ em {
     position: absolute;
     width: 5px;
     height: 5px;
-    background: #fdfcf0 url(../images/sprite/sprite_corner01.png) no-repeat;
+/*     background: #fdfcf0 url(../images/sprite/sprite_corner01.png) no-repeat; */
 }
 .round.lightblue:after {
     left: -2px;
@@ -787,8 +787,9 @@ ul {
         <span class="like">
             
 
-        
-           <button>예매</button>
+       <a href="${pageContext.request.contextPath }/ticket/stepcinema?movie_no=${movieActorVO.movie_no}">
+	<button class="btn btn-danger">예매</button>
+	</a>
         
         </span>
     </div>
@@ -944,5 +945,5 @@ ul {
  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
 <!--     <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> 이거키면 동영상 안켜짐 -->  
     <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-    <script src="path/to/chartjs/dist/Chart.js"></script>
+<!--     <script src="path/to/chartjs/dist/Chart.js"></script> -->
  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>

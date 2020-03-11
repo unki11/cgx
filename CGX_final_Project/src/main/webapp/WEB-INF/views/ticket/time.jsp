@@ -194,7 +194,7 @@ height: 595px;
     margin-top: 30px;
 }
 body{
-background-color: #fcfcf0;
+background-color: #fcfdf0;
 }
 
 </style>

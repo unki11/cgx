@@ -64,7 +64,7 @@ li {
 }
 
 .tit-heading-wrap > .submenu > ul > li.on > a, .tit-heading-wrap > .submenu > ul > li > a:hover, .tit-heading-wrap > .submenu > ul > li > a:focus {
-    background: url(../images/common/ico/ico_arrow07.png) no-repeat 0 3px;
+   
     color: #e40000;
 }
 
@@ -395,7 +395,7 @@ input, select, img {
  
 <%-- <button class="wish"  value="${titleList.movie_no}" style="color: red;"></button> <!-- 지현이추가 -->  --%>
 <%-- <h3>${list.movie_wish}</h3> --%>
-	<a href="stepCinema?movie_no=${titleList.movie_no}">
+	<a href="stepcinema?movie_no=${titleList.movie_no}">
 	<button class="btn btn-danger">예매</button>
 	</a>
 	</div>
