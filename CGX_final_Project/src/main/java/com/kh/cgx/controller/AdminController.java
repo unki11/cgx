@@ -136,6 +136,13 @@ public class AdminController {
 				}
 			}
 		}
+	
+	@GetMapping("/adminLogout")
+	public String adminLogout(HttpSession session) {
+		session.removeAttribute("admin_id");
+		session.removeAttribute("admin_no");
+		return "/admin/adminLogin";
+	}
 
 	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //		시네마
