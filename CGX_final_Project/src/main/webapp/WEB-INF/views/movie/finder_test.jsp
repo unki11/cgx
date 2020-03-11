@@ -20,8 +20,11 @@
 	
 	body{
 		background-image: url("${pageContext.request.contextPath}/resources/img/all.jpg");
+		background-color: #fcfcf0;
 	}
+
 	
+
 
 </style>
 <script>

@@ -95,6 +95,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
+          
             <li class="nav-item dropdown" style="padding: 3rem;">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" 
               aria-expanded="false">영화
@@ -102,15 +103,17 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="${pageContext.request.contextPath}/movie/">무비차트</a>
                 <a class="dropdown-item" href="${pageContext.request.contextPath}/movie/trailer">HD 트레일러</a>
+
                 <a class="dropdown-item" href="${pageContext.request.contextPath}/movie/finder-test">무비파인더</a>
               </div>
             </li>
+            
             <li class="nav-item dropdown" style="padding: 3rem;">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   예매
                 </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">빠른예매</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/ticket/"">빠른예매</a>
                 <a class="dropdown-item" href="#">상영시간표</a>
               </div>
             </li>

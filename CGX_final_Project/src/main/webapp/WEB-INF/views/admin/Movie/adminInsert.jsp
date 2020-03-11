@@ -1,28 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- <h1>영화 등록 페이지 </h1>
-<form action="adminInsert" method="post">
->>>>>>> refs/remotes/origin/master
-	
-	<input type="text" name="movie_no" placeholder="영화번호"><br><br>
-
-	<input type="file" name="files" placeholder="사진번호"><br><br>
-	<input type="text" name="movie_ticket_rate" placeholder="영화예매율"><br><br>
-	<input type="text" name="movie_title" placeholder="영화제목"><br><br>
-	<input type="text" name="movie_director" placeholder="영화감독"><br><br>
-	<input type="text" name="movie_startdate" placeholder="영화개봉일자"><br><br>
-	<input type="text" name="movie_runtime" placeholder="영화상영시간"><br><br>
-	<input type="text" name="movie_country" placeholder="영화국가"><br><br>
-	<input type="text" name="movie_grade" placeholder="영화관람등급"><br><br>
-	<input type="text" name="movie_status" placeholder="영화상영상태"><br><br>
-	<input type="text" name="movie_genre" placeholder="영화장르"><br><br>
-	<input type="text" name="movie_publisher" placeholder="영화배급사"><br><br>
-	<input type="text" name="movie_content" placeholder="영화줄거리"><br><br>
-
-	<input type="submit" value="영화등록">
-</form> -->
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -66,14 +44,14 @@
         <form action="adminInsert" method="post" enctype="multipart/form-data">
 
 			<tr>
-                <th>사진 등록창</th>
+                <th>영화포스터 등록창</th>
                 <td><input type="file" name="files" placeholder="사진번호"></td>
             </tr>
             
-            <tr>
+            <!-- <tr>
                 <th>예매율 창</th>
                 <td><input type="text" name="movie_ticket_rate" placeholder="영화예매율" required></td>
-            </tr>
+            </tr> -->
             
             <tr>
                 <th>영화 제목 등록창</th>
@@ -92,27 +70,68 @@
             
             <tr>
                 <th>영화 상영시간 등록창</th>
-                <td><input type="text" name="movie_runtime" placeholder="영화상영시간" required></td>
+                <td>
+                	<input type="text" name="movie_runtime" placeholder="영화상영시간" required>
+                </td>
             </tr>
             
             <tr>
                 <th>영화 제작 국가 등록창</th>
-                <td><input type="text" name="movie_country" placeholder="영화국가" required></td>
+                <td>
+                	<!-- <input type="text" name="movie_country" placeholder="영화국가" required> -->
+                	<select name="movie_country" style="width: 180px; height: 25px;">
+                		<option>영화 제작 국가 선택</option>
+                		<option>한국</option>
+                		<option>미국</option>
+                		<option>일본</option>
+                		<option>중국</option>
+                		<option>기타</option>
+                	</select>
+                </td>
             </tr>
             
             <tr>
                 <th>영화 관람 등급 등록창</th>
-                <td><input type="text" name="movie_grade" placeholder="영화관람등급" required></td>
+                <td>
+                	<!-- <input type="text" name="movie_grade" placeholder="영화관람등급" required> -->
+                	<select name="movie_grade" style="width: 180px; height: 25px;">
+                		<option>영화 관람 등급 선택</option>
+                		<option>전체관람가</option>
+                		<option>12세관람가</option>
+                		<option>15세관람가</option>
+                		<option>청소년관람불가</option>
+                	</select>
+                </td>
             </tr>
             
             <tr>
                 <th>영화 상영 상태 등록창</th>
-                <td><input type="text" name="movie_status" placeholder="영화상영상태" required></td>
+                <td>
+                	<!-- <input type="text" name="movie_status" placeholder="영화상영상태" required> -->
+                	<select name="movie_status" style="width: 180px; height: 25px;">
+                		<option>영화상영 상태 선택</option>
+                		<option>상영중</option>
+                		<option>개봉예정작</option>
+                	</select>
+                </td>
             </tr>
             
             <tr>
                 <th>영화 장르 등록창</th>
-                <td><input type="text" name="movie_genre" placeholder="영화장르" required></td>
+                <td>
+                	<!-- <input type="text" name="movie_genre" placeholder="영화장르" required> -->
+                	<select name="movie_genre" style="width: 180px; height: 25px;">
+                		<option>영화 장르 선택</option>
+                		<option>호러</option>
+                		<option>판타지</option>
+                		<option>로맨스</option>
+                		<option>코믹</option>
+                		<option>애니메이션</option>
+                		<option>스릴러</option>
+                		<option>액션</option>
+                		<option>에로</option>
+                	</select>
+                </td>
             </tr>
             
             <tr>

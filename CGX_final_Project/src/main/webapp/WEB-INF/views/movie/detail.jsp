@@ -186,13 +186,17 @@ input, select, img {
     position: relative;
 }
 .title {
-    display: block;
+    display: contents;
     color: #333333;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
   
 }
+.sect-trailer{
+    margin-top: 30px;
+}
+
 .wrap-movie-detail .sect-trailer .title {
     margin-top: 10px;
     font-size: 13px;
@@ -408,13 +412,13 @@ dd {
 .graph {
     overflow: hidden;
     border-bottom: 1px solid #cccccc;
+    height: 290px;
 }
 .graph li:first-child {
     border-left: none;
 }
 .graph li {
     overflow: hidden;
-    height: 250px;
 }
 .sect-graph li {
     width: 33.3%;
@@ -439,7 +443,8 @@ li {
     line-height: 58px;
 }
 .graph .radar-graph {
-    margin: 0 30px 0 15px;
+  margin-left: 7px;
+    margin-top: 15px;
 }
 element.style {
     width: 221px;
@@ -459,6 +464,7 @@ b, strong {
     width: 100%;
     height: 39px;
     background: #e2e0d2;
+    margin-bottom: 30px;
 }
 .heading h4 {
     float: left;
@@ -497,6 +503,7 @@ b, strong {
 .sect-stillcut .slider-wrap {
     width: 800px;
     height: 450px;
+    margin-top: 20px;
 }
 .slider {
     overflow: hidden;
@@ -519,7 +526,9 @@ b, strong {
     top: -2px;
     background-position: -25px 0;
 }
-
+body{
+background-color: #fcfcf0;
+}
 body, input, textarea, select, button, table {
     font-size: 13px;
     line-height: 1.2;
@@ -546,6 +555,7 @@ h4 {
 
   ol, ul {
     list-style: none;
+        margin-top: 20px;
 }
 ul {
     display: block;
@@ -554,7 +564,7 @@ ul {
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    padding-inline-start: 40px;
+    
 }
    
   
@@ -589,6 +599,9 @@ ul {
     position: absolute;
     user-select: none;
 }
+	.content{
+	font-size: inherit;
+}
     </style>
     </head>
      <script>
@@ -596,7 +609,7 @@ ul {
 
  window.onload = function () {
 
-//동영상 모달 이벤트
+	//동영상 모달 이벤트
 	 $(document).on('click', '[data-toggle="lightbox"]', function(event) {
 	     event.preventDefault();
 	     $(this).ekkoLightbox();
@@ -604,85 +617,84 @@ ul {
 	 
 	 
 	 //매력 포인트 그래프 
-     var chart = new CanvasJS.Chart("charm-point",
-{
+     var chart = new CanvasJS.Chart("charm-point",{
+    	 width:252,height:200, 		
+    	 data: [
+			{        
+		 		type: "column",
+		 		dataPoints: [
+		     		{ label: "감독연출", y: 89 },	
+		     		{ label: "스토리", y: 91 },	
+		     		{ label: "영상미", y: 77 },
+		     		{ label: "배우연기", y: 85 },	
+		     		{ label: "ost", y: 90 }
+		 		]
+			}	
+		]
+	});
 
-data: [
-{        
- type: "column",
- dataPoints: [
-     { label: "감독연출", y: 89 },	
-     { label: "스토리", y: 91 },	
-     { label: "영상미", y: 77 },
-     { label: "배우연기", y: 85 },	
-     { label: "ost", y: 90 }
-
- ]
-}]
-});
-
-chart.render();
+	chart.render();
 
 
-//성별 예매 분포 그래프
- var options = {
- animationEnabled: true,
- title: {
-	text: "성별 예매 분포도"
- },
- data: [{
-	    type: "doughnut",
-	    innerRadius: "40%",
-	    showInLegend: true,
-	    legendText: "{label}",
-	    indexLabel: "{label}: #percent%",
-	    dataPoints: [
-		    { label: "남자", y: ${man}} ,
-		    { label: "여자", y: ${woman}}
-   ]  
-}]
-};
- $("#sex-reserv").CanvasJSChart(options);
+	//성별 예매 분포 그래프
+ 	var options = {
+		width:252,height:200, 		
+ 		animationEnabled: true,
+		title: {
+			text: "성별 예매 분포도"
+		},
+ 		data: [
+ 			{
+				type: "doughnut",
+			    innerRadius: "40%",
+			    showInLegend: true,
+			    legendText: "{label}",
+			    indexLabel: "{label}: #percent%",
+			    dataPoints: [
+			    	{ label: "남자", y: ${man}} ,
+			    	{ label: "여자", y: ${woman}}
+	  			]  
+			}
+		]
+	};
+ 	$("#sex-reserv").CanvasJSChart(options);
 
  
- //연령별 예매 분포
- var optionss = {
-     animationEnabled: true,
-     title: {
-         text: "연령별 예매 분포"
-     },
+ 	//연령별 예매 분포
+ 	var optionss = {
+		width:252,height:200, 			
+     	animationEnabled: true,
+     	title: {
+         	text: "연령별 예매 분포"
+     	},
 //      axisY: {
          
 //          suffix: "%",
 //          includeZero: false
 //      },
-     axisX: {
-         title: "연령"
-     },
-     data: [{
-    	 type: "doughnut",
- 	    innerRadius: "40%",
- 	    showInLegend: true,
- 	    legendText: "{label}",
- 	    indexLabel: "{label}: #percent%",
+     	axisX: {
+         	title: "연령"
+     	},
+     	data: [
+     		{
+    	 		type: "doughnut",
+ 	    		innerRadius: "40%",
+ 	    		showInLegend: true,
+ 	    		legendText: "{label}",
+ 	   			indexLabel: "{label}: #percent%",
          
         
-         dataPoints: [
-        	
-             { label:"10대", y:${age10  == null? 0 : age10 } },
-             { label: "20대", y: ${age20  == null? 0 : age20 }},	
-             { label: "30대", y:${age30  == null? 0 : age30 } },
-             { label: "40대", y:${age40  == null? 0 : age40 } },	
-             { label: "50대", y:${age50  == null? 0 : age50 } }
-             
-          
-         ]
-     }]
- };
- $("#age-reserv").CanvasJSChart(optionss);
- 
-
-
+         		dataPoints: [
+		             { label:"10대", y:${age10  == null? 0 : age10 } },
+		             { label: "20대", y: ${age20  == null? 0 : age20 }},	
+		             { label: "30대", y:${age30  == null? 0 : age30 } },
+		             { label: "40대", y:${age40  == null? 0 : age40 } },	
+		             { label: "50대", y:${age50  == null? 0 : age50 } }
+         		]
+     		}
+   		]
+ 	};
+ 	$("#age-reserv").CanvasJSChart(optionss);
  
  }
  
@@ -691,7 +703,7 @@ chart.render();
     
     
     
-    <body>
+    <body style="background-color: #fcfcf0;">
     <div id="contaniner" class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
 
        
@@ -714,10 +726,10 @@ chart.render();
     <div class="box-image">
        
             <span class="thumb-image"> 
-                <a href="detail?movie_no=${movieActorVO.movie_no}"><img src="${pageContext.request.contextPath}/download/img?files_no=${movieActorVO.files_no }"></a>
+                <a href="detail?movie_no=${movieActorVO.movie_no}"><img src="download?files_no=${movieActorVO.files_no }"></a>
                 
             </span> 
-        </a> 
+     
     </div>
     <div class="box-contents">
         <div class="title"> 
@@ -781,7 +793,7 @@ chart.render();
         </span>
     </div>
 </div><!-- .sect-base -->
-
+</div>
 
 
 
@@ -790,26 +802,28 @@ chart.render();
             <!-- 메뉴가 선택되면 a 에 title="선택" 이라고 넣는다 -->
            
             <div class="sect-story-movie">
-                <strong>${movieActorVO.movie_title}<br>
-					<h2>${movieActorVO.movie_content}</h2>
+                <strong>${movieActorVO.movie_title}</strong>
+					<h2 class="content" style="font-size: inherit;">${movieActorVO.movie_content}</h2>
             </div><!-- .sect-story -->
-            <div id="ctl00_PlaceHolderContent_Section_Chart" class="sect-graph">
+            <div id="ctl00_PlaceHolderContent_Section_Chart" class="sect-graph" style="width: 850;">
                 <ul class="graph">
                     <li>
                         <strong>매력포인트</strong>
 						<div class="radar-graph" id="chart1">							
-                            <div id="charm-point" style="height: 200px; width: 100%;"></div>
+                            <div id="charm-point" style="height: 250px; width: 100%;"></div>
 						</div>
                     </li>
                     <li>
                         <strong>성별 예매 분포</strong>
-                        
-                        	<div id="sex-reserv" style="height: 200px; width: 100%;"></div>
-                      
+                        <div class="radar-graph" id="chart1">	
+                        	<div id="sex-reserv" style="height: 250px; width: 100%;"></div>
+                      </div>
                     </li>
                     <li>
                         <strong>연령별 예매 분포</strong>
-                        <div id="age-reserv" style="height: 200px; width: 100%;"></div>
+                        <div class="radar-graph" id="chart1">	
+                        <div id="age-reserv" style="height: 250px; width: 100%;"></div>
+                        </div>
                     </li>
                 </ul>
             </div>            
@@ -853,13 +867,10 @@ chart.render();
                         </div>
                     </li>
     </c:forEach>
-                    
-                    
-                   
-                    
-                    
+                 
                 </ul>
             </div><!-- .sect-trailer -->
+            
             <div id="ctl00_PlaceHolderContent_Section_Still_Cut" class="sect-stillcut">
                 <div class="heading">
                     <h4>스틸컷</h4>
@@ -914,6 +925,13 @@ chart.render();
 	<!-- 이미지 슬라이드 종료 -->
 	
 	<br><br><br><br><br><br><br><br><br><br>
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
 </div>
 
 	</body>	
