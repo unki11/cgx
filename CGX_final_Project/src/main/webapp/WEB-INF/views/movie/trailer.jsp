@@ -57,7 +57,7 @@ div[class^="sect-"] {
 }
 .sect-common:before {
     left: 0;
-    background: url(../images/common/bg/bg_bricks_before.png) no-repeat 0 0;
+/*     background: url(../images/common/bg/bg_bricks_before.png) no-repeat 0 0; */
 }
 .sect-common:before, .sect-common:after {
     position: absolute;
@@ -86,7 +86,7 @@ div[class^="sect-"]:after {
 }
 .sect-common:after {
     right: 0;
-    background: url(../images/common/bg/bg_bricks_after.png) no-repeat 0 0;
+/*     background: url(../images/common/bg/bg_bricks_after.png) no-repeat 0 0; */
 }
 .cols-player {
     height: 450px;
@@ -223,7 +223,7 @@ div[class^="sect-"]:after {
 h3 {
     height: 41px;
     margin: 30px 0 15px;
-    background: url(../images/common/bg/bg_h3_line.jpg) repeat-x 0 50%;
+/*     background: url(../images/common/bg/bg_h3_line.jpg) repeat-x 0 50%; */
     line-height: 41px;
     text-align: center;
     font-weight: 500;

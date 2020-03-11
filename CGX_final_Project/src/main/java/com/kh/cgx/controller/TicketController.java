@@ -88,7 +88,7 @@ public class TicketController {
 		}
 		
 	//예매 두번째 구간
-	@GetMapping("/stepCinema")
+	@GetMapping("/stepcinema")
 	public String ticket2(Model model,int movie_no) {
 		
 //		극장 리스트
@@ -104,7 +104,7 @@ public class TicketController {
 
 		
 		
-		@GetMapping("/stepDateTime")
+		@GetMapping("/stepdatetime")
 //	 	상영 시간표 리스트 전 날짜 선택
 	public String ticket4(
 			@RequestParam(value="date" ,required=false) String date,

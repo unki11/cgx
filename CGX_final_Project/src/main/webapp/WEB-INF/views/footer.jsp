@@ -23,11 +23,13 @@
 </style>   
 
 
-</body>
+
 
 <!-- 푸터시작 -->
 
-<!-- <footer class="bg-1light">   --> 
+
+<div class="bg-1light">   
+
  <div class="container-fluid">
 	 <br><br>	 
 
@@ -50,7 +52,9 @@
 </div>
 <img src="${pageContext.request.contextPath}/resources/img/block.jpg" style="width: 100%;">
 </div>   
-<!-- </footer> -->
+
+</div>
+
 </body>
 
 </html>

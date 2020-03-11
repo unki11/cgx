@@ -41,11 +41,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 로그인 기능 -->
 	<select id="login" parameterType="member" resultType="member">
-		select *
-		from member where member_id=#{member_id}
+		select * from member where member_id=#{member_id}
 	</select>
-	
-
 	<update id="updateLastLogin" parameterType="member">
 		update member set
 		member_lastlogin = sysdate where member_id=#{member_id}
@@ -85,9 +82,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete member where member_id=#{id}
 	</delete>
 	
-	<update id="change_pw" parameterType="member">
-		update member set member_pw =#{member_pw} where member_id = #{member_id}
-	</update>
+<!-- 	<update id="change_pw" parameterType="member"> -->
+<!-- 		update member set member_pw =#{member_pw} where member_id = #{member_id} -->
+<!-- 	</update> -->
 </mapper>
 
 
