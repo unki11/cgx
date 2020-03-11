@@ -623,11 +623,11 @@ ul {
 			{        
 		 		type: "column",
 		 		dataPoints: [
-		     		{ label: "감독연출", y: 89 },	
-		     		{ label: "스토리", y: 91 },	
-		     		{ label: "영상미", y: 77 },
-		     		{ label: "배우연기", y: 85 },	
-		     		{ label: "ost", y: 90 }
+		     		{ label: "감독연출", y: ${egg.review_1} },	
+		     		{ label: "스토리", y: ${egg.review_2} },	
+		     		{ label: "영상미", y: ${egg.review_3}},
+		     		{ label: "배우연기", y: ${egg.review_4} },	
+		     		{ label: "ost", y: ${egg.review_5} }
 		 		]
 			}	
 		]
@@ -921,11 +921,24 @@ ul {
 		    <span class="glyphicon glyphicon-chevron-right"></span>
 			<span class="sr-only">Next</span>
 		</a>
-
-	</div>
-	<!-- 이미지 슬라이드 종료 -->
 	
-	<br><br><br><br><br><br><br><br><br><br>
+	</div>
+	<br><br><br>
+	<!-- 이미지 슬라이드 종료 -->
+		${egg.review_egg }%
+	<br><br><br>
+
+		<c:forEach items="${reviewlist}" var="review" begin="0" end="7">
+		<div style="float: left; width: 50%;height: 100px;border: 1px solid black;padding: 20px;margin: auto;">
+			아이디:${review.member_id}
+			내용 : ${review.review_content}
+		</div>
+		</c:forEach>
+		<div style="clear: both;"></div>
+	<br><br>
+	->더보기
+	<br><br><br><br><br><br><br><br>
+	
 </div>
 
 

@@ -77,16 +77,16 @@
     </div>
 
     <!-- Login Form -->
-    <form action="adminLogin" method="post">
+    <form action="adminlogin" method="post">
       <input type="text" id="login" class="fadeIn second" name="admin_id" placeholder="매니저아이디" required>
       <input type="password" id="password" class="fadeIn third" name="admin_pw" placeholder="매니저비밀번호" required>
       <input type="submit" class="fadeIn fourth" value="로그인 " style="background-color: red;">
     </form>
 
     <!-- Remind Passowrd -->
-    <div id="formFooter">
-      <a class="underlineHover" href="/com.kh.cgx/admin/adminList">매니저목록보기</a>
-    </div>
+    <!-- <div id="formFooter">
+      <a class="underlineHover" href="/com.kh.cgx/admin/adminlist">매니저목록보기</a>
+    </div> -->
 
   </div>
 </div>

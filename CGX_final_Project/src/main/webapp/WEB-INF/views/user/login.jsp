@@ -25,11 +25,29 @@
 </head>
 
 <style>
-
-.fadeIn fourth {
-	background-color: red;
+	body{
+		margin-top: 150px;
+		background-image: url("${pageContext.request.contextPath}/resources/img/all.jpg");
+		background-size: cover;
+	}
+	html{
+		background-image: url("${pageContext.request.contextPath}/resources/img/latte2.png");
+		background-repeat: no-repeat;
+		background-position: top;
+	}
+	
+	.container{
+		opacity: 3;
+		text-align: center;
+		color: black;
+	}
+	.fadeIn fourth{
+        background-color: red;
 }
 </style>
+
+<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include> 
+
 <body>
 
 	<div class="wrapper fadeInDown">
@@ -42,9 +60,8 @@
 			</div>
 
 			<form action="login" method="post">
-				<input type="text" id="login" class="fadeIn second" name="member_id"
-					placeholder="아이디"> <input type="password" id="password"
-					class="fadeIn third" name="member_pw" placeholder="비밀번호"> <input
+				<input type="text" id="login" class="fadeIn second" name="member_id" placeholder="아이디" required> 
+				<input type="password" id="password" class="fadeIn third" name="member_pw" placeholder="비밀번호" required> <input
 					type="submit" class="fadeIn fourth btn " value="Log In"
 					style="background-color: #ff0206;">
 
@@ -59,5 +76,7 @@
 			</form>
 		</div>
 	</div>
+	
 </body>
+<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>   
 </html>

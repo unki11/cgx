@@ -5,16 +5,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/join.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>회원 가입</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/join.css">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+ 
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="${pageContext.request.contextPath}/resources/secom.js"></script>
 <script>
 	//해야할일 : id에 input 이벤트가 발생하면 ajax로 xml을 불러와서 검사
 	$(function() {
+		
+		$("#join").click(function(e){
+					e.preventDefault();
+					joinUser();
+		});
+		
 		$("#checkId").click(function() {
 				var member_id = $("input[name=member_id]").val();
 							$.ajax({
@@ -125,18 +137,32 @@
 				alert("이메일 확인을 해주세요.");
 				return false;
 			}
-	        $("#frm").submit();
+	       $("#join").submit();
 		}
 </script>
 <style>
-    .fadeIn fourth{
-        background-color: red;
-    }
-    #checkId,#checkEmail{
+	body{
+		margin-top: 150px;
+		background-image: url("${pageContext.request.contextPath}/resources/img/all.jpg");
+		background-size: cover;
+	}
+	html{
+		background-image: url("${pageContext.request.contextPath}/resources/img/latte2.png");
+		background-repeat: no-repeat;
+		background-position: top;
+	}
+	
+	.container{
+		opacity: 3;
+		text-align: center;
+		color: black;
+	}
+	.fadeIn fourth{
         background-color: red;
     }
 </style>
 </head>
+<jsp:include page="../header.jsp"></jsp:include> 
 <body>
 
 <div class="wrapper fadeInDown">
@@ -151,6 +177,7 @@
       <!-- Login Form -->
       <form action="join" method="POST">
         <input type="text" id="login" class="fadeIn second" name="member_id" placeholder="아이디">
+        <input type="hidden" id="checkIdYn" value="N"> 
         <input type="button" id="checkId" value="중복확인"><br>
         <input type="password" id="password" class="fadeIn third" name="member_pw" placeholder="비밀번호">
         <input type="text" id="name" class="fadeIn third" name="member_name" placeholder="이름">
@@ -161,10 +188,13 @@
         <input type="button" id="checkEmail" value="이메일인증">
         <input type="text" name="email_code" placeholder="인증코드" style="display:none;">
         <input type="button" id="checkEmailCode" value="인증코드확인" style="display:none;"><p id="msg"></p>
-        <input type="submit" class="fadeIn fourth" value="회원가입" style="background-color: red;">
+        <input type="button" id="join" class="fadeIn fourth"  value="회원가입" style="background-color: red;">
+        <input type="text" id="checkEmailYn" value="N">	
       </form>
-  
     </div>
   </div>
 </body>
+<jsp:include page="../footer.jsp"></jsp:include> 
 </html>
+
+  

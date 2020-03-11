@@ -573,6 +573,8 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
 <jsp:include page="footer.jsp"></jsp:include>      
 
 
+</html>
+
 
 
     

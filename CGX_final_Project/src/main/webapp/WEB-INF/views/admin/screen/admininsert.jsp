@@ -38,7 +38,7 @@
 <table class="table table-bordered">
 	
     <tbody>
-        <form action="adminInsert" method="post">
+        <form action="admininsert" method="post">
 <!--             <tr>
                 <th>매니저번호 입력창</th>
                 <td><input type="text" name="admin_no" placeholder="매니저번호" required></td>
@@ -85,11 +85,11 @@
             <tr style="text-align: center;">
                 <td colspan="2" >
                     <input class="btn btn-danger" type="submit" value="상영관등록">
-                    <a class="underlineHover" href="/com.kh.cgx/admin/Screen/adminList">
+                    <a class="underlineHover" href="/com.kh.cgx/admin/screen/adminlist">
                     	<input class="btn btn-info" value="상영관목록보기">
                     </a>
                     
-                    <a class="underlineHover" href="/com.kh.cgx/admin/adminList">
+                    <a class="underlineHover" href="/com.kh.cgx/admin/adminlist">
                     	<input class="btn btn-info" value="관리자메인화면가기">
                     </a>
                 </td>
