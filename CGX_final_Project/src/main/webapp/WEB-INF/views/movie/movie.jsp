@@ -4,7 +4,7 @@
  
 <jsp:include page="../header.jsp"></jsp:include>
 <head>        
-        <style>
+ <style>
         * {
 	box-sizing: border-box;
 	}
@@ -310,40 +310,49 @@ input, select, img {
     width: 0;
     zoom: 1;
 }
-
-        
-
-    
         </style>
+        
   </head>         
-         <script>
-$(function(){
-	$(".wish").click(function(e){
-		var value = (this).value;
-		console.log(value);
-		$.ajax({
-			url:"likeupdate?movie_no="+value,
-			type:"get",
-			dataType :"json",
-	 		success:function(data){
-	 			console.log(data);
-	 			var result = data;
-	 			console.log(data.code);
-	 			if(result.code == "true"){
-	 				alert("위시리스트에 저장되었습니다.");
-	 				window.location.reload(true);
-	 			}else if(result.code == "false"){
-	 				alert("위시리스트 삭제.");
-	 				window.location.reload(true);
-	 			} 
-
+        
+    <script>
+    $(function(){    
+		$(".wish").click(function(){
+		var this1 = $(this);
+		var value = $(this).val();
+		console.log(value);	
+	$.ajax({
+	url:"http://localhost:8080/com.kh.cgx/movie/likeupdate",
+	data:{movie_no: value},
+	type:"get",
+	success:function(resp){
+		//resp가 화면에 나오는 글자
+		//resp.wishResult , resp.wishCount
+		//resp.wishResult로 하트 변경 처리
+		//resp.wishCount로 하트 옆 숫자 변경 처리
+		console.log(resp);
+		var result=resp;	
+		console.log(this1);
+/* 		this1.empty();	
+		this1.append(resp.wishCount);  */
+		this1.text(resp.wishCount);
+		//좋아요
+		if(resp.wishResult == true){
+			alert("위시리스트에 저장되었습니다.")
+			this1.removeClass('far');
+			this1.addClass('fas'); //채워진하트를 지우고
+		}
+		else{
+			alert("위시리스트 삭제.");
+			this1.removeClass('fas');//채워진하트를 지우고
+			this1.addClass('far'); //빈하트 지우기
 			}
-		});
+
+		}
 	});
 });
-	
-
+});
 </script>
+  </head>         
 
 
 <body style="background-color: #fcfcf0;">
@@ -352,7 +361,7 @@ $(function(){
 
 		<div class="tit-heading-wrap">
             <h3>무비차트</h3>
-           
+                                                                                                                                                                                                         
             <div class="submenu">
                 <ul>
                     <li class="on"><a href="${pageContext.request.contextPath }/movie/" title="선택">무비차트</a></li>
@@ -386,28 +395,20 @@ $(function(){
 	<a href="detail?movie_no=${list.movie_no}"><strong class="title">${list.movie_title }</strong></a>
 		<div class="score">
  			<strong class="percent">예매율 <span>${list.movie_ticket_rate}%</span></strong>
- 		</div>
+ 		</div> 
  <span class="txt-info"><strong>개봉 :  ${list.movie_startdate}</strong></span>
- 
- 
+  
 
-<%-- <%-- <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
-=======
-<button class="wish"  value="${list.movie_no}" style="color: red;"></button> <!-- 지현이추가 --> 
-
-<h3>${list.movie_wish}</h3>
-	
-	<button class="btn btn-danger">예매</button>
-=======
-<%-- <h3>${list.movie_wish}</h3> --%> 
-
-
-	
 <span class="like">
-	<button id="wish${list.movie_no}" value="${list.movie_no}" onclick="fn_wish(this.value)">좋아요</button> <!-- 지현이추가 -->
-	<a href="${pageContext.request.contextPath }/ticket/stepcinema?movie_no=${list.movie_no}">
-	<button class="btn btn-danger">예매</button>
+
+
+	 <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
+${list.movie_wish}
+</button> <!-- 지현추가 -->  
+<button class="btn btn-danger">예매</button>
+
 	</a>
+
 </span>
 
 
@@ -424,9 +425,6 @@ $(function(){
 		<li>
 	<div  class="box-image">
 		<strong class="rank">Good</strong>
-<%-- <h5>${list }</h5> --%>
-<%-- <a href="detail?movie_no=${list.movie_no}"><img src="download?files_no=${list.files_no }"></a> --%>
-<%-- <button class="wish" value="${list.movie_no}">좋아요</button> <!-- 지현이추가 --> --%>
 <a href="detail?movie_no=${list.movie_no}">
 		<span class="thumb-image">                          
 			<img src="download?files_no=${list.files_no }" style="width: 185px; height: 260px">
@@ -441,8 +439,11 @@ $(function(){
  <span class="txt-info"><strong>개봉 :  ${list.movie_startdate}</strong></span>
  
  <span class="like">
-	<button id="wish${list.movie_no}" value="${list.movie_no}" onclick="fn_wish(this.value)">좋아요</button> <!-- 지현이추가 -->
-	<button class="btn btn-danger">예매</button>
+
+	 <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
+${list.movie_wish}
+</button> <!-- 지현추가 --> 
+<button class="btn btn-danger">예매</button>
 </span>
 	</div>
 	</div>
@@ -457,9 +458,7 @@ $(function(){
 		<li>
 	<div  class="box-image">
 		
-<%-- <h5>${list }</h5> --%>
-<%-- <a href="detail?movie_no=${list.movie_no}"><img src="download?files_no=${list.files_no }"></a> --%>
-<%-- <button class="wish" value="${list.movie_no}">좋아요</button> <!-- 지현이추가 --> --%>
+
 <a href="detail?movie_no=${list.movie_no}">
 		<span class="thumb-image">                          
 			<img src="download?files_no=${list.files_no }" style="width: 185px; height: 260px">
@@ -474,8 +473,15 @@ $(function(){
  <span class="txt-info"><strong>개봉 :  ${list.movie_startdate}</strong></span>
  
  <span class="like">
-	<button id="wish${list.movie_no}" value="${list.movie_no}" onclick="fn_wish(this.value)">좋아요</button> <!-- 지현이추가 -->
-	<button class="btn btn-danger">예매</button>
+if(true){
+	 <button class="wish fas fa-heart btn"  value="${list.movie_no}" style="color: red;">
+<span class="mwish">${list.movie_wish}</span>
+</button> <!-- 지현추가 --> 
+}else{
+	 <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
+<span class="mwish">${list.movie_wish}</span>
+</button> <!-- 지현추가 --> 
+}
 </span>
 	</div>
 	</div>
@@ -488,6 +494,7 @@ $(function(){
 
 </body>
 
+
 <jsp:include page="../footer.jsp"></jsp:include> 
 
 
@@ -498,3 +505,4 @@ $(function(){
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
+
