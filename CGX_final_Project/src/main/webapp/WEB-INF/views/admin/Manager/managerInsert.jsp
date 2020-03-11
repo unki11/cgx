@@ -204,6 +204,10 @@
                 <a class="underlineHover" href="/com.kh.cgx/admin/adminLogin">
              		<input class="btn btn-info" value="로그인화면으로가기">
           		</a>
+          		
+          		<a class="underlineHover" href="${pageContext.request.contextPath}/admin/adminLogout">
+             		<input class="btn btn-danger" value="로그인아웃">
+          		</a>
                 </td>
 
             </tr>
