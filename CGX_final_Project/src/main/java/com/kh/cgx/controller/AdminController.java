@@ -317,6 +317,17 @@ public class AdminController {
 		return "/admin/Manager/managerInsert";
 	}
 	
+	@GetMapping("/actorinsert")
+	public String actorinsert() {
+		return "admin/actorinsert";
+	}
+	
+	@GetMapping("/actorinsert/movie")
+	@ResponseBody
+	public List<MovieDto> movieactor(){
+		return managerDao.getMovie();
+	}
+	
 //	@GetMapping("/Manager/managerList")
 //	public ModelAndView managerList(ModelAndView mav) 
 //		List<ManagerDto> managerlist = managerDao.
