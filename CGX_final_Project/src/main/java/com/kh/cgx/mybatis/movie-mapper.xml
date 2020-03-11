@@ -221,12 +221,24 @@ where A.member_no = #{member_no}
 	delete wish where member_no = #{member_no} and movie_no= #{movie_no}
 </delete>
 
-<select id="review" parameterType="int" resultType="reviewDto">
-	select r.* from review r 
+<select id="review" parameterType="int" resultType="reviewvo">
+	select r.*,me.member_id from review r 
 		inner join ticket t on r.ticket_no = t.ticket_no 
 		inner join movietime mt on t.movietime_no = mt.movietime_no 
 		inner join movie m on mt.movie_no = m.movie_no
+        inner join member me on t.member_no = me.member_no
 	where m.movie_no = #{movie_no}
+</select>
+
+<select id="egg" parameterType="int" resultType="reviewDto">
+	select NVL(round(sum(r.review_egg)/count(*)*100,0),0) review_egg,
+		NVL(round(sum(r.review_1)/count(*)*100,0),0) review_1,
+		NVL(round(sum(r.review_2)/count(*)*100,0),0) review_2,
+		NVL(round(sum(r.review_3)/count(*)*100,0),0) review_3,
+		NVL(round(sum(r.review_4)/count(*)*100,0),0) review_4,
+		NVL(round(sum(r.review_5)/count(*)*100,0),0) review_5
+	from review r inner join ticket t on r.ticket_no = t.ticket_no inner join movietime mt on t.movietime_no = mt.movietime_no
+		inner join movie m on mt.movie_no = m.movie_no where m.movie_no = #{movie_no}
 </select>
 </mapper>
 
