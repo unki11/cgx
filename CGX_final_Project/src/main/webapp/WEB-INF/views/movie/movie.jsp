@@ -8,7 +8,9 @@
         * {
 	box-sizing: border-box;
 	}
-      
+    
+
+
    #contents {
     clear: both;
     padding-bottom: 50px;
@@ -194,6 +196,8 @@ input, select, img {
 }
 
 .wrap-movie-chart .box-contents {
+
+    display: contents;
     height: 93px;
 }
 
@@ -308,7 +312,7 @@ input, select, img {
 }
 
         
- 
+
     
         </style>
   </head>         
@@ -342,7 +346,7 @@ $(function(){
 </script>
 
 
-<body>
+<body style="background-color: #fcfcf0;">
 <div id="contents">
 	<div class="wrap-movie-chart">
 
@@ -374,7 +378,7 @@ $(function(){
 <%-- <button class="wish" value="${list.movie_no}">좋아요</button> <!-- 지현이추가 --> --%>
 <a href="detail?movie_no=${list.movie_no}">
 		<span class="thumb-image">                          
-			<img src="${pageContext.request.contextPath}/download/img?files_no=${list.files_no }" style="width: 185px; height: 260px">
+			<img src="download?files_no=${list.files_no }" style="width: 185px; height: 260px">
 		</span>
 		</a>
 		
@@ -387,13 +391,22 @@ $(function(){
  
  
 
-<%-- <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
+<%-- <%-- <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
 =======
 <button class="wish"  value="${list.movie_no}" style="color: red;"></button> <!-- 지현이추가 --> 
-<%-- <h3>${list.movie_wish}</h3> --%>
+
+<h3>${list.movie_wish}</h3>
+	
+	<button class="btn btn-danger">예매</button>
+=======
+<%-- <h3>${list.movie_wish}</h3> --%> 
 
 	
-	<button>예매</button>
+<span class="like">
+	<button id="wish${list.movie_no}" value="${list.movie_no}" onclick="fn_wish(this.value)">좋아요</button> <!-- 지현이추가 -->
+	<button class="btn btn-danger">예매</button>
+</span>
+
 
 	</div>	
 	</div>
@@ -426,7 +439,7 @@ $(function(){
  
  <span class="like">
 	<button id="wish${list.movie_no}" value="${list.movie_no}" onclick="fn_wish(this.value)">좋아요</button> <!-- 지현이추가 -->
-	<button>예매</button>
+	<button class="btn btn-danger">예매</button>
 </span>
 	</div>
 	</div>
@@ -459,7 +472,7 @@ $(function(){
  
  <span class="like">
 	<button id="wish${list.movie_no}" value="${list.movie_no}" onclick="fn_wish(this.value)">좋아요</button> <!-- 지현이추가 -->
-	<button>예매</button>
+	<button class="btn btn-danger">예매</button>
 </span>
 	</div>
 	</div>
@@ -474,5 +487,11 @@ $(function(){
 
 <jsp:include page="../footer.jsp"></jsp:include> 
 
+
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
- <script src="https://code.jquery.com/jquery-3.4.1.js" ></script>
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.js" ></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>

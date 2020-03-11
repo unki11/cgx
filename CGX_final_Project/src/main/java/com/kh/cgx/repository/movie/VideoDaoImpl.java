@@ -26,4 +26,10 @@ public class VideoDaoImpl implements VideoDao{
 		return sqlSession.selectList("movies.info_trailer", videoVO.getMovie_no());
 	}
 
+	@Override
+	public List<VideoVO> getList2(VideoVO videoVO) {
+		
+		return sqlSession.selectList("movies.video_list");
+	}
+
 }

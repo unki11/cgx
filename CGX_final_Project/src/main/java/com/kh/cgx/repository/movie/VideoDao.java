@@ -9,5 +9,7 @@ public interface VideoDao {
 
 	List<VideoVO> getList(VideoVO videoVO);
 	
+	List<VideoVO> getList2(VideoVO videoVO);
+	
 	List<VideoVO> getListInfo(VideoVO videoVO);
 }
