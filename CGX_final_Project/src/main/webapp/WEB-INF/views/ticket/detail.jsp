@@ -159,7 +159,7 @@ input, select, img {
     bottom: 3px;
     width: 24px;
     height: 24px;
-    background: url(../images/sprite/sprite_icon.png) 0 0 no-repeat;
+/*     background: url(../images/sprite/sprite_icon.png) 0 0 no-repeat; */
     font: 0/0 a;
     zoom: 1;
 }
@@ -173,7 +173,7 @@ input, select, img {
     top: 5px;
     width: 21px;
     height: 21px;
-    background: url(../images/sprite/sprite_icon.png) no-repeat;
+/*     background: url(../images/sprite/sprite_icon.png) no-repeat; */
     font: 0/0 a;
     zoom: 1;
 }
@@ -268,7 +268,7 @@ em {
     position: absolute;
     width: 5px;
     height: 5px;
-    background: #fdfcf0 url(../images/sprite/sprite_corner01.png) no-repeat;
+/*     background: #fdfcf0 url(../images/sprite/sprite_corner01.png) no-repeat; */
 }
 .round.lightblue:after {
     left: -2px;
@@ -367,7 +367,7 @@ dd {
     display: inline-block;
     width: 91px;
     height: 35px;
-    background: url(../images/sprite/sprite_btn.png) 0 0 no-repeat;
+/*     background: url(../images/sprite/sprite_btn.png) 0 0 no-repeat; */
     font: 0/0 a;
     zoom: 1;
     vertical-align: top;
@@ -792,8 +792,9 @@ chart.render();
         <span class="like">
             
 
-        
-           <button>예매</button>
+         <a href="${pageContext.request.contextPath }/ticket/stepcinema?movie_no=${movieActorVO.movie_no}">
+	<button class="btn btn-danger">예매</button>
+	</a>
         
         </span>
     </div>
@@ -968,5 +969,5 @@ chart.render();
  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
 <!--     <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> 이거키면 동영상 안켜짐 -->  
     <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-    <script src="path/to/chartjs/dist/Chart.js"></script>
+<!--     <script src="path/to/chartjs/dist/Chart.js"></script> -->
  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>

@@ -60,10 +60,10 @@ li {
     text-align: -webkit-match-parent;
 }
 
-.tit-heading-wrap > .submenu > ul > li.on > a, .tit-heading-wrap > .submenu > ul > li > a:hover, .tit-heading-wrap > .submenu > ul > li > a:focus {
-    background: url(../images/common/ico/ico_arrow07.png) no-repeat 0 3px;
-    color: #e40000;
-}
+ .tit-heading-wrap > .submenu > ul > li.on > a, .tit-heading-wrap > .submenu > ul > li > a:hover, .tit-heading-wrap > .submenu > ul > li > a:focus { 
+
+ color: #e40000; 
+ } 
 
 .tit-heading-wrap > .submenu > ul > li > a {
     display: inline-block;
@@ -401,10 +401,13 @@ $(function(){
 =======
 <%-- <h3>${list.movie_wish}</h3> --%> 
 
+
 	
 <span class="like">
 	<button id="wish${list.movie_no}" value="${list.movie_no}" onclick="fn_wish(this.value)">좋아요</button> <!-- 지현이추가 -->
+	<a href="${pageContext.request.contextPath }/ticket/stepcinema?movie_no=${list.movie_no}">
 	<button class="btn btn-danger">예매</button>
+	</a>
 </span>
 
 
