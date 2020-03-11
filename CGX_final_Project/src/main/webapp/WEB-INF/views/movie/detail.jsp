@@ -5,14 +5,12 @@
     <jsp:include page="../header.jsp"></jsp:include>    
     
      
-    
-   
+ 
     <head>
     <style>
-       * {
-	box-sizing: 
--box;
-	}
+     * {
+            box-sizing: border-box;
+        }
 	.carousel-indicators li {
     display: inline-block;
     width: 10px;
@@ -602,8 +600,205 @@ ul {
 	.content{
 	font-size: inherit;
 }
-    </style>
+
+[class|="wrap-movie"][class$="detail"] [class^="sect-"] {
+    margin-top: 40px;
+}
+div[class^="sect-"]:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+/* .heading-new { */
+/*     position: relative; */
+/*     width: 100%; */
+/*     height: 40px; */
+/*     background: #e2e0d2; */
+/* } */
+
+.txt-write {
+    position: absolute;
+    right: 6px;
+    top: 0;
+    color: #333333;
+    line-height: 40px;
+    font-weight: 500;
+}
+
+ .link-gradewrite { 
+     background-position: 0 -1024px; 
+ } 
+
+.txt-write > a { 
+     display: inline-block; 
+   width: 70px; 
+   height: 26px; 
+   margin-left: 4px; 
+ 	background: url(../images/sprite/sprite_corner.png) no-repeat; 
+     color: #ffffff; 
+     text-align: center;
+ vertical-align: middle; 
+}
+
+.link-gradewrite span {
+    background-position: 100% -1050px;
+}
+
+ .txt-write > a span {
+    display: block;
+    height: 26px;
+    line-height: 26px;
+    background: url(../images/sprite/sprite_corner.png) no-repeat 0 0;
+}
+
+ .egg-grade {
+     position: relative; 
+   height: 160px;
+   padding: 10px; 
+ } 
+
+.egg-grade .egg-gage {
+    position: absolute;
+    left: 85px;
+    /* top: 55px; */
+    top: 80px;
+    margin: 0;
+}
+.egg-gage {
+    display: inline-block;
+    width: auto !important;
+    line-height: 1;
+}
+.egg-gage.big .egg.great {
+    background-position: -96px -100px;
+}
+
+.egg-gage.big .egg {
+    display: inline-block;
+    margin-right: 5px;
+    width: 48px;
+    height: 65px;
+    background: url(../images/sprite/sprite_egg.png) no-repeat 0 -100px;
+    vertical-align: middle;
+}
+
+.egg-gage.big .percent {
+    display: inline-block;
+    margin-top: 5px;
+    font-family: 'Helvetica';
+    font-size: 30px;
+    color: #000000;
+    vertical-align: middle;
+}
+.egg-gage.big .percent > strong {
+    font-family: inherit;
+    font-size: 60px;
+    letter-spacing: -2px;
+}
+
+.wrap-movie-detail ul.point_col2 {
+    position: relative;
+    margin: 0 25px -2px;
+    overflow: hidden;
+}
+.sect-grade .wrap-persongrade > ul {
+    border-top: 1px solid #999999;
+    color: #333333;
+}
+.point_col2 {
+    margin: 0 auto -2px!important;
+    padding: 0 25px;
+}
+
+#liid{
+    width: 374px;
+    padding-left: 1px!important;
+    border-right: 1px solid #ceccc1;
+}
+.wrap-movie-detail ul.point_col2>li {
+    position: relative;
+    float: left;
+    margin-right: -1px;
+    border-right: none;
+    width: 50%;
+    height: 150px;
+    padding: 30px 0;
+    border-bottom: 1px solid #ceccc1;
+    zoom: 1;
+}
+
+.sect-grade .wrap-persongrade > ul > li:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+.point_col2 li:nth-child(2n+1) div.box-contents {
+    padding-left: 88px !important;
+}
+
+.point_col2 .writerinfo {
+    position: relative;
+    height: 24px;
+}
+
+.wrap-movie-detail ul.point_col2>li .writerinfo > li:first-child {
+    float: left;
+}
+
+.wrap-movie-detail ul.point_col2>li .writerinfo > li {
+    float: none;
+    background: none;
+}
+.wrap-movie-detail ul.point_col2>li .writerinfo > li {
+    float: none;
+    background: none;
+}
+.point_col2 .writerinfo li {
+    margin-bottom: 3px;
+    line-height: 20px!important;
+}
+.writerinfo .writer-name {
+    font-size: 12px;
+    cursor: pointer;
+}
+.egg-icon.good {
+    width: 17px;
+    background-position: -27px 0;
+}
+.egg-icon {
+    display: inline-block;
+    margin-right: 6px;
+    width: 22px;
+    height: 22px;
+    background: url(../images/sprite/sprite_egg.png) no-repeat 0 0;
+    vertical-align: middle;
+}
+div[class^="sect-"] .box-contents li a {
+    display: block;
+    font-weight: 500;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.point_col2 > li:nth-child(2n+1) div.box-comment {
+    margin: 4px 40px 0 88px !important;
+}
+.point_col2 li:nth-child(2n+1) div.box-image, .point_col2 li:nth-child(2n+1) div.box-comment {
+    margin-left: 0!important;
+    padding-left: 0!important;
+}
+.wrap-movie-detail ul.point_col2>li .box-comment p {
+    color: #000000;
+}
+.wrap-movie-detail ul.point_col2>li .box-comment p {
+    font-size: 13px;
+}
+   
+   	</style>
     </head>
+    
      <script>
 
 
@@ -697,19 +892,19 @@ ul {
  	$("#age-reserv").CanvasJSChart(optionss);
  
  }
- 
 
  </script>
     
     
     
-    <body style="background-color: #fcfcf0;">
-    <div id="contaniner" class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
+<body style="background-color:#fcfdf0;">
+    
+    <div id="contaniner" >
 
        
 
 		<!-- Contents Area -->
-		<div id="contents" class="">
+		<div id="contents">
             
             <!-- Contents Start -->
 			
@@ -794,7 +989,7 @@ ul {
         </span>
     </div>
 </div><!-- .sect-base -->
-</div>
+
 
 
 
@@ -833,11 +1028,11 @@ ul {
             <div class="movie-detail-ad">
                 <iframe src="http://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@SponsorBar_800" width="800" height="90" title="더보이2" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="SponsorBar_800" id="SponsorBar_800"></iframe>
             </div>
-            <div>
-			<c:forEach items="${reviewlist}" var="review">
-					${review.review_content}	
-			</c:forEach>
-			</div>
+<!--             <div> -->
+<%-- 			<c:forEach items="${reviewlist}" var="review"> --%>
+<%-- 					${review.review_content}	 --%>
+<%-- 			</c:forEach> --%>
+<!-- 			</div> -->
             
             <!-- .sect-staff -->
             <div id="ctl00_PlaceHolderContent_Section_Trailer" class="sect-trailer">
@@ -923,40 +1118,94 @@ ul {
 		</a>
 	
 	</div>
-	<br><br><br>
+</div>
+</div>
 	<!-- 이미지 슬라이드 종료 -->
-		${egg.review_egg }%
-	<br><br><br>
-
-		<c:forEach items="${reviewlist}" var="review" begin="0" end="7">
-		<div style="float: left; width: 50%;height: 100px;border: 1px solid black;padding: 20px;margin: auto;">
-			아이디:${review.member_id}
-			내용 : ${review.review_content}
-		</div>
-		</c:forEach>
-		<div style="clear: both;"></div>
-	<br><br>
-	->더보기
-	<br><br><br><br><br><br><br><br>
 	
-</div>
+	
+	
+	<div class="sect-grade">
+          	<div class="heading">
+          		<p class="txt-write">
+          			운기야 어때?
+          				<a class="link-gradewrite">
+          					<span>평점작성</span>
+          				</a>
+          		</p>
+          	</div>
+          	
+       
+          	<div class="egg-grade">
+          		<div class="egg-gage big">
+          			<span class="egg great"></span>
+          		
+          			<span class="percent">
+          				<strong>${review.review_egg }</strong>%
+          			</span>
+          		
+          		</div>
+          	</div>
+          	
+          	<div class="wrap-persongrade">
+          		<!-- 평점 목록 -->
+          		<ul id="movie_point_list_container">
+          		<c:forEach items="${reviewlist}" var="review" >
+          			<li id="liid">
+          				<div class="box-contents">
+          					<ul class="writerinfo">
+          						<li class="writer-name">
+          							<span class=" egg-icon good "></span>
+          								${review.member_id}
+          						</li>
+          					</ul>
+          				</div>
+          		<div class="box-comment">
+          			<p>${review.review_content} </p>
+          		</div>		
+          			</li>
+       </c:forEach>
+          		</ul>
+          	</div>
+          </div>      
+          
+          
+          
+          
+	
+<%-- 		${egg.review_egg }% --%>
+<!-- 	<br><br><br> -->
+
+<%-- 		<c:forEach items="${reviewlist}" var="review" begin="0" end="7"> --%>
+<!-- 		<div style="float: left; width: 50%;height: 100px;border: 1px solid black;padding: 20px;margin: auto;"> -->
+<%-- 			아이디:${review.member_id} --%>
+<%-- 			내용 : ${review.review_content} --%>
+<!-- 		</div> -->
+<%-- 		</c:forEach> --%>
+<!-- 		<div style="clear: both;"></div> -->
+<!-- 	<br><br> -->
+<!-- 	->더보기 -->
+<!-- 	<br><br><br><br><br><br><br><br> -->
+	
+<!-- </div> -->
 
 
-</div>
-</div>
-</div>
-</div>
-</div>
 
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 	</body>	
+	
 		<jsp:include page="../footer.jsp"></jsp:include>    
 		
 		
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css?after">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
 <!--     <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> 이거키면 동영상 안켜짐 -->  
-    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+<!--     <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script> -->
 <!--     <script src="path/to/chartjs/dist/Chart.js"></script> -->
  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
