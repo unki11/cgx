@@ -215,8 +215,8 @@
     <div>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
     	<div style="font-size: 2.5rem">${cinemaDto.cinema_area}</div>
     	<img src="${pageContext.request.contextPath}/download/img?files_no=${cinemaDto.files_no}" width="100%" height="500px">
-    	 <div class="cinema-ex">
-    	 	<div class="float-left" style="width: 60%;">안녕하세요</div><div style="float: left;width: 40%;">김운기입니다.</div>
+    	 <div class="cinema-ex" style="font-size: 1.5rem;">
+    	 	<div class="float-left" style="width: 60%;">주소 : <br>${cinemaDto.cinema_addr}</div><div style="float: left;width: 40%;"> 전화번호 : <br>${cinemaDto.cinema_phone }</div>
     	 </div>
     	 <div style="width: 90%; margin: auto;">
     	 <hr style="height: 4px">
