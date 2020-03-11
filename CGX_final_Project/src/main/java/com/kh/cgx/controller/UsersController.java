@@ -137,7 +137,7 @@ public class UsersController {
 			model.addAttribute(""
 					+ "", sendResult);
 		}
-		return "user/find_id";
+		return "user/login";
 	}
 	
 	@GetMapping("/find_pw")
