@@ -99,7 +99,7 @@
     </div>
 
     <!-- Login Form -->
-    <form action="adminInsert" method="post">
+    <form action="admininsert" method="post">
       <input type="text" id="login" class="fadeIn second" name="admin_id" placeholder="매니저아이디" required>
       <input type="password" id="password" class="fadeIn third" name="admin_pw" placeholder="매니저비밀번호" required>
       <input type="text" id="login" class="fadeIn second" name="admin_grade" placeholder="매니저등급" required>
@@ -108,7 +108,7 @@
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      <a class="underlineHover" href="/com.kh.cgx/admin/adminList">
+      <a class="underlineHover" href="/com.kh.cgx/admin/adminlist">
       	<input class="btn btn-info" value="매니저목록보기">
       </a>
       

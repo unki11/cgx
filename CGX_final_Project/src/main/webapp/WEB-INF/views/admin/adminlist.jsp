@@ -28,7 +28,7 @@
 					var alldata = {"admin_no":adminno,"admin_grade":admingrade}
 					console.log(alldata);
 					$.ajax({
-						url:"adminUpdate",
+						url:"adminupdate",
 						type:"post",
 						data: alldata,
 						success:function(resp){
@@ -58,7 +58,7 @@
 		$(".delete").click(function() {
 			var adminno = $(this).parent().find(".no").text();
 			$.ajax({
-				url:"adminDelete?no="+adminno,
+				url:"admindelete?no="+adminno,
 				type:"get",
 				success:function(resp){
 					console.log("성공")
@@ -97,28 +97,28 @@
       <div class="row">
         <div class="col-12">
           <h1>총괄 책임자 페이지</h1>
-          <a class="underlineHover" href="/com.kh.cgx/admin/Screen/adminList">
+          <a class="underlineHover" href="/com.kh.cgx/admin/screen/adminlist">
       		<input class="btn btn-info" value="상영관목록" style="width: 120px;">
 		  </a>
-		  <a class="underlineHover" href="/com.kh.cgx/admin/Screen/adminInsert">
+		  <a class="underlineHover" href="/com.kh.cgx/admin/screen/admininsert">
       		<input class="btn btn-info" value="상영관등록" style="width: 120px;">
 		  </a>
-		  <a class="underlineHover" href="/com.kh.cgx/admin/Cinema/adminList">
+		  <a class="underlineHover" href="/com.kh.cgx/admin/cinema/adminlist">
       		<input class="btn btn-success" value="극장목록" style="width: 120px;">
 		  </a>
-		  <a class="underlineHover" href="/com.kh.cgx/admin/Cinema/adminInsert">
+		  <a class="underlineHover" href="/com.kh.cgx/admin/cinema/admininsert">
       		<input class="btn btn-success" value="극장등록" style="width: 120px;">
 		  </a>
-		  <a class="underlineHover" href="/com.kh.cgx/admin/Movie/adminList">
+		  <a class="underlineHover" href="/com.kh.cgx/admin/movie/adminlist">
       		<input class="btn btn-primary" value="영화목록" style="width: 120px;">
 		  </a>
-		  <a class="underlineHover" href="/com.kh.cgx/admin/Movie/adminInsert">
+		  <a class="underlineHover" href="/com.kh.cgx/admin/movie/admininsert">
       		<input class="btn btn-primary" value="영화등록" style="width: 120px;">
 		  </a>
-		  <a class="underlineHover" href="/com.kh.cgx/admin/adminInsert">
+		  <a class="underlineHover" href="/com.kh.cgx/admin/admininsert">
       		<input class="btn btn-secondary" value="매니저등록" style="width: 120px;">
 		  </a>
-		  <a class="underlineHover" href="${pageContext.request.contextPath}/admin/adminLogout">
+		  <a class="underlineHover" href="${pageContext.request.contextPath}/admin/adminlogout">
       		<input class="btn btn-danger" value="로그아웃" style="width: 120px;">
 		  </a>
 		  <br><br>
