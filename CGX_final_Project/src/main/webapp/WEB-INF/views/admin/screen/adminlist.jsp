@@ -12,7 +12,7 @@
 			var screenno = $(this).parent().find(".no").text();
 			
 			$.ajax({
-				url:"adminDelete?no="+screenno,
+				url:"admindelete?no="+screenno,
 				type:"get",
 				success:function(resp){
 					consloe.log("성공")
@@ -55,7 +55,7 @@
         <!-- <div class="col-12"> -->
           <div class="col">
           <h2>상영관 목록 페이지</h2>
-          <a class="underlineHover" href="/com.kh.cgx/admin/adminList">
+          <a class="underlineHover" href="/com.kh.cgx/admin/adminlist">
              <input class="btn btn-info" value="관리자메인화면가기">
           </a>
           <ul class="list-group">

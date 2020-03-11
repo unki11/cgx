@@ -66,46 +66,46 @@ public class AdminController {
 	private PasswordEncoder encoder;
 	
 	
-	@GetMapping("/adminList")
+	@GetMapping("/adminlist")
 	public ModelAndView test(ModelAndView mav) {
 		List<AdminDto> list = adminDao.getList();
 		mav.addObject("list", list);
-		mav.setViewName("admin/adminList");
+		mav.setViewName("admin/adminlist");
 		return mav; 
 	}
 	
-	@GetMapping("/adminInsert")
+	@GetMapping("/admininsert")
 	public String test2() {
-		return "admin/adminInsert";
+		return "admin/admininsert";
 	}
 	
-	@PostMapping("/adminInsert")
+	@PostMapping("/admininsert")
 	public String test2(@ModelAttribute AdminDto adminDto) {
 		adminDto.setAdmin_pw(encoder.encode(adminDto.getAdmin_pw()));
 		adminDao.insert(adminDto);
-		return "redirect:/admin/adminLogin";
+		return "redirect:/admin/adminlogin";
 	}
 	
-	@PostMapping("/adminUpdate")
+	@PostMapping("/adminupdate")
 	public String adminUpdate(@ModelAttribute AdminDto adminDto) {
 		log.info("a={}",adminDto);
 		adminDao.update(adminDto);
-		return "redirect:/admin/adminList";
+		return "redirect:/admin/adminlist";
 	}
 	
-	@GetMapping("/adminDelete")
+	@GetMapping("/admindelete")
 	@ResponseBody
 	public void admindelete(@RequestParam int no) {
 		log.info("no = {}" , no);
 		adminDao.delete(no);
 	}
 	
-	@GetMapping("/adminLogin")
+	@GetMapping("/adminlogin")
 	public String adminLogin() {
-		return "admin/adminLogin";
+		return "admin/adminlogin";
 	}
 	
-	@PostMapping("/adminLogin")
+	@PostMapping("/adminlogin")
 	public String adminLogin2(HttpSession session, @ModelAttribute AdminDto adminDto) {
 		/*
 		 * AdminDto result = adminDao.login(adminDto); if(result == null) { return
@@ -117,7 +117,7 @@ public class AdminController {
 		log.info("admin_id={}",adminDto.getAdmin_id());
 		AdminDto find = adminDao.login(adminDto);
 		if(find == null) {
-			return "/admin/adminLogin";
+			return "/admin/adminlogin";
 		}
 		else {
 			boolean correct = encoder.matches(adminDto.getAdmin_pw(),find.getAdmin_pw());
@@ -126,41 +126,41 @@ public class AdminController {
 					session.setAttribute("admin_id", find.getAdmin_id());
 					session.setAttribute("admin_no", find.getAdmin_no());
 					if("master".equals(adminDto.getAdmin_id())) {
-						return "redirect:/admin/adminList";
+						return "redirect:/admin/adminlist";
 					}else {
-						return "redirect:/admin/Manager/managerInsert";
+						return "redirect:/admin/manager/managerinsert";
 					}
 				}
 				else {
-					return "/admin/adminLogin";
+					return "/admin/adminlogin";
 				}
 			}
 		}
 	
-	@GetMapping("/adminLogout")
+	@GetMapping("/adminlogout")
 	public String adminLogout(HttpSession session) {
 		session.removeAttribute("admin_id");
 		session.removeAttribute("admin_no");
-		return "/admin/adminLogin";
+		return "/admin/adminlogin";
 	}
 
 	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 //		시네마
 	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-	@GetMapping("/Cinema/adminList")
+	@GetMapping("/cinema/adminlist")
 	public ModelAndView test4(ModelAndView mav) {
 		List<AdminCinemaDto> list = cinemaDao.getList();
 		mav.addObject("list", list);
-		mav.setViewName("admin/Cinema/adminList");
+		mav.setViewName("admin/cinema/adminlist");
 		return mav;
 	}
 	
-	@GetMapping("/Cinema/adminInsert")
+	@GetMapping("/cinema/admininsert")
 	public String test6() {
-		return "/admin/Cinema/adminInsert";
+		return "admin/cinema/admininsert";
 	}
 	
-	@PostMapping("/Cinema/adminInsert")
+	@PostMapping("/cinema/admininsert")
 	public String test2(@ModelAttribute AdminCinemaDto cinemaDto,@RequestParam MultipartFile files) throws IllegalStateException, IOException {
 		int files_no = movieDao.file();
 		
@@ -171,10 +171,10 @@ public class AdminController {
 		files.transferTo(target);
 		cinemaDto.setFiles_no(files_no);
 		cinemaDao.insert(cinemaDto);
-		return "redirect:/admin/Cinema/adminInsert";
+		return "redirect:/admin/cinema/admininsert";
 	}
 	
-	@GetMapping("/Cinema/adminDelete")
+	@GetMapping("/cinema/admindelete")
 	@ResponseBody
 	public void cinemadelete(@RequestParam int no) {
 		cinemaDao.delete(no);
@@ -184,21 +184,21 @@ public class AdminController {
 //	무비
 	/////////////////////////////////////////////
 	
-	@GetMapping("/Movie/adminList")
+	@GetMapping("/movie/adminlist")
 	public ModelAndView test8(ModelAndView mav) {
 		List<MovieDto> list = movieDao.getList();
 		mav.addObject("list",list);
-		mav.setViewName("admin/Movie/adminList");
+		mav.setViewName("admin/movie/adminlist");
 		return mav;
 	}
 	
-	@GetMapping("/Movie/adminInsert")
+	@GetMapping("/movie/admininsert")
 	public String test10() {
-		return "/admin/Movie/adminInsert";
+		return "/admin/movie/admininsert";
 		
 	}	
 	
-	@PostMapping("/Movie/adminInsert")
+	@PostMapping("/movie/admininsert")
 	public String test2(@ModelAttribute MovieDto movieDto,@RequestParam MultipartFile files) throws IllegalStateException, IOException {
 		int files_no = movieDao.file();
 		
@@ -212,53 +212,53 @@ public class AdminController {
 		log.info("movieDto={}",movieDto);
 		movieDao.insert(movieDto);
 		
-		return "redirect:/admin/Movie/adminInsert";
+		return "redirect:/admin/movie/admininsert";
 	}
 	
-	@GetMapping("/Movie/adminDelete")
+	@GetMapping("/movie/admindelete")
 	@ResponseBody
 	public void moviedelete(int no) { 
 		log.info("no={}",no);
 		movieDao.delete(no);
 	}
 	
-	@PostMapping("/Movie/adminUpdate")
+	@PostMapping("/movie/adminupdate")
 	public String movieupdate(@ModelAttribute MovieDto movieDto) {
 		log.info("movieDto = {}",movieDto);
 		movieDao.update(movieDto);
-		return "redirect:/admin/Movie/adminList";
+		return "redirect:/admin/movie/adminlist";
 	}
 	
 	////////////////////////////////////////////
 //	상영관
 	////////////////////////////////////////////
 	
-	@GetMapping("/Screen/adminList")
+	@GetMapping("/screen/adminlist")
 	public ModelAndView test12(ModelAndView mav) {
 		List<AdminScreenDto> list = screenDao.getList();
 		mav.addObject("list", list);
-		mav.setViewName("admin/Screen/adminList");
+		mav.setViewName("admin/screen/adminlist");
 		return mav;
 	}
 	
-	@GetMapping("/Screen/adminInsert")
+	@GetMapping("/screen/admininsert")
 	public String test22(Model model) {
 		List<AdminScreenDto> screenDto = screenDao.getList();
 		model.addAttribute("screenDto", screenDto);
 		
 		List<CinemaDto> cinemaDto = cinemaDao.getCinemaList();
 		model.addAttribute("cinemaDto",cinemaDto);
-		return "/admin/Screen/adminInsert";
+		return "/admin/screen/admininsert";
 	}
 	
-	@PostMapping("/Screen/adminInsert")
+	@PostMapping("/screen/admininsert")
 	public String test21(@ModelAttribute AdminScreenDto screenDto) {
 		log.info("no={}",screenDto);
 		screenDao.insert(screenDto);
-		return "redirect:/admin/Screen/adminInsert";
+		return "redirect:/admin/screen/admininsert";
 	}
 	
-	@GetMapping("/Screen/adminDelete")
+	@GetMapping("/screen/admindelete")
 	@ResponseBody
 	public void screendelete(@RequestParam int no) {
 		screenDao.delete(no);
@@ -268,30 +268,30 @@ public class AdminController {
 //	매니저
 	/////////////////////////////////////
 	
-	@GetMapping("/Manager/managerInsert")
+	@GetMapping("/manager/managerinsert")
 	public String manager() {
-		return "/admin/Manager/managerInsert";
+		return "/admin/manager/managerinsert";
 	}
 	
-	@GetMapping("/Manager/managerInsert/cinema")
+	@GetMapping("/manager/managerinsert/cinema")
 	@ResponseBody
 	public List<CinemaDto> cinema(@RequestParam int no) {
 		return managerDao.getCinemaList(no);
 	}
 	
-	@GetMapping("/Manager/managerInsert/movie")
+	@GetMapping("/manager/managerinsert/movie")
 	@ResponseBody
 	public List<MovieDto> movie(){
 		return managerDao.getMovieList();
 	}
 	
-	@GetMapping("/Manager/managerInsert/screen")
+	@GetMapping("/manager/managerinsert/screen")
 	@ResponseBody
 	public List<ScreenDto> screen(@RequestParam int no){
 		return managerDao.getScreenList(no);
 	}
 	
-	@PostMapping("/Manager/managerInsert")
+	@PostMapping("/manager/managerinsert")
 	public String managerInsert(@ModelAttribute ManagerDto managerDto, @RequestParam String movietime_hour, @RequestParam String movietime_min) {
 		String date = managerDto.getMovietime_time();
 		date += " ";
@@ -303,7 +303,7 @@ public class AdminController {
 		managerDao.insert(managerDto);
 		
 
-		return "redirect:/admin/Manager/managerInsert";
+		return "redirect:/admin/manager/managerinsert";
 	}
 	
 	@GetMapping("/Manager/managerReady")

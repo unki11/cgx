@@ -24,7 +24,7 @@
     <style>
         
         .bg-1light{
-            background-color: #fcfcd7;
+            background-color: #efe4b0;
             font-size: large;
             font-weight: bold;
             width: 100%;
@@ -48,7 +48,7 @@
 		}
 		
 		.footer-col{
-	        background-color: #fcfcd7;
+	        background-color: #efe4b0;
 	        text-align: center;
 	        font-weight: bold;
 	        font-size: large;
@@ -86,7 +86,7 @@
          <a class="click" href="${pageContext.request.contextPath}/user/logout" style="padding: 1rem; color: black;"> 로그아웃</a>
     </div>
     <img src="${pageContext.request.contextPath}/resources/img/line.jpg" style="width: 100%;">
-   <div class="container-fluid" style="background-color: #fcfcd7">	
+   <div class="container-fluid" style="background-color: #efe4b0;">	
    <nav class="navbar navbar-expand-lg navbar-light bg-1light"><a href="http://localhost:8080/com.kh.cgx/"><img src="${pageContext.request.contextPath}/resources/img/latte2.png" class="image"></a>
         <a class="navbar-brand" href="http://localhost:8080/com.kh.cgx/"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

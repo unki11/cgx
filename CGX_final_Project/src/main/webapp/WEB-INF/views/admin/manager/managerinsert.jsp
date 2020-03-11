@@ -9,7 +9,7 @@
 <script>
 	$(function(){
 		$.ajax({
-			url:"managerInsert/movie",
+			url:"managerinsert/movie",
 			method:"get",
 			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 			success:function(data){
@@ -30,7 +30,7 @@
 		console.log(admin_no)
 		
 		$.ajax({
-			url:"managerInsert/cinema?no="+admin_no, // 1은 매니저 번호 자리
+			url:"managerinsert/cinema?no="+admin_no, // 1은 매니저 번호 자리
 			method:"get",
 			success:function(data){
 				console.log("성공")
@@ -47,7 +47,7 @@
 	             var cinema = $(this).val();
 				
 				$.ajax({
-					url:"managerInsert/screen?no="+cinema,
+					url:"managerinsert/screen?no="+cinema,
 					method:"get",
 					success:function(data){
 						
@@ -201,12 +201,8 @@
                     <input class="btn btn-info" value="메인화면가기">
                 </a>
                 
-                <a class="underlineHover" href="/com.kh.cgx/admin/adminLogin">
-             		<input class="btn btn-info" value="로그인화면으로가기">
-          		</a>
-          		
-          		<a class="underlineHover" href="${pageContext.request.contextPath}/admin/adminLogout">
-             		<input class="btn btn-danger" value="로그인아웃">
+          		<a class="underlineHover" href="${pageContext.request.contextPath}/admin/adminlogout">
+             		<input class="btn btn-danger" value="로그아웃">
           		</a>
                 </td>
 
