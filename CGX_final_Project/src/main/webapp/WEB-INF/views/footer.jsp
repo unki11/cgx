@@ -27,12 +27,12 @@
 
 <!-- 푸터시작 -->
 
-<footer class="bg-1light">   
+<!-- <footer class="bg-1light">   --> 
  <div class="container-fluid">
 	 <br><br>	 
 
 <div class="row footer-col">  
-<div class="col-12">   	 
+	<div class="col-12">   	 
 
 	<a href="http://www.cgv.co.kr" style="color: red;">
 		<i class="fa fa-film fa-2x" aria-hidden="true" style="padding: 3rem;">CGV</i>
@@ -50,7 +50,7 @@
 </div>
 <img src="${pageContext.request.contextPath}/resources/img/block.jpg" style="width: 100%;">
 </div>   
-</footer>
+<!-- </footer> -->
 </body>
 
 </html>
