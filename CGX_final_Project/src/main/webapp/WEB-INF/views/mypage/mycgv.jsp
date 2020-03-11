@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="../header.jsp"></jsp:include>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/small-business.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
 <style>
 	.container{
 		width: 100%;
-		text-align: center;
+		text-align: center;	
 		border: 0px solid black;
 		padding: 20px;
 		margin: 15px;
@@ -32,7 +33,7 @@
 		background-image: url("${pageContext.request.contextPath}/resources/img/all.jpg");
 	}
 </style>
-<jsp:include page="../header.jsp"></jsp:include>
+
 <form action="mycgv" method="post">
 	
 	 
@@ -115,7 +116,7 @@
 	<article class="w-40">
 	<div class="sect-finder" align="center">
 		<a href="http://localhost:8080/com.kh.cgx/mypage/reserve">예매내역</a> 
-		<a href="http://localhost:8080/com.kh.cgx/movie/movielog?member_no=${search.member_no}">위시리스트</a>
+		<a href="http://localhost:8080/com.kh.cgx/movie/movielog">위시리스트</a>
 		 <a href="http://localhost:8080/com.kh.cgx/mypage/movielog/watched?member_no='${search.member_no}'">내가 본 영화</a> 
 <!-- 		<a href="http://localhost:8080/com.kh.cgx/mypage/movielog/watched?member_no=1">내가 본 영화</a>
  -->		<a href="">1:1 문의</a>

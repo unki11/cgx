@@ -112,7 +112,7 @@ public class MypageController {
 		 data.put("message", "삭제완료되었습니다."); 
 		
 		 
-		 return "redirect:/mypage/movielog";
+		 return "redirect:/movie/movielog";
 	}
 
 	@GetMapping("/movielog/watched")

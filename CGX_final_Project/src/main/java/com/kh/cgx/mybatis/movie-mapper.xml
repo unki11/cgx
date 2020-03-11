@@ -202,6 +202,14 @@ where
      UPDATE movie SET movie_wish = movie_wish - 1 WHERE movie_no= #{movie_no}
 </update>
 
+<update id="wishReset" parameterType="int">
+	update movie set movie_wish = (select count(*) from wish where movie_no=#{movie_no})
+</update>
+
+<select id="wishCount" parameterType="int" resultType="int">
+select movie_wish from movie where movie_no=#{movie_no}
+</select>
+
 <select id="whishmember" parameterType="int" resultType="movieVO"> <!-- 지현이 추가  -->
 select 
 B.movie_title, B.movie_no 

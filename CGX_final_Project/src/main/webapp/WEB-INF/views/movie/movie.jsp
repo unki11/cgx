@@ -4,7 +4,7 @@
  
 <jsp:include page="../header.jsp"></jsp:include>
 <head>        
-        <style>
+ <style>
         * {
 	box-sizing: border-box;
 	}
@@ -306,40 +306,49 @@ input, select, img {
     width: 0;
     zoom: 1;
 }
-
-        
- 
-    
-        </style>
-  </head>         
-         <script>
-$(function(){
-	$(".wish").click(function(e){
-		var value = (this).value;
-		console.log(value);
-		$.ajax({
-			url:"likeupdate?movie_no="+value,
-			type:"get",
-			dataType :"json",
-	 		success:function(data){
-	 			console.log(data);
-	 			var result = data;
-	 			console.log(data.code);
-	 			if(result.code == "true"){
-	 				alert("위시리스트에 저장되었습니다.");
-	 				window.location.reload(true);
-	 			}else if(result.code == "false"){
-	 				alert("위시리스트 삭제.");
-	 				window.location.reload(true);
-	 			} 
-
-			}
-		});
-	});
-});
+      </style>
+      
+<script>
+$(function() {
 	
 
+$(".wish").click(function(){
+		var this1 = $(this);
+		var value = $(this).val();
+		console.log(value);	
+	$.ajax({
+	url:"http://localhost:8080/com.kh.cgx/movie/likeupdate",
+	data:{movie_no: value},
+	type:"get",
+	success:function(resp){
+		//resp가 화면에 나오는 글자
+		//resp.wishResult , resp.wishCount
+		//resp.wishResult로 하트 변경 처리
+		//resp.wishCount로 하트 옆 숫자 변경 처리
+		console.log(resp);
+		var result=resp;	
+		console.log(this1);
+/* 		this1.empty();	
+		this1.append(resp.wishCount);  */
+		this1.text(resp.wishCount);
+		//좋아요
+		if(resp.wishResult == true){
+			alert("위시리스트에 저장되었습니다.")
+			this1.removeClass('far');
+			this1.addClass('fas'); //채워진하트를 지우고
+		}
+		else{
+			alert("위시리스트 삭제.");
+			this1.removeClass('fas');//채워진하트를 지우고
+			this1.addClass('far'); //빈하트 지우기
+			}
+
+		}
+	});
+});
+});
 </script>
+  </head>         
 
 
 <body>
@@ -387,7 +396,7 @@ $(function(){
  
  
 
- <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
+ <button class="wish far fa-heart btn" value="${list.movie_no}" style="color: red;">
 ${list.movie_wish}
 <%-- <button class="wish"  value="${list.movie_no}" style="color: red;"> --%>
 </button> <!-- 지현이추가 --> 
@@ -408,9 +417,6 @@ ${list.movie_wish}
 		<li>
 	<div  class="box-image">
 		<strong class="rank">Good</strong>
-<%-- <h5>${list }</h5> --%>
-<%-- <a href="detail?movie_no=${list.movie_no}"><img src="download?files_no=${list.files_no }"></a> --%>
-<%-- <button class="wish" value="${list.movie_no}">좋아요</button> <!-- 지현이추가 --> --%>
 <a href="detail?movie_no=${list.movie_no}">
 		<span class="thumb-image">                          
 			<img src="download?files_no=${list.files_no }" style="width: 185px; height: 260px">
@@ -425,7 +431,9 @@ ${list.movie_wish}
  <span class="txt-info"><strong>개봉 :  ${list.movie_startdate}</strong></span>
  
  <span class="like">
-	<button id="wish${list.movie_no}" value="${list.movie_no}" onclick="fn_wish(this.value)">좋아요</button> <!-- 지현이추가 -->
+	 <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
+${list.movie_wish}
+</button> <!-- 지현추가 --> 
 	<button>예매</button>
 </span>
 	</div>
@@ -458,7 +466,9 @@ ${list.movie_wish}
  <span class="txt-info"><strong>개봉 :  ${list.movie_startdate}</strong></span>
  
  <span class="like">
-	<button id="wish${list.movie_no}" value="${list.movie_no}" onclick="fn_wish(this.value)">좋아요</button> <!-- 지현이추가 -->
+	 <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
+<span class="mwish">${list.movie_wish}</span>
+</button> <!-- 지현추가 --> 
 	<button>예매</button>
 </span>
 	</div>
@@ -473,6 +483,3 @@ ${list.movie_wish}
 </body>
 
 <jsp:include page="../footer.jsp"></jsp:include> 
-
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
- <script src="https://code.jquery.com/jquery-3.4.1.js" ></script>
