@@ -2,11 +2,20 @@
 	pageEncoding="UTF-8"%>
 	    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
 <head>
+<title>reconfirm_pw</title>
+<script
+	src="${pageContext.request.contextPath}/resources/js/crypto/crypto-js.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/crypto/hmac-sha256.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/crypto/secom.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css">
 <meta charset="UTF-8">
-<title>join</title>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
 	//해야할일 : id에 input 이벤트가 발생하면 ajax로 xml을 불러와서 검사
 	$(function() {
@@ -34,7 +43,31 @@
 						});
 	});
 	</script>
+	
 	</head>
+	<style>
+	body{
+		margin-top: 150px;
+		background-image: url("${pageContext.request.contextPath}/resources/img/all.jpg");
+		background-size: cover;
+	}
+	html{
+		background-image: url("${pageContext.request.contextPath}/resources/img/latte2.png");
+		background-repeat: no-repeat;
+		background-position: top;
+	}
+	
+	.container{
+		opacity: 3;
+		text-align: center;
+		color: black;
+	}
+	.fadeIn fourth{
+        background-color: red;
+}
+</style>
+
+<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include> 
 	<body>
 		<h1>비밀번호 재확인</h1>
 						<form action="reconfirm_pw" method="post">

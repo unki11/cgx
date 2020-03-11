@@ -175,7 +175,6 @@ $(function(){
       <!-- 푸터시작 -->
 <jsp:include page="footer.jsp"></jsp:include>      
 
-</body>
 </html>
 
 
