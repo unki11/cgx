@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="ticket">
+
+	<select id="movie_title" resultType="movies">
+		select * from movie where movie_status = '상영중'
+	</select>
+
+<!-- <select id="addrList" resultType="addrVO"> -->
+<!--  select  -->
+<!--    DISTINCT  SUBSTR(cinema_addr,1,2) addr -->
+<!--  from cinema  -->
+<!-- </select> -->
+
+<!-- 
+	resultmap 설정을 통해서 지역(AreaVO)별 영화관(CinemaDto) 정보를 불러오도록 설정
+	[1] 지역을 구하는 구문
+	[2] 지역별 영화관을 구하는 구문
+ -->
+
+<!-- 
+	[1]과 [2]를 연결해줄 ResultMap 설정
+	- column : 데이터베이스 항목명
+	- property : 자바 변수명
+ -->
+ 
+<resultMap type="areaVO" id="areaVO">
+	<result column="name" property="name"/>
+	<result column="movie_no" property="movie_no"/>
+	<collection column="{name=name,movie_no=movie_no}" property="list" javaType="java.util.List" ofType="CinemaDto" select="getCinemaList"></collection>
+</resultMap> 
+
+<!-- [1] 지역 정보를 얻어내는 구문 -->
+<select id="getAreaAndCinemaList" resultMap="areaVO" parameterType="int">
+ select 
+   DISTINCT  
+   		SUBSTR(C.cinema_addr,1,2) name,
+   		movie_no
+ from 
+ 	cinema C
+ 		inner join Screen S on C.cinema_no = S.cinema_no
+ 		inner join MovieTime MT on S.screen_no = MT.screen_no
+ where
+ 	MT.movie_no = #{movie_no} 
+</select>
+
+<!-- [2] 지역명을 이용해서 영화관 목록을 구하는 구문 -->
+<select id="getCinemaList" parameterType="map" resultType="CinemaDto" >
+	select DISTINCT
+		C.*
+	 from
+	 	cinema C
+	 		inner join Screen S on C.cinema_no = S.cinema_no
+ 			inner join MovieTime MT on S.screen_no = MT.screen_no
+	 where 
+	 	cinema_addr like #{name}||'%' 
+	 	and
+	 	movie_no = #{movie_no}
+</select>
+
+
+<select id="timeCut" resultType="timeCut" parameterType="map">
+select
+    movie.* ,
+    cinema.*,
+    screen.*
+    
+<!--      to_char(movietime.movietime_time,'YYYY-MM-DD') day -->
+from
+    screen
+   inner join movietime on screen.screen_no = movietime.screen_no
+   inner join cinema on screen.cinema_no = cinema.cinema_no
+   inner join movie on movietime.movie_no = movie.movie_no
+   where movietime.movie_no = #{movie_no} and cinema.cinema_no =#{cinema_no}
+<!-- 	and to_char(movietime.movietime_time, 'YYYY-MM-DD') = #{date}  -->
+<!--      and  movietime.movietime_time= #{day} -->
+</select>
+
+
+
+
+	<!-- 상영시간표 조회 구문 -->
+	<select id="getMovietimeListByCinemaAndMovieAndDate" parameterType="map" resultType="ticketVO">
+			select 
+	  			SC.*,
+	  			MT.*,
+	  			to_char(MT.movietime_time,'HH24:MI') movie_hour 
+	 		from 
+	 				movietime MT
+	 					inner join screen SC on MT.screen_no = SC.screen_no
+	 					inner join Cinema CI on SC.cinema_no = CI.cinema_no
+	 					inner join Movie MV on MT.movie_no = MV.movie_no
+	 		where 
+	 				<!-- to_char(?, 'YYYY-MM-DD') 를 사용하면 시간이 2020-02-27 과 같이 문자열로 변환됨 -->
+	 				to_char(MT.movietime_time, 'YYYY-MM-DD') = #{date} 
+	 				and 
+	 				CI.cinema_no = #{cinema_no} 
+	 				and 
+	 				MV.movie_no = #{movie_no} 
+	 		order by 
+	 				MT.movietime_time asc
+	</select>
+
+
+
+</mapper>
