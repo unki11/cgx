@@ -31,6 +31,7 @@
 	//해야할일 : id에 input 이벤트가 발생하면 ajax로 xml을 불러와서 검사
 	$(function() {
 		$("#checkJoinWhether").click(
+				
 						function() {
 							$.ajax({
 										url : "joinWhether",
@@ -44,8 +45,9 @@
 										success : function(resp) { //resp = 위코드가 성공적으로 컨트롤러에 다녀왔을때 가져온 값
 											console.log(resp);
 											if (resp=='y') {
+												var member_id = $("input[name='member_id']").val();
 												alert("회원 가입이 가능합니다. 가입으로 이동합니다.")
-												location.href = "join.do";
+												location.href = "join.do?member_id="+member_id;
 											} else {
 												alert("이미 가입된 회원입니다.")
 											}

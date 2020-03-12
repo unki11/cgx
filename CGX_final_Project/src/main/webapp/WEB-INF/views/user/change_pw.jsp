@@ -20,62 +20,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath}/resources/secom.js"></script>
-<script>
-	//해야할일 : id에 input 이벤트가 발생하면 ajax로 xml을 불러와서 검사
 
-	$(function() {
-		$("#checkEmail").click(function() {
-			$.ajax({
-				url : "<c:url value='/user/checkEmail' />",
-				type : "post",
-				contentType: "application/x-www-form-urlencoded; charset=UTF-8",  
-				data : {
-					'member_id' : $("input[name='member_id']").val(),
-					'member_email' : $("input[name='member_email']").val()
-				},
-				success : function(data) {
-					if (data == true) {
-						$("#checkEmail").hide();
-						$("input[name='email_code']").show();
-						$("#checkEmailCode").show();
-					}
-				}
-			});
-		});
-		$("#checkEmailCode").click(function() {
-			$.ajax({
-				url : "<c:url value='/user/checkEmailCode' />",
-				type : "post",
-				contentType: "application/x-www-form-urlencoded; charset=UTF-8",  
-				data : {
-					'email_code' : $("input[name='email_code']").val()
-				},
-				success : function(data) {
-					if (data == true) {
-						$("#checkEmail").hide();
-						$("input[name='email_code']").hide();
-						$("#checkEmailCode").hide();
-						$("#msg").text("이메일 인증됨");
-						$('#checkEmailYn').val("Y");
-					} else {
-						$("#checkEmail").show();
-						$("input[name='email_code']").hide();
-						$("#checkEmailCode").hide();
-						$("#msg").text("이메일 인증실패");
-						$('#checkEmailYn').val("N");
-					}
-				}
-			});
-		});
-	});
-	function joinUser() {
-		var checkEmailYn = $('#checkEmailYn').val();
-		if (checkEmailYn != 'Y') {
-			alert("이메일 확인을 해주세요.");
-			return false;
-		}
-		
-	</script>
 	<style>
 			margin-top: 150px;
 		background-image: url("${pageContext.request.contextPath}/resources/img/all.jpg");

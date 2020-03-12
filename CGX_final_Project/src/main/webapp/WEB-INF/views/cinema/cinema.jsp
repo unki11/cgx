@@ -256,6 +256,7 @@
 				<div class="clear"></div>
 				</div>
 			</c:forEach>
+			<br>
 			<hr>
 		</c:forEach>
     </div>
