@@ -228,7 +228,7 @@ background-color: #fcfdf0;
 				<span class="time">
 					<span>${movieTimeDto.movie_hour }</span>
 				</span>
-				<span class="count">267석</span>
+				<span class="count">${movieTimeDto.screen_all_seat}</span>
 				</a>
 			</li>
 		</ul>

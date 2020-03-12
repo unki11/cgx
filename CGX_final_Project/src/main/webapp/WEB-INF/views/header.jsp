@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
 	
@@ -83,13 +82,19 @@
 		});
     </script>
 </head>
-<body>
-
+<body>				
 	<div class="menu" style="background-color: #fcfdf0; cursor: pointer; font-family: cgxfont;">
+		<c:choose>
+			<c:when test= "${empty sessionScope.id}">
          <a class="click" href="${pageContext.request.contextPath}/user/login" style="padding: 1rem; color: black;"> 로그인</a>
          <a class="click" href="${pageContext.request.contextPath}/user/joinWhether" style="padding: 1rem; color: black;"> 회원가입</a>
+         </c:when>
+         <c:otherwise>
          <a class="click" href="${pageContext.request.contextPath}/mypage/mycgv" style="padding: 1rem; color: black;"> My cgx</a>
+        
          <a class="click" href="${pageContext.request.contextPath}/user/logout" style="padding: 1rem; color: black;"> 로그아웃</a>
+    	</c:otherwise>
+    	</c:choose>
     </div>
     <img src="${pageContext.request.contextPath}/resources/img/line.jpg" style="width: 100%;">
    <div class="container-fluid" style="background-color: #efe4b0;">	
@@ -138,7 +143,7 @@
                 </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">이벤트</a>
-                <a class="dropdown-item" href="${pageContext.request.contextPath}/com.kh.cgx/goods/">기프트샵</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/goods/">기프트샵</a>
               </div>
             </li>
           </ul>

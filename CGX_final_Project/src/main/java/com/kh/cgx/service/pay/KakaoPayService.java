@@ -42,7 +42,7 @@ public class KakaoPayService implements PayService{
 		
 //		헤더 생성
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", "KakaoAK b9e9d58aa88a1e938337f937472aa67f");
+		headers.add("Authorization", "KakaoAK fac5ddb42ae6a0e509e26f8791ca3ed0");
 //		headers.add("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
 		headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE+"; charset=utf-8");
 		headers.add("Accept", MediaType.APPLICATION_JSON_UTF8_VALUE);
@@ -105,7 +105,7 @@ public class KakaoPayService implements PayService{
 		RestTemplate template = new RestTemplate();
 		
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", "KakaoAK b9e9d58aa88a1e938337f937472aa67f");
+		headers.add("Authorization", "KakaoAK fac5ddb42ae6a0e509e26f8791ca3ed0");
 		headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE+"; charset=utf-8");
 		headers.add("Accept", MediaType.APPLICATION_JSON_UTF8_VALUE);
 		

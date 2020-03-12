@@ -154,9 +154,14 @@
         <input type="password" id="password" class="fadeIn third" name="member_pw" placeholder="비밀번호">
         <input type="text" id="name" class="fadeIn third" name="member_name" placeholder="이름">
         <input type="text" id="phone" class="fadeIn third" name="member_phone" placeholder="핸드폰번호">
-        <input type="text" id="birth" class="fadeIn third" name="member_birth" placeholder="생년월일">
-        <input type="text" id="sex" class="fadeIn third" name="member_sex" placeholder="성별">
-        <input type="email" id="email" class="fadeIn third" style="size: 2rem" name="member_email" placeholder="이메일">
+        <input type="text" id="birth" class="fadeIn third" name="member_birth" placeholder="생년월일"><br>
+       <!--  <input type="text" id="sex" class="fadeIn third" name="member_sex" placeholder="성별"> -->
+              <span style="font-size: 2rem">성별 :</span><select name="member_sex" style="width: 250px; height: 50px;font-size: 2rem;text-align: center;">
+                		<option>남</option>
+                		<option>여</option>
+                	</select>
+                	<br><br><br>
+        <input type="email" id="email" class="fadeIn third" style="width: 300px; height: 50px;font-size: 2rem;text-align: center;" name="member_email" placeholder="이메일">
         <input type="button" id="checkEmail" value="이메일인증">
         <input type="text" name="email_code" placeholder="인증코드" style="display:none;">
         <input type="button" id="checkEmailCode" value="인증코드확인" style="display:none;"><p id="msg"></p>

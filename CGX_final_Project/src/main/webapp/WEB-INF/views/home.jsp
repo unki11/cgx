@@ -420,10 +420,13 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
 
 <jsp:include page="header.jsp"></jsp:include> 
       <!-- 헤더 끝 -->
-      
-
+	
+	
       <h1>${sessionScope.id }</h1>
 
+
+      
+      
       
 <body style="background-color: #fcfcf0">
   

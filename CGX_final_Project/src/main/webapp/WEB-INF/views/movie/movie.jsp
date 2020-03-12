@@ -321,7 +321,7 @@ input, select, img {
 		var value = $(this).val();
 		console.log(value);	
 	$.ajax({
-	url:"http://localhost:8080/com.kh.cgx/movie/likeupdate",
+	url:"${pageContext.request.contextPath}/movie/likeupdate",
 	data:{movie_no: value},
 	type:"get",
 	success:function(resp){

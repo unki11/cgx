@@ -288,7 +288,7 @@
 	</div>	
 	<div style="clear: both;"></div>
 </div>
-    <form action="${pagecontext.request.contextpath}/com.kh.cgx/pay/kakao/info" method="post">
+    <form action="${pageContext.request.contextPath}/pay/kakao/info" method="post">
         <div class="cinema-wrap" data-name="seat" data-rowsize="${rowsize}" data-colsize="${colsize }" style="width:922px;margin: auto;">
             <div class="cinema-screen">스크린</div>
                 

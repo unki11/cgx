@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 
 <form action="review" method="post">
-	무비번호 : <input type="text" name="review_no"><br>
 	예매번호 : <input type="text" name="ticket_no"><br>
 	리뷰에그<input type="checkbox" name="review_egg" value="1"><br>
 	리뷰내용<input type="text" name="review_content"><br>
