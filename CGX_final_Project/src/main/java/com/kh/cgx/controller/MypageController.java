@@ -53,8 +53,7 @@ public class MypageController {
 	public String reserve(Model model,HttpSession session) {
 		//int member_no = 1;
 		String id=(String) session.getAttribute("id"); 	
-	    MemberDto dto1 = new MemberDto();
-	    dto1.setMember_id(id);		
+	    MemberDto dto1 = sqlSession.selectOne("member.login",id);	
 		//list
 		List<ReserveVO> ticketlist = sqlSession.selectList("mypage.ticketlist", dto1.getMember_no());
 	//	System.out.println(ticketlist);

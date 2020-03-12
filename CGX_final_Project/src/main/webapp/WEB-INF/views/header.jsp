@@ -93,8 +93,8 @@
     </div>
     <img src="${pageContext.request.contextPath}/resources/img/line.jpg" style="width: 100%;">
    <div class="container-fluid" style="background-color: #efe4b0;">	
-   <nav class="navbar navbar-expand-lg navbar-light bg-1light"><a href="http://localhost:8080/com.kh.cgx/"><img src="${pageContext.request.contextPath}/resources/img/latte2.png" class="image"></a>
-        <a class="navbar-brand" href="http://localhost:8080/com.kh.cgx/"></a>
+   <nav class="navbar navbar-expand-lg navbar-light bg-1light"><a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/img/latte2.png" class="image"></a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/com.kh.cgx/"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -138,7 +138,7 @@
                 </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">이벤트</a>
-                <a class="dropdown-item" href="/com.kh.cgx/goods/">기프트샵</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/com.kh.cgx/goods/">기프트샵</a>
               </div>
             </li>
           </ul>

@@ -21,6 +21,10 @@
     	article{
     		margin:auto;
 		}
+		body{
+		background-image: url("${pageContext.request.contextPath}/resources/img/all.jpg");
+		text-align: center;
+	}
     </style>
 </head>
 <body>
@@ -45,7 +49,7 @@
         </div>
 		
 		<input type="hidden" value="${screen_no}" name="screen_no">
-        <input type="submit" value="선택">
+        <input type="submit" value="선택" width="200px" height="100px">
           </div>
     </form>
 

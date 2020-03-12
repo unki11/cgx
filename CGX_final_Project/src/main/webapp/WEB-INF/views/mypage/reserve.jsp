@@ -44,10 +44,9 @@
       </c:forEach> --%>
       <div class="container" style="text-align: center;">
     	<h2 style="text-align: center;">예매 내역입니다.</h2>
-    	<p>예매번호${ticketVO.ticket_no}</p>
     		<c:forEach var="ticketVO" items="${ticketlist}">
-    			<div class="card" style="width: 400px;">
-        		<img class="card-img-top" src="${pageContext.request.contextPath}/resources/img/${files_no}" alt="" style="width: 100%;">
+    			<div class="card" style="width: 500px;display: initial;">
+        		<img class="card-img-top" src="${pageContext.request.contextPath}/download/img?files_no=${ticketVO.files_no}" style="width: 400px;height: 570px;">
         		<div class="card-body">
 	            	<h4 class="card-title">예매번호: ${ticketVO.ticket_no}</h4>
 	            	<p class="card-text">예매날짜</p>

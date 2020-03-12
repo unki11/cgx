@@ -461,7 +461,7 @@ ${list.movie_wish}
 
 <a href="detail?movie_no=${list.movie_no}">
 		<span class="thumb-image">                          
-			<img src="download?files_no=${list.files_no }" style="width: 185px; height: 260px">
+			<img src="${pageContext.request.contextPath}/download/img?files_no=${list.files_no }" style="width: 185px; height: 260px">
 		</span>
 		</a>
 		
@@ -473,15 +473,10 @@ ${list.movie_wish}
  <span class="txt-info"><strong>개봉 :  ${list.movie_startdate}</strong></span>
  
  <span class="like">
-if(true){
-	 <button class="wish fas fa-heart btn"  value="${list.movie_no}" style="color: red;">
-<span class="mwish">${list.movie_wish}</span>
-</button> <!-- 지현추가 --> 
-}else{
 	 <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
 <span class="mwish">${list.movie_wish}</span>
 </button> <!-- 지현추가 --> 
-}
+<button class="btn btn-danger">예매</button>
 </span>
 	</div>
 	</div>

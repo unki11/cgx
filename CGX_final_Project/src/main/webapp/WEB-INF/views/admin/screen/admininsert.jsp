@@ -61,21 +61,8 @@
             </tr>
             
             <tr>
-                <th>상영관선택</th>
-                <td>
-                <input type="text" name="screen_no" placeholder="상영관입력">
-                <%-- <select name="screen_no">
-					<c:forEach var="screenDto" items="${screenDto}">
-						<option>${screenDto.screen_no}</option>
-					</c:forEach>
-				</select> --%>
-                </td>
-            </tr>
-            
-            <tr>
                 <th>상영관 등록창</th>
                 <td>
-                	<input type="text" name="screen_all_seat" placeholder="전체좌석수">
                 	<input type="text" name="screen_type" placeholder="상영관종류">
                 	<input type="text" name="screen_name" placeholder="상영관이름">
                 	<input type="text" name="screen_rowsize" placeholder="상영관줄">

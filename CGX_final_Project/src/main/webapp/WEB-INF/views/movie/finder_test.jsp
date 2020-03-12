@@ -282,7 +282,7 @@ $(function(){
       <div class="caption" style="background-color: #fcfcf0">
       <ul type="square">
 	        <li class="finder list-group-item-danger active">${finder_list.movie_no}</li>
-	        <img src="download?files_no=${finder_list.files_no}">
+	        <img src="download?files_no=${finder_list.files_no}" width="357px" height="512px">
 	        <li class="finder">${finder_list.movie_title}</li>
 	        <li class="finder">${finder_list.movie_director}</li>
 	        <li class="finder">${finder_list.movie_ticket_rate}</li>

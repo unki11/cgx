@@ -63,7 +63,7 @@
         <div class="card-body">
             <h4 class="card-title">${search.member_name} 님  안녕하세요 :)</h4>
             <h6 class="card-title"> 오늘은 어떤영화를 보러 갈까요? </h6>
-            <a class="btn btn-danger" href="http://localhost:8080/com.kh.cgx/ticket/">예매하러가기</a>
+            <a class="btn btn-danger" href="${pageContext.request.contextPath}/ticket/">예매하러가기</a>
             
         </div>
     </div>
@@ -71,19 +71,19 @@
 
 	<article class="w-40">
 	<div class="sect-finder" align="center">
-      <a href="http://localhost:8080/com.kh.cgx/mypage/reserve">
+      <a href="${pageContext.request.contextPath}/mypage/reserve">
 	 <input type="text" id="login" class="second" name="member_id" value="예매내역" readonly="readonly"><br />
 	 </a> 
-	 <a href="http://localhost:8080/com.kh.cgx/movie/movielog">
+	 <a href="${pageContext.request.contextPath}/movie/movielog">
 	 <input type="text" id="login" class="second" name="member_id" value="위시리스트" readonly="readonly"><br />
 	 </a>
-	 <a href="http://localhost:8080/com.kh.cgx/mypage/movielog/watched?member_no='${search.member_no}'">
+	 <a href="${pageContext.request.contextPath}/mypage/movielog/watched?member_no='${search.member_no}'">
 	 <input type="text" id="login" class="second" name="member_id" value="내가본 영화"  readonly="readonly"><br />
 	 </a>
 	<!--  <a href="">
 	 <input type="text" id="login" class="fadeIn second" name="member_birth" value="1:1 문의" readonly="readonly" ><br />
 	 </a> -->
-	 <a href="http://localhost:8080/com.kh.cgx/user/mypage">
+	 <a href="${pageContext.request.contextPath}/user/mypage">
 	 <input type="text" id="login" class="second" name="member_sex" value="my정보관리" readonly="readonly" ><br />
 	 </a>
 	</div>

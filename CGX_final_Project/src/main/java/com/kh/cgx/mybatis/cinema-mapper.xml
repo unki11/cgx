@@ -43,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="int">
 		delete cinema where cinema_no = #{no}
 	</delete>
-	<select id="admin" parameterType="string" resultType="int">
+	<select id="admin" parameterType="string" resultType="string">
 		select cinema_no from cinema where cinema_area=#{admin_id}
 	</select>
 </mapper>

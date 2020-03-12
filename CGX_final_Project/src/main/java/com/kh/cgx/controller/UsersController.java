@@ -159,6 +159,7 @@ public class UsersController {
 		}
 		return "user/find_pw";
 	}
+	
 	public boolean sendMail(String to, String subject, String text) {
 		final String username = "lattecinema";
 		final String password = "rladnsrl1234@";
