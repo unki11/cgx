@@ -68,11 +68,13 @@ html {
 			</div>
 
 			<form action="find_id" method="post">
+			<div>
 				<input type="email" id="member_email" class="fadeIn second" name="member_email" placeholder="이메일" required>
-				<input type="name" id="member_name" class="fadeIn second" name="member_name" placeholder="이름" required>
-		    <input type="submit" class="fadeIn fourth btn " value="사용중인 아이디를 이메일로 보내기" style="background-color: #ff0206;">
+				<input type="text" id="member_name" class="fadeIn second" name="member_name" placeholder="이름" required>
+		    </div>
+		    <input type="submit" class="fadeIn fourth btn " value="아이디를 이메일로 보내기" style="background-color: #ff0206;">
 			</form>
-		</div><input type="email" id="member_email" class="fadeIn second" name="member_email" placeholder="이메일" required>
+		</div>
 	</div>
 	
 </body>

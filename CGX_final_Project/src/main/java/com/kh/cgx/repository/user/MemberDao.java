@@ -27,6 +27,8 @@ public interface MemberDao {
 	
 	MemberDto findMemberByMemberNameAndIdAndEmail(MemberDto input);
 	
+	MemberDto checkJoinWhether(MemberDto input);
+	
 	int updateMemberPw(MemberDto input);
 	
 	int updateMember(MemberDto input);

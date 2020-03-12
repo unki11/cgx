@@ -54,8 +54,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 가입여부확인 -->
-	<select id="checkMemberWhether" resultType="member">
-		select * from member where member_name = #{member_name} and member_birth = #{member_birth} and member_phone = #{member_phone}
+	<select id="checkJoinWhether" parameterType="member" resultType="int">
+		select count(*) from member where member_id = #{member_id}  member_email = #{member_email}
 	</select>
 	
 	<!-- 비밀번호 재확인 -->
@@ -63,28 +63,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from member where member_pw = #{member_pw} 
 	</select>
 	
-		<!-- Added Start -->
+	<!-- 아이디 찾기 -->
 	<select id="findMemberByMemberNameAndEmail" resultType="member">
 		select * from member where member_name = #{member_name} and member_email = #{member_email}
 	</select>
+  <!-- 비밀번호 찾기 -->
 	<select id="findMemberByMemberNameAndIdAndEmail" resultType="member">
 		select * from member where member_id = #{member_id} and member_name = #{member_name} and member_email = #{member_email}
 	</select>
+	
+	<!-- 비밀번호 변경 -->
 	<update id="updateMemberPw">
 		update member set member_pw = #{member_pw} where member_id=#{member_id}
 	</update>
+	
+	<!-- 내정보 변경 -->
 	<update id="updateMember">
 		update member set
-		member_phone = #{member_phone}, member_email = #{member_email} where member_id=#{member_id}
+		member_phone = #{member_phone}
 	</update>
-	<!-- Added End -->
+
+  <!-- 회원탈퇴 -->
 	<delete id="delete" parameterType="string">
 		delete member where member_id=#{id}
 	</delete>
 	
-<!-- 	<update id="change_pw" parameterType="member"> -->
-<!-- 		update member set member_pw =#{member_pw} where member_id = #{member_id} -->
-<!-- 	</update> -->
+<!-- 	<update id="change_pw" parameterType="member"> 
+		update member set member_pw =#{member_pw} where member_id = #{member_id}
+	</update>  -->
+	
 </mapper>
 
 
