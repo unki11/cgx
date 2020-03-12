@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.cgx.entity.cinema.MovieTimeDto;
 import com.kh.cgx.entity.cinema.ScreenDto;
 import com.kh.cgx.entity.movie.MovieDto;
+import com.kh.cgx.entity.movie.ReviewDto;
 import com.kh.cgx.repository.movie.MainTicketDao;
 import com.kh.cgx.repository.movie.MovieDao;
 import com.kh.cgx.repository.movie.MovieProfileDao;
@@ -35,6 +36,7 @@ import com.kh.cgx.repository.movie.VideoDao;
 import com.kh.cgx.vo.movie.AgeVO;
 import com.kh.cgx.vo.movie.AreaVO;
 import com.kh.cgx.vo.movie.MovieActorVO;
+import com.kh.cgx.vo.movie.ReviewVO;
 import com.kh.cgx.vo.movie.SelectMovieTimeVO;
 import com.kh.cgx.vo.movie.StillcutVO;
 import com.kh.cgx.vo.movie.TicketVO;
@@ -274,7 +276,11 @@ public class TicketController {
 
 
 		
+		ReviewDto egg = sqlSession.selectOne("movies.egg", movie_no);
+		List<ReviewVO> reviewlist = sqlSession.selectList("movies.review", movie_no);
 		
+		model.addAttribute("reviewlist",reviewlist);
+		model.addAttribute("egg",egg);
 		
 //		System.out.println("age = "+ age + "cnt = "+cnt);
 //		log.info("age = "+ age + "cnt = "+cnt);
