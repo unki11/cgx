@@ -61,7 +61,7 @@
 	    							$("<br>").appendTo(div);
 	    							$("<div>").attr('class','clear').appendTo(div);		
     								div.appendTo("#movietime")
-    							
+    								$("<hr>").appendTo("#movietime");
     								})
 	    						$("<hr>").appendTo("#movietime");
 	    					})
