@@ -90,7 +90,6 @@ public class MypageController {
  		 sqlSession.update("movies.updatewishreset", movie_no); //추가하기
 		 data.put("message", "삭제완료되었습니다."); 
 		
-		
 		 return data;
 	}
 	
