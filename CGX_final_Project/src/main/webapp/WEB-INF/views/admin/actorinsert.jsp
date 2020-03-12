@@ -56,7 +56,7 @@
 </head>
 <body>
 <div class="container">
-        <form action="actorinsert" method="get">
+        <form action="actorinsert" method="post">
 <table class="table table-bordered">
 	
     <tbody>
