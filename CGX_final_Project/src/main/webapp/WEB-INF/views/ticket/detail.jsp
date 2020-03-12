@@ -9,10 +9,11 @@
    
     <head>
     <style>
-          * {
-	box-sizing: 
--box;
-	}
+        
+	 * {
+            box-sizing: border-box;
+        }
+        
 	.carousel-indicators li {
     display: inline-block;
     width: 10px;
@@ -25,13 +26,16 @@
     border: 1px solid #3433b7;
     border-radius: 10px;
 }
+
       .videos{
  padding-left: 43%;
  }
+ 
  .videos img{
         width: 100%;
         height: auto;
     }
+    
     a.video{
     float: left;
     position: relative;
@@ -159,7 +163,7 @@ input, select, img {
     bottom: 3px;
     width: 24px;
     height: 24px;
-/*     background: url(../images/sprite/sprite_icon.png) 0 0 no-repeat; */
+/*    background: url(../images/sprite/sprite_icon.png) 0 0 no-repeat; */
     font: 0/0 a;
     zoom: 1;
 }
@@ -229,20 +233,24 @@ input, select, img {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 [class|="sect-base"] .title strong {
     color: #1a1919;
     font-size: 25px;
     vertical-align: middle;
 }
+
 [class|="sect-base"] .title em {
     margin-left: 12px;
 }
+
 .round.lightblue {
     border: 2px solid #3e82a4;
     color: #3e82a4;
     width: 73px;
     height: 27px;
 }
+
 .round {
     line-height: 23px;
     font-weight: 500;
@@ -250,10 +258,12 @@ input, select, img {
     text-align: center;
     vertical-align: middle;
 }
+
 .round, .round > * {
     display: inline-block;
     position: relative;
 }
+
 em {
     font-style: normal;
 }
@@ -262,6 +272,7 @@ em {
     top: -2px;
     background-position: -20px 0;
 }
+
 .round:before, .round:after, .round > *:before, .round > *:after {
     content: '';
     display: block;
@@ -270,11 +281,13 @@ em {
     height: 5px;
 /*     background: #fdfcf0 url(../images/sprite/sprite_corner01.png) no-repeat; */
 }
+
 .round.lightblue:after {
     left: -2px;
     bottom: -2px;
     background-position: -20px -5px;
 }
+
 .round > * {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -282,9 +295,11 @@ em {
     height: 100%;
     padding: 0 5px 0;
 }
+
 [class|="sect-base"] .title p {
     color: #666666;
 }
+
 .title p {
     font-size: 12px;
     font-family: Verdana, Geneva, sans-serif;
@@ -296,6 +311,7 @@ em {
     border-bottom: 1px solid #d9d6c8;
     font-size: 14px;
 }
+
 [class|="sect-base"] .score .egg-gage, [class|="sect-base"] .score .percent {
     vertical-align: middle;
 }
@@ -306,25 +322,30 @@ em {
     font-family: Verdana, Geneva, sans-serif;
     vertical-align: -1px;
 }
+
 [class|="sect-base"][class$="movie"] .spec {
     padding-top: 18px;
     line-height: 1.6;
 }
+
 .spec {
     color: #333333;
     font-size: 13px;
     font-weight: 500;
 }
+
 [class|="sect-base"][class$="movie"] .spec:after {
     content: '';
     display: block;
     clear: both;
 }
+
 dl:after, ul:after, ol:after {
     content: '';
     clear: both;
     display: block;
 }
+
 dl {
     display: block;
     margin-block-start: 1em;
@@ -332,17 +353,21 @@ dl {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
 }
+
 .spec dt {
     float: left;
 }
+
 [class|="sect-base"][class*="movie"] .spec dd {
     white-space: normal;
     text-overflow: clip;
     overflow: visible;
 }
+
 [class|="sect-base"][class*="movie"] .spec dd {
     float: left;
 }
+
 dd {
     display: block;
     margin-inline-start: 40px;
@@ -356,13 +381,16 @@ dd {
     text-overflow: clip;
     overflow: visible;
 }
+
 [class|="sect-base"] .like {
     margin-top: 22px;
 }
+
 .like {
     display: inline-block;
     margin-right: 3px;
 }
+
 .link-reservation {
     display: inline-block;
     width: 91px;
@@ -372,31 +400,39 @@ dd {
     zoom: 1;
     vertical-align: top;
 }
+
 .wrap-movie-detail .cols-content {
     margin-top: 30px;
 }
+
 .cols-content {
     margin-top: 25px;
 }
+
 .cols-content:after {
     content: '';
     clear: both;
     display: block;
 }
+
 .cols-content .col-detail:first-child {
     float: left;
 }
+
 .cols-content .col-detail {
     position: relative;
     width: 800px;
     float: left;
 }
+
 .score {
     font-size: 11px;
 }
+
 [class|="wrap-movie"][class$="detail"] [class^="sect-"] {
     margin-top: 40px;
 }
+
 [class|="sect-story"][class*="movie"] {
     margin-top: 35px;
     color: #333333;
@@ -406,8 +442,6 @@ dd {
 [class|="sect-story"][class*="movie"] strong {
     font-size: 13px;
 }
-
-
 
 .graph {
     overflow: hidden;
@@ -430,6 +464,7 @@ dd {
     border-left: 1px solid #cccccc;
     margin-right: -1px;
 }
+
 li {
     display: list-item;
     text-align: -webkit-match-parent;
@@ -442,10 +477,12 @@ li {
     text-align: center;
     line-height: 58px;
 }
+
 .graph .radar-graph {
   margin-left: 7px;
     margin-top: 15px;
 }
+
 element.style {
     width: 221px;
     height: 221px;
@@ -459,6 +496,7 @@ b, strong {
 [class|="wrap-movie"][class$="detail"] .heading {
     margin-bottom: 20px;
 }
+
 .heading {
     position: relative;
     width: 100%;
@@ -934,16 +972,59 @@ chart.render();
                       
                     </div>
                 </div>
-            </div><!-- .sect-stillcut -->
-                        
-                     
-                        
-                        
-                      
-                        
-                      
-                        
-
+                <!-- .sect-stillcut -->
+                
+          <div class="sect-grade">
+          	<div class="heading-new">
+          		<p class="txt-write">
+          			운기야 어때?
+          				<a class="link-gradewrite">
+          					<span>평점작성</span>
+          				</a>
+          		</p>
+          	</div>
+          	
+          	<div class="egg-grade">
+          		<div class="egg-gage big">
+          			<span class="egg great"></span>
+          			<span class="percent">
+          				<strong>96</strong>%
+          			</span>
+          		</div>
+          	</div>
+          	
+          	<div class="wrap-persongrade">
+          		<!-- 평점 목록 -->
+          		<ul id="movie_point_list_container">
+          			<li id="liCommentFirst29853352">
+          				<div class="box-contents">
+          					<ul class="writerinfo">
+          						<li class="writer-name">
+          							<span class=" egg-icon good "></span>
+          								id 나오는 창
+          						</li>
+          					</ul>
+          				</div>
+          		<div class="box-comment">
+          			<p>영화  관람중에 정말 집중해서 잘봤어요 </p>
+          		</div>		
+          			</li>
+          		</ul>
+          	</div>
+          </div>      
+          		
+          		
+          
+                
+          		
+          		
+                
+                
+                
+                
+                
+            </div>
+                       
 
               </div>
     
