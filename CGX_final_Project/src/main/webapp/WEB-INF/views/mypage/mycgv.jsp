@@ -6,8 +6,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/small-business.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage.css">
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/small-business.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypage.css"> --%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/join.css">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
@@ -68,50 +69,33 @@
     </div>
 </div>
 
+	<article class="w-40">
+	<div class="sect-finder" align="center">
+      <a href="http://localhost:8080/com.kh.cgx/mypage/reserve">
+	 <input type="text" id="login" class="second" name="member_id" value="예매내역" readonly="readonly"><br />
+	 </a> 
+	 <a href="http://localhost:8080/com.kh.cgx/movie/movielog">
+	 <input type="text" id="login" class="second" name="member_id" value="위시리스트" readonly="readonly"><br />
+	 </a>
+	 <a href="http://localhost:8080/com.kh.cgx/mypage/movielog/watched?member_no='${search.member_no}'">
+	 <input type="text" id="login" class="second" name="member_id" value="내가본 영화"  readonly="readonly"><br />
+	 </a>
+	<!--  <a href="">
+	 <input type="text" id="login" class="fadeIn second" name="member_birth" value="1:1 문의" readonly="readonly" ><br />
+	 </a> -->
+	 <a href="http://localhost:8080/com.kh.cgx/user/mypage">
+	 <input type="text" id="login" class="second" name="member_sex" value="my정보관리" readonly="readonly" ><br />
+	 </a>
+	</div>
 	
 <%-- 	<c:forEach var="ist" items="${list}">
 <h5>${ist}</h5>
 </c:forEach> --%>
 
 	 <%-- <h5>${search}</h5> --%> 
-	<div class="container1">
-		<div class="row">
-	    	<div class="form-label-group" style="width: 500px">
-	         	<input type="email" id="inputId" class="form-control" value="" required readonly="readonly" autofocus>
-	         	<label for="inputId">예매내역</label>
-	    	</div>
-	    	<div class="form-label-group" style="width: 500px">
-	         	<input type="email" id="inputId" class="form-control" value="${search.member_phone}" required autofocus>
-	         	<label for="inputId">핸드폰번호</label>
-	    	</div>
-	    	<div class="form-label-group" style="width: 500px">
-	         	<input type="email" id="inputId" class="form-control" value="${search.member_lastlogin}" required autofocus>
-	         	<label for="inputId">최종 로그인 날짜</label>
-	    	</div>
-	    	<div class="form-label-group" style="width: 500px">
-	         	<input type="email" id="inputId" class="form-control" value="${search.member_joindate}" required autofocus>
-	         	<label for="inputId">가입 날짜</label>
-	    	</div>
-	    	<div class="form-label-group" style="width: 500px">
-	         	<input type="email" id="inputId" class="form-control" value="${search.member_birth}" required autofocus>
-	         	<label for="inputId">생년월일</label>
-	    	</div>
-	    	<div class="form-label-group" style="width: 500px">
-	         	<input type="email" id="inputId" class="form-control" value="${search.member_sex}" required autofocus>
-	         	<label for="inputId">성별</label>
-	    	</div>
-	    	<div class="form-label-group" style="width: 500px">
-	         	<input type="email" id="inputId" class="form-control" value="${search.member_point}" required autofocus>
-	         	<label for="inputId">포인트</label>
-	    	</div>
-	    	<div class="form-label-group" style="width: 500px">
-	         	<input type="email" id="inputId" class="form-control" value="${search.member_email}" required autofocus>
-	         	<label for="inputId">이메일</label>
-	    	</div>
-    	</div>	
-	</div>
+
 	
-	<article class="w-40">
+	<%-- <article class="w-40">
 	<div class="sect-finder" align="center">
 		<a href="http://localhost:8080/com.kh.cgx/mypage/reserve">예매내역</a> 
 		<a href="http://localhost:8080/com.kh.cgx/movie/movielog">위시리스트</a>
@@ -119,7 +103,7 @@
 <!-- 		<a href="http://localhost:8080/com.kh.cgx/mypage/movielog/watched?member_no=1">내가 본 영화</a>
  -->		<a href="">1:1 문의</a>
 		<a href="http://localhost:8080/com.kh.cgx/user/mypage">my정보관리</a>
-	</div>
+	</div> --%>
 	
  <%-- 	<c:forEach var="ist" items="${list}">
 <h5>${ist}</h5>
