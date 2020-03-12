@@ -974,44 +974,73 @@ chart.render();
                 </div>
                 <!-- .sect-stillcut -->
                 
-          <div class="sect-grade">
-          	<div class="heading-new">
-          		<p class="txt-write">
-          			운기야 어때?
-          				<a class="link-gradewrite">
-          					<span>평점작성</span>
-          				</a>
-          		</p>
-          	</div>
-          	
-          	<div class="egg-grade">
-          		<div class="egg-gage big">
-          			<span class="egg great"></span>
-          			<span class="percent">
-          				<strong>96</strong>%
-          			</span>
-          		</div>
-          	</div>
-          	
-          	<div class="wrap-persongrade">
-          		<!-- 평점 목록 -->
-          		<ul id="movie_point_list_container">
-          			<li id="liCommentFirst29853352">
-          				<div class="box-contents">
-          					<ul class="writerinfo">
-          						<li class="writer-name">
-          							<span class=" egg-icon good "></span>
-          								id 나오는 창
-          						</li>
-          					</ul>
-          				</div>
-          		<div class="box-comment">
-          			<p>영화  관람중에 정말 집중해서 잘봤어요 </p>
-          		</div>		
-          			</li>
-          		</ul>
-          	</div>
-          </div>      
+         <div class="sect-grade" style="margin-top: 40px;clear: both;  zoom: 1;">
+		<div class="heading-new" style="position:relative; width:100%; height:40px; background-color: #e2e0d2;">
+			<p class="txt-write" style="position: absolute; right: 6px; top: 0; color: #333333;  line-height: 40px; font-weight: 500;">
+				<a class="link-gradewrite" 
+				style="display: inline-block; width: 70px; height: 26px;  margin-left: 4px; 
+				background: url(../images/sprite/sprite_corner.png) no-repeat; color: #ffffff; 
+				text-align: center;  vertical-align: middle; background-position: 0 -1024px; "
+				href="${pageContext.request.contextPath }/movie/review">
+					<span style=" display: block; height: 26px;  line-height: 26px;
+					background-image: url('../resources/img/egg.png') no-repeat 0 0; background-position: 100% -1050px;
+					color: black;">
+					평점작성
+					</span>
+				</a>
+		</div>
+		
+
+		
+	<div class="egg-grade" style=" position: relative; height: 160px; padding: 10px;">
+		<div class="egg-gage big" id="eggIconDiv" style="position: absolute; left: 85px; top: 80px; margin: 0;
+		 display: inline-block; width: auto !important; line-height: 1; ">
+			<span class="egg great" style="background-position: -96px -100px;
+			 display: inline-block ; margin-right: 5px;width: 48px; height: 65px;
+   			 vertical-align: middle;
+   			 background-image: url('/CGX_final_Project/src/main/webapp/resources/img/egg.png'); background-repeat: no-repeat 0 0; ">
+   			 
+   			 </span>
+			<span class="percent" style="display: inline-block; margin-top: 5px; font-family: 'Helvetica';
+   				 font-size: 30px; color: #000000; vertical-align: middle;"	>
+				<strong style=" font-family: inherit; font-size: 60px;letter-spacing: -2px;">${egg.review_egg }</strong>%
+			</span>
+		</div>
+	</div>
+		
+	<div class="wrap-persongrade">	
+		<!-- 평점 목록 -->
+		<ul id="movie_point_list_container" class="point_col2" style="position: relative; margin: 0 25px -2px; overflow: hidden;
+		border-top: 1px solid #999999; color: #333333; margin: 0 auto -2px!important;
+  		  padding: 0 25px;    content: '';  clear: both;  display: block;">
+  		  <c:forEach items="${reviewlist}" var="review" begin="0" end="7">
+			<li id="liCommentFirst29855052" style="  width: 374px; padding-left: 1px!important; border-right: 1px solid #ceccc1;
+			position: relative; float: left; margin-right: -1px;   border-right: none;  width: 50%;   height: 150px;  padding: 30px 0;
+    		border-bottom: 1px solid #ceccc1; zoom: 1; content: '';  clear: both; display: block;">
+				<div class="box-contents" style="padding-left: 88px !important;">
+					<ul class="writerinfo" style=" position: relative;   height: 24px; content: '';  clear: both;   display: block;">
+						<li class="writer-name" style="float: left;   margin-bottom: 3px;
+   							 line-height: 20px!important;   font-size: 12px;   cursor: pointer;">
+   							 <span class=" egg-icon good " style=" width: 17px;   background-position: -27px 0; 
+   							  display: inline-block;  margin-right: 6px;  width: 22px;   height: 22px; 
+   							  background:url('/CGX_final_Project/src/main/webapp/resources/img/egg.png'); background-repeat: no-repeat 0 0; vertical-align: middle;"></span>
+							${review.member_id}
+						</li>
+					</ul>
+				</div>
+			<div class="box-comment" style="margin: 4px 40px 0 88px !important; padding-left: 0!important;">
+			         <p style="color: #000000; font-size: 13px;"> ${review.review_content}</p>     
+			</div>	
+				
+			</li>
+			</c:forEach>
+		</ul>
+	</div>
+			
+	
+	
+	</div>
+	
           		
           		
           
