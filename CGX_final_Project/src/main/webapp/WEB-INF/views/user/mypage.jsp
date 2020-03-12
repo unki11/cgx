@@ -36,7 +36,7 @@
 </head>
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include> 
 <body>
-<div class="wrapper fadeInDown">
+<div class="wrapper">
     <div id="formContent">
       <!-- Tabs Titles -->
   
