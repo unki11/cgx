@@ -1,5 +1,7 @@
 package com.kh.cgx.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -10,6 +12,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
@@ -41,6 +44,7 @@ import com.kh.cgx.repository.admin.AdminMovieDao;
 import com.kh.cgx.repository.admin.AdminScreenDao;
 import com.kh.cgx.repository.admin.ManagerDao;
 
+import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -64,7 +68,8 @@ public class AdminController {
 	
 	@Autowired
 	private PasswordEncoder encoder;
-	
+	@Autowired
+	private SqlSession sqlSession;
 	
 	@GetMapping("/adminlist")
 	public ModelAndView test(ModelAndView mav) {
@@ -81,8 +86,28 @@ public class AdminController {
 	
 	@PostMapping("/admininsert")
 	public String test2(@ModelAttribute AdminDto adminDto) {
+
 		adminDto.setAdmin_pw(encoder.encode(adminDto.getAdmin_pw()));
+		adminDto.setAdmin_no(sqlSession.selectOne("admin.seq"));
 		adminDao.insert(adminDto);
+		int admin_no = adminDto.getAdmin_no();
+		System.out.println("어드민 번호"+admin_no);
+		String admin_id = adminDto.getAdmin_id();
+		String cinema_no = sqlSession.selectOne("cinema.admin", admin_id);
+		System.out.println("시네마 : "+cinema_no);
+		System.out.println("시네마 : "+cinema_no);
+		System.out.println("시네마 : "+cinema_no);
+		System.out.println("시네마 : "+cinema_no);
+		System.out.println("시네마 : "+cinema_no);
+		System.out.println("시네마 : "+cinema_no);
+		System.out.println("시네마 : "+cinema_no);
+		System.out.println("시네마 : "+cinema_no);
+		if(cinema_no != null) {
+			ManagerReadyDto dto= ManagerReadyDto.builder()
+					.admin_no(admin_no)
+					.cinema_no(Integer.parseInt(cinema_no)).build();
+			sqlSession.insert("manager.ready",dto);
+		}
 		return "redirect:/admin/adminlogin";
 	}
 	
