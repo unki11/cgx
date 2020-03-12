@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	namespace : 영역을 부르는 별칭
+	parameterType : 이 명령을 실행하기 위해 필요한 데이터의 형태
+	resultType : 기대되는 결과물의 형태(목록이든 아니든 dto 형태로 표기)
+	
+	태그때문에 못쓰게 되는 기호들은 다음의 영역으로 해결이 가능
+
+	<![CDATA[
+		SQL 구문
+	]]>
+	
+	형태에 따라 파라미터를 다르게 설정할 수 있다
+	- # 은 형태를 추론하여 자동으로 따옴표 설정 및 인코딩 처리를 수행
+	- $ 는 값을 있는 그대로 출력하는 명령이므로 주로 "항목"에 사용
+		- $ 는 SQL Injection 이라는 해킹공격에 매우 취약하므로 사용에 주의 
+ -->
+
+<mapper namespace="movietime">
+	
+	<select id="list" resultType="map">
+		select * from movietime
+	</select>
+
+	<select id="one" resultType="MovieTimeDto" parameterType="int">
+		select * from movietime where movietime_no = #{movietime_no}
+	</select>
+	<select id="search" resultType="map">
+		select movietime.* from movietime 
+		INNER join 
+		(select screen.screen_no from screen 
+		INNER join 
+		cinema on screen.cinema_no = cinema.cinema_no where cinema.cinema_no = 1)
+		A on movietime.screen_no = A.screen_no
+	</select>
+	
+	<select id="movie" resultType="movies" parameterType="int">
+select DISTINCT m.* from movie m inner join (
+select  * from movietime INNER join 
+(select screen.screen_no from screen INNER join cinema on screen.cinema_no = cinema.cinema_no where cinema.cinema_no = #{cinema_no}
+)A 
+on movietime.screen_no = A.screen_no and movietime.movietime_time >= sysdate
+)mt on m.movie_no = mt.movie_no 
+order by m.movie_no
+	</select>
+	
+	<select id="screen" resultType="ScreenDto" parameterType="int">
+	select * from screen s inner join (select DISTINCT screen_no from 
+(select movietime.* from movietime INNER join (select screen.screen_no from screen INNER join cinema on screen.cinema_no = cinema.cinema_no where cinema.cinema_no = #{cinema_no})A on movietime.screen_no = A.screen_no)B
+where B.movietime_time >= sysdate order by screen_no asc)mt on s.screen_no = mt.screen_no
+	</select>
+	
+	<select id="screenlist" resultType="com.kh.cgx.vo.cinema.MovieTimeSeatVO" parameterType="map">	
+
+select m.movietime_no,to_char(m.movietime_time,'HH24:MI') movietime_time,(
+select count(*) from seat where screen_no = #{screen_no})- NVL(sum(t.TICKET_TOTAL_PERSON), 0) ticket_count 
+from ticket t 
+full outer join movietime m 
+on t.movietime_no = m.movietime_no 
+full outer join screen s on m.screen_no = s.screen_no 
+where s.screen_no = #{screen_no} and movie_no = #{movie_no} and movietime_time 
+between to_date(#{movietime_time_start},'YYMMDDHH24MI') and to_date(#{movietime_time_end},'YYMMDDHH24MI') <![CDATA[and m.movietime_time >= sysdate]]>
+group by m.movietime_no,m.movietime_time
+	</select>
+	
+	<select id="date" resultType="string" parameterType="int">
+		select to_char(movietime_time,'YY/MM/DD') from movietime inner join screen on movietime.screen_no = screen.screen_no inner join cinema on cinema.cinema_no = screen.cinema_no where cinema.cinema_no = #{cinema_no} and movietime_time >= sysdate GROUP by to_char(movietime_time,'YY/MM/DD') order by to_char(movietime_time,'YY/MM/DD') asc
+	</select>
+	
+	<select id="movietitle" parameterType="int" resultType="string">
+		select movie.movie_title from movie inner join movietime on movie.movie_no = movietime.movie_no where movietime_no=#{movietime_no}
+	</select>
+	<select id="screen_no" parameterType="int" resultType="int">
+		select screen_no from movietime where movietime_no = #{movietime_no}
+	</select>
+</mapper>
+
+
+
+
+

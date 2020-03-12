@@ -66,12 +66,13 @@ html {
 			<div class="fadeIn first">
 				<img src="${pageContext.request.contextPath}/resources/img/latte2.png" id="icon" alt="User Icon" />
 			</div>
-
+<div>
 	<form action="<c:url value='/user/find_pw' />" method="post">
 		<input  type="text" id="member_name" name="member_name" placeholder="이름" required>
 		<input  type="text" id="member_id" name="member_id" placeholder="아이디" required>
-		<input  type="text" id="member_email" name="member_email" placeholder="이메일" required>
-		<input type="submit" value="찾기">
+		<input  type="email" id="member_email" name="member_email" placeholder="이메일" required>
+		<input type="submit" class="fadeIn fourth btn " value="비밀번호 이메일로 보내기" style="background-color: #ff0206;">
+                                                                                                                                    
 	</form>
 	<% if (request.getAttribute("sendResult") != null) { %>
 	메일발송됨

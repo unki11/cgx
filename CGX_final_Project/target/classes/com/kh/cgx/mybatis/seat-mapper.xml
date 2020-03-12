@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="seat">
+	
+	<select id="search" resultType="Seat" parameterType="int">
+		select * from seat where screen_no = #{screen_no} order by seat_row,seat_col
+	</select>
+	
+	<select id="size" resultType="ScreenDto" parameterType="int">
+		select * from screen where screen_no=#{screen_no}
+	</select>
+	
+<!-- 	<select id="getList" resultType="Seat">
+		select a.*,
+		(select count(1) from ticket_seat b where b.seat_no = a.seat_no) as reservationYn
+        from seat a
+		where a.screen_no = 1 order by a.SEAT_ROW, a.SEAT_COL
+	</select> -->
+	<select id="seat" parameterType="int" resultType="Seat">
+		select * from ticket,ticket_seat,seat where ticket.ticket_no = ticket_seat.ticket_no and ticket_seat.seat_no = seat.seat_no and ticket.movietime_no = #{movietime_no}
+	</select>
+	
+	<select id="seatsearch" parameterType="Seat" resultType="int">
+		select seat_no from seat where screen_no = #{screen_no} and seat_row = #{seat_row} and seat_col= #{seat_col}
+	</select>
+	
+	<select id="ticket" resultType="int">
+		select ticket_no_seq.nextval ticket_no from dual
+	</select>
+	
+	<insert id="seatinsert" parameterType="Seat">
+		insert into seat values(
+			SEAT_NO_SEQ.nextval,
+			#{screen_no},
+			#{seat_row},
+			#{seat_col},
+			'0'
+		)
+	
+	</insert>
+	
+	<insert id="insertticket" parameterType="ticket">
+			insert into ticket values(
+			#{ticket_no},
+			#{member_no},
+			#{movietime_no},
+			'1232151123',
+			#{ticket_total_person}
+			)
+	</insert>
+	
+	<select id="insertticket_seat" parameterType="MovieTimeSeatVO">
+			insert into ticket_seat VALUES (
+			ticket_no_seq.nextval,
+			#{ticket_no},
+			#{seat_no}
+			)
+	</select>
+	
+	<delete id="seatdelete" parameterType="int">
+		delete from seat where screen_no=#{screen_no}
+	</delete>
+	
+	<update id="updateticket" parameterType="map">
+		update ticket set ticket_total_person = #{ticket_total_person} where ticket_no = #{ticket_no}
+	</update>
+	
+	<select id="seatcheck" resultType="SeatTicketVO" parameterType="int">
+select mt.movietime_no,f.files_no,c.cinema_area,s.screen_name,s.screen_type,mt.movietime_price,m.movie_grade,m.movie_title,m.movie_runtime,m.movie_genre,m.movie_director
+		,to_char(mt.movietime_time,'YY.MM.DD.HH24:MI') movietime_time,
+		to_char(mt.movietime_time + m.movie_runtime/(60*24),'HH24:MI') end,
+        (
+        select count(*) from seat 
+            inner join screen s on seat.screen_no = s.screen_no 
+            inner join movietime mot on mot.screen_no = s.screen_no
+            where mot.movietime_no=#{movietime_no}
+        ) all_seat
+        ,(
+        select count(*) from seat 
+            inner join screen s on seat.screen_no = s.screen_no 
+            inner join movietime mot on mot.screen_no = s.screen_no
+            where mot.movietime_no=#{movietime_no}
+        )-count(t.ticket_no) ticket_count
+		from 
+		movietime mt 
+			full outer join 
+				screen s on mt.screen_no = s.screen_no 
+			full outer join
+				cinema c on s.cinema_no = c.cinema_no
+			full outer join 
+				movie m on mt.movie_no = m.movie_no
+			full outer join
+				files f on m.files_no = f.files_no
+            full outer join
+                ticket t on t.movietime_no = mt.movietime_no 
+			where mt.movietime_no=#{movietime_no}
+            GROUP by mt.movietime_no,f.files_no,c.cinema_area,s.screen_name,
+            s.screen_type,mt.movietime_price,m.movie_grade,m.movie_title,m.movie_runtime,mt.movietime_time,
+            m.movie_genre,m.movie_director,
+            s.screen_all_seat
+	</select>
+</mapper>
+
+
+
+
+
