@@ -87,7 +87,7 @@
 
 	<div class="menu" style="background-color: #fcfdf0; cursor: pointer; font-family: cgxfont;">
          <a class="click" href="${pageContext.request.contextPath}/user/login" style="padding: 1rem; color: black;"> 로그인</a>
-         <a class="click" href="${pageContext.request.contextPath}/user/join" style="padding: 1rem; color: black;"> 회원가입</a>
+         <a class="click" href="${pageContext.request.contextPath}/user/joinWhether" style="padding: 1rem; color: black;"> 회원가입</a>
          <a class="click" href="${pageContext.request.contextPath}/mypage/mycgv" style="padding: 1rem; color: black;"> My cgx</a>
          <a class="click" href="${pageContext.request.contextPath}/user/logout" style="padding: 1rem; color: black;"> 로그아웃</a>
     </div>
