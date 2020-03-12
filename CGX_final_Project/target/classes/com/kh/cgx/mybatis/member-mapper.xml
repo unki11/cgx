@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 가입여부확인 -->
 	<select id="checkJoinWhether" parameterType="member" resultType="int">
-		select count(*) from member where member_id = #{member_id}  member_email = #{member_email}
+		select count(*) from member where member_id = #{member_id}  or member_email = #{member_email}
 	</select>
 	
 	<!-- 비밀번호 재확인 -->

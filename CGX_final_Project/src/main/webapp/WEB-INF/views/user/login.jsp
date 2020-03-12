@@ -63,7 +63,7 @@
 					<a class="underlineHover" href="<c:url value='/user/find_id' />">아이디
 						찾기</a> <a class="underlineHover"
 						href="<c:url value='/user/find_pw' />">비밀번호찾기</a> <a
-						class="underlineHover" href="<c:url value='/user/join' />">회원가입</a>
+						class="underlineHover" href="<c:url value='/user/joinWhether' />">회원가입</a>
 				</div>
 			</form>
 		</div>
