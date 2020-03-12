@@ -31,8 +31,14 @@
 	//해야할일 : id에 input 이벤트가 발생하면 ajax로 xml을 불러와서 검사
 	$(function() {
 		$("#checkJoinWhether").click(
-				
-						function() {
+
+				function() {
+					var id =$("input[name='member_id']").val();
+					console.log(id);
+					if(id==''){
+						alert("빈칸입니다.");
+						return false;
+					}
 							$.ajax({
 										url : "joinWhether",
 										type : "post",

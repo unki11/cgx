@@ -87,28 +87,6 @@
 	 <input type="text" id="login" class="second" name="member_sex" value="my정보관리" readonly="readonly" ><br />
 	 </a>
 	</div>
-	
-<%-- 	<c:forEach var="ist" items="${list}">
-<h5>${ist}</h5>
-</c:forEach> --%>
-
-	 <%-- <h5>${search}</h5> --%> 
-
-	
-	<%-- <article class="w-40">
-	<div class="sect-finder" align="center">
-		<a href="http://localhost:8080/com.kh.cgx/mypage/reserve">예매내역</a> 
-		<a href="http://localhost:8080/com.kh.cgx/movie/movielog">위시리스트</a>
-		 <a href="http://localhost:8080/com.kh.cgx/mypage/movielog/watched?member_no='${search.member_no}'">내가 본 영화</a> 
-<!-- 		<a href="http://localhost:8080/com.kh.cgx/mypage/movielog/watched?member_no=1">내가 본 영화</a>
- -->		<a href="">1:1 문의</a>
-		<a href="http://localhost:8080/com.kh.cgx/user/mypage">my정보관리</a>
-	</div> --%>
-	
- <%-- 	<c:forEach var="ist" items="${list}">
-<h5>${ist}</h5>
-</c:forEach>  --%>
-
 </article>
 </form>
 <jsp:include page="../footer.jsp"></jsp:include>		
