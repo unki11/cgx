@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>비밀번호 찾기</title>
+<title>회원가입 여부확인</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
@@ -27,6 +27,33 @@
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath}/resources/secom.js"></script>
+<script>
+	//해야할일 : id에 input 이벤트가 발생하면 ajax로 xml을 불러와서 검사
+	$(function() {
+		$("#checkJoinWhether").click(
+						function() {
+							$.ajax({
+										url : "joinWhether",
+										type : "post",
+										contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+										data : {
+											'member_id' : $("input[name='member_id']").val(),
+											'member_email' : $("input[name='member_email']").val()
+
+										},
+										success : function(resp) { //resp = 위코드가 성공적으로 컨트롤러에 다녀왔을때 가져온 값
+											console.log(resp);
+											if (resp=='y') {
+												alert("회원 가입이 가능합니다. 가입으로 이동합니다.")
+												location.href = "join.do";
+											} else {
+												alert("이미 가입된 회원입니다.")
+											}
+										}
+									});
+						});
+	});
+</script>
 <style>
 body {
 	margin-top: 150px;
@@ -52,7 +79,6 @@ html {
 	background-color: red;
 }
 </style>
-
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 </head>
 
@@ -66,18 +92,18 @@ html {
 			<div class="fadeIn first">
 				<img src="${pageContext.request.contextPath}/resources/img/latte2.png" id="icon" alt="User Icon" />
 			</div>
-<div>
-	<form action="<c:url value='/user/find_pw' />" method="post">
-		<input  type="text" id="member_name" name="member_name" placeholder="이름" required>
-		<input  type="text" id="member_id" name="member_id" placeholder="아이디" required>
-		<input  type="email" id="member_email" name="member_email" placeholder="이메일" required>
-		<input type="submit" class="fadeIn fourth btn " value="비밀번호 이메일로 보내기" style="background-color: #ff0206;">
-                                                                                                                                    
-	</form>
-	<% if (request.getAttribute("sendResult") != null) { %>
-	메일발송됨
-	<% } %>
-	<a href="<c:url value='/user/login' />">로그인</a>
+
+	<form action="joinWheter" method="post">
+		<div>
+			<input type="text" name="member_id" placeholder="id">
+		</div>
+		<div>
+			<input type="email" name="member_email" placeholder="email">
+		</div>
+		<div>
+			<button type="button" id="checkJoinWhether">가입여부 확인</button>
+		</div>
+		<form>
 </body>
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>   
 </html>

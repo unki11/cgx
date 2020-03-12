@@ -304,11 +304,24 @@ public class UsersController {
 		return "user/login";
 	}
 	
+	@GetMapping("/joinWhether")
+	public String joinWhether() {
+		return "user/joinWhether";
+	}
 	
-	
-	
-	
-	
-	
-	
+	@PostMapping("/joinWhether")
+	@ResponseBody
+	public String joinWhether(@ModelAttribute MemberDto input, Model model ) {
+		log.info("imput={}", input);
+		int  memberDto = sqlSession.selectOne("member.checkJoinWhether", input);
+		
+			log.info("joinWhether={}", memberDto);
+	        if (memberDto == 0) {
+	        	return "y";
+	        } else {
+	        	return "n";
+	        	
+	        }
+	}
+
 }
