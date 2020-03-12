@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kh.cgx.entity.cinema.SeatDto;
 import com.kh.cgx.entity.mypage.TicketDto;
 import com.kh.cgx.entity.mypage.TicketSeatDto;
+import com.kh.cgx.entity.user.MemberDto;
 import com.kh.cgx.repository.pay.PayDao;
 import com.kh.cgx.service.pay.KakaoPayService;
 import com.kh.cgx.vo.kakao.KakaoPayReadyVO;
@@ -49,7 +50,9 @@ public class KaKaoPayController {
 		
 		int ticket_no = sqlSession.selectOne("seat.ticket");
 		int screen_no = sqlSession.selectOne("movietime.screen_no",movietime_no);
-		int member_no = 1;
+		 String id=(String) session.getAttribute("id"); 	
+		MemberDto search = sqlSession.selectOne("mypage.search",id);
+		int member_no = search.getMember_no();
 		String partner_order_id = String.valueOf(ticket_no);
 		String partner_user_id = String.valueOf(member_no);
 		String item_name = sqlSession.selectOne("movietime.movietitle",movietime_no);

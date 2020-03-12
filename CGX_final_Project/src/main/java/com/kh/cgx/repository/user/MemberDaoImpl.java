@@ -71,4 +71,9 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectOne("member.login", member_id);
 	}
 	// Added End
+
+	@Override
+	public MemberDto checkJoinWhether(MemberDto input) {
+		return sqlSession.selectOne("member.checkjoinWhether", input); 
+	}
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="person">
+	
+	<!-- 
+		Person 이 가지고 있는 Score 목록까지 한방에 조회
+	 -->
+	 
+	 <!-- 마이바티스에게 구문1을 실행한 결과를 어떻게 정리해야 되는지를 알려준다(resultMap) -->
+	 <resultMap type="com.kh.cgx.PersonVO" id="person">
+	 	<result column="no" property="no"/>
+	 	<result column="name" property="name"/>
+	 	
+	 	<!-- 
+	 		column : 목록을 조회할 항목(PK)
+	 		javaType : 저장소 형태
+	 		ofType : 내용물 형태
+	 		property : 변
+	 	 -->
+	 	<collection column="no" javaType="java.util.List" ofType="com.kh.cgx.ScoreDto" property="list"
+	 			select="selectScore"></collection>
+	 </resultMap>
+	 
+	 
+	 <!-- 구문 1 : Person을 조회하는 구문 -->
+	 <select id="selectPerson" resultMap="person">
+	 	select * from person order by no asc
+	 </select>
+	 
+	 <!-- 구문 2 : Person이 주어진 경우 Score를 조회하는 구문 -->
+	 <select id="selectScore" resultType="com.kh.cgx.ScoreDto" parameterType="int">
+	 	select * from score where person_no=#{person_no} order by no asc
+	 </select>
+	
+</mapper>
+
+
+
+
+
