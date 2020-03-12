@@ -44,7 +44,8 @@ public class UsersController {
 
 	// 가입
 	@GetMapping("/join")
-	public String join1() {
+	public String join1(HttpServletRequest req, Model model) {
+		model.addAttribute("member_id", req.getParameter("member_id"));
 		return "user/join";
 	}
 
@@ -235,11 +236,7 @@ public class UsersController {
 	}
 	// Added End
 
-	@GetMapping("/pw")
-	public String pw() {
 
-		return "user/pw_reconfirm";
-	}
 
 	@GetMapping("/three_month_pw")
 	public String three_month_pw() {
@@ -254,13 +251,15 @@ public class UsersController {
 
 	@PostMapping("/reconfirm_pw")
 	public String reconfirm_pw(MemberDto memberDto) {
+		
+		
 		MemberDto reconfirm_pw = memberDao.reconfirm_pw(memberDto);
 		if (reconfirm_pw != null) {// 비번이 맞을 경우
 			String pw1 = memberDto.getMember_pw();// 회원이 가져온 비밀번호
-			String pw2 = reconfirm_pw.getMember_pw();// ㅉ아이디로 검색한 비밀번호
+			String pw2 = reconfirm_pw.getMember_pw();// 아이디로 검색한 비밀번호
 			boolean result = pw1.equals(pw2);
 			if (result) {// 아이디로 검색한 비밀번호하고 회원이 입력한 비밀번호가 같다
-				return "user/mypage";
+				return "redirect:user/mypage";
 			} else {// 다르다
 				return "redirect:reconfirm_pw?error";
 			}
@@ -298,7 +297,7 @@ public class UsersController {
 		if(id!=null) {
 			member.setMember_pw(encoder.encode(member.getMember_pw()));
 			member.setMember_id(id);
-			sqlSession.update("member.change_pw",member);
+			sqlSession.update("member.updateMemberPw",member);
 			session.removeAttribute("id");
 		}
 		return "user/login";
@@ -314,7 +313,6 @@ public class UsersController {
 	public String joinWhether(@ModelAttribute MemberDto input, Model model ) {
 		log.info("imput={}", input);
 		int  memberDto = sqlSession.selectOne("member.checkJoinWhether", input);
-		
 			log.info("joinWhether={}", memberDto);
 	        if (memberDto == 0) {
 	        	return "y";
