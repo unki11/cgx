@@ -27,31 +27,31 @@
 					joinUser();
 		});
 		
-		$("#checkId").click(function() {
-				var member_id = $("input[name=member_id]").val();
-							$.ajax({
-										url : "checkId",
-										type : "get",
-										contentType: "application/x-www-form-urlencoded; charset=UTF-8",  
-										data : {
-											'member_id' : member_id
-										},
-										success : function(resp) { //resp = 위코드가 성공적으로 컨트롤러에 다녀왔을때 가져온 값
-											if(resp){
-												window.alert(resp);
-												console.log("사용가능한 아이디 입니다.")
-											 $('#checkIdYn').val("Y");
-											}
-											else{
-												window.alert(resp);
-												console.log("중복된 아이디가 있습니다.")
-											 $('#checkIdYn').val("N");
-											}
+// 		$("#checkId").click(function() {
+// 				var member_id = $("input[name=member_id]").val();
+// 							$.ajax({
+// 										url : "checkId",
+// 										type : "get",
+// 										contentType: "application/x-www-form-urlencoded; charset=UTF-8",  
+// 										data : {
+// 											'member_id' : member_id
+// 										},
+// 										success : function(resp) { //resp = 위코드가 성공적으로 컨트롤러에 다녀왔을때 가져온 값
+// 											if(resp){
+// 												window.alert(resp);
+// 												console.log("사용가능한 아이디 입니다.")
+// 											 $('#checkIdYn').val("Y");
+// 											}
+// 											else{
+// 												window.alert(resp);
+// 												console.log("중복된 아이디가 있습니다.")
+// 											 $('#checkIdYn').val("N");
+// 											}
 											
-										}
-									});
-						});
-	});
+// 										}
+// 									});
+// 						});
+// 	});
 	
 	// Added
 	$(function() {
@@ -106,11 +106,11 @@
 				return false;
 			}
 			
-			var checkIdYn= $('#checkIdYn').val();
-			if (checkIdYn != 'Y') {
-				alert("아이디 중복체크를 해주세요.");
-				return false;
-			}
+// 			var checkIdYn= $('#checkIdYn').val();
+// 			if (checkIdYn != 'Y') {
+// 				alert("아이디 중복체크를 해주세요.");
+// 				return false;
+// 			}
 			
 			if ($('input[name="member_pw"]').val() == "") {
 				alert("비밀번호를 입력해주세요");
@@ -176,7 +176,7 @@
   
       <!-- Login Form -->
       <form action="join" method="POST">
-        <input type="text" id="login" class="fadeIn second" name="member_id" placeholder="아이디">
+        <input type="text" id="login" class="fadeIn second" name="member_id" value="${member_id}"placeholder="아이디" disabled="true">
         <input type="hidden" id="checkIdYn" value="N"> 
         <input type="button" id="checkId" value="중복확인"><br>
         <input type="password" id="password" class="fadeIn third" name="member_pw" placeholder="비밀번호">
