@@ -8,8 +8,6 @@
 </style>
 </head>	
 
-<h1>goods페이지입니다</h1>
-
 <div class="sect-finder" align="center">
 		<a href="/com.kh.cgx/goods/categorypage?goods_category=콤보">콤보</a>
 		<a href="/com.kh.cgx/goods/categorypage?goods_category=팝콘">팝콘</a>

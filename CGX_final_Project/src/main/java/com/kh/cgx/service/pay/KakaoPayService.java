@@ -66,6 +66,7 @@ public class KakaoPayService implements PayService{
 				.fromPath("http://192.168.20.43:8080/com.kh.cgx")
 										.path("/pay/kakao/")
 										.toUriString();	
+		
 		body.add("approval_url", baseUrl + "success");
 		body.add("fail_url", baseUrl + "fail");
 		body.add("cancel_url", baseUrl + "cancel");

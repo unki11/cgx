@@ -8,8 +8,6 @@
 		
 	}
 </style>
-    
-<h1>category페이지입니다</h1>
 
 <div class="sect-finder" align="center">
 		<a href="${pageContext.request.contextPath}/goods/

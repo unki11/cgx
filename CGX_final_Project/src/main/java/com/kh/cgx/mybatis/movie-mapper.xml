@@ -28,9 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 파인더 리스트 -->
 	<select id="finder_list" resultType="movies" parameterType="movieVO2">
-		select * from movie M
-			inner join actor A
-			on M.movie_no = A.movie_no
+		select Distinct * from movie M
 	<where>
 	<if test="type != '' and keyword != ''">
 		<choose>
@@ -39,7 +37,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				 movie_title like '%'||#{keyword}||'%'
 <!-- 				or actor_name like '%'||#{keyword}||'%' -->
 				or movie_director like '%'||#{keyword}||'%'
-				or actor_name like '%'||#{keyword}||'%'
 			</when>
 			
 			<!-- 전체 검색 이 아닐경우 -->

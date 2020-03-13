@@ -229,7 +229,7 @@
 	          <div>
 	          	<ul type="square">
 		            <li class="no list-group-item-danger active">${movieDto.movie_no}</li>
-		            <img src="${pageContext.request.contextPath}/download/img?file_no=${movieDto.files_no}">
+		            <img src="${pageContext.request.contextPath}/download/img?files_no=${movieDto.files_no }" style="width: 185px; height: 260px">
 		            <li class="title">${movieDto.movie_title}</li>
 		            <li class="director">${movieDto.movie_director}</li>
 		            <li>${movieDto.movie_ticket_rate}</li>

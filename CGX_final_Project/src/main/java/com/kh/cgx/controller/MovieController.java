@@ -322,8 +322,8 @@ public class MovieController {
 	
 	
 	@GetMapping("/review")
-	private String reivewinsert() {
-		
+	private String reivewinsert(int ticket_no,Model model) {
+		model.addAttribute("ticket_no",ticket_no);
 		return "movie/review";
 	}
 	

@@ -61,8 +61,9 @@
 	    							$("<br>").appendTo(div);
 	    							$("<div>").attr('class','clear').appendTo(div);		
     								div.appendTo("#movietime")
-    								$("<hr>").appendTo("#movietime");
+    								
     								})
+    								$("<hr>").appendTo("#movietime");
 	    					})
 	    			}
 	    			
@@ -153,13 +154,6 @@
  		a:hover { color: black; text-decoration: none;}
     	</style> 	
   <body style="background-color: beige">
- 
-  <h1>cinema페이지입니다</h1>	
-  <ol class="breadcrumb">
-  <li><a href="#">Home</a>></li>
-  <li><a href="#">Library</a>></li>
-  <li class="active">Data</li>
-</ol>
   <div class="area">
   <div class="area2">
   <div class="area3">
@@ -187,7 +181,7 @@
               </div>
               <div class="tab-pane fade tap" id="asd">
                   <c:forEach var="cinema2" items="${cinema_list2}">
-                <div style="float: left;font-size: 1.5rem;"><a href="?cinema_no=${cinema2.CINEMA_NO}" st>
+                <div style="float: left;font-size: 1.5rem;"><a href="?cinema_no=${cinema2.CINEMA_NO}" style="color: white">
 				    ${cinema2.CINEMA_AREA}
 				</a> &nbsp;|&nbsp;&nbsp;</div>
 				</c:forEach>

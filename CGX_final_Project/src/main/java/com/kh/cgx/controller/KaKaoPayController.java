@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.cgx.entity.cinema.MovieTimeDto;
 import com.kh.cgx.entity.cinema.SeatDto;
 import com.kh.cgx.entity.mypage.TicketDto;
 import com.kh.cgx.entity.mypage.TicketSeatDto;
@@ -54,8 +55,6 @@ public class KaKaoPayController {
 	
 	@PostMapping("/info")
 	public String confirm(HttpSession session,@RequestParam List<String> seat,@RequestParam int movietime_no,Model model) throws URISyntaxException {
-		System.out.println("좌석"+seat);
-		System.out.println("movietime_no"+movietime_no);
 		int ticket_no = sqlSession.selectOne("seat.ticket");
 		int screen_no = sqlSession.selectOne("movietime.screen_no",movietime_no);
 		 String id=(String) session.getAttribute("id"); 	
@@ -63,9 +62,10 @@ public class KaKaoPayController {
 		int member_no = search.getMember_no();
 		String partner_order_id = String.valueOf(ticket_no);
 		String partner_user_id = String.valueOf(member_no);
+		MovieTimeDto movieTimeDto = sqlSession.selectOne("movietime.one",movietime_no);
 		String item_name = sqlSession.selectOne("movietime.movietitle",movietime_no);
 		int quantity =seat.size();
-		int total_amount = quantity*10000;
+		int total_amount = quantity*(Integer.valueOf(movieTimeDto.getMovietime_price()));
 		
 		String ticket_buy_no = "12312312316571";
 		
@@ -85,14 +85,12 @@ public class KaKaoPayController {
 															.vat_amount(0)
 															.tax_free_amount(0)
 															.build();														
-		System.out.println("kakaoPayReadVo : " + kakaoPayReadyVO);
 		session.setAttribute("screen_no", screen_no);
 		session.setAttribute("seat", seat);
 		session.setAttribute("ticket_no", ticket_no);
 		PayReadyReturnVO result = 
 				payService.ready(kakaoPayReadyVO);	
 		session.setAttribute("tid", result.getTid());
-		System.out.println("VO={}"+kakaoPayReadyVO);
 		session.setAttribute("ready",kakaoPayReadyVO);
 		model.addAttribute("vo", kakaoPayReadyVO);
 		return "pay/confirm";
@@ -101,7 +99,6 @@ public class KaKaoPayController {
 	@PostMapping("/confirm")
 	public String confirm(@ModelAttribute KakaoPayReadyVO vo
 			,HttpSession session) throws URISyntaxException {
-		System.out.println("실행");
 		PayReadyReturnVO result = 
 				payService.ready(vo);	
 		session.setAttribute("tid", result.getTid());
@@ -188,7 +185,6 @@ public class KaKaoPayController {
 		
 		session.removeAttribute("tid");
 		session.removeAttribute("ready");
-		System.out.println("성공VO={}"+vo);
 		KakaoPaySuccessReadyVO data = KakaoPaySuccessReadyVO.builder()
 				.cid("TC0ONETIME")
 				.tid(tid)

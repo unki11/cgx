@@ -56,6 +56,7 @@
 	            	<p class="card-text">관람좌석: ${ticketVO.movie_title}</p>
 	            	<p class="card-text">인원수: ${ticketVO.ticket_total_person}</p>
 	            	<p class="card text-white bg-danger mb-3">확인하세요.</p>
+	            	<a href="${pageContext.request.contextPath }/movie/review?ticket_no=${ticketVO.ticket_no}"><button class="btn">리뷰쓰기</button></a>
         		</div>
     			</div>
     		</c:forEach>

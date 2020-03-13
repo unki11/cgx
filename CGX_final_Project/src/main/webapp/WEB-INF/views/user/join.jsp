@@ -167,7 +167,7 @@
         <input type="button" id="checkEmailCode" value="인증코드확인" style="display:none;"><p id="msg"></p>
         <input type="button" id="join" class="fadeIn fourth"  value="회원가입" style="background-color: red;">
 
-        <input type="text" id="checkEmailYn" value="N">	
+        <input type="hidden" id="checkEmailYn" value="N">	
 
       </form>
     </div>

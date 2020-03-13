@@ -405,7 +405,6 @@ input, select, img {
 	 <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
 ${list.movie_wish}
 </button> <!-- 지현추가 -->  
-<button class="btn btn-danger">예매</button>
 
 	</a>
 
@@ -443,7 +442,6 @@ ${list.movie_wish}
 	 <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
 ${list.movie_wish}
 </button> <!-- 지현추가 --> 
-<button class="btn btn-danger">예매</button>
 </span>
 	</div>
 	</div>
@@ -476,7 +474,6 @@ ${list.movie_wish}
 	 <button class="wish far fa-heart btn"  value="${list.movie_no}" style="color: red;">
 <span class="mwish">${list.movie_wish}</span>
 </button> <!-- 지현추가 --> 
-<button class="btn btn-danger">예매</button>
 </span>
 	</div>
 	</div>

@@ -101,7 +101,7 @@ html {
 				<img src="${pageContext.request.contextPath}/resources/img/latte2.png" id="icon" alt="User Icon" />
 			</div>
 
-	<form action="joinWheter" method="post">
+	<form action="joinWhether" method="post">
 		<div>
 			<input type="text" name="member_id" placeholder="id">
 		</div>

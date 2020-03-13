@@ -134,7 +134,6 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="${pageContext.request.contextPath}/cinema/">CGV극장</a>
-                <a class="dropdown-item" href="#">특별관</a>
               </div>  
             </li>
             <li class="nav-item dropdown" style="padding: 3rem;">
@@ -142,7 +141,6 @@
                   이벤트
                 </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">이벤트</a>
                 <a class="dropdown-item" href="${pageContext.request.contextPath}/goods/">기프트샵</a>
               </div>
             </li>
