@@ -286,10 +286,6 @@ public class TicketController {
 //		log.info("age = "+ age + "cnt = "+cnt);
 		
 		
-		
-//		System.out.println( "model : "+movieActorVO);
-//		System.out.println(movieActorVO);
-		
 		return "ticket/detail";
 	}
 	

@@ -102,7 +102,6 @@ public class KaKaoPayController {
 		PayReadyReturnVO result = 
 				payService.ready(vo);	
 		session.setAttribute("tid", result.getTid());
-		System.out.println("VO={}"+vo);
 		session.setAttribute("ready",vo);
 		return "redirect:"+result.getNext_redirect_pc_url();
 	}
@@ -221,9 +220,7 @@ public class KaKaoPayController {
 	
 	@GetMapping("/revoke")
 	public String revoke(@RequestParam int no) throws URISyntaxException {
-		System.out.println(no);
 		KakaoPayRevokeReturnVO vo = payService.revoke(no);
-		System.out.println(no);
 		return "redirect:list";
 	}
 }

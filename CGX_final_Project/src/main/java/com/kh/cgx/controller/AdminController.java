@@ -92,17 +92,8 @@ public class AdminController {
 		adminDto.setAdmin_no(sqlSession.selectOne("admin.seq"));
 		adminDao.insert(adminDto);
 		int admin_no = adminDto.getAdmin_no();
-		System.out.println("어드민 번호"+admin_no);
 		String admin_id = adminDto.getAdmin_id();
 		String cinema_no = sqlSession.selectOne("cinema.admin", admin_id);
-		System.out.println("시네마 : "+cinema_no);
-		System.out.println("시네마 : "+cinema_no);
-		System.out.println("시네마 : "+cinema_no);
-		System.out.println("시네마 : "+cinema_no);
-		System.out.println("시네마 : "+cinema_no);
-		System.out.println("시네마 : "+cinema_no);
-		System.out.println("시네마 : "+cinema_no);
-		System.out.println("시네마 : "+cinema_no);
 		if(cinema_no != null) {
 			ManagerReadyDto dto= ManagerReadyDto.builder()
 					.admin_no(admin_no)
@@ -114,7 +105,6 @@ public class AdminController {
 	
 	@PostMapping("/adminupdate")
 	public String adminUpdate(@ModelAttribute AdminDto adminDto) {
-		log.info("a={}",adminDto);
 		adminDao.update(adminDto);
 		return "redirect:/admin/adminlist";
 	}
@@ -122,7 +112,6 @@ public class AdminController {
 	@GetMapping("/admindelete")
 	@ResponseBody
 	public void admindelete(@RequestParam int no) {
-		log.info("no = {}" , no);
 		adminDao.delete(no);
 	}
 	
@@ -148,7 +137,6 @@ public class AdminController {
 		else {
 			boolean correct = encoder.matches(adminDto.getAdmin_pw(),find.getAdmin_pw());
 				if(correct == true) {
-					log.info("admin_no={}",adminDto.getAdmin_no());
 					session.setAttribute("admin_id", find.getAdmin_id());
 					session.setAttribute("admin_no", find.getAdmin_no());
 					if("master".equals(adminDto.getAdmin_id())) {
@@ -235,8 +223,6 @@ public class AdminController {
 		files.transferTo(target);
 		
 		movieDto.setFiles_no(files_no);
-		log.info("movieDto={}",movieDto);
-		System.out.println("무비 Dto"+movieDto);
 		movieDao.insert(movieDto);
 		
 		return "redirect:/admin/movie/admininsert";
@@ -245,7 +231,6 @@ public class AdminController {
 	@GetMapping("/movie/admindelete")
 	@ResponseBody
 	public void moviedelete(int no) { 
-		log.info("no={}",no);
 		movieDao.delete(no);
 	}
 	
@@ -280,9 +265,6 @@ public class AdminController {
 	
 	@PostMapping("/screen/admininsert")
 	public String test21(@ModelAttribute AdminScreenDto screenDto) {
-		log.info("no={}",screenDto);
-		log.info("no={}",screenDto);
-		log.info("no={}",screenDto);
 		int screen_no = sqlSession.selectOne("screen.seq");
 		screenDto.setScreen_no(screen_no);
 		screenDao.insert(screenDto);
@@ -330,7 +312,6 @@ public class AdminController {
 		date += ":";
 		date += movietime_min;
 		managerDto.setMovietime_time(date);
-		log.info("managerDto={}",managerDto);
 		managerDao.insert(managerDto);
 		
 

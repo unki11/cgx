@@ -87,7 +87,6 @@ public class MovieController {
 	@GetMapping("/")
 	public String movie(Model model) {
 		List<MovieDto> list = movieDao.getList3();
-		System.out.println(list);
 		model.addAttribute("list", list);
 		return "movie/movie";
 	}
@@ -328,8 +327,7 @@ public class MovieController {
 	}
 	
 	@PostMapping("/review")
-	private String reviewinsert2(@ModelAttribute ReviewDto reviewDto) {
-		log.info("reviewDto={}",reviewDto);
+	private String reviewinsert2(@ModelAttribute ReviewDto reviewDto) {;
 		sqlSession.insert("review.insert", reviewDto);
 		
 		return "movie/review";

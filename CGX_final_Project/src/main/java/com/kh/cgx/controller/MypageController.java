@@ -44,7 +44,6 @@ public class MypageController {
 		//찾는기능
 		MemberDto search = sqlSession.selectOne("mypage.search",id);
 		
-//  System.out.println("list : "+list);
 		model.addAttribute("search", search);
 		return "mypage/mycgv";
 	}
@@ -56,7 +55,6 @@ public class MypageController {
 	    MemberDto dto1 = sqlSession.selectOne("member.login",id);	
 		//list
 		List<ReserveVO> ticketlist = sqlSession.selectList("mypage.ticketlist", dto1.getMember_no());
-	//	System.out.println(ticketlist);
 		model.addAttribute("ticketlist", ticketlist);
 		return "mypage/reserve";
 	}
