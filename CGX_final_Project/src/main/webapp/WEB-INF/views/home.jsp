@@ -400,7 +400,10 @@ h3 > img {
 input, select, img {
     vertical-align: middle;
 }
-
+.sw-img{
+	width: 300px;
+	height: 300px;
+}
 </style>
 
 <!-- 발표전 풀기
@@ -550,12 +553,12 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
 <div style="text-align:center; margin-top:5px;">이번주 개봉예정작</div>
 <div class="swiper-container">
 	<div class="swiper-wrapper">
-		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/1.jpg"></div>
-		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/2.jpg"></div>
-		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/3.jpg"></div>
-		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/4.jpg"></div>
-		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/5.jpg"></div>
-		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/1.jpg"></div>
+		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/1.jpg" class="sw-img"></div>
+		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/2.jpg" class="sw-img"></div>
+		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/3.jpg" class="sw-img"></div>
+		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/4.jpg" class="sw-img"></div>
+		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/5.jpg" class="sw-img"></div>
+		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/1.jpg" class="sw-img"></div>
 	</div>
 
 	<!-- 네비게이션 -->
