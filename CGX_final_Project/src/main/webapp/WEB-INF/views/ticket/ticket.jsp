@@ -1,14 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- 
- 
-<jsp:include page="../header.jsp"></jsp:include>    
-
-       
-        
-        
-        
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+   
+<jsp:include page="../header.jsp"></jsp:include> 
+   <head>   
         <style>
         * {
 	box-sizing: border-box;
@@ -345,7 +340,7 @@ input, select, img {
 <!-- // 	}); -->
 <!-- // }); -->
 	
-
+</head> 
 <!-- </script> -->
 
 
@@ -381,7 +376,7 @@ input, select, img {
 <%-- <button class="wish" value="${list.movie_no}">좋아요</button> <!-- 지현이추가 --> --%>
 <a href="detail?movie_no=${titleList.movie_no}">
 		<span class="thumb-image">                          
-			<img src="download?files_no=${titleList.files_no }" style="width: 185px; height: 260px">
+			<img src="${pageContext.request.contextPath}/download/img?files_no=${titleList.files_no }" style="width: 185px; height: 260px">
 		</span>
 		</a>
 		

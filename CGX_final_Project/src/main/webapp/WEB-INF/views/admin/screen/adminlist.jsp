@@ -69,6 +69,7 @@
 		            <li>상영관 이름 :${screenDto.screen_name}</li>
 		            <li>상영관 줄 :${screenDto.screen_rowsize}</li>
 		            <li>상영관 칸 :${screenDto.screen_colsize}</li>
+		            <a href="${pageContext.request.contextPath}/cinema/screeninsert?screen_no=${screenDto.screen_no}"><button class="update btn btn-danger">좌석변경</button></a>
 		            <button class="delete btn btn-danger">삭제</button>
 		        </ul>    
 		            <br>

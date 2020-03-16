@@ -44,10 +44,9 @@
       </c:forEach> --%>
       <div class="container" style="text-align: center;">
     	<h2 style="text-align: center;">예매 내역입니다.</h2>
-    	<p>예매번호${ticketVO.ticket_no}</p>
     		<c:forEach var="ticketVO" items="${ticketlist}">
-    			<div class="card" style="width: 400px;">
-        		<img class="card-img-top" src="${pageContext.request.contextPath}/resources/img/${files_no}" alt="" style="width: 100%;">
+    			<div class="card" style="width: 500px;display: initial;">
+        		<img class="card-img-top" src="${pageContext.request.contextPath}/download/img?files_no=${ticketVO.files_no}" style="width: 400px;height: 570px;">
         		<div class="card-body">
 	            	<h4 class="card-title">예매번호: ${ticketVO.ticket_no}</h4>
 	            	<p class="card-text">예매날짜</p>
@@ -57,6 +56,7 @@
 	            	<p class="card-text">관람좌석: ${ticketVO.movie_title}</p>
 	            	<p class="card-text">인원수: ${ticketVO.ticket_total_person}</p>
 	            	<p class="card text-white bg-danger mb-3">확인하세요.</p>
+	            	<a href="${pageContext.request.contextPath }/movie/review?ticket_no=${ticketVO.ticket_no}"><button class="btn">리뷰쓰기</button></a>
         		</div>
     			</div>
     		</c:forEach>

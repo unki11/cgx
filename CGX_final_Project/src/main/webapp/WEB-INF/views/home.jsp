@@ -421,9 +421,6 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
 <jsp:include page="header.jsp"></jsp:include> 
       <!-- 헤더 끝 -->
       
-
-      <h1>${sessionScope.id }</h1>
-
       
 <body style="background-color: #fcfcf0">
   
@@ -484,8 +481,7 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
               <div class="thumbnail">
                 <img src="${pageContext.request.contextPath}/resources/img/3.jpg" alt="...">
                 <div class="caption">
-                  <h3>1번 영화</h3>
-                  <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                  <h3>기생충</h3>
                 </div>
               </div>
             </div>
@@ -494,8 +490,7 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 <div class="thumbnail">
                   <a href="/com.kh.cgx/movie/review"><img src="${pageContext.request.contextPath}/resources/img/4.jpg" alt="..."></a>
                   <div class="caption">
-                    <h3>2번 영화</h3>
-                    <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                    <h3>남산의 부장들</h3>
                   </div>
                 </div>
               </div>
@@ -504,8 +499,7 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 <div class="thumbnail">
                   <img src="${pageContext.request.contextPath}/resources/img/5.jpg" alt="...">
                   <div class="caption">
-                    <h3>3번 영화</h3>
-                    <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                    <h3>조조 래빗</h3>
                   </div>
                 </div>
               </div>
@@ -514,8 +508,7 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 <div class="thumbnail">
                   <img src="${pageContext.request.contextPath}/resources/img/2.jpg" alt="...">
                   <div class="caption">
-                    <h3>4번 영화</h3>
-                    <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                    <h3>클로젯</h3>
                   </div>
                 </div>
               </div>
@@ -524,8 +517,7 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 <div class="thumbnail">
                   <img src="${pageContext.request.contextPath}/resources/img/1.jpg" alt="...">
                   <div class="caption">
-                    <h3>5번 영화</h3>
-                    <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                    <h3>할리퀸의 황홀한 해방</h3>
                   </div>
                 </div>
               </div>
@@ -534,8 +526,7 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 <div class="thumbnail">
                   <img src="${pageContext.request.contextPath}/resources/img/girl.jpg" alt="..">
                   <div class="caption">
-                    <h3>6번 영화</h3>
-                    <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>
+                    <h3>타오르는 여인의 초상</h3>
                   </div>
                 </div>
               </div>
@@ -548,14 +539,14 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
     </div>   -->  
 <!-- 클래스명은 변경하면 안 됨 -->
 <div style="text-align:center; margin-top:5px;">이번주 개봉예정작</div>
-<div class="swiper-container">
-	<div class="swiper-wrapper">
-		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/1.jpg"></div>
-		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/2.jpg"></div>
-		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/3.jpg"></div>
-		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/4.jpg"></div>
-		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/5.jpg"></div>
-		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/1.jpg"></div>
+<div class="swiper-container" style="height: 500px;">
+	<div class="swiper-wrapper" >
+		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/1.jpg" height="500px"></div>
+		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/2.jpg" height="500px"></div>
+		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/3.jpg" height="500px"></div>
+		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/4.jpg" height="500px"></div>
+		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/5.jpg" height="500px"></div>
+		<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/img/1.jpg" height="500px"></div>
 	</div>
 
 	<!-- 네비게이션 -->

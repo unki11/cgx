@@ -107,6 +107,8 @@ from
 	 				MT.movietime_time asc
 	</select>
 
-
+	<select id="one" parameterType="int" resultType="ticket">
+		select * from ticket where ticket_no = #{ticket_no}
+	</select>
 
 </mapper>

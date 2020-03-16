@@ -71,7 +71,7 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <a href="http://localhost:8080/com.kh.cgx/">
+      <a href="${pageContext.request.contextPath}">
       	<img src="${pageContext.request.contextPath}/resources/img/latte2.png" id="icon" alt="User Icon" />
       </a>
     </div>

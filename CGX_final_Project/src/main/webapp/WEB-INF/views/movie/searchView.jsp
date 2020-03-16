@@ -25,7 +25,7 @@
          <c:forEach var="list" items="${searchList}">
             <div class="col-md-4">
               <div class="thumbnail">
-                <img src="${pageContext.request.contextPath}/resources/${file_no} alt="${list.movie_title}">
+                <img src="${pageContext.request.contextPath}/download/img?files_no=${list.files_no}" alt="${list.movie_title}">
                 <div class="caption">
                   <h3>${list.movie_title}</h3>
                   <p><a href="#" class="btn btn-default" role="button">예매하기</a></p>

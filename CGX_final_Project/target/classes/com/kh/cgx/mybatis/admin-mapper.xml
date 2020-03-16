@@ -29,4 +29,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="int">
 		delete admin where admin_no = #{no}
 	</delete>
+	<insert id="files" parameterType="int">
+		insert into files values(
+			#{files_no}
+		)
+	</insert>
 </mapper>

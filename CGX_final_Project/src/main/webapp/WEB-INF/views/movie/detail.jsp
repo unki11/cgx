@@ -952,7 +952,6 @@ div[class^="sect-"]:after {
 					<span style=" display: block; height: 26px;  line-height: 26px;
 					 background-position: 100% -1050px;
 					color: black;">
-					평점작성
 					</span>
 				</a>
 		</div>

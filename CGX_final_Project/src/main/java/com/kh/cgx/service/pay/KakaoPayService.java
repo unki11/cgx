@@ -3,9 +3,12 @@ package com.kh.cgx.service.pay;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
@@ -60,18 +63,14 @@ public class KakaoPayService implements PayService{
 		
 //		주소 생성
 		String baseUrl = ServletUriComponentsBuilder
-										.fromCurrentContextPath()
-										.port(8080)
+				.fromPath("http://192.168.20.43:8080/com.kh.cgx")
 										.path("/pay/kakao/")
-										.toUriString();
+										.toUriString();	
+		
 		body.add("approval_url", baseUrl + "success");
 		body.add("fail_url", baseUrl + "fail");
 		body.add("cancel_url", baseUrl + "cancel");
 		
-//		테스트용 코드
-//		body.add("approval_url", "http://localhost:8080/sts28/success");
-//		body.add("fail_url", "http://localhost:8080/sts28/fail");
-//		body.add("cancel_url", "http://localhost:8080/sts28/cancel");
 		
 //		헤더+바디
 		HttpEntity<MultiValueMap<String, String>> entity
@@ -190,7 +189,6 @@ public class KakaoPayService implements PayService{
 	}
 
 }
-
 
 
 

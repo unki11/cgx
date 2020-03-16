@@ -37,6 +37,7 @@ import com.kh.cgx.entity.admin.ManagerDto;
 import com.kh.cgx.entity.admin.ManagerReadyDto;
 import com.kh.cgx.entity.cinema.CinemaDto;
 import com.kh.cgx.entity.cinema.ScreenDto;
+import com.kh.cgx.entity.movie.ActorDto;
 import com.kh.cgx.entity.movie.MovieDto;
 import com.kh.cgx.repository.admin.AdminCinemaDao;
 import com.kh.cgx.repository.admin.AdminDao;
@@ -91,17 +92,8 @@ public class AdminController {
 		adminDto.setAdmin_no(sqlSession.selectOne("admin.seq"));
 		adminDao.insert(adminDto);
 		int admin_no = adminDto.getAdmin_no();
-		System.out.println("어드민 번호"+admin_no);
 		String admin_id = adminDto.getAdmin_id();
 		String cinema_no = sqlSession.selectOne("cinema.admin", admin_id);
-		System.out.println("시네마 : "+cinema_no);
-		System.out.println("시네마 : "+cinema_no);
-		System.out.println("시네마 : "+cinema_no);
-		System.out.println("시네마 : "+cinema_no);
-		System.out.println("시네마 : "+cinema_no);
-		System.out.println("시네마 : "+cinema_no);
-		System.out.println("시네마 : "+cinema_no);
-		System.out.println("시네마 : "+cinema_no);
 		if(cinema_no != null) {
 			ManagerReadyDto dto= ManagerReadyDto.builder()
 					.admin_no(admin_no)
@@ -113,7 +105,6 @@ public class AdminController {
 	
 	@PostMapping("/adminupdate")
 	public String adminUpdate(@ModelAttribute AdminDto adminDto) {
-		log.info("a={}",adminDto);
 		adminDao.update(adminDto);
 		return "redirect:/admin/adminlist";
 	}
@@ -121,7 +112,6 @@ public class AdminController {
 	@GetMapping("/admindelete")
 	@ResponseBody
 	public void admindelete(@RequestParam int no) {
-		log.info("no = {}" , no);
 		adminDao.delete(no);
 	}
 	
@@ -147,7 +137,6 @@ public class AdminController {
 		else {
 			boolean correct = encoder.matches(adminDto.getAdmin_pw(),find.getAdmin_pw());
 				if(correct == true) {
-					log.info("admin_no={}",adminDto.getAdmin_no());
 					session.setAttribute("admin_id", find.getAdmin_id());
 					session.setAttribute("admin_no", find.getAdmin_no());
 					if("master".equals(adminDto.getAdmin_id())) {
@@ -188,10 +177,10 @@ public class AdminController {
 	@PostMapping("/cinema/admininsert")
 	public String test2(@ModelAttribute AdminCinemaDto cinemaDto,@RequestParam MultipartFile files) throws IllegalStateException, IOException {
 		int files_no = movieDao.file();
-		
-		File dir = new File("D:/upload/movie");
+		sqlSession.insert("admin.files",files_no);
+		File dir = new File("D:/upload/kh2a");	
 		dir.mkdirs();//디렉터리 생성
-
+		
 		File target = new File(dir, String.valueOf(files_no));
 		files.transferTo(target);
 		cinemaDto.setFiles_no(files_no);
@@ -227,14 +216,13 @@ public class AdminController {
 	public String test2(@ModelAttribute MovieDto movieDto,@RequestParam MultipartFile files) throws IllegalStateException, IOException {
 		int files_no = movieDao.file();
 		
-		File dir = new File("D:/upload/movie");
+		File dir = new File("D:/upload/kh2a");
 		dir.mkdirs();//디렉터리 생성
 
 		File target = new File(dir, String.valueOf(files_no));
 		files.transferTo(target);
 		
 		movieDto.setFiles_no(files_no);
-		log.info("movieDto={}",movieDto);
 		movieDao.insert(movieDto);
 		
 		return "redirect:/admin/movie/admininsert";
@@ -243,7 +231,6 @@ public class AdminController {
 	@GetMapping("/movie/admindelete")
 	@ResponseBody
 	public void moviedelete(int no) { 
-		log.info("no={}",no);
 		movieDao.delete(no);
 	}
 	
@@ -278,9 +265,10 @@ public class AdminController {
 	
 	@PostMapping("/screen/admininsert")
 	public String test21(@ModelAttribute AdminScreenDto screenDto) {
-		log.info("no={}",screenDto);
+		int screen_no = sqlSession.selectOne("screen.seq");
+		screenDto.setScreen_no(screen_no);
 		screenDao.insert(screenDto);
-		return "redirect:/admin/screen/admininsert";
+		return "redirect:/cinema/screeninsert?screen_no="+screen_no;
 	}
 	
 	@GetMapping("/screen/admindelete")
@@ -324,7 +312,6 @@ public class AdminController {
 		date += ":";
 		date += movietime_min;
 		managerDto.setMovietime_time(date);
-		log.info("managerDto={}",managerDto);
 		managerDao.insert(managerDto);
 		
 
@@ -344,6 +331,11 @@ public class AdminController {
 	
 	@GetMapping("/actorinsert")
 	public String actorinsert() {
+		return "admin/actorinsert";
+	}
+	@PostMapping("/actorinsert")
+	public String actorinsert1(ActorDto actorDto) {
+		sqlSession.insert("manager.actorinsert", actorDto);
 		return "admin/actorinsert";
 	}
 	
@@ -371,7 +363,7 @@ public class AdminController {
 	public ResponseEntity<ByteArrayResource> download(@RequestParam int files_no) throws IOException{
 //		ResponseEntity : 스프링에서 응답해줄 데이터가 담긴 상자
 //		ByteArrayResource : 스프링에서 관리할 수 있는 Byte 형식의 데이터셋
-		File directory = new File("C:\\upload");
+		File directory = new File("D:\\upload\\kh2a");
 		File file = new File(directory, String.valueOf(files_no));
 		byte[] data = FileUtils.readFileToByteArray(file);
 //		실제파일을 불러온다 : physicalFileDao
