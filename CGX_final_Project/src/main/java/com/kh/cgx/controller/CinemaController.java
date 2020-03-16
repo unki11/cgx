@@ -98,6 +98,12 @@ public class CinemaController {
 			
 			List.add(list);
 		} 
+		int screen_all_seat = List.size();
+		ScreenDto screenDto = ScreenDto.builder()
+				.screen_no(screen_no)
+				.screen_all_seat(screen_all_seat)
+				.build();
+		sqlSession.update("seat.seatall",screenDto);
 		sqlSession.delete("seat.seatdelete",screen_no);
 		for(List<String> slist : List) {
 			SeatDto seatDto = new SeatDto();
@@ -107,7 +113,7 @@ public class CinemaController {
 			seatDto.setSeat_grade('0');
 			sqlSession.insert("seat.seatinsert",seatDto);
 		}
-		return "cinema/seatinsert";
+		return "redirect:/admin/adminlist";
 	}
 	
 	@GetMapping("/seat")

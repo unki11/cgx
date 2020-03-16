@@ -26,34 +26,7 @@
 					e.preventDefault();
 					joinUser();
 		});
-		
-		$("#checkId").click(function() {
-				var member_id = $("input[name=member_id]").val();
-							$.ajax({
-										url : "checkId",
-										type : "get",
-										contentType: "application/x-www-form-urlencoded; charset=UTF-8",  
-										data : {
-											'member_id' : member_id
-										},
-										success : function(resp) { //resp = 위코드가 성공적으로 컨트롤러에 다녀왔을때 가져온 값
-											if(resp){
-												window.alert(resp);
-												console.log("사용가능한 아이디 입니다.")
-											 $('#checkIdYn').val("Y");
-											}
-											else{
-												window.alert(resp);
-												console.log("중복된 아이디가 있습니다.")
-											 $('#checkIdYn').val("N");
-											}
-											
-										}
-									});
-						});
 	});
-	
-	// Added
 	$(function() {
 		$("#checkEmail").click(function() {
 			$.ajax({
@@ -106,11 +79,11 @@
 				return false;
 			}
 			
-			var checkIdYn= $('#checkIdYn').val();
-			if (checkIdYn != 'Y') {
-				alert("아이디 중복체크를 해주세요.");
-				return false;
-			}
+// 			var checkIdYn= $('#checkIdYn').val();
+// 			if (checkIdYn != 'Y') {
+// 				alert("아이디 중복체크를 해주세요.");
+// 				return false;
+// 			}
 			
 			if ($('input[name="member_pw"]').val() == "") {
 				alert("비밀번호를 입력해주세요");
@@ -176,21 +149,25 @@
   
       <!-- Login Form -->
       <form action="join" method="POST">
-        <input type="text" id="login" class="fadeIn second" name="member_id" placeholder="아이디">
+        <input type="text" id="login" class="fadeIn second" name="member_id" value="${member_id}"placeholder="아이디" readonly="readonly">
         <input type="hidden" id="checkIdYn" value="N"> 
-        <input type="button" id="checkId" value="중복확인"><br>
         <input type="password" id="password" class="fadeIn third" name="member_pw" placeholder="비밀번호">
         <input type="text" id="name" class="fadeIn third" name="member_name" placeholder="이름">
         <input type="text" id="phone" class="fadeIn third" name="member_phone" placeholder="핸드폰번호">
-        <input type="text" id="birth" class="fadeIn third" name="member_birth" placeholder="생년월일">
-        <input type="text" id="sex" class="fadeIn third" name="member_sex" placeholder="성별">
-        <input type="email" id="email" class="fadeIn third" name="member_email" placeholder="이메일">
+        <input type="text" id="birth" class="fadeIn third" name="member_birth" placeholder="생년월일"><br>
+       <!--  <input type="text" id="sex" class="fadeIn third" name="member_sex" placeholder="성별"> -->
+              <span style="font-size: 2rem">성별 :</span><select name="member_sex" style="width: 250px; height: 50px;font-size: 2rem;text-align: center;">
+                		<option>남</option>
+                		<option>여</option>
+                	</select>
+                	<br><br><br>
+        <input type="email" id="email" class="fadeIn third" style="width: 300px; height: 50px;font-size: 2rem;text-align: center;" name="member_email" placeholder="이메일">
         <input type="button" id="checkEmail" value="이메일인증">
         <input type="text" name="email_code" placeholder="인증코드" style="display:none;">
         <input type="button" id="checkEmailCode" value="인증코드확인" style="display:none;"><p id="msg"></p>
         <input type="button" id="join" class="fadeIn fourth"  value="회원가입" style="background-color: red;">
 
-        <input type="text" id="checkEmailYn" value="N">	
+        <input type="hidden" id="checkEmailYn" value="N">	
 
       </form>
     </div>

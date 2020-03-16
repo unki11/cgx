@@ -31,7 +31,14 @@
 	//해야할일 : id에 input 이벤트가 발생하면 ajax로 xml을 불러와서 검사
 	$(function() {
 		$("#checkJoinWhether").click(
-						function() {
+
+				function() {
+					var id =$("input[name='member_id']").val();
+					console.log(id);
+					if(id==''){
+						alert("빈칸입니다.");
+						return false;
+					}
 							$.ajax({
 										url : "joinWhether",
 										type : "post",
@@ -44,8 +51,9 @@
 										success : function(resp) { //resp = 위코드가 성공적으로 컨트롤러에 다녀왔을때 가져온 값
 											console.log(resp);
 											if (resp=='y') {
+												var member_id = $("input[name='member_id']").val();
 												alert("회원 가입이 가능합니다. 가입으로 이동합니다.")
-												location.href = "join.do";
+												location.href = "join.do?member_id="+member_id;
 											} else {
 												alert("이미 가입된 회원입니다.")
 											}
@@ -93,17 +101,19 @@ html {
 				<img src="${pageContext.request.contextPath}/resources/img/latte2.png" id="icon" alt="User Icon" />
 			</div>
 
-	<form action="joinWheter" method="post">
+	<form action="joinWhether" method="post">
 		<div>
 			<input type="text" name="member_id" placeholder="id">
 		</div>
 		<div>
-			<input type="email" name="member_email" placeholder="email">
+			<input type="hidden" name="member_email" value="asds" placeholder="email">
 		</div>
 		<div>
 			<button type="button" id="checkJoinWhether">가입여부 확인</button>
 		</div>
-		<form>
+		</form>
+		</div>
+		</div>
 </body>
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>   
 </html>

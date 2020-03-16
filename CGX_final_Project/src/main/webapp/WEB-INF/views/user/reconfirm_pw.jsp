@@ -3,7 +3,7 @@
 	    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <head>
-<title>reconfirm_pw</title>
+<title>비밀번호 재확인</title>
 <script
 	src="${pageContext.request.contextPath}/resources/js/crypto/crypto-js.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/crypto/hmac-sha256.js"></script>
@@ -73,9 +73,12 @@
 						<form action="reconfirm_pw" method="post">
 								<input type="password" name="member_pw" placeholder="pw">
 								<!--  name = 값 controller에있는파라미터값변수명하고 일치해야함 -->
-								<input type="button" id="reconfirm_pw" value="비밀번호확인">
+								<input type="button" style="background-color:black;color:white;width:150px;
+height:40px;"  id="reconfirm_pw" value="비밀번호확인"  >
+								
+								
 							<div>
-								<button type="submit">확인</button>
+	<!-- 							<button type="submit">확인</button> -->
 							</div>
 						</form>
 

@@ -15,7 +15,7 @@
 
 <body>
 <span>영화명 ${list.movie_title}</span>
-<h1>watched페이지입니다</h1>
+<h1>내가 본 영화</h1>
 
   
  <c:forEach var="list" items="${watchList}">

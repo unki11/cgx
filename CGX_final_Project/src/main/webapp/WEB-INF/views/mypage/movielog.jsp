@@ -26,7 +26,7 @@
 <!-- 헤더시작 -->
 
 
-<h1>movielog페이지입니다</h1>
+<h1>위시리스트</h1>
 <%-- <div>${likemovie }</div> --%>
 
 <c:forEach var="loglist" items="${likemovie}">

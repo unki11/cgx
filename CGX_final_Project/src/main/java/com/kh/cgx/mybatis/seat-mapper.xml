@@ -103,6 +103,10 @@ select mt.movietime_no,f.files_no,c.cinema_area,s.screen_name,s.screen_type,mt.m
             m.movie_genre,m.movie_director,
             s.screen_all_seat
 	</select>
+	
+	<update id="seatall" parameterType="ScreenDto">
+		update screen set screen_all_seat = #{screen_all_seat} where screen_no = #{screen_no}
+	</update>
 </mapper>
 
 

@@ -29,14 +29,14 @@
 	
 	<filter-mapping>
 		<filter-name>WebFilter</filter-name>
-		<url-pattern>/admin/adminList</url-pattern>
-		<url-pattern>/admin/adminInsert</url-pattern>
-		<url-pattern>/admin/Movie/adminInsert</url-pattern>
-		<url-pattern>/admin/Movie/adminList</url-pattern>
-		<url-pattern>/admin/Cinema/adminInsert</url-pattern>
-		<url-pattern>/admin/Cinema/adminList</url-pattern>
-		<url-pattern>/admin/Screen/adminInsert</url-pattern>
-		<url-pattern>/admin/Screen/adminList</url-pattern>
+		<url-pattern>/admin/adminlist</url-pattern>
+		<url-pattern>/admin/admininsert</url-pattern>
+		<url-pattern>/admin/movie/admininsert</url-pattern>
+		<url-pattern>/admin/movie/adminlist</url-pattern>
+		<url-pattern>/admin/cinema/admininsert</url-pattern>
+		<url-pattern>/admin/cinema/adminlist</url-pattern>
+		<url-pattern>/admin/screen/admininsert</url-pattern>
+		<url-pattern>/admin/screen/adminlist</url-pattern>
 	</filter-mapping>
 	<filter>
 		<filter-name>WebFilter</filter-name>

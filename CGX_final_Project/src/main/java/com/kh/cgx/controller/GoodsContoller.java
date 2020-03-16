@@ -32,15 +32,12 @@ public class GoodsContoller {
 	public String goods(Model model){
 //		List<GoodsDto> list=goodsDao.getList();
 		List<GoodsDto> list = sqlSession.selectList("goods.list");
-		//System.out.println(list);
 		model.addAttribute("list",list);
 		return "goods/goods";
 	}
 	
 	@GetMapping("/categorypage")
 	public String category(Model model,@RequestParam(required = false) String goods_category) {
-//		String goods_category="팝콘";
-//		System.out.println(goods_category);
 		List<GoodsDto> list2 = sqlSession.selectList("goods.list2",goods_category);
 		model.addAttribute("list2",list2);
 		return "goods/categorypage";

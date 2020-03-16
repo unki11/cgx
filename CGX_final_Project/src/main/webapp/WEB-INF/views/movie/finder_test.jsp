@@ -122,7 +122,6 @@ $(function(){
 		 				<select title="영화검색 목록" id="keyword_type" name="type">
                                 <option value="all" <c:out value="${param.type == 'all'?'selected':'' }" />>전체</option>
                                 <option value="movie_title" <c:out value="${param.type == 'movie_title'?'selected':'' }"/>>영화제목</option>
-                                <option value="actor_name" <c:out value="${param.type == 'actor_name'?'selected':'' }"/>>주연배우</option>
                                 <option value="movie_director" <c:out value="${param.type == 'movie_director'?'selected':'' }"/>>감독</option>
                        </select>
                             <input type="text" title="영화검색 키워드입력" id="keyword_type" minlength="2" maxlength="20" style="width:410px;" placeholder="키워드를 입력해 주세요" name="keyword" value="${param.keyword }">
@@ -281,9 +280,10 @@ $(function(){
     <div class="list-group">
       <div class="caption" style="background-color: #fcfcf0">
       <ul type="square">
-	        <li class="finder list-group-item-danger active">${finder_list.movie_no}
-	        <img src="download?files_no=${finder_list.files_no}" style="width: 185px;height: 260px;">
-	        </li>
+
+	        <li class="finder list-group-item-danger active">${finder_list.movie_no}</li>
+	        <img src="download?files_no=${finder_list.files_no}" width="357px" height="512px">
+
 	        <li class="finder">${finder_list.movie_title}</li>
 	        <li class="finder">${finder_list.movie_director}</li>
 	        <li class="finder">${finder_list.movie_ticket_rate}</li>

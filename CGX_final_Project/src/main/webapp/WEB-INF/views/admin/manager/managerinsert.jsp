@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -197,7 +197,7 @@
             <tr style="text-align: center;">
                 <td colspan="2" >
                     <input type="submit" value="상영시간표 등록하기" class="btn btn-danger">
-                <a class="underlineHover" href="http://localhost:8080/com.kh.cgx/">
+                <a class="underlineHover" href="${pageContext.request.contextPath}/">
                     <input class="btn btn-info" value="메인화면가기">
                 </a>
                 

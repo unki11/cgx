@@ -38,12 +38,10 @@ public class SeatController {
 	
 	@RequestMapping(value = "/seatInfo", method = RequestMethod.GET)
 	public String seatInfo(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		//현재 상영관 정보 가져와야함.
 		
 		List<SeatVO> seatList = seatDao.getList();
-//		System.out.println(seatList); 
 		model.addAttribute("seatList", seatList );
 		
 		return "seat/seatInfo";
