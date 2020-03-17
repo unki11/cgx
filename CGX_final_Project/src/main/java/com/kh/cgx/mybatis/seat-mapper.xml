@@ -107,6 +107,12 @@ select mt.movietime_no,f.files_no,c.cinema_area,s.screen_name,s.screen_type,mt.m
 	<update id="seatall" parameterType="ScreenDto">
 		update screen set screen_all_seat = #{screen_all_seat} where screen_no = #{screen_no}
 	</update>
+	
+	<select id="movietime" parameterType="map" resultType="int">
+		select count(*) from ticket_seat ts 
+			inner join ticket t on t.ticket_no = ts.ticket_no 
+		where ts.seat_no = #{seat_no} and t.movietime_no = #{movietime_no}
+	</select>
 </mapper>
 
 

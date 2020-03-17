@@ -4,6 +4,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.io.Console;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,7 +55,7 @@ public class KaKaoPayController {
 	private SqlSession sqlSession;
 	
 	@PostMapping("/info")
-	public String confirm(HttpSession session,@RequestParam List<String> seat,@RequestParam int movietime_no,Model model) throws URISyntaxException {
+	public String confirm(@RequestParam List<String> seat,@RequestParam int movietime_no,Model model,HttpSession session) throws URISyntaxException {
 		int ticket_no = sqlSession.selectOne("seat.ticket");
 		int screen_no = sqlSession.selectOne("movietime.screen_no",movietime_no);
 		 String id=(String) session.getAttribute("id"); 	
@@ -84,10 +85,13 @@ public class KaKaoPayController {
 															.total_amount(total_amount)
 															.vat_amount(0)
 															.tax_free_amount(0)
-															.build();														
+															.build();	
+		sessionPrint(session);
 		session.setAttribute("screen_no", screen_no);
 		session.setAttribute("seat", seat);
 		session.setAttribute("ticket_no", ticket_no);
+		System.out.println("무비타임"+movietime_no);
+
 		PayReadyReturnVO result = 
 				payService.ready(kakaoPayReadyVO);	
 		session.setAttribute("tid", result.getTid());
@@ -116,14 +120,14 @@ public class KaKaoPayController {
 		prop.put("mail.smtp.auth", "true");
 		prop.put("mail.smtp.starttls.enable", "true"); // TLS
 		
-		Session session = Session.getInstance(prop, new javax.mail.Authenticator() {
+		Session session2 = Session.getInstance(prop, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(username, password);
 			}
 		});
 		
 		try {
-			Message message = new MimeMessage(session);
+			Message message = new MimeMessage(session2);
 			message.setFrom(new InternetAddress(username + "@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 			message.setSubject(subject);
@@ -137,13 +141,27 @@ public class KaKaoPayController {
 		return true;
 	}
 	
+	private void sessionPrint(HttpSession session) {
+		System.out.println("----------------[ session info print start ]----------------");
+		System.out.println("신규 세션 여부 : "+session.isNew());
+		System.out.println("세션 아이디 : "+session.getId());
+		System.out.println("세션 생성 시각 : "+session.getCreationTime());
+		Enumeration<String> en = session.getAttributeNames();
+		while(en.hasMoreElements()) {
+			String key = en.nextElement();
+			Object value = session.getAttribute(key);
+			System.out.println("key = " + key + " , value = " + value);
+		}
+		System.out.println("----------------[ session info print finish ]----------------");
+	}
+	
 	@GetMapping("/success")
-	public String success(@RequestParam String pg_token,
-			HttpSession session,
+	public String success(HttpSession session,@RequestParam String pg_token,
 			Model model) throws URISyntaxException {
+		sessionPrint(session);
 		String tid = (String)session.getAttribute("tid");
 		KakaoPayReadyVO vo = (KakaoPayReadyVO) session.getAttribute("ready");
-		
+
 		int ticket_no = (int) session.getAttribute("ticket_no");
 		int screen_no = (int) session.getAttribute("screen_no");
 		
@@ -152,10 +170,7 @@ public class KaKaoPayController {
 		
 		List<String> seat = (List<String>) session.getAttribute("seat");
 		int ticket_total_person = seat.size();
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("ticket_no", ticket_no);
-		map.put("ticket_total_person", ticket_total_person);
-		sqlSession.update("seat.updateticket",map);
+
 		
 		sendMail(memberDto.getMember_email(), "예약번호", "예약번호는 "+ticketDto.getTicket_buy_no()+"입니다");
 		
@@ -170,6 +185,9 @@ public class KaKaoPayController {
 			
 			List.add(list);
 		} 
+		int count = 0;
+	
+			
 		for(List<String> slist : List) {
 			SeatDto seatdto = new SeatDto();
 			seatdto.setSeat_row(Integer.parseInt(slist.get(0)));
@@ -181,6 +199,10 @@ public class KaKaoPayController {
 									.build();
 			 sqlSession.insert("seat.insertticket_seat",ticketSeatDto);
 		}
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("ticket_no", ticket_no);
+		map.put("ticket_total_person", ticket_total_person);
+		sqlSession.update("seat.updateticket",map);
 		
 		session.removeAttribute("tid");
 		session.removeAttribute("ready");

@@ -125,7 +125,6 @@
                 </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="${pageContext.request.contextPath}/ticket/"">빠른예매</a>
-                <a class="dropdown-item" href="#">상영시간표</a>
               </div>
             </li>
             <li class="nav-item dropdown" style="padding: 3rem;">
@@ -133,7 +132,7 @@
                 극장
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="${pageContext.request.contextPath}/cinema/">CGV극장</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/cinema/">극장</a>
               </div>  
             </li>
             <li class="nav-item dropdown" style="padding: 3rem;">
