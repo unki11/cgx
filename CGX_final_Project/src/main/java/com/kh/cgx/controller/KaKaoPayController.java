@@ -87,6 +87,7 @@ public class KaKaoPayController {
 															.tax_free_amount(0)
 															.build();	
 		sessionPrint(session);
+		session.setAttribute("movietime_no", movietime_no);
 		session.setAttribute("screen_no", screen_no);
 		session.setAttribute("seat", seat);
 		session.setAttribute("ticket_no", ticket_no);
@@ -162,6 +163,7 @@ public class KaKaoPayController {
 		String tid = (String)session.getAttribute("tid");
 		KakaoPayReadyVO vo = (KakaoPayReadyVO) session.getAttribute("ready");
 
+		int movietime_no = (int) session.getAttribute("movietime_no");
 		int ticket_no = (int) session.getAttribute("ticket_no");
 		int screen_no = (int) session.getAttribute("screen_no");
 		
@@ -185,8 +187,22 @@ public class KaKaoPayController {
 			
 			List.add(list);
 		} 
+		
 		int count = 0;
-	
+		for(List<String> slist : List) {
+			SeatDto seatdto = new SeatDto();
+			seatdto.setSeat_row(Integer.parseInt(slist.get(0)));
+			seatdto.setSeat_col(Integer.parseInt(slist.get(1)));
+			seatdto.setScreen_no(screen_no);
+			int seat_no = sqlSession.selectOne("seat.seatsearch",seatdto);
+			Map<String, Integer> Ms = new HashMap<String, Integer>();
+			Ms.put("movietime_no", movietime_no);
+			Ms.put("seat_no", seat_no);
+			count = sqlSession.selectOne("seat.movietime", Ms);
+			if(count>0) {	
+				return "pay/fail";
+			}
+		}
 			
 		for(List<String> slist : List) {
 			SeatDto seatdto = new SeatDto();

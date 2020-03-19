@@ -7,11 +7,24 @@
 
 </style>
 </head>	
-
+<br><br><br><br>
 <div class="sect-finder" align="center">
-		<a href="/com.kh.cgx/goods/categorypage?goods_category=콤보">콤보</a>
-		<a href="/com.kh.cgx/goods/categorypage?goods_category=팝콘">팝콘</a>
-		<a href="/com.kh.cgx/goods/categorypage?goods_category=음료">음료</a>
+
+		<a href="/com.kh.cgx/goods/categorypage?goods_category=콤보">
+			<button class="btn btn-danger" style="font-size: 2.3rem">
+				콤보
+			</button>
+		</a>
+		<a href="/com.kh.cgx/goods/categorypage?goods_category=팝콘">
+			<button class="btn btn-danger" style="font-size: 2.3rem">
+				팝콘
+			</button>
+		</a>
+		<a href="/com.kh.cgx/goods/categorypage?goods_category=음료">
+			<button class="btn btn-danger" style="font-size: 2.3rem">
+				음료
+			</button>
+		</a>
 		<br><br><br><br>
 </div>
 	<div class="container-fluid">
@@ -48,7 +61,7 @@
               </a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">음료</a>
+                  <a href="#">콜라</a>
                 </h4>
                 	<h5>${ist.GOODS_NAME}</h5>
                 	<h5>${ist.GOODS_PRICE}</h5>
@@ -70,7 +83,7 @@
               </a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">음료</a>
+                  <a href="#">팝콘</a>
                 </h4>
                 	<h5>${ist.GOODS_NAME}</h5>
                 	<h5>${ist.GOODS_PRICE}</h5>

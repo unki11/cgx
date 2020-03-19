@@ -10,12 +10,24 @@
 </style>
 
 <div class="sect-finder" align="center">
+	<a href="${pageContext.request.contextPath}/goods/
+				categorypage?goods_category=콤보">
+	<button class="btn btn-info">
+		콤보
+	</button>
+	</a>
+	<a href="${pageContext.request.contextPath}/goods/
+				categorypage?goods_category=팝콘">
+	<button>
+		팝콘
+	</button>
+		</a>
 		<a href="${pageContext.request.contextPath}/goods/
-				categorypage?goods_category=콤보">콤보</a>
-		<a href="${pageContext.request.contextPath}/goods/
-				categorypage?goods_category=팝콘">팝콘</a>
-		<a href="${pageContext.request.contextPath}/goods/
-				categorypage?goods_category=음료">음료</a>
+				categorypage?goods_category=음료">
+			<button>
+		음료
+			</button>
+			</a>
 		<br><br><br><br>
 	</div>
 
